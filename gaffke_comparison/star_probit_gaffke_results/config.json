@@ -1,0 +1,41 @@
+{
+  "output": "star_probit_gaffke_results",
+  "delta": 0.01,
+  "seed": 20260722,
+  "grid_size": 129,
+  "bisection_steps": 24,
+  "regularizer": 1.0,
+  "solvency_c": 1.0,
+  "eps": 1e-06,
+  "gaffke_exact_cutoff": 5000,
+  "gaffke_force_cf": false,
+  "quick": false,
+  "quick_reps": 5,
+  "progress_every": 5,
+  "sample_sizes": [
+    10,
+    50,
+    100,
+    500,
+    1000,
+    5000,
+    10000,
+    50000,
+    100000,
+    500000,
+    1000000
+  ],
+  "reps_by_n": {
+    "10": 50,
+    "50": 50,
+    "100": 50,
+    "500": 50,
+    "1000": 50,
+    "5000": 50,
+    "10000": 50,
+    "50000": 30,
+    "100000": 30,
+    "500000": 20,
+    "1000000": 20
+  }
+}

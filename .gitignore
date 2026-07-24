@@ -12,3 +12,6 @@ venv/
 # Editor and operating-system files
 .DS_Store
 .vscode/
+
+# Patch backup files
+*.orig

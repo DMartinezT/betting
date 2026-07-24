@@ -1,0 +1,46 @@
+{
+  "delta": 0.01,
+  "seed": 20260723,
+  "sample_sizes": [
+    1000,
+    3000,
+    10000,
+    30000,
+    100000,
+    300000,
+    1000000,
+    3000000,
+    10000000
+  ],
+  "reps_by_n": {
+    "1000": 50,
+    "3000": 50,
+    "10000": 50,
+    "30000": 40,
+    "100000": 40,
+    "300000": 30,
+    "1000000": 20,
+    "3000000": 15,
+    "10000000": 10
+  },
+  "distributions": [
+    "Beta(2,2)",
+    "Beta(1,5)",
+    "Bernoulli(0.5)",
+    "Uniform(0,1)",
+    "Beta(0.5,0.5)",
+    "Bernoulli(0.1)"
+  ],
+  "methods": [
+    "Square-root feedback",
+    "Capped original feedback",
+    "Squared-hinge feedback",
+    "Target-capped feedback",
+    "Efficient betting (Probit-STaR)",
+    "Gaffke"
+  ],
+  "gaffke_exact_cutoff": 3000,
+  "continuous_gaffke_large_n_backend": "fourth-order Cornish-Fisher from exact Dirichlet moments",
+  "betting_inversion": "local geometric bracket plus paired bisection",
+  "empirical_interval": "pointwise 10th--90th percentiles of CI widths"
+}
