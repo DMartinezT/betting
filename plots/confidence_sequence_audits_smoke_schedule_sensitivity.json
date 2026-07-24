@@ -1,0 +1,5764 @@
+{
+  "audit": "bentkus_schedule_sensitivity",
+  "schema_version": 1,
+  "parameters": {
+    "delta": 0.01,
+    "max_time": 64,
+    "width_reporting_times": [
+      64
+    ],
+    "num_width_paths_per_distribution": 1,
+    "num_coverage_paths_per_distribution": 4,
+    "seed": 20260717,
+    "width_seed_recipe": [
+      "global_seed",
+      "audit_code=201",
+      "distribution_index",
+      "path_index"
+    ],
+    "coverage_seed_recipe": [
+      "global_seed",
+      "audit_code=202",
+      "distribution_index",
+      "path_index"
+    ],
+    "topology_grid_size_for_widths": 17,
+    "horizon_overshoot": 2.0,
+    "agrapa_c": 0.5,
+    "heat_solvency_fraction": 1.0,
+    "chronological_observations": true,
+    "width_paths_reused_across_schedules_and_methods": true,
+    "coverage_paths_reused_across_schedules_and_methods": true,
+    "fixed_schedules_declared_before_sampling": true,
+    "crossing_rule": "max_{0<=t<=max_time} log(E_t) >= log(1/delta)"
+  },
+  "methods": [
+    "bentkus_mixture",
+    "heat_constrained_agrapa"
+  ],
+  "configuration_order": [
+    "ratio2_p2_default",
+    "ratio2_p1p25",
+    "ratio2_p1p5",
+    "ratio2_p3",
+    "ratio1p5_p2",
+    "ratio3_p2"
+  ],
+  "distributions": [
+    "Beta(2,2)",
+    "Beta(1,5)",
+    "Bernoulli(0.5)",
+    "Uniform(0,1)",
+    "Beta(0.5,0.5)",
+    "Bernoulli(0.1)"
+  ],
+  "true_means": {
+    "Beta(2,2)": 0.5,
+    "Beta(1,5)": 0.16666666666666666,
+    "Bernoulli(0.5)": 0.5,
+    "Uniform(0,1)": 0.5,
+    "Beta(0.5,0.5)": 0.5,
+    "Bernoulli(0.1)": 0.1
+  },
+  "schedules": {
+    "ratio2_p2_default": {
+      "horizon_ratio": 2.0,
+      "weight_power": 2.0,
+      "horizon_overshoot": 2.0,
+      "horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "strikes": [
+        2.533776605287547,
+        2.9827574961158314,
+        3.221167396311291,
+        3.3816313692946967,
+        3.501727471831789,
+        3.597267023855629,
+        3.6763507204271932,
+        3.7436695986806128
+      ],
+      "weights": [
+        0.6079271018540265,
+        0.15198177546350664,
+        0.06754745576155852,
+        0.03799544386587666,
+        0.024317084074161062,
+        0.01688686394038963,
+        0.01240667554804136,
+        0.009498860966469165
+      ],
+      "cash_weight": 0.07143873852597049,
+      "expert_count": 8,
+      "total_instantiated_weight": 0.9285612614740295
+    },
+    "ratio2_p1p25": {
+      "horizon_ratio": 2.0,
+      "weight_power": 1.25,
+      "horizon_overshoot": 2.0,
+      "horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "strikes": [
+        2.871996257034574,
+        3.133727284767334,
+        3.278639563679917,
+        3.3782344768452077,
+        3.4537798005099574,
+        3.514464853919916,
+        3.565069148336322,
+        3.608407481094109
+      ],
+      "weights": [
+        0.2176225602119175,
+        0.09149901538026854,
+        0.055119129083959106,
+        0.03847059701625615,
+        0.029106595457173496,
+        0.02317473902930399,
+        0.019113110261887153,
+        0.016174893561820024
+      ],
+      "cash_weight": 0.509719359997414,
+      "expert_count": 8,
+      "total_instantiated_weight": 0.490280640002586
+    },
+    "ratio2_p1p5": {
+      "horizon_ratio": 2.0,
+      "weight_power": 1.5,
+      "horizon_overshoot": 2.0,
+      "horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "strikes": [
+        2.6902974190430324,
+        3.0178206899595144,
+        3.196381015973224,
+        3.318117250368287,
+        3.409976407304149,
+        3.4834793148398218,
+        3.544591497645228,
+        3.5968016062913293
+      ],
+      "weights": [
+        0.3827933839994266,
+        0.1353378988096703,
+        0.07366862109869224,
+        0.04784917299992832,
+        0.03423808111839593,
+        0.026045790769773827,
+        0.020668899950680292,
+        0.016917237351208786
+      ],
+      "cash_weight": 0.2624809139022237,
+      "expert_count": 8,
+      "total_instantiated_weight": 0.7375190860977763
+    },
+    "ratio2_p3": {
+      "horizon_ratio": 2.0,
+      "weight_power": 3.0,
+      "horizon_overshoot": 2.0,
+      "horizons": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32,
+        64,
+        128
+      ],
+      "strikes": [
+        2.423157307066685,
+        3.096241568738593,
+        3.438479485775668,
+        3.664492027707206,
+        3.831726434706543,
+        3.9637206955351787,
+        4.072337477607021,
+        4.164371755941743
+      ],
+      "weights": [
+        0.8319073725807077,
+        0.10398842157258846,
+        0.03081138416965584,
+        0.012998552696573558,
+        0.006655258980645662,
+        0.00385142302120698,
+        0.002425385925891276,
+        0.0016248190870716947
+      ],
+      "cash_weight": 0.005737381965658872,
+      "expert_count": 8,
+      "total_instantiated_weight": 0.9942626180343411
+    },
+    "ratio1p5_p2": {
+      "horizon_ratio": 1.5,
+      "weight_power": 2.0,
+      "horizon_overshoot": 2.0,
+      "horizons": [
+        1,
+        2,
+        3,
+        5,
+        8,
+        12,
+        18,
+        27,
+        41,
+        62,
+        93,
+        140
+      ],
+      "strikes": [
+        2.533776605287547,
+        2.9827574961158314,
+        3.221167396311291,
+        3.3816313692946967,
+        3.501727471831789,
+        3.597267023855629,
+        3.6763507204271932,
+        3.7436695986806128,
+        3.8021789243793775,
+        3.853848718982952,
+        3.9000679876864948,
+        3.9418422275624665
+      ],
+      "weights": [
+        0.6079271018540265,
+        0.15198177546350664,
+        0.06754745576155852,
+        0.03799544386587666,
+        0.024317084074161062,
+        0.01688686394038963,
+        0.01240667554804136,
+        0.009498860966469165,
+        0.00750527286239539,
+        0.0060792710185402655,
+        0.005024190924413443,
+        0.004221715985097407
+      ],
+      "cash_weight": 0.04860828773552406,
+      "expert_count": 12,
+      "total_instantiated_weight": 0.9513917122644759
+    },
+    "ratio3_p2": {
+      "horizon_ratio": 3.0,
+      "weight_power": 2.0,
+      "horizon_overshoot": 2.0,
+      "horizons": [
+        1,
+        3,
+        9,
+        27,
+        81,
+        243
+      ],
+      "strikes": [
+        2.533776605287547,
+        2.9827574961158314,
+        3.221167396311291,
+        3.3816313692946967,
+        3.501727471831789,
+        3.597267023855629
+      ],
+      "weights": [
+        0.6079271018540265,
+        0.15198177546350664,
+        0.06754745576155852,
+        0.03799544386587666,
+        0.024317084074161062,
+        0.01688686394038963
+      ],
+      "cash_weight": 0.09334427504048093,
+      "expert_count": 6,
+      "total_instantiated_weight": 0.9066557249595191
+    }
+  },
+  "width_runtime_scope": "terminal_endpoint_inversion_after_numba_warmup",
+  "width_results": {
+    "Beta(2,2)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.37646146858629137
+              ],
+              "upper": [
+                0.6291654277767514
+              ],
+              "width": [
+                0.25270395919046007
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.25270395919046007,
+            "median": 0.25270395919046007,
+            "q10": 0.25270395919046007,
+            "q90": 0.25270395919046007,
+            "minimum": 0.25270395919046007,
+            "maximum": 0.25270395919046007
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00045936834067106247
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.3625603441498293
+              ],
+              "upper": [
+                0.6477972594182915
+              ],
+              "width": [
+                0.2852369152684622
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2852369152684622,
+            "median": 0.2852369152684622,
+            "q10": 0.2852369152684622,
+            "q90": 0.2852369152684622,
+            "minimum": 0.2852369152684622,
+            "maximum": 0.2852369152684622
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003849463537335396
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.1287393999770394,
+            "median": 1.1287393999770394,
+            "q10": 1.1287393999770394,
+            "q90": 1.1287393999770394,
+            "minimum": 1.1287393999770394,
+            "maximum": 1.1287393999770394
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.37989727354341163
+              ],
+              "upper": [
+                0.6256938717565554
+              ],
+              "width": [
+                0.2457965982131438
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2457965982131438,
+            "median": 0.2457965982131438,
+            "q10": 0.2457965982131438,
+            "q90": 0.2457965982131438,
+            "minimum": 0.2457965982131438,
+            "maximum": 0.2457965982131438
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00036192312836647034
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.36697794679752094
+              ],
+              "upper": [
+                0.6433891296774561
+              ],
+              "width": [
+                0.27641118287993516
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.27641118287993516,
+            "median": 0.27641118287993516,
+            "q10": 0.27641118287993516,
+            "q90": 0.27641118287993516,
+            "minimum": 0.27641118287993516,
+            "maximum": 0.27641118287993516
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004687253385782242
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.1245525157359735,
+            "median": 1.1245525157359735,
+            "q10": 1.1245525157359735,
+            "q90": 1.1245525157359735,
+            "minimum": 1.1245525157359735,
+            "maximum": 1.1245525157359735
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.38050033852049764
+              ],
+              "upper": [
+                0.6250989698473228
+              ],
+              "width": [
+                0.2445986313268252
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2445986313268252,
+            "median": 0.2445986313268252,
+            "q10": 0.2445986313268252,
+            "q90": 0.2445986313268252,
+            "minimum": 0.2445986313268252,
+            "maximum": 0.2445986313268252
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00035010091960430145
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.36768044529584365
+              ],
+              "upper": [
+                0.6427230791722618
+              ],
+              "width": [
+                0.27504263387641814
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.27504263387641814,
+            "median": 0.27504263387641814,
+            "q10": 0.27504263387641814,
+            "q90": 0.27504263387641814,
+            "minimum": 0.27504263387641814,
+            "maximum": 0.27504263387641814
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003651389852166176
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.1244651386005289,
+            "median": 1.1244651386005289,
+            "q10": 1.1244651386005289,
+            "q90": 1.1244651386005289,
+            "minimum": 1.1244651386005289,
+            "maximum": 1.1244651386005289
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.3643633151924753
+              ],
+              "upper": [
+                0.6411110612611958
+              ],
+              "width": [
+                0.2767477460687205
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2767477460687205,
+            "median": 0.2767477460687205,
+            "q10": 0.2767477460687205,
+            "q90": 0.2767477460687205,
+            "minimum": 0.2767477460687205,
+            "maximum": 0.2767477460687205
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004035327583551407
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.34669772138715405
+              ],
+              "upper": [
+                0.6631291129258611
+              ],
+              "width": [
+                0.31643139153870703
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.31643139153870703,
+            "median": 0.31643139153870703,
+            "q10": 0.31643139153870703,
+            "q90": 0.31643139153870703,
+            "minimum": 0.31643139153870703,
+            "maximum": 0.31643139153870703
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003487085923552513
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.1433928407139855,
+            "median": 1.1433928407139855,
+            "q10": 1.1433928407139855,
+            "q90": 1.1433928407139855,
+            "minimum": 1.1433928407139855,
+            "maximum": 1.1433928407139855
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.36828865613094336
+              ],
+              "upper": [
+                0.6324460436557028
+              ],
+              "width": [
+                0.2641573875247594
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2641573875247594,
+            "median": 0.2641573875247594,
+            "q10": 0.2641573875247594,
+            "q90": 0.2641573875247594,
+            "minimum": 0.2641573875247594,
+            "maximum": 0.2641573875247594
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0005150018259882927
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.3569174666992497
+              ],
+              "upper": [
+                0.6512242448511898
+              ],
+              "width": [
+                0.2943067781519401
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2943067781519401,
+            "median": 0.2943067781519401,
+            "q10": 0.2943067781519401,
+            "q90": 0.2943067781519401,
+            "minimum": 0.2943067781519401,
+            "maximum": 0.2943067781519401
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00046164169907569885
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.114134194427384,
+            "median": 1.114134194427384,
+            "q10": 1.114134194427384,
+            "q90": 1.114134194427384,
+            "minimum": 1.114134194427384,
+            "maximum": 1.114134194427384
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.3739099935717802
+              ],
+              "upper": [
+                0.6326456196436935
+              ],
+              "width": [
+                0.2587356260719133
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2587356260719133,
+            "median": 0.2587356260719133,
+            "q10": 0.2587356260719133,
+            "q90": 0.2587356260719133,
+            "minimum": 0.2587356260719133,
+            "maximum": 0.2587356260719133
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003252541646361351
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                0,
+                0
+              ],
+              "lower": [
+                0.366213644370646
+              ],
+              "upper": [
+                0.645237993925782
+              ],
+              "width": [
+                0.27902434955513594
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.27902434955513594,
+            "median": 0.27902434955513594,
+            "q10": 0.27902434955513594,
+            "q90": 0.27902434955513594,
+            "minimum": 0.27902434955513594,
+            "maximum": 0.27902434955513594
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00033218786120414734
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0784148815964893,
+            "median": 1.0784148815964893,
+            "q10": 1.0784148815964893,
+            "q90": 1.0784148815964893,
+            "minimum": 1.0784148815964893,
+            "maximum": 1.0784148815964893
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      }
+    },
+    "Beta(1,5)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.05816469685921932
+              ],
+              "upper": [
+                0.2761523323189292
+              ],
+              "width": [
+                0.2179876354597099
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2179876354597099,
+            "median": 0.2179876354597099,
+            "q10": 0.2179876354597099,
+            "q90": 0.2179876354597099,
+            "minimum": 0.2179876354597099,
+            "maximum": 0.2179876354597099
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003980221226811409
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.056838376773185116
+              ],
+              "upper": [
+                0.3585529577871722
+              ],
+              "width": [
+                0.3017145810139871
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3017145810139871,
+            "median": 0.3017145810139871,
+            "q10": 0.3017145810139871,
+            "q90": 0.3017145810139871,
+            "minimum": 0.3017145810139871,
+            "maximum": 0.3017145810139871
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003818115219473839
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.384090342453172,
+            "median": 1.384090342453172,
+            "q10": 1.384090342453172,
+            "q90": 1.384090342453172,
+            "minimum": 1.384090342453172,
+            "maximum": 1.384090342453172
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.06094796993853469
+              ],
+              "upper": [
+                0.2708162683912588
+              ],
+              "width": [
+                0.2098682984527241
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2098682984527241,
+            "median": 0.2098682984527241,
+            "q10": 0.2098682984527241,
+            "q90": 0.2098682984527241,
+            "minimum": 0.2098682984527241,
+            "maximum": 0.2098682984527241
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003576353192329407
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.05980582026191309
+              ],
+              "upper": [
+                0.350027719272244
+              ],
+              "width": [
+                0.2902218990103309
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2902218990103309,
+            "median": 0.2902218990103309,
+            "q10": 0.2902218990103309,
+            "q90": 0.2902218990103309,
+            "minimum": 0.2902218990103309,
+            "maximum": 0.2902218990103309
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00036051124334335327
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.382876314098042,
+            "median": 1.382876314098042,
+            "q10": 1.382876314098042,
+            "q90": 1.382876314098042,
+            "minimum": 1.382876314098042,
+            "maximum": 1.382876314098042
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.06142383467874762
+              ],
+              "upper": [
+                0.27006454335733887
+              ],
+              "width": [
+                0.20864070867859125
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.20864070867859125,
+            "median": 0.20864070867859125,
+            "q10": 0.20864070867859125,
+            "q90": 0.20864070867859125,
+            "minimum": 0.20864070867859125,
+            "maximum": 0.20864070867859125
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00034550298005342484
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.060311745589287986
+              ],
+              "upper": [
+                0.3488728068781685
+              ],
+              "width": [
+                0.28856106128888054
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.28856106128888054,
+            "median": 0.28856106128888054,
+            "q10": 0.28856106128888054,
+            "q90": 0.28856106128888054,
+            "minimum": 0.28856106128888054,
+            "maximum": 0.28856106128888054
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003572637215256691
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.3830525361826955,
+            "median": 1.3830525361826955,
+            "q10": 1.3830525361826955,
+            "q90": 1.3830525361826955,
+            "minimum": 1.3830525361826955,
+            "maximum": 1.3830525361826955
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.04898485194935193
+              ],
+              "upper": [
+                0.2950413918245836
+              ],
+              "width": [
+                0.24605653987523168
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.24605653987523168,
+            "median": 0.24605653987523168,
+            "q10": 0.24605653987523168,
+            "q90": 0.24605653987523168,
+            "minimum": 0.24605653987523168,
+            "maximum": 0.24605653987523168
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00038390420377254486
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.04661682611781566
+              ],
+              "upper": [
+                0.38753351012681175
+              ],
+              "width": [
+                0.3409166840089961
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3409166840089961,
+            "median": 0.3409166840089961,
+            "q10": 0.3409166840089961,
+            "q90": 0.3409166840089961,
+            "minimum": 0.3409166840089961,
+            "maximum": 0.3409166840089961
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00035608280450105667
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.3855217348901407,
+            "median": 1.3855217348901407,
+            "q10": 1.3855217348901407,
+            "q90": 1.3855217348901407,
+            "minimum": 1.3855217348901407,
+            "maximum": 1.3855217348901407
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.055912524399064134
+              ],
+              "upper": [
+                0.28226067067085686
+              ],
+              "width": [
+                0.22634814627179273
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.22634814627179273,
+            "median": 0.22634814627179273,
+            "q10": 0.22634814627179273,
+            "q90": 0.22634814627179273,
+            "minimum": 0.22634814627179273,
+            "maximum": 0.22634814627179273
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004524439573287964
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.053383881509342236
+              ],
+              "upper": [
+                0.3672270922824727
+              ],
+              "width": [
+                0.31384321077313043
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.31384321077313043,
+            "median": 0.31384321077313043,
+            "q10": 0.31384321077313043,
+            "q90": 0.31384321077313043,
+            "minimum": 0.31384321077313043,
+            "maximum": 0.31384321077313043
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0005814377218484879
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.3865508330528848,
+            "median": 1.3865508330528848,
+            "q10": 1.3865508330528848,
+            "q90": 1.3865508330528848,
+            "minimum": 1.3865508330528848,
+            "maximum": 1.3865508330528848
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.05511726770857882
+              ],
+              "upper": [
+                0.27244239523261543
+              ],
+              "width": [
+                0.2173251275240366
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                5
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.2173251275240366,
+            "median": 0.2173251275240366,
+            "q10": 0.2173251275240366,
+            "q90": 0.2173251275240366,
+            "minimum": 0.2173251275240366,
+            "maximum": 0.2173251275240366
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004288991913199425
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                1,
+                0
+              ],
+              "lower": [
+                0.05511821053655112
+              ],
+              "upper": [
+                0.3473109550826158
+              ],
+              "width": [
+                0.29219274454606464
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.29219274454606464,
+            "median": 0.29219274454606464,
+            "q10": 0.29219274454606464,
+            "q90": 0.29219274454606464,
+            "minimum": 0.29219274454606464,
+            "maximum": 0.29219274454606464
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004485165700316429
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.3444959074681666,
+            "median": 1.3444959074681666,
+            "q10": 1.3444959074681666,
+            "q90": 1.3444959074681666,
+            "minimum": 1.3444959074681666,
+            "maximum": 1.3444959074681666
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      }
+    },
+    "Bernoulli(0.5)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.3147995574890744
+              ],
+              "upper": [
+                0.8361870570283619
+              ],
+              "width": [
+                0.5213874995392875
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                9
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5213874995392875,
+            "median": 0.5213874995392875,
+            "q10": 0.5213874995392875,
+            "q90": 0.5213874995392875,
+            "minimum": 0.5213874995392875,
+            "maximum": 0.5213874995392875
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00044754520058631897
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.3037547796614334
+              ],
+              "upper": [
+                0.8530410767375466
+              ],
+              "width": [
+                0.5492862970761132
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                10
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5492862970761132,
+            "median": 0.5492862970761132,
+            "q10": 0.5492862970761132,
+            "q90": 0.5492862970761132,
+            "minimum": 0.5492862970761132,
+            "maximum": 0.5492862970761132
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.000383574515581131
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.053508757999526,
+            "median": 1.053508757999526,
+            "q10": 1.053508757999526,
+            "q90": 1.053508757999526,
+            "minimum": 1.053508757999526,
+            "maximum": 1.053508757999526
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.3221857004703732
+              ],
+              "upper": [
+                0.8291595456092506
+              ],
+              "width": [
+                0.5069738451388774
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                9
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5069738451388774,
+            "median": 0.5069738451388774,
+            "q10": 0.5069738451388774,
+            "q90": 0.5069738451388774,
+            "minimum": 0.5069738451388774,
+            "maximum": 0.5069738451388774
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003716517239809036
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.3114253362711087
+              ],
+              "upper": [
+                0.8465630397903299
+              ],
+              "width": [
+                0.5351377035192212
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                10
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5351377035192212,
+            "median": 0.5351377035192212,
+            "q10": 0.5351377035192212,
+            "q90": 0.5351377035192212,
+            "minimum": 0.5351377035192212,
+            "maximum": 0.5351377035192212
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00037180259823799133
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0555528823634457,
+            "median": 1.0555528823634457,
+            "q10": 1.0555528823634457,
+            "q90": 1.0555528823634457,
+            "minimum": 1.0555528823634457,
+            "maximum": 1.0555528823634457
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.323507191984438
+              ],
+              "upper": [
+                0.8279519389054705
+              ],
+              "width": [
+                0.5044447469210325
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                9
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5044447469210325,
+            "median": 0.5044447469210325,
+            "q10": 0.5044447469210325,
+            "q90": 0.5044447469210325,
+            "minimum": 0.5044447469210325,
+            "maximum": 0.5044447469210325
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.000375969335436821
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.31275626601931966
+              ],
+              "upper": [
+                0.8455012185565973
+              ],
+              "width": [
+                0.5327449525372776
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                9
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5327449525372776,
+            "median": 0.5327449525372776,
+            "q10": 0.5327449525372776,
+            "q90": 0.5327449525372776,
+            "minimum": 0.5327449525372776,
+            "maximum": 0.5327449525372776
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003596097230911255
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0561016955553217,
+            "median": 1.0561016955553217,
+            "q10": 1.0561016955553217,
+            "q90": 1.0561016955553217,
+            "minimum": 1.0561016955553217,
+            "maximum": 1.0561016955553217
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.28865418959141065
+              ],
+              "upper": [
+                0.8607668641783802
+              ],
+              "width": [
+                0.5721126745869696
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                10
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5721126745869696,
+            "median": 0.5721126745869696,
+            "q10": 0.5721126745869696,
+            "q90": 0.5721126745869696,
+            "minimum": 0.5721126745869696,
+            "maximum": 0.5721126745869696
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00038119032979011536
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.27552914376194065
+              ],
+              "upper": [
+                0.8763884334188062
+              ],
+              "width": [
+                0.6008592896568656
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                11
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.6008592896568656,
+            "median": 0.6008592896568656,
+            "q10": 0.6008592896568656,
+            "q90": 0.6008592896568656,
+            "minimum": 0.6008592896568656,
+            "maximum": 0.6008592896568656
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003589475527405739
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0502464223339387,
+            "median": 1.0502464223339387,
+            "q10": 1.0502464223339387,
+            "q90": 1.0502464223339387,
+            "minimum": 1.0502464223339387,
+            "maximum": 1.0502464223339387
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.3088440529971973
+              ],
+              "upper": [
+                0.8512894351237636
+              ],
+              "width": [
+                0.5424453821265663
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                10
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5424453821265663,
+            "median": 0.5424453821265663,
+            "q10": 0.5424453821265663,
+            "q90": 0.5424453821265663,
+            "minimum": 0.5424453821265663,
+            "maximum": 0.5424453821265663
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.000486849807202816
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.2969563337588887
+              ],
+              "upper": [
+                0.8613774245771919
+              ],
+              "width": [
+                0.5644210908183032
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                10
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5644210908183032,
+            "median": 0.5644210908183032,
+            "q10": 0.5644210908183032,
+            "q90": 0.5644210908183032,
+            "minimum": 0.5644210908183032,
+            "maximum": 0.5644210908183032
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004696063697338104
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0405122974880618,
+            "median": 1.0405122974880618,
+            "q10": 1.0405122974880618,
+            "q90": 1.0405122974880618,
+            "minimum": 1.0405122974880618,
+            "maximum": 1.0405122974880618
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.30673292031553023
+              ],
+              "upper": [
+                0.8419357929963553
+              ],
+              "width": [
+                0.5352028726808251
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                10
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5352028726808251,
+            "median": 0.5352028726808251,
+            "q10": 0.5352028726808251,
+            "q90": 0.5352028726808251,
+            "minimum": 0.5352028726808251,
+            "maximum": 0.5352028726808251
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00039494503289461136
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                2,
+                0
+              ],
+              "lower": [
+                0.30673292886483533
+              ],
+              "upper": [
+                0.8464812669760992
+              ],
+              "width": [
+                0.5397483381112638
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                10
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.5397483381112638,
+            "median": 0.5397483381112638,
+            "q10": 0.5397483381112638,
+            "q90": 0.5397483381112638,
+            "minimum": 0.5397483381112638,
+            "maximum": 0.5397483381112638
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00045984797179698944
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0084929765187367,
+            "median": 1.0084929765187367,
+            "q10": 1.0084929765187367,
+            "q90": 1.0084929765187367,
+            "minimum": 1.0084929765187367,
+            "maximum": 1.0084929765187367
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      }
+    },
+    "Uniform(0,1)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.3675142181150376
+              ],
+              "upper": [
+                0.682746805137088
+              ],
+              "width": [
+                0.31523258702205037
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.31523258702205037,
+            "median": 0.31523258702205037,
+            "q10": 0.31523258702205037,
+            "q90": 0.31523258702205037,
+            "minimum": 0.31523258702205037,
+            "maximum": 0.31523258702205037
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00045472849160432816
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.35213790387187
+              ],
+              "upper": [
+                0.687904728693966
+              ],
+              "width": [
+                0.335766824822096
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.335766824822096,
+            "median": 0.335766824822096,
+            "q10": 0.335766824822096,
+            "q90": 0.335766824822096,
+            "minimum": 0.335766824822096,
+            "maximum": 0.335766824822096
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00037694256752729416
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0651399590189237,
+            "median": 1.0651399590189237,
+            "q10": 1.0651399590189237,
+            "q90": 1.0651399590189237,
+            "minimum": 1.0651399590189237,
+            "maximum": 1.0651399590189237
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.3717301100435548
+              ],
+              "upper": [
+                0.6783414501996685
+              ],
+              "width": [
+                0.30661134015611374
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.30661134015611374,
+            "median": 0.30661134015611374,
+            "q10": 0.30661134015611374,
+            "q90": 0.30661134015611374,
+            "minimum": 0.30661134015611374,
+            "maximum": 0.30661134015611374
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00039615854620933533
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.3571241239492973
+              ],
+              "upper": [
+                0.6829176502639335
+              ],
+              "width": [
+                0.32579352631463615
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.32579352631463615,
+            "median": 0.32579352631463615,
+            "q10": 0.32579352631463615,
+            "q90": 0.32579352631463615,
+            "minimum": 0.32579352631463615,
+            "maximum": 0.32579352631463615
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003822222352027893
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0625618939885122,
+            "median": 1.0625618939885122,
+            "q10": 1.0625618939885122,
+            "q90": 1.0625618939885122,
+            "minimum": 1.0625618939885122,
+            "maximum": 1.0625618939885122
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.372467698243017
+              ],
+              "upper": [
+                0.6775816206932765
+              ],
+              "width": [
+                0.30511392245025953
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.30511392245025953,
+            "median": 0.30511392245025953,
+            "q10": 0.30511392245025953,
+            "q90": 0.30511392245025953,
+            "minimum": 0.30511392245025953,
+            "maximum": 0.30511392245025953
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004034116864204407
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.35795036163505234
+              ],
+              "upper": [
+                0.6820796806344389
+              ],
+              "width": [
+                0.3241293189993866
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3241293189993866,
+            "median": 0.3241293189993866,
+            "q10": 0.3241293189993866,
+            "q90": 0.3241293189993866,
+            "minimum": 0.3241293189993866,
+            "maximum": 0.3241293189993866
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00039088912308216095
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0623222840715405,
+            "median": 1.0623222840715405,
+            "q10": 1.0623222840715405,
+            "q90": 1.0623222840715405,
+            "minimum": 1.0623222840715405,
+            "maximum": 1.0623222840715405
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.35247562418999984
+              ],
+              "upper": [
+                0.6982047406813864
+              ],
+              "width": [
+                0.34572911649138655
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.34572911649138655,
+            "median": 0.34572911649138655,
+            "q10": 0.34572911649138655,
+            "q90": 0.34572911649138655,
+            "minimum": 0.34572911649138655,
+            "maximum": 0.34572911649138655
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004102848470211029
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.3345112601644157
+              ],
+              "upper": [
+                0.7050687686584234
+              ],
+              "width": [
+                0.3705575084940077
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3705575084940077,
+            "median": 0.3705575084940077,
+            "q10": 0.3705575084940077,
+            "q90": 0.3705575084940077,
+            "minimum": 0.3705575084940077,
+            "maximum": 0.3705575084940077
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004402417689561844
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0718145820479072,
+            "median": 1.0718145820479072,
+            "q10": 1.0718145820479072,
+            "q90": 1.0718145820479072,
+            "minimum": 1.0718145820479072,
+            "maximum": 1.0718145820479072
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.35527206337827055
+              ],
+              "upper": [
+                0.68591618066137
+              ],
+              "width": [
+                0.3306441172830994
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3306441172830994,
+            "median": 0.3306441172830994,
+            "q10": 0.3306441172830994,
+            "q90": 0.3306441172830994,
+            "minimum": 0.3306441172830994,
+            "maximum": 0.3306441172830994
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0005404911935329437
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.34697766108425954
+              ],
+              "upper": [
+                0.6915782347976951
+              ],
+              "width": [
+                0.34460057371343555
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.34460057371343555,
+            "median": 0.34460057371343555,
+            "q10": 0.34460057371343555,
+            "q90": 0.34460057371343555,
+            "minimum": 0.34460057371343555,
+            "maximum": 0.34460057371343555
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004789847880601883
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0422099039445076,
+            "median": 1.0422099039445076,
+            "q10": 1.0422099039445076,
+            "q90": 1.0422099039445076,
+            "minimum": 1.0422099039445076,
+            "maximum": 1.0422099039445076
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.36450960142826994
+              ],
+              "upper": [
+                0.6863201747928209
+              ],
+              "width": [
+                0.321810573364551
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.321810573364551,
+            "median": 0.321810573364551,
+            "q10": 0.321810573364551,
+            "q90": 0.321810573364551,
+            "minimum": 0.321810573364551,
+            "maximum": 0.321810573364551
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003873305395245552
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                3,
+                0
+              ],
+              "lower": [
+                0.35944646748488873
+              ],
+              "upper": [
+                0.686309477382242
+              ],
+              "width": [
+                0.3268630098973533
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3268630098973533,
+            "median": 0.3268630098973533,
+            "q10": 0.3268630098973533,
+            "q90": 0.3268630098973533,
+            "minimum": 0.3268630098973533,
+            "maximum": 0.3268630098973533
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003349427133798599
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0157000327241543,
+            "median": 1.0157000327241543,
+            "q10": 1.0157000327241543,
+            "q90": 1.0157000327241543,
+            "minimum": 1.0157000327241543,
+            "maximum": 1.0157000327241543
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      }
+    },
+    "Beta(0.5,0.5)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.2620893336353397
+              ],
+              "upper": [
+                0.6090359453212713
+              ],
+              "width": [
+                0.34694661168593155
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.34694661168593155,
+            "median": 0.34694661168593155,
+            "q10": 0.34694661168593155,
+            "q90": 0.34694661168593155,
+            "minimum": 0.34694661168593155,
+            "maximum": 0.34694661168593155
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004371143877506256
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.23621792123360233
+              ],
+              "upper": [
+                0.6317939281279422
+              ],
+              "width": [
+                0.3955760068943399
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3955760068943399,
+            "median": 0.3955760068943399,
+            "q10": 0.3955760068943399,
+            "q90": 0.3955760068943399,
+            "minimum": 0.3955760068943399,
+            "maximum": 0.3955760068943399
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.000382482074201107
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.1401639144769324,
+            "median": 1.1401639144769324,
+            "q10": 1.1401639144769324,
+            "q90": 1.1401639144769324,
+            "minimum": 1.1401639144769324,
+            "maximum": 1.1401639144769324
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.2668075497195116
+              ],
+              "upper": [
+                0.6021162139847093
+              ],
+              "width": [
+                0.3353086642651977
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3353086642651977,
+            "median": 0.3353086642651977,
+            "q10": 0.3353086642651977,
+            "q90": 0.3353086642651977,
+            "minimum": 0.3353086642651977,
+            "maximum": 0.3353086642651977
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00040063541382551193
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.24187907492576863
+              ],
+              "upper": [
+                0.6242501377091588
+              ],
+              "width": [
+                0.38237106278339017
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.38237106278339017,
+            "median": 0.38237106278339017,
+            "q10": 0.38237106278339017,
+            "q90": 0.38237106278339017,
+            "minimum": 0.38237106278339017,
+            "maximum": 0.38237106278339017
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00039988569915294647
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.1403554501680593,
+            "median": 1.1403554501680593,
+            "q10": 1.1403554501680593,
+            "q90": 1.1403554501680593,
+            "minimum": 1.1403554501680593,
+            "maximum": 1.1403554501680593
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.26764076526905795
+              ],
+              "upper": [
+                0.6007878784893699
+              ],
+              "width": [
+                0.33314711322031193
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.33314711322031193,
+            "median": 0.33314711322031193,
+            "q10": 0.33314711322031193,
+            "q90": 0.33314711322031193,
+            "minimum": 0.33314711322031193,
+            "maximum": 0.33314711322031193
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00038292258977890015
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.242754304616369
+              ],
+              "upper": [
+                0.6228577093175491
+              ],
+              "width": [
+                0.38010340470118015
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.38010340470118015,
+            "median": 0.38010340470118015,
+            "q10": 0.38010340470118015,
+            "q90": 0.38010340470118015,
+            "minimum": 0.38010340470118015,
+            "maximum": 0.38010340470118015
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003666924312710762
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.140947616285709,
+            "median": 1.140947616285709,
+            "q10": 1.140947616285709,
+            "q90": 1.140947616285709,
+            "minimum": 1.140947616285709,
+            "maximum": 1.140947616285709
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.24544647442577888
+              ],
+              "upper": [
+                0.627156803319837
+              ],
+              "width": [
+                0.38171032889405815
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.38171032889405815,
+            "median": 0.38171032889405815,
+            "q10": 0.38171032889405815,
+            "q90": 0.38171032889405815,
+            "minimum": 0.38171032889405815,
+            "maximum": 0.38171032889405815
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003753984346985817
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.21621225781326975
+              ],
+              "upper": [
+                0.6528087368774603
+              ],
+              "width": [
+                0.4365964790641906
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.4365964790641906,
+            "median": 0.4365964790641906,
+            "q10": 0.4365964790641906,
+            "q90": 0.4365964790641906,
+            "minimum": 0.4365964790641906,
+            "maximum": 0.4365964790641906
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.000370590016245842
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.1437900575788869,
+            "median": 1.1437900575788869,
+            "q10": 1.1437900575788869,
+            "q90": 1.1437900575788869,
+            "minimum": 1.1437900575788869,
+            "maximum": 1.1437900575788869
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.25652105713755624
+              ],
+              "upper": [
+                0.6076552804026378
+              ],
+              "width": [
+                0.3511342232650816
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3511342232650816,
+            "median": 0.3511342232650816,
+            "q10": 0.3511342232650816,
+            "q90": 0.3511342232650816,
+            "minimum": 0.3511342232650816,
+            "maximum": 0.3511342232650816
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004883222281932831
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.2328748088687823
+              ],
+              "upper": [
+                0.6280745615262268
+              ],
+              "width": [
+                0.39519975265744445
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.39519975265744445,
+            "median": 0.39519975265744445,
+            "q10": 0.39519975265744445,
+            "q90": 0.39519975265744445,
+            "minimum": 0.39519975265744445,
+            "maximum": 0.39519975265744445
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00044964905828237534
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.1254948292496585,
+            "median": 1.1254948292496585,
+            "q10": 1.1254948292496585,
+            "q90": 1.1254948292496585,
+            "minimum": 1.1254948292496585,
+            "maximum": 1.1254948292496585
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.2580827998851693
+              ],
+              "upper": [
+                0.608508371074763
+              ],
+              "width": [
+                0.35042557118959367
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                6
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.35042557118959367,
+            "median": 0.35042557118959367,
+            "q10": 0.35042557118959367,
+            "q90": 0.35042557118959367,
+            "minimum": 0.35042557118959367,
+            "maximum": 0.35042557118959367
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00034946948289871216
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                4,
+                0
+              ],
+              "lower": [
+                0.24269865638083704
+              ],
+              "upper": [
+                0.6187329595336712
+              ],
+              "width": [
+                0.3760343031528342
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3760343031528342,
+            "median": 0.3760343031528342,
+            "q10": 0.3760343031528342,
+            "q90": 0.3760343031528342,
+            "minimum": 0.3760343031528342,
+            "maximum": 0.3760343031528342
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0004230989143252373
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 1.0730789476244735,
+            "median": 1.0730789476244735,
+            "q10": 1.0730789476244735,
+            "q90": 1.0730789476244735,
+            "minimum": 1.0730789476244735,
+            "maximum": 1.0730789476244735
+          },
+          "heat_constrained_narrower_count": 0,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      }
+    },
+    "Bernoulli(0.1)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.39491831158369606
+              ],
+              "width": [
+                0.39491831158369606
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.39491831158369606,
+            "median": 0.39491831158369606,
+            "q10": 0.39491831158369606,
+            "q90": 0.39491831158369606,
+            "minimum": 0.39491831158369606,
+            "maximum": 0.39491831158369606
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00030180998146533966
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.3831445572723093
+              ],
+              "width": [
+                0.3831445572723093
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3831445572723093,
+            "median": 0.3831445572723093,
+            "q10": 0.3831445572723093,
+            "q90": 0.3831445572723093,
+            "minimum": 0.3831445572723093,
+            "maximum": 0.3831445572723093
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00028035882860422134
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 0.970186861520369,
+            "median": 0.970186861520369,
+            "q10": 0.970186861520369,
+            "q90": 0.970186861520369,
+            "minimum": 0.970186861520369,
+            "maximum": 0.970186861520369
+          },
+          "heat_constrained_narrower_count": 1,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.38629931587245936
+              ],
+              "width": [
+                0.38629931587245936
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.38629931587245936,
+            "median": 0.38629931587245936,
+            "q10": 0.38629931587245936,
+            "q90": 0.38629931587245936,
+            "minimum": 0.38629931587245936,
+            "maximum": 0.38629931587245936
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0002649109810590744
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.3745565546981869
+              ],
+              "width": [
+                0.3745565546981869
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3745565546981869,
+            "median": 0.3745565546981869,
+            "q10": 0.3745565546981869,
+            "q90": 0.3745565546981869,
+            "minimum": 0.3745565546981869,
+            "maximum": 0.3745565546981869
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00023880135267972946
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 0.9696019105088204,
+            "median": 0.9696019105088204,
+            "q10": 0.9696019105088204,
+            "q90": 0.9696019105088204,
+            "minimum": 0.9696019105088204,
+            "maximum": 0.9696019105088204
+          },
+          "heat_constrained_narrower_count": 1,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.3855788210587449
+              ],
+              "width": [
+                0.3855788210587449
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3855788210587449,
+            "median": 0.3855788210587449,
+            "q10": 0.3855788210587449,
+            "q90": 0.3855788210587449,
+            "minimum": 0.3855788210587449,
+            "maximum": 0.3855788210587449
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00031084660440683365
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.3734254671129306
+              ],
+              "width": [
+                0.3734254671129306
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                7
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3734254671129306,
+            "median": 0.3734254671129306,
+            "q10": 0.3734254671129306,
+            "q90": 0.3734254671129306,
+            "minimum": 0.3734254671129306,
+            "maximum": 0.3734254671129306
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003370465710759163
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 0.96848023469639,
+            "median": 0.96848023469639,
+            "q10": 0.96848023469639,
+            "q90": 0.96848023469639,
+            "minimum": 0.96848023469639,
+            "maximum": 0.96848023469639
+          },
+          "heat_constrained_narrower_count": 1,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.4220142470629225
+              ],
+              "width": [
+                0.4220142470629225
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.4220142470629225,
+            "median": 0.4220142470629225,
+            "q10": 0.4220142470629225,
+            "q90": 0.4220142470629225,
+            "minimum": 0.4220142470629225,
+            "maximum": 0.4220142470629225
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0003332393243908882
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.4131879270248629
+              ],
+              "width": [
+                0.4131879270248629
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.4131879270248629,
+            "median": 0.4131879270248629,
+            "q10": 0.4131879270248629,
+            "q90": 0.4131879270248629,
+            "minimum": 0.4131879270248629,
+            "maximum": 0.4131879270248629
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0002682972699403763
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 0.9790852557716052,
+            "median": 0.9790852557716052,
+            "q10": 0.9790852557716052,
+            "q90": 0.9790852557716052,
+            "minimum": 0.9790852557716052,
+            "maximum": 0.9790852557716052
+          },
+          "heat_constrained_narrower_count": 1,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.41799142039295756
+              ],
+              "width": [
+                0.41799142039295756
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.41799142039295756,
+            "median": 0.41799142039295756,
+            "q10": 0.41799142039295756,
+            "q90": 0.41799142039295756,
+            "minimum": 0.41799142039295756,
+            "maximum": 0.41799142039295756
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00037691183388233185
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.38953364063109563
+              ],
+              "width": [
+                0.38953364063109563
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.38953364063109563,
+            "median": 0.38953364063109563,
+            "q10": 0.38953364063109563,
+            "q90": 0.38953364063109563,
+            "minimum": 0.38953364063109563,
+            "maximum": 0.38953364063109563
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00031135883182287216
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 0.9319177897596355,
+            "median": 0.9319177897596355,
+            "q10": 0.9319177897596355,
+            "q90": 0.9319177897596355,
+            "minimum": 0.9319177897596355,
+            "maximum": 0.9319177897596355
+          },
+          "heat_constrained_narrower_count": 1,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.45504193876373483
+              ],
+              "width": [
+                0.45504193876373483
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                9
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.45504193876373483,
+            "median": 0.45504193876373483,
+            "q10": 0.45504193876373483,
+            "q90": 0.45504193876373483,
+            "minimum": 0.45504193876373483,
+            "maximum": 0.45504193876373483
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.0005185985937714577
+        },
+        "heat_constrained_agrapa": {
+          "raw_paths": [
+            {
+              "path_index": 0,
+              "seed_words": [
+                20260717,
+                201,
+                5,
+                0
+              ],
+              "lower": [
+                0.0
+              ],
+              "upper": [
+                0.3786647567635645
+              ],
+              "width": [
+                0.3786647567635645
+              ],
+              "empty": [
+                false
+              ],
+              "component_count": [
+                1
+              ],
+              "accepted_grid_count": [
+                8
+              ],
+              "topology_uncertain": [
+                false
+              ]
+            }
+          ],
+          "terminal_width_summary": {
+            "count": 1,
+            "mean": 0.3786647567635645,
+            "median": 0.3786647567635645,
+            "q10": 0.3786647567635645,
+            "q90": 0.3786647567635645,
+            "minimum": 0.3786647567635645,
+            "maximum": 0.3786647567635645
+          },
+          "diagnostic_summary": {
+            "path_time_count": 1,
+            "empty_count": 0,
+            "disconnected_count": 0,
+            "topology_uncertain_count": 0,
+            "maximum_component_count": 1
+          },
+          "runtime_seconds": 0.00031727924942970276
+        },
+        "paired_comparison": {
+          "heat_constrained_over_bentkus_width_ratio": {
+            "count": 1,
+            "mean": 0.8321535324685169,
+            "median": 0.8321535324685169,
+            "q10": 0.8321535324685169,
+            "q90": 0.8321535324685169,
+            "minimum": 0.8321535324685169,
+            "maximum": 0.8321535324685169
+          },
+          "heat_constrained_narrower_count": 1,
+          "finite_positive_bentkus_pair_count": 1
+        }
+      }
+    }
+  },
+  "coverage_results": {
+    "Beta(2,2)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      }
+    },
+    "Beta(1,5)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      }
+    },
+    "Bernoulli(0.5)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      }
+    },
+    "Uniform(0,1)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      }
+    },
+    "Beta(0.5,0.5)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      }
+    },
+    "Bernoulli(0.1)": {
+      "ratio2_p2_default": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p25": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p1p5": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio2_p3": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio1p5_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      },
+      "ratio3_p2": {
+        "bentkus_mixture": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "heat_constrained_agrapa": {
+          "raw_crossing_flags": [
+            false,
+            false,
+            false,
+            false
+          ],
+          "crossings": 0,
+          "total": 4,
+          "crossing_rate": 0.0,
+          "wilson_95_lower": 0.0,
+          "wilson_95_upper": 0.4898908364545973
+        },
+        "paired_comparison": {
+          "both_crossed": 0,
+          "bentkus_only_crossed": 0,
+          "heat_constrained_only_crossed": 0,
+          "neither_crossed": 4
+        }
+      }
+    }
+  }
+}

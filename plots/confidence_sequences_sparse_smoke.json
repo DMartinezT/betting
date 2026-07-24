@@ -1,0 +1,2441 @@
+{
+  "delta": 0.01,
+  "max_time": 50,
+  "times": [
+    10,
+    50
+  ],
+  "num_width_sims": 1,
+  "coverage_max_time": 10000,
+  "num_coverage_sims": 0,
+  "seed": 20260717,
+  "topology_grid_size": 17,
+  "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+  "methods": {
+    "hgkelly": {
+      "G": 20
+    },
+    "product_scale_mixture": {
+      "scale_ratio": 2.0,
+      "weight_power": 2.0,
+      "horizon_overshoot": 2.0
+    },
+    "agrapa": {
+      "c": 0.5
+    },
+    "bentkus_mixture": {
+      "solvency_fraction": 1.0,
+      "maturity_ratio": 2.0,
+      "weight_power": 2.0
+    },
+    "heat_constrained_agrapa": {
+      "agrapa_c": 0.5,
+      "solvency_fraction": 1.0,
+      "maturity_ratio": 2.0,
+      "weight_power": 2.0
+    }
+  },
+  "schedule": {
+    "schedule_time": 50,
+    "horizons": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64,
+      128
+    ],
+    "strikes": [
+      2.533776605287547,
+      2.9827574961158314,
+      3.221167396311291,
+      3.3816313692946967,
+      3.501727471831789,
+      3.597267023855629,
+      3.6763507204271932,
+      3.7436695986806128
+    ],
+    "weights": [
+      0.6079271018540265,
+      0.15198177546350664,
+      0.06754745576155852,
+      0.03799544386587666,
+      0.024317084074161062,
+      0.01688686394038963,
+      0.01240667554804136,
+      0.009498860966469165
+    ],
+    "cash_weight": 0.07143873852597049,
+    "product_scale_fractions": [
+      0.7071067811865476,
+      0.5,
+      0.3535533905932738,
+      0.25,
+      0.1767766952966369,
+      0.125,
+      0.08838834764831845
+    ],
+    "product_scale_weights": [
+      0.6079271018540265,
+      0.15198177546350664,
+      0.06754745576155852,
+      0.03799544386587666,
+      0.024317084074161062,
+      0.01688686394038963,
+      0.01240667554804136
+    ],
+    "product_scale_cash_weight": 0.08093759949243962
+  },
+  "true_means": {
+    "Beta(2,2)": 0.5,
+    "Beta(1,5)": 0.16666666666666666,
+    "Bernoulli(0.5)": 0.5,
+    "Uniform(0,1)": 0.5,
+    "Beta(0.5,0.5)": 0.5,
+    "Bernoulli(0.1)": 0.1
+  },
+  "results": {
+    "Beta(2,2)": {
+      "hgkelly": {
+        "width": [
+          {
+            "mean": 0.563618946199897,
+            "median": 0.563618946199897,
+            "lo": 0.563618946199897,
+            "hi": 0.563618946199897
+          },
+          {
+            "mean": 0.2341005777121521,
+            "median": 0.2341005777121521,
+            "lo": 0.2341005777121521,
+            "hi": 0.2341005777121521
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.2341005777121521,
+          "median": 0.2341005777121521,
+          "lo": 0.2341005777121521,
+          "hi": 0.2341005777121521
+        },
+        "log_time_auc": {
+          "mean": 0.39885976195602457,
+          "median": 0.39885976195602457,
+          "lo": 0.39885976195602457,
+          "hi": 0.39885976195602457
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.000630110502243042,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.563618946199897,
+            0.2341005777121521
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "product_scale_mixture": {
+        "width": [
+          {
+            "mean": 0.5695422130972192,
+            "median": 0.5695422130972192,
+            "lo": 0.5695422130972192,
+            "hi": 0.5695422130972192
+          },
+          {
+            "mean": 0.22617493240416298,
+            "median": 0.22617493240416298,
+            "lo": 0.22617493240416298,
+            "hi": 0.22617493240416298
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.22617493240416298,
+          "median": 0.22617493240416298,
+          "lo": 0.22617493240416298,
+          "hi": 0.22617493240416298
+        },
+        "log_time_auc": {
+          "mean": 0.39785857275069103,
+          "median": 0.39785857275069103,
+          "lo": 0.39785857275069103,
+          "hi": 0.39785857275069103
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0004083709791302681,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.5695422130972192,
+            0.22617493240416298
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "agrapa": {
+        "width": [
+          {
+            "mean": 0.7385262517921225,
+            "median": 0.7385262517921225,
+            "lo": 0.7385262517921225,
+            "hi": 0.7385262517921225
+          },
+          {
+            "mean": 0.23901039227951304,
+            "median": 0.23901039227951304,
+            "lo": 0.23901039227951304,
+            "hi": 0.23901039227951304
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.23901039227951304,
+          "median": 0.23901039227951304,
+          "lo": 0.23901039227951304,
+          "hi": 0.23901039227951304
+        },
+        "log_time_auc": {
+          "mean": 0.48876832203581766,
+          "median": 0.48876832203581766,
+          "lo": 0.48876832203581766,
+          "hi": 0.48876832203581766
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.00029052887111902237,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.7385262517921225,
+            0.23901039227951304
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "bentkus_mixture": {
+        "width": [
+          {
+            "mean": 0.7679536981207451,
+            "median": 0.7679536981207451,
+            "lo": 0.7679536981207451,
+            "hi": 0.7679536981207451
+          },
+          {
+            "mean": 0.34501140320235124,
+            "median": 0.34501140320235124,
+            "lo": 0.34501140320235124,
+            "hi": 0.34501140320235124
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.34501140320235124,
+          "median": 0.34501140320235124,
+          "lo": 0.34501140320235124,
+          "hi": 0.34501140320235124
+        },
+        "log_time_auc": {
+          "mean": 0.5564825506615481,
+          "median": 0.5564825506615481,
+          "lo": 0.5564825506615481,
+          "hi": 0.5564825506615481
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.00044704414904117584,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.7679536981207451,
+            0.34501140320235124
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "heat_constrained_agrapa": {
+        "width": [
+          {
+            "mean": 1.0,
+            "median": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          {
+            "mean": 0.363874504921156,
+            "median": 0.363874504921156,
+            "lo": 0.363874504921156,
+            "hi": 0.363874504921156
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.363874504921156,
+          "median": 0.363874504921156,
+          "lo": 0.363874504921156,
+          "hi": 0.363874504921156
+        },
+        "log_time_auc": {
+          "mean": 0.6819372524605779,
+          "median": 0.6819372524605779,
+          "lo": 0.6819372524605779,
+          "hi": 0.6819372524605779
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.000505564734339714,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            1.0,
+            0.363874504921156
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "paired": {
+        "bentkus_over_hgkelly": {
+          "terminal_width_ratio": {
+            "mean": 1.4737742494022124,
+            "median": 1.4737742494022124,
+            "lo": 1.4737742494022124,
+            "hi": 1.4737742494022124
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.3951834798590232,
+            "median": 1.3951834798590232,
+            "lo": 1.3951834798590232,
+            "hi": 1.3951834798590232
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "bentkus_over_product_scale_mixture": {
+          "terminal_width_ratio": {
+            "mean": 1.525418398648324,
+            "median": 1.525418398648324,
+            "lo": 1.525418398648324,
+            "hi": 1.525418398648324
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.3986943823132225,
+            "median": 1.3986943823132225,
+            "lo": 1.3986943823132225,
+            "hi": 1.3986943823132225
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "constrained_heat_over_agrapa": {
+          "terminal_width_ratio": {
+            "mean": 1.522421269848465,
+            "median": 1.522421269848465,
+            "lo": 1.522421269848465,
+            "hi": 1.522421269848465
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.3952157325175516,
+            "median": 1.3952157325175516,
+            "lo": 1.3952157325175516,
+            "hi": 1.3952157325175516
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        }
+      }
+    },
+    "Beta(1,5)": {
+      "hgkelly": {
+        "width": [
+          {
+            "mean": 0.5350274197414159,
+            "median": 0.5350274197414159,
+            "lo": 0.5350274197414159,
+            "hi": 0.5350274197414159
+          },
+          {
+            "mean": 0.17077336184855824,
+            "median": 0.17077336184855824,
+            "lo": 0.17077336184855824,
+            "hi": 0.17077336184855824
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.17077336184855824,
+          "median": 0.17077336184855824,
+          "lo": 0.17077336184855824,
+          "hi": 0.17077336184855824
+        },
+        "log_time_auc": {
+          "mean": 0.352900390794987,
+          "median": 0.352900390794987,
+          "lo": 0.352900390794987,
+          "hi": 0.352900390794987
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0005588661879301071,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.5350274197414159,
+            0.17077336184855824
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "product_scale_mixture": {
+        "width": [
+          {
+            "mean": 0.5452401782999932,
+            "median": 0.5452401782999932,
+            "lo": 0.5452401782999932,
+            "hi": 0.5452401782999932
+          },
+          {
+            "mean": 0.17596713040046072,
+            "median": 0.17596713040046072,
+            "lo": 0.17596713040046072,
+            "hi": 0.17596713040046072
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.17596713040046072,
+          "median": 0.17596713040046072,
+          "lo": 0.17596713040046072,
+          "hi": 0.17596713040046072
+        },
+        "log_time_auc": {
+          "mean": 0.3606036543502269,
+          "median": 0.3606036543502269,
+          "lo": 0.3606036543502269,
+          "hi": 0.3606036543502269
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0004163254052400589,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.5452401782999932,
+            0.17596713040046072
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "agrapa": {
+        "width": [
+          {
+            "mean": 0.6582503151484678,
+            "median": 0.6582503151484678,
+            "lo": 0.6582503151484678,
+            "hi": 0.6582503151484678
+          },
+          {
+            "mean": 0.20800748221571136,
+            "median": 0.20800748221571136,
+            "lo": 0.20800748221571136,
+            "hi": 0.20800748221571136
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.20800748221571136,
+          "median": 0.20800748221571136,
+          "lo": 0.20800748221571136,
+          "hi": 0.20800748221571136
+        },
+        "log_time_auc": {
+          "mean": 0.43312889868208954,
+          "median": 0.43312889868208954,
+          "lo": 0.43312889868208954,
+          "hi": 0.43312889868208954
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.00026856642216444016,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.6582503151484678,
+            0.20800748221571136
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "bentkus_mixture": {
+        "width": [
+          {
+            "mean": 0.692793431508143,
+            "median": 0.692793431508143,
+            "lo": 0.692793431508143,
+            "hi": 0.692793431508143
+          },
+          {
+            "mean": 0.27341384341508435,
+            "median": 0.27341384341508435,
+            "lo": 0.27341384341508435,
+            "hi": 0.27341384341508435
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.27341384341508435,
+          "median": 0.27341384341508435,
+          "lo": 0.27341384341508435,
+          "hi": 0.27341384341508435
+        },
+        "log_time_auc": {
+          "mean": 0.4831036374616136,
+          "median": 0.4831036374616136,
+          "lo": 0.4831036374616136,
+          "hi": 0.4831036374616136
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0004217270761728287,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.692793431508143,
+            0.27341384341508435
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "heat_constrained_agrapa": {
+        "width": [
+          {
+            "mean": 1.0,
+            "median": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          {
+            "mean": 0.3653692069971225,
+            "median": 0.3653692069971225,
+            "lo": 0.3653692069971225,
+            "hi": 0.3653692069971225
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.3653692069971225,
+          "median": 0.3653692069971225,
+          "lo": 0.3653692069971225,
+          "hi": 0.3653692069971225
+        },
+        "log_time_auc": {
+          "mean": 0.6826846034985612,
+          "median": 0.6826846034985612,
+          "lo": 0.6826846034985612,
+          "hi": 0.6826846034985612
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0005713189020752907,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            1.0,
+            0.3653692069971225
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "paired": {
+        "bentkus_over_hgkelly": {
+          "terminal_width_ratio": {
+            "mean": 1.601033325428984,
+            "median": 1.601033325428984,
+            "lo": 1.601033325428984,
+            "hi": 1.601033325428984
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.368951834746668,
+            "median": 1.368951834746668,
+            "lo": 1.368951834746668,
+            "hi": 1.368951834746668
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "bentkus_over_product_scale_mixture": {
+          "terminal_width_ratio": {
+            "mean": 1.5537779288260103,
+            "median": 1.5537779288260103,
+            "lo": 1.5537779288260103,
+            "hi": 1.5537779288260103
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.3397081023266941,
+            "median": 1.3397081023266941,
+            "lo": 1.3397081023266941,
+            "hi": 1.3397081023266941
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "constrained_heat_over_agrapa": {
+          "terminal_width_ratio": {
+            "mean": 1.7565195400914535,
+            "median": 1.7565195400914535,
+            "lo": 1.7565195400914535,
+            "hi": 1.7565195400914535
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.5761696011875717,
+            "median": 1.5761696011875717,
+            "lo": 1.5761696011875717,
+            "hi": 1.5761696011875717
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        }
+      }
+    },
+    "Bernoulli(0.5)": {
+      "hgkelly": {
+        "width": [
+          {
+            "mean": 0.7810938866848333,
+            "median": 0.7810938866848333,
+            "lo": 0.7810938866848333,
+            "hi": 0.7810938866848333
+          },
+          {
+            "mean": 0.44215157915973086,
+            "median": 0.44215157915973086,
+            "lo": 0.44215157915973086,
+            "hi": 0.44215157915973086
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.44215157915973086,
+          "median": 0.44215157915973086,
+          "lo": 0.44215157915973086,
+          "hi": 0.44215157915973086
+        },
+        "log_time_auc": {
+          "mean": 0.611622732922282,
+          "median": 0.611622732922282,
+          "lo": 0.611622732922282,
+          "hi": 0.611622732922282
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0005751065909862518,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.7810938866848333,
+            0.44215157915973086
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "product_scale_mixture": {
+        "width": [
+          {
+            "mean": 0.7675216139546828,
+            "median": 0.7675216139546828,
+            "lo": 0.7675216139546828,
+            "hi": 0.7675216139546828
+          },
+          {
+            "mean": 0.436737133295783,
+            "median": 0.436737133295783,
+            "lo": 0.436737133295783,
+            "hi": 0.436737133295783
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.436737133295783,
+          "median": 0.436737133295783,
+          "lo": 0.436737133295783,
+          "hi": 0.436737133295783
+        },
+        "log_time_auc": {
+          "mean": 0.6021293736252328,
+          "median": 0.6021293736252328,
+          "lo": 0.6021293736252328,
+          "hi": 0.6021293736252328
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.000370820052921772,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.7675216139546828,
+            0.436737133295783
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "agrapa": {
+        "width": [
+          {
+            "mean": 0.9193069904759058,
+            "median": 0.9193069904759058,
+            "lo": 0.9193069904759058,
+            "hi": 0.9193069904759058
+          },
+          {
+            "mean": 0.43618640270756925,
+            "median": 0.43618640270756925,
+            "lo": 0.43618640270756925,
+            "hi": 0.43618640270756925
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.43618640270756925,
+          "median": 0.43618640270756925,
+          "lo": 0.43618640270756925,
+          "hi": 0.43618640270756925
+        },
+        "log_time_auc": {
+          "mean": 0.6777466965917376,
+          "median": 0.6777466965917376,
+          "lo": 0.6777466965917376,
+          "hi": 0.6777466965917376
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.00023741740733385086,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.9193069904759058,
+            0.43618640270756925
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "bentkus_mixture": {
+        "width": [
+          {
+            "mean": 1.0,
+            "median": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          {
+            "mean": 0.6209478156097873,
+            "median": 0.6209478156097873,
+            "lo": 0.6209478156097873,
+            "hi": 0.6209478156097873
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.6209478156097873,
+          "median": 0.6209478156097873,
+          "lo": 0.6209478156097873,
+          "hi": 0.6209478156097873
+        },
+        "log_time_auc": {
+          "mean": 0.8104739078048936,
+          "median": 0.8104739078048936,
+          "lo": 0.8104739078048936,
+          "hi": 0.8104739078048936
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0003555417060852051,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            1.0,
+            0.6209478156097873
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "heat_constrained_agrapa": {
+        "width": [
+          {
+            "mean": 1.0,
+            "median": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          {
+            "mean": 0.6484406999649135,
+            "median": 0.6484406999649135,
+            "lo": 0.6484406999649135,
+            "hi": 0.6484406999649135
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.6484406999649135,
+          "median": 0.6484406999649135,
+          "lo": 0.6484406999649135,
+          "hi": 0.6484406999649135
+        },
+        "log_time_auc": {
+          "mean": 0.8242203499824565,
+          "median": 0.8242203499824565,
+          "lo": 0.8242203499824565,
+          "hi": 0.8242203499824565
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0003477456048130989,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            1.0,
+            0.6484406999649135
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "paired": {
+        "bentkus_over_hgkelly": {
+          "terminal_width_ratio": {
+            "mean": 1.4043776950652138,
+            "median": 1.4043776950652138,
+            "lo": 1.4043776950652138,
+            "hi": 1.4043776950652138
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.3251206408442626,
+            "median": 1.3251206408442626,
+            "lo": 1.3251206408442626,
+            "hi": 1.3251206408442626
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "bentkus_over_product_scale_mixture": {
+          "terminal_width_ratio": {
+            "mean": 1.4217884587094325,
+            "median": 1.4217884587094325,
+            "lo": 1.4217884587094325,
+            "hi": 1.4217884587094325
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.3460129057070966,
+            "median": 1.3460129057070966,
+            "lo": 1.3460129057070966,
+            "hi": 1.3460129057070966
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "constrained_heat_over_agrapa": {
+          "terminal_width_ratio": {
+            "mean": 1.4866137411432447,
+            "median": 1.4866137411432447,
+            "lo": 1.4866137411432447,
+            "hi": 1.4866137411432447
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.21611857959221,
+            "median": 1.21611857959221,
+            "lo": 1.21611857959221,
+            "hi": 1.21611857959221
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        }
+      }
+    },
+    "Uniform(0,1)": {
+      "hgkelly": {
+        "width": [
+          {
+            "mean": 0.5860911129872247,
+            "median": 0.5860911129872247,
+            "lo": 0.5860911129872247,
+            "hi": 0.5860911129872247
+          },
+          {
+            "mean": 0.2838327144016485,
+            "median": 0.2838327144016485,
+            "lo": 0.2838327144016485,
+            "hi": 0.2838327144016485
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.2838327144016485,
+          "median": 0.2838327144016485,
+          "lo": 0.2838327144016485,
+          "hi": 0.2838327144016485
+        },
+        "log_time_auc": {
+          "mean": 0.43496191369443654,
+          "median": 0.43496191369443654,
+          "lo": 0.43496191369443654,
+          "hi": 0.43496191369443654
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0006943205371499062,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.5860911129872247,
+            0.2838327144016485
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "product_scale_mixture": {
+        "width": [
+          {
+            "mean": 0.5889902096931618,
+            "median": 0.5889902096931618,
+            "lo": 0.5889902096931618,
+            "hi": 0.5889902096931618
+          },
+          {
+            "mean": 0.27395352501336395,
+            "median": 0.27395352501336395,
+            "lo": 0.27395352501336395,
+            "hi": 0.27395352501336395
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.27395352501336395,
+          "median": 0.27395352501336395,
+          "lo": 0.27395352501336395,
+          "hi": 0.27395352501336395
+        },
+        "log_time_auc": {
+          "mean": 0.4314718673532629,
+          "median": 0.4314718673532629,
+          "lo": 0.4314718673532629,
+          "hi": 0.4314718673532629
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.000483131967484951,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.5889902096931618,
+            0.27395352501336395
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "agrapa": {
+        "width": [
+          {
+            "mean": 0.8341147228959477,
+            "median": 0.8341147228959477,
+            "lo": 0.8341147228959477,
+            "hi": 0.8341147228959477
+          },
+          {
+            "mean": 0.27733604856598726,
+            "median": 0.27733604856598726,
+            "lo": 0.27733604856598726,
+            "hi": 0.27733604856598726
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.27733604856598726,
+          "median": 0.27733604856598726,
+          "lo": 0.27733604856598726,
+          "hi": 0.27733604856598726
+        },
+        "log_time_auc": {
+          "mean": 0.5557253857309674,
+          "median": 0.5557253857309674,
+          "lo": 0.5557253857309674,
+          "hi": 0.5557253857309674
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.00022002588957548141,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.8341147228959477,
+            0.27733604856598726
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "bentkus_mixture": {
+        "width": [
+          {
+            "mean": 0.9268060334734648,
+            "median": 0.9268060334734648,
+            "lo": 0.9268060334734648,
+            "hi": 0.9268060334734648
+          },
+          {
+            "mean": 0.40893372302222414,
+            "median": 0.40893372302222414,
+            "lo": 0.40893372302222414,
+            "hi": 0.40893372302222414
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.40893372302222414,
+          "median": 0.40893372302222414,
+          "lo": 0.40893372302222414,
+          "hi": 0.40893372302222414
+        },
+        "log_time_auc": {
+          "mean": 0.6678698782478444,
+          "median": 0.6678698782478444,
+          "lo": 0.6678698782478444,
+          "hi": 0.6678698782478444
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0004386585205793381,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.9268060334734648,
+            0.40893372302222414
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "heat_constrained_agrapa": {
+        "width": [
+          {
+            "mean": 1.0,
+            "median": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          {
+            "mean": 0.412205104002737,
+            "median": 0.412205104002737,
+            "lo": 0.412205104002737,
+            "hi": 0.412205104002737
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.412205104002737,
+          "median": 0.412205104002737,
+          "lo": 0.412205104002737,
+          "hi": 0.412205104002737
+        },
+        "log_time_auc": {
+          "mean": 0.7061025520013684,
+          "median": 0.7061025520013684,
+          "lo": 0.7061025520013684,
+          "hi": 0.7061025520013684
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0003590676933526993,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            1.0,
+            0.412205104002737
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "paired": {
+        "bentkus_over_hgkelly": {
+          "terminal_width_ratio": {
+            "mean": 1.4407561294838855,
+            "median": 1.4407561294838855,
+            "lo": 1.4407561294838855,
+            "hi": 1.4407561294838855
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.5354674908778958,
+            "median": 1.5354674908778958,
+            "lo": 1.5354674908778958,
+            "hi": 1.5354674908778958
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "bentkus_over_product_scale_mixture": {
+          "terminal_width_ratio": {
+            "mean": 1.4927120320947709,
+            "median": 1.4927120320947709,
+            "lo": 1.4927120320947709,
+            "hi": 1.4927120320947709
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.5478874262294213,
+            "median": 1.5478874262294213,
+            "lo": 1.5478874262294213,
+            "hi": 1.5478874262294213
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "constrained_heat_over_agrapa": {
+          "terminal_width_ratio": {
+            "mean": 1.486301929136558,
+            "median": 1.486301929136558,
+            "lo": 1.486301929136558,
+            "hi": 1.486301929136558
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.2705961795727652,
+            "median": 1.2705961795727652,
+            "lo": 1.2705961795727652,
+            "hi": 1.2705961795727652
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        }
+      }
+    },
+    "Beta(0.5,0.5)": {
+      "hgkelly": {
+        "width": [
+          {
+            "mean": 0.6263942510150339,
+            "median": 0.6263942510150339,
+            "lo": 0.6263942510150339,
+            "hi": 0.6263942510150339
+          },
+          {
+            "mean": 0.30723833838648446,
+            "median": 0.30723833838648446,
+            "lo": 0.30723833838648446,
+            "hi": 0.30723833838648446
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.30723833838648446,
+          "median": 0.30723833838648446,
+          "lo": 0.30723833838648446,
+          "hi": 0.30723833838648446
+        },
+        "log_time_auc": {
+          "mean": 0.4668162947007591,
+          "median": 0.4668162947007591,
+          "lo": 0.4668162947007591,
+          "hi": 0.4668162947007591
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0005125878378748894,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.6263942510150339,
+            0.30723833838648446
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "product_scale_mixture": {
+        "width": [
+          {
+            "mean": 0.624249917942088,
+            "median": 0.624249917942088,
+            "lo": 0.624249917942088,
+            "hi": 0.624249917942088
+          },
+          {
+            "mean": 0.2998848275320642,
+            "median": 0.2998848275320642,
+            "lo": 0.2998848275320642,
+            "hi": 0.2998848275320642
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.2998848275320642,
+          "median": 0.2998848275320642,
+          "lo": 0.2998848275320642,
+          "hi": 0.2998848275320642
+        },
+        "log_time_auc": {
+          "mean": 0.46206737273707604,
+          "median": 0.46206737273707604,
+          "lo": 0.46206737273707604,
+          "hi": 0.46206737273707604
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0003704894334077835,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.624249917942088,
+            0.2998848275320642
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "agrapa": {
+        "width": [
+          {
+            "mean": 0.99999998509884,
+            "median": 0.99999998509884,
+            "lo": 0.99999998509884,
+            "hi": 0.99999998509884
+          },
+          {
+            "mean": 0.30458206449705993,
+            "median": 0.30458206449705993,
+            "lo": 0.30458206449705993,
+            "hi": 0.30458206449705993
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.30458206449705993,
+          "median": 0.30458206449705993,
+          "lo": 0.30458206449705993,
+          "hi": 0.30458206449705993
+        },
+        "log_time_auc": {
+          "mean": 0.6522910247979499,
+          "median": 0.6522910247979499,
+          "lo": 0.6522910247979499,
+          "hi": 0.6522910247979499
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0002735573798418045,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.99999998509884,
+            0.30458206449705993
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "bentkus_mixture": {
+        "width": [
+          {
+            "mean": 0.920639238435792,
+            "median": 0.920639238435792,
+            "lo": 0.920639238435792,
+            "hi": 0.920639238435792
+          },
+          {
+            "mean": 0.46333920823917807,
+            "median": 0.46333920823917807,
+            "lo": 0.46333920823917807,
+            "hi": 0.46333920823917807
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.46333920823917807,
+          "median": 0.46333920823917807,
+          "lo": 0.46333920823917807,
+          "hi": 0.46333920823917807
+        },
+        "log_time_auc": {
+          "mean": 0.6919892233374849,
+          "median": 0.6919892233374849,
+          "lo": 0.6919892233374849,
+          "hi": 0.6919892233374849
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0004219869151711464,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.920639238435792,
+            0.46333920823917807
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "heat_constrained_agrapa": {
+        "width": [
+          {
+            "mean": 1.0,
+            "median": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          {
+            "mean": 0.47069879296969797,
+            "median": 0.47069879296969797,
+            "lo": 0.47069879296969797,
+            "hi": 0.47069879296969797
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.47069879296969797,
+          "median": 0.47069879296969797,
+          "lo": 0.47069879296969797,
+          "hi": 0.47069879296969797
+        },
+        "log_time_auc": {
+          "mean": 0.7353493964848489,
+          "median": 0.7353493964848489,
+          "lo": 0.7353493964848489,
+          "hi": 0.7353493964848489
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0004085320979356766,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            1.0,
+            0.47069879296969797
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "paired": {
+        "bentkus_over_hgkelly": {
+          "terminal_width_ratio": {
+            "mean": 1.5080774446069605,
+            "median": 1.5080774446069605,
+            "lo": 1.5080774446069605,
+            "hi": 1.5080774446069605
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.4823587590940186,
+            "median": 1.4823587590940186,
+            "lo": 1.4823587590940186,
+            "hi": 1.4823587590940186
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "bentkus_over_product_scale_mixture": {
+          "terminal_width_ratio": {
+            "mean": 1.5450571876285975,
+            "median": 1.5450571876285975,
+            "lo": 1.5450571876285975,
+            "hi": 1.5450571876285975
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.4975937799686154,
+            "median": 1.4975937799686154,
+            "lo": 1.4975937799686154,
+            "hi": 1.4975937799686154
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "constrained_heat_over_agrapa": {
+          "terminal_width_ratio": {
+            "mean": 1.5453923518015997,
+            "median": 1.5453923518015997,
+            "lo": 1.5453923518015997,
+            "hi": 1.5453923518015997
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.1273333045056486,
+            "median": 1.1273333045056486,
+            "lo": 1.1273333045056486,
+            "hi": 1.1273333045056486
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        }
+      }
+    },
+    "Bernoulli(0.1)": {
+      "hgkelly": {
+        "width": [
+          {
+            "mean": 0.6336030864458861,
+            "median": 0.6336030864458861,
+            "lo": 0.6336030864458861,
+            "hi": 0.6336030864458861
+          },
+          {
+            "mean": 0.318844340819932,
+            "median": 0.318844340819932,
+            "lo": 0.318844340819932,
+            "hi": 0.318844340819932
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.318844340819932,
+          "median": 0.318844340819932,
+          "lo": 0.318844340819932,
+          "hi": 0.318844340819932
+        },
+        "log_time_auc": {
+          "mean": 0.476223713632909,
+          "median": 0.476223713632909,
+          "lo": 0.476223713632909,
+          "hi": 0.476223713632909
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0005529550835490227,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.6336030864458861,
+            0.318844340819932
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "product_scale_mixture": {
+        "width": [
+          {
+            "mean": 0.6202263692447184,
+            "median": 0.6202263692447184,
+            "lo": 0.6202263692447184,
+            "hi": 0.6202263692447184
+          },
+          {
+            "mean": 0.3098525849510234,
+            "median": 0.3098525849510234,
+            "lo": 0.3098525849510234,
+            "hi": 0.3098525849510234
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.3098525849510234,
+          "median": 0.3098525849510234,
+          "lo": 0.3098525849510234,
+          "hi": 0.3098525849510234
+        },
+        "log_time_auc": {
+          "mean": 0.4650394770978708,
+          "median": 0.4650394770978708,
+          "lo": 0.4650394770978708,
+          "hi": 0.4650394770978708
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.00037831440567970276,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.6202263692447184,
+            0.3098525849510234
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "agrapa": {
+        "width": [
+          {
+            "mean": 0.6567552674860965,
+            "median": 0.6567552674860965,
+            "lo": 0.6567552674860965,
+            "hi": 0.6567552674860965
+          },
+          {
+            "mean": 0.3327568587093725,
+            "median": 0.3327568587093725,
+            "lo": 0.3327568587093725,
+            "hi": 0.3327568587093725
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.3327568587093725,
+          "median": 0.3327568587093725,
+          "lo": 0.3327568587093725,
+          "hi": 0.3327568587093725
+        },
+        "log_time_auc": {
+          "mean": 0.4947560630977344,
+          "median": 0.4947560630977344,
+          "lo": 0.4947560630977344,
+          "hi": 0.4947560630977344
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0002771429717540741,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.6567552674860965,
+            0.3327568587093725
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "bentkus_mixture": {
+        "width": [
+          {
+            "mean": 0.7808507802535625,
+            "median": 0.7808507802535625,
+            "lo": 0.7808507802535625,
+            "hi": 0.7808507802535625
+          },
+          {
+            "mean": 0.4329976118044092,
+            "median": 0.4329976118044092,
+            "lo": 0.4329976118044092,
+            "hi": 0.4329976118044092
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.4329976118044092,
+          "median": 0.4329976118044092,
+          "lo": 0.4329976118044092,
+          "hi": 0.4329976118044092
+        },
+        "log_time_auc": {
+          "mean": 0.6069241960289857,
+          "median": 0.6069241960289857,
+          "lo": 0.6069241960289857,
+          "hi": 0.6069241960289857
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.00032918062061071396,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            0.7808507802535625,
+            0.4329976118044092
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "heat_constrained_agrapa": {
+        "width": [
+          {
+            "mean": 1.0,
+            "median": 1.0,
+            "lo": 1.0,
+            "hi": 1.0
+          },
+          {
+            "mean": 0.4246640886493436,
+            "median": 0.4246640886493436,
+            "lo": 0.4246640886493436,
+            "hi": 0.4246640886493436
+          }
+        ],
+        "terminal_width": {
+          "mean": 0.4246640886493436,
+          "median": 0.4246640886493436,
+          "lo": 0.4246640886493436,
+          "hi": 0.4246640886493436
+        },
+        "log_time_auc": {
+          "mean": 0.7123320443246718,
+          "median": 0.7123320443246718,
+          "lo": 0.7123320443246718,
+          "hi": 0.7123320443246718
+        },
+        "empty_rate": [
+          0.0,
+          0.0
+        ],
+        "disconnected_rate": [
+          0.0,
+          0.0
+        ],
+        "topology_uncertain_rate": [
+          0.0,
+          0.0
+        ],
+        "runtime_seconds": 0.0002682674676179886,
+        "runtime_scope": "width_inversion_excluding_jit_and_coverage",
+        "per_path_widths": [
+          [
+            1.0,
+            0.4246640886493436
+          ]
+        ],
+        "per_path_empty": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_disconnected": [
+          [
+            false,
+            false
+          ]
+        ],
+        "per_path_topology_uncertain": [
+          [
+            false,
+            false
+          ]
+        ],
+        "coverage": null
+      },
+      "paired": {
+        "bentkus_over_hgkelly": {
+          "terminal_width_ratio": {
+            "mean": 1.3580219447863604,
+            "median": 1.3580219447863604,
+            "lo": 1.3580219447863604,
+            "hi": 1.3580219447863604
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.2744518566684093,
+            "median": 1.2744518566684093,
+            "lo": 1.2744518566684093,
+            "hi": 1.2744518566684093
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "bentkus_over_product_scale_mixture": {
+          "terminal_width_ratio": {
+            "mean": 1.3974310134377308,
+            "median": 1.3974310134377308,
+            "lo": 1.3974310134377308,
+            "hi": 1.3974310134377308
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.3051025255244175,
+            "median": 1.3051025255244175,
+            "lo": 1.3051025255244175,
+            "hi": 1.3051025255244175
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        },
+        "constrained_heat_over_agrapa": {
+          "terminal_width_ratio": {
+            "mean": 1.2761993555788498,
+            "median": 1.2761993555788498,
+            "lo": 1.2761993555788498,
+            "hi": 1.2761993555788498
+          },
+          "log_time_auc_ratio": {
+            "mean": 1.4397641533984744,
+            "median": 1.4397641533984744,
+            "lo": 1.4397641533984744,
+            "hi": 1.4397641533984744
+          },
+          "terminal_win_rate": 0.0,
+          "terminal_finite_pair_count": 1,
+          "log_time_auc_finite_pair_count": 1
+        }
+      }
+    }
+  }
+}
