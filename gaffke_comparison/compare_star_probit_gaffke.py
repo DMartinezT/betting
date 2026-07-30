@@ -3,23 +3,24 @@
 Compare three fixed-horizon confidence intervals for the mean of [0,1]-valued data:
 
 1. Product STaR-Bets (square-root / exponential planning feedback)
-2. Buffered randomized Probit-STaR
+2. Regularized Efficient betting
 3. Equal-tail Gaffke confidence interval
 
-The default experiment design matches the "Near-optimal testing by betting" draft:
+The default experiment design matches the paper's primary experiment:
     delta = 0.01
     n in {10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000}
     50 paths through n=10,000, 30 through n=100,000, 20 through n=1,000,000
-    six distributions:
+    nine distributions:
         Beta(2,2), Beta(1,5), Bernoulli(0.5), Uniform(0,1),
-        Beta(1/2,1/2), Bernoulli(0.1)
+        Beta(1/2,1/2), Bernoulli(0.1), Beta(50,50), Beta(20,80),
+        Uniform(0.45,0.55)
 
 Notes
 -----
 * Product STaR is directly thresholded using the equally weighted two-arm wealth,
   as in the draft's primary experiment. The optional terminal randomization from
   the original STaR code is not used.
-* Probit-STaR uses b_n = n^(2/3), one fixed U per arm for the whole inversion,
+* Efficient betting uses b_n = n^(2/3), one fixed U per arm for the whole inversion,
   and the same predictable second-moment regularization as product STaR.
 * Gaffke endpoints are Dirichlet-average quantiles:
       lower = Q_{delta/2}(sum x_i D_i)
@@ -150,7 +151,7 @@ def _logaddexp(a: float, b: float) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Product STaR and Probit-STaR
+# Product STaR and Efficient betting
 # ---------------------------------------------------------------------------
 
 @njit(cache=True)
@@ -642,6 +643,18 @@ DISTRIBUTIONS = [
         "Bernoulli(0.1)", 0.1, 0.09,
         lambda rng, n: rng.binomial(1, 0.1, n).astype(np.float64),
     ),
+    DistributionSpec(
+        "Beta(50,50)", 0.5, 1/404,
+        lambda rng, n: rng.beta(50.0, 50.0, n),
+    ),
+    DistributionSpec(
+        "Beta(20,80)", 0.2, 20*80 / ((20+80)**2 * (20+80+1)),
+        lambda rng, n: rng.beta(20.0, 80.0, n),
+    ),
+    DistributionSpec(
+        "Uniform(0.45,0.55)", 0.5, 0.1**2/12,
+        lambda rng, n: rng.uniform(0.45, 0.55, n),
+    ),
 ]
 
 
@@ -753,7 +766,7 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
 
                 method_results = [
                     ("STaR", l_star, u_star, empty_star, "direct-two-arm", star_sec),
-                    ("Probit-STaR", l_probit, u_probit, empty_probit, "randomized", probit_sec),
+                    ("Efficient betting", l_probit, u_probit, empty_probit, "randomized", probit_sec),
                     ("Gaffke", l_gaffke, u_gaffke, False, g_backend, gaffke_sec),
                 ]
 
@@ -778,8 +791,8 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                         "empty_center_component": empty,
                         "backend": backend,
                         "runtime_seconds": seconds,
-                        "u_plus": u_plus if method == "Probit-STaR" else np.nan,
-                        "u_minus": u_minus if method == "Probit-STaR" else np.nan,
+                        "u_plus": u_plus if method == "Efficient betting" else np.nan,
+                        "u_minus": u_minus if method == "Efficient betting" else np.nan,
                     })
 
                 if args.progress_every > 0 and (rep + 1) % args.progress_every == 0:
@@ -896,7 +909,7 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Compare STaR, Probit-STaR, and Gaffke CIs."
+        description="Compare STaR, Efficient betting, and Gaffke CIs."
     )
     parser.add_argument("--output", default="star_probit_gaffke_results")
     parser.add_argument("--delta", type=float, default=0.01)

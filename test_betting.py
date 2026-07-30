@@ -424,6 +424,119 @@ class HeatFlowConstructionTests(unittest.TestCase):
             )
         np.testing.assert_allclose(observed, expected, rtol=0.0, atol=0.0)
 
+    def test_common_clock_probit_arms_are_ordered_in_candidate_mean(self):
+        rng = np.random.default_rng(20260730)
+        X = rng.beta(2.0, 5.0, 250)
+        means = np.linspace(0.02, 0.98, 97)
+        arms = np.asarray([
+            betting.compute_M_probit_common_clock_arms(
+                X, mean, 0.01, buffer_rounds=0.0
+            )
+            for mean in means
+        ])
+        self.assertTrue(np.all(np.diff(arms[:, 0]) <= 1e-11))
+        self.assertTrue(np.all(np.diff(arms[:, 1]) >= -1e-11))
+
+    def test_common_clock_hinge_star_arms_are_ordered(self):
+        rng = np.random.default_rng(20260802)
+        X = rng.beta(2.0, 5.0, 250)
+        _, initial_wealth = betting.get_optimal_lambda(0.005)
+        means = np.linspace(0.02, 0.98, 97)
+        arms = np.asarray([
+            betting.compute_M_heat_star_arms(
+                X, mean, 0.01, initial_wealth
+            )
+            for mean in means
+        ])
+        self.assertTrue(np.all(np.diff(arms[:, 0]) <= 1e-11))
+        self.assertTrue(np.all(np.diff(arms[:, 1]) >= -1e-11))
+
+    def test_common_clock_hinge_star_direct_inversion_matches_mesh(self):
+        rng = np.random.default_rng(20260803)
+        X = rng.beta(2.0, 3.0, 200)
+        delta = 0.01
+        _, initial_wealth = betting.get_optimal_lambda(delta / 2.0)
+        lower, upper, empty = (
+            betting.heat_star_common_clock_ci_endpoints(
+                X, delta, initial_wealth
+            )
+        )
+        self.assertFalse(empty)
+        target = 2.0 * initial_wealth / delta
+
+        def score(mean):
+            plus, minus = betting.compute_M_heat_star_arms(
+                X, mean, delta, initial_wealth
+            )
+            return max(plus, minus) / target
+
+        components = betting._confidence_set_components(
+            score,
+            threshold=1.0,
+            scan_points=1001,
+        )
+        self.assertEqual(len(components), 1)
+        np.testing.assert_allclose(
+            (lower, upper), components[0], atol=2e-8, rtol=0.0
+        )
+
+    def test_parallel_common_clock_scores_match_scalar_scores(self):
+        rng = np.random.default_rng(20260731)
+        X = rng.uniform(0.0, 1.0, 120)
+        means = np.array([0.15, 0.3, 0.5, 0.7, 0.85])
+        delta = 0.01
+        u_plus, u_minus = 0.4, 0.8
+        observed = betting._probit_common_clock_randomized_scores(
+            X, means, delta, 0.0, u_plus, u_minus
+        )
+        alpha = delta / 2.0
+        expected = []
+        for mean in means:
+            plus, minus = betting.compute_M_probit_common_clock_arms(
+                X, mean, delta, buffer_rounds=0.0
+            )
+            expected.append(
+                max(alpha * plus / u_plus, alpha * minus / u_minus)
+            )
+        np.testing.assert_allclose(observed, expected, rtol=0.0, atol=0.0)
+
+    def test_common_clock_direct_inversion_matches_global_mesh(self):
+        rng = np.random.default_rng(20260801)
+        X = rng.beta(2.0, 3.0, 200)
+        delta = 0.01
+        randomizers = (0.35, 0.65)
+        lower, upper, empty = betting.probit_common_clock_ci_endpoints(
+            X, delta, randomizers=randomizers
+        )
+        self.assertFalse(empty)
+        batched = betting.probit_common_clock_batched_ci_endpoints(
+            X, delta, randomizers=randomizers
+        )
+        self.assertFalse(batched[2])
+        np.testing.assert_allclose(
+            batched[:2], (lower, upper), atol=1e-6, rtol=0.0
+        )
+        scores = lambda means: (
+            betting._probit_common_clock_randomized_scores(
+                X,
+                np.asarray(means),
+                delta,
+                0.0,
+                randomizers[0],
+                randomizers[1],
+            )
+        )
+        components = betting._confidence_set_components(
+            lambda mean: float(scores(np.asarray([mean]))[0]),
+            threshold=1.0,
+            scan_points=1001,
+            batch_statistic=scores,
+        )
+        self.assertEqual(len(components), 1)
+        np.testing.assert_allclose(
+            (lower, upper), components[0], atol=2e-8, rtol=0.0
+        )
+
     def test_geometric_scan_finds_first_rejection_component(self):
         def narrow_rejection_band(m):
             distance = abs(m - 0.5)
@@ -544,6 +657,145 @@ class HeatFlowConstructionTests(unittest.TestCase):
             crossing_probability += path_probability * crossed
 
         self.assertLessEqual(crossing_probability, delta + 1e-14)
+
+    def test_star_statistic_has_a_quasiconvexity_counterexample(self):
+        X = np.r_[1.0, np.zeros(19)]
+        means = (0.047125, 0.997, 0.997875)
+        values = [betting.compute_M_star(X, m, 0.01) for m in means]
+        self.assertGreater(values[1], max(values[0], values[2]))
+
+    def test_full_set_inversion_reports_disconnected_components(self):
+        statistic = lambda m: min(abs(m - 0.25) - 0.05, abs(m - 0.75) - 0.05)
+        components = betting._confidence_set_components(
+            statistic,
+            threshold=0.0,
+            scan_points=1001,
+        )
+        self.assertEqual(len(components), 2)
+        np.testing.assert_allclose(
+            components,
+            ((0.2, 0.3), (0.7, 0.8)),
+            atol=1e-9,
+            rtol=0.0,
+        )
+        widths = betting._confidence_set_widths(components, center=0.25)
+        self.assertAlmostEqual(widths["total_length"], 0.2, places=8)
+        self.assertAlmostEqual(widths["hull_width"], 0.6, places=8)
+        self.assertAlmostEqual(
+            widths["largest_component_width"], 0.1, places=8
+        )
+        self.assertAlmostEqual(
+            widths["center_component_width"], 0.1, places=8
+        )
+
+    def test_adaptive_inversion_recovers_disconnected_components(self):
+        statistic = lambda m: min(
+            abs(m - 0.25) - 0.05,
+            abs(m - 0.75) - 0.05,
+        )
+        components, diagnostics = (
+            betting._adaptive_confidence_set_components(
+                statistic,
+                threshold=0.0,
+                center=0.5,
+                standard_error=0.05,
+                batch_statistic=lambda means: np.minimum(
+                    np.abs(means - 0.25) - 0.05,
+                    np.abs(means - 0.75) - 0.05,
+                ),
+                verification_scan_points=257,
+            )
+        )
+        np.testing.assert_allclose(
+            components,
+            ((0.2, 0.3), (0.7, 0.8)),
+            atol=1e-8,
+            rtol=0.0,
+        )
+        self.assertEqual(diagnostics["component_count"], 2)
+        self.assertAlmostEqual(
+            diagnostics["hull_width"], 0.6, places=8
+        )
+        self.assertAlmostEqual(
+            diagnostics["largest_component_width"], 0.1, places=8
+        )
+        self.assertTrue(diagnostics["fragmentation_detected"])
+
+    def test_clipped_heat_confidence_set_can_be_disconnected(self):
+        delta = 0.01
+        strike, initial_wealth = betting.get_optimal_lambda(delta / 2.0)
+        X = np.zeros(100)
+        X[[2, 12, 17, 23, 28, 30, 33, 34, 68]] = 1.0
+        statistic = lambda m: betting.compute_M_heat_path(
+            X, m, strike, initial_wealth
+        )
+        components = betting._confidence_set_components(
+            statistic,
+            threshold=initial_wealth / delta,
+            scan_points=4097,
+        )
+        self.assertEqual(len(components), 2)
+        np.testing.assert_allclose(
+            components,
+            ((0.0, 0.1958495052), (0.2000967565, 0.3151697627)),
+            atol=2e-9,
+            rtol=0.0,
+        )
+        widths = betting._confidence_set_widths(
+            components, center=np.mean(X)
+        )
+        self.assertAlmostEqual(widths["total_length"], 0.3109225114, places=8)
+        self.assertAlmostEqual(widths["hull_width"], 0.3151697627, places=8)
+        self.assertAlmostEqual(
+            widths["largest_component_width"], 0.1958495052, places=8
+        )
+        self.assertAlmostEqual(
+            widths["center_component_width"], 0.1958495052, places=8
+        )
+        lower, upper, empty, hull_widths = (
+            betting._confidence_set_hull_endpoints(
+                statistic,
+                threshold=initial_wealth / delta,
+                center=np.mean(X),
+                scan_points=4097,
+            )
+        )
+        self.assertFalse(empty)
+        self.assertAlmostEqual(lower, 0.0, places=12)
+        self.assertAlmostEqual(upper, 0.3151697627, places=8)
+        self.assertEqual(hull_widths["component_count"], 2)
+        plus, minus = betting.compute_M_heat_trajectory(
+            X, 0.21, strike, initial_wealth
+        )
+        self.assertTrue(np.all(plus >= 0.0))
+        self.assertTrue(np.all(minus >= 0.0))
+
+    def test_clipped_heat_upper_arm_need_not_be_ordered(self):
+        delta = 0.01
+        strike, initial_wealth = betting.get_optimal_lambda(delta / 2.0)
+        X = np.array([
+            0.4, 0.4, 0.0, 0.0, 0.5, 0.5, 1.0, 0.0,
+            0.0, 1.0, 0.5, 1.0, 1.0, 1.0, 1.0,
+        ])
+
+        def upper_arm(mean):
+            plus_path, _ = betting.compute_M_heat_trajectory(
+                X, mean, strike, initial_wealth
+            )
+            return plus_path[-1]
+
+        components = betting._confidence_set_components(
+            upper_arm,
+            threshold=initial_wealth / (delta / 2.0),
+            scan_points=4097,
+        )
+        self.assertEqual(len(components), 2)
+        np.testing.assert_allclose(
+            components,
+            ((0.1516269869, 0.2284890051), (0.2316502000, 1.0)),
+            atol=2e-9,
+            rtol=0.0,
+        )
 
     def test_scaled_width_matches_bentkus_limit(self):
         delta = 0.01

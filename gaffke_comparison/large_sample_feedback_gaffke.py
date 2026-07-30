@@ -2,8 +2,9 @@
 """Large-sample comparison of matched betting feedbacks and Gaffke's CI.
 
 This experiment extends the paper's chronological-feedback ablation.  It keeps
-the same five betting rules, adds the equal-tail Gaffke interval, and focuses
-on n from 10^3 through 10^7.  Two otherwise identical figures are produced:
+the matched feedback rules, adds candidate-dependent and common-clock
+Efficient betting and the equal-tail Gaffke interval, and focuses on n from
+10^3 through 10^7.  Two otherwise identical figures are produced:
 one with pointwise empirical 10--90% width intervals and one with means only.
 
 The generic paper code scans candidate means across all of [0,1].  At the
@@ -27,6 +28,7 @@ from typing import Callable
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
+from matplotlib.lines import Line2D
 from numba import njit, prange
 from scipy.stats import beta as beta_dist
 from scipy.stats import norm
@@ -48,8 +50,31 @@ METHOD_ORDER = (
     "Capped original feedback",
     "Squared-hinge feedback",
     "Target-capped feedback",
-    "Efficient betting (Probit-STaR)",
+    "Regularized Efficient betting",
+    "Efficient betting",
+    "Common-clock Efficient betting",
     "Gaffke",
+)
+
+MAIN_METHOD_ORDER = tuple(
+    method_name for method_name in METHOD_ORDER
+    if method_name not in {
+        "Capped original feedback",
+        "Target-capped feedback",
+        "Regularized Efficient betting",
+        # The candidate-dependent version is retained in the dedicated
+        # convexification appendix plot below.  The main figure uses the
+        # pathwise interval-valued common-clock implementation.
+        "Efficient betting",
+    }
+)
+
+TARGET_CAPPING_METHOD_ORDER = (
+    "Square-root feedback",
+    "Capped original feedback",
+    "Squared-hinge feedback",
+    "Target-capped feedback",
+    "Efficient betting",
 )
 
 METHOD_STYLES = {
@@ -57,11 +82,16 @@ METHOD_STYLES = {
     "Capped original feedback": ("teal", "X"),
     "Squared-hinge feedback": ("crimson", "D"),
     "Target-capped feedback": ("deeppink", "*"),
-    "Efficient betting (Probit-STaR)": ("purple", "v"),
+    "Efficient betting": ("#8c564b", "^"),
+    "Common-clock Efficient betting": ("#2ca02c", "h"),
+    "Regularized Efficient betting": ("purple", "v"),
     "Gaffke": ("#1976b9", "o"),
 }
 
 METHOD_LABELS = {
+    "Regularized Efficient betting": r"Efficient betting ($b_n=n^{2/3}$)",
+    "Efficient betting": "Efficient betting",
+    "Common-clock Efficient betting": "Efficient betting (common clock)",
     "Square-root feedback": "Original STaR-Bets (square-root)",
     "Capped original feedback": "Capped original STaR",
 }
@@ -461,9 +491,16 @@ def _betting_interval(
             lambda ms: methods._recalculating_feedback_scores(x, ms, delta, 2)
             - threshold,
         )
-    if method_name == "Efficient betting (Probit-STaR)":
+    if method_name in (
+        "Regularized Efficient betting",
+        "Efficient betting",
+    ):
         alpha = delta / 2.0
-        buffer_rounds = float(x.size) ** (2.0 / 3.0)
+        buffer_rounds = (
+            float(x.size) ** (2.0 / 3.0)
+            if method_name == "Regularized Efficient betting"
+            else 0.0
+        )
 
         def randomized_score(m: float) -> float:
             plus, minus = methods.compute_M_probit_star_arms(
@@ -477,6 +514,14 @@ def _betting_interval(
             ) - 1.0
 
         return invert_local_component(x, randomized_score, randomized_scores)
+    if method_name == "Common-clock Efficient betting":
+        return methods.probit_common_clock_batched_ci_endpoints(
+            x,
+            delta,
+            buffer_rounds=0.0,
+            randomizers=(u_plus, u_minus),
+            return_diagnostics=True,
+        )
     raise ValueError(f"unknown method {method_name}")
 
 
@@ -506,13 +551,31 @@ def audit_local_inversion(delta: float, seed: int) -> None:
             lambda: methods.capped_feedback_star_ci_endpoints(x, delta),
         ),
         (
-            "Efficient betting (Probit-STaR)",
+            "Regularized Efficient betting",
             lambda: methods.probit_star_ci_endpoints(
                 x,
                 delta,
                 buffer_rounds=float(x.size) ** (2.0 / 3.0),
                 randomizers=(u_plus, u_minus),
             ),
+        ),
+        (
+            "Efficient betting",
+            lambda: methods.probit_star_ci_endpoints(
+                x,
+                delta,
+                buffer_rounds=0.0,
+                randomizers=(u_plus, u_minus),
+            ),
+        ),
+        (
+            "Common-clock Efficient betting",
+            lambda: methods.probit_common_clock_ci_endpoints(
+                x,
+                delta,
+                buffer_rounds=0.0,
+                randomizers=(u_plus, u_minus),
+            )[:2],
         ),
     )
 
@@ -574,6 +637,17 @@ def _record_row(
 
 
 def summarize(df: pd.DataFrame) -> pd.DataFrame:
+    df = df.copy()
+    if "largest_component_width" not in df:
+        df["largest_component_width"] = df["width"]
+    else:
+        df["largest_component_width"] = df[
+            "largest_component_width"
+        ].fillna(df["width"])
+    df["sqrt_n_largest_component_width"] = (
+        np.sqrt(df["n"].to_numpy(dtype=float))
+        * df["largest_component_width"].to_numpy(dtype=float)
+    )
     return (
         df.groupby(["distribution", "n", "method"], as_index=False)
         .agg(
@@ -583,8 +657,15 @@ def summarize(df: pd.DataFrame) -> pd.DataFrame:
             q10_width=("width", lambda z: np.quantile(z, 0.10)),
             q90_width=("width", lambda z: np.quantile(z, 0.90)),
             mean_sqrt_n_width=("sqrt_n_width", "mean"),
-            q10_sqrt_n_width=("sqrt_n_width", lambda z: np.quantile(z, 0.10)),
-            q90_sqrt_n_width=("sqrt_n_width", lambda z: np.quantile(z, 0.90)),
+            q10_sqrt_n_width=(
+                "sqrt_n_width", lambda z: np.quantile(z, 0.10)
+            ),
+            q90_sqrt_n_width=(
+                "sqrt_n_width", lambda z: np.quantile(z, 0.90)
+            ),
+            mean_sqrt_n_largest_component=(
+                "sqrt_n_largest_component_width", "mean"
+            ),
             mean_normalized_halfwidth=("normalized_halfwidth", "mean"),
             mean_runtime_seconds=("runtime_seconds", "mean"),
             mean_score_evaluations=("score_evaluations", "mean"),
@@ -597,15 +678,40 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
     plot_dir = output / "plots"
     plot_dir.mkdir(parents=True, exist_ok=True)
     summary = summarize(df)
+    has_candidate_topology = (
+        "full_set_diameter" in df
+        and df.loc[
+            df["method"] == "Efficient betting",
+            "full_set_diameter",
+        ].notna().any()
+    )
+    if has_candidate_topology:
+        topology_betting = df[
+            (df["method"] == "Efficient betting")
+            & df["full_set_diameter"].notna()
+        ]
+        paired_keys = topology_betting[
+            ["distribution", "n", "rep"]
+        ].drop_duplicates()
+        topology_df = df[df["method"].isin(MAIN_METHOD_ORDER)].merge(
+            paired_keys,
+            on=["distribution", "n", "rep"],
+            how="inner",
+        )
+        main_summary = summarize(topology_df)
+    else:
+        main_summary = summary
     outputs: list[Path] = []
 
     for show_intervals in (True, False):
-        fig, axes = plt.subplots(2, 3, figsize=(16, 9), sharex=True)
+        fig, axes = plt.subplots(3, 3, figsize=(13, 11), sharex=True)
         legend_handles = None
         legend_labels = None
 
         for axis, dist in zip(axes.ravel(), DISTRIBUTIONS):
-            ddf = summary[summary["distribution"] == dist.name]
+            ddf = main_summary[
+                main_summary["distribution"] == dist.name
+            ]
             n_values = np.sort(ddf["n"].unique())
             gaussian_limit = 2.0 * math.sqrt(dist.variance) * norm.isf(delta / 2.0)
             axis.plot(
@@ -617,7 +723,7 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
                 label="Gaussian limit",
             )
 
-            for method_name in METHOD_ORDER:
+            for method_name in MAIN_METHOD_ORDER:
                 mdf = ddf[ddf["method"] == method_name].sort_values("n")
                 color, marker = METHOD_STYLES[method_name]
                 axis.plot(
@@ -649,7 +755,7 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
 
         qualifier = "means with empirical 10--90% intervals" if show_intervals else "means only"
         fig.suptitle(
-            f"Large-sample feedback and Gaffke comparison: {qualifier} "
+            f"Large-sample convex-CI and Gaffke comparison: {qualifier} "
             f"($1-\\delta={1.0-delta:.2f}$)",
             fontsize=15,
         )
@@ -657,7 +763,7 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
             legend_handles,
             legend_labels,
             loc="lower center",
-            ncol=4,
+            ncol=3,
             fontsize=9.2,
             frameon=False,
         )
@@ -667,6 +773,231 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
         fig.savefig(destination, dpi=220, bbox_inches="tight")
         plt.close(fig)
         outputs.append(destination)
+
+    unbuffered_name = "Efficient betting"
+    pair_columns = ["distribution", "n", "rep"]
+    pair_keys = df.loc[
+        df["method"] == unbuffered_name, pair_columns
+    ].drop_duplicates()
+    regularized_name = "Regularized Efficient betting"
+    regularization_methods = (regularized_name, unbuffered_name)
+    regularization_df = df.loc[
+        df["method"].isin(regularization_methods)
+    ].merge(pair_keys, on=pair_columns, how="inner")
+    regularization_summary = summarize(regularization_df)
+
+    fig, axes = plt.subplots(3, 3, figsize=(13, 11), sharex=True)
+    legend_handles = None
+    legend_labels = None
+    regularization_labels = {
+        regularized_name: r"Regularized Efficient betting ($b_n=n^{2/3}$)",
+        unbuffered_name: r"Efficient betting ($b_n=0$)",
+    }
+    for axis, dist in zip(axes.ravel(), DISTRIBUTIONS):
+        ddf = regularization_summary[
+            regularization_summary["distribution"] == dist.name
+        ]
+        n_values = np.sort(ddf["n"].unique())
+        gaussian_limit = 2.0 * math.sqrt(dist.variance) * norm.isf(
+            delta / 2.0
+        )
+        axis.plot(
+            n_values,
+            np.full(n_values.size, gaussian_limit),
+            color="black",
+            linestyle=":",
+            linewidth=1.8,
+            label="Gaussian limit",
+        )
+        for method_name in regularization_methods:
+            mdf = ddf[ddf["method"] == method_name].sort_values("n")
+            color, marker = METHOD_STYLES[method_name]
+            axis.plot(
+                mdf["n"],
+                mdf["mean_sqrt_n_width"],
+                color=color,
+                marker=marker,
+                markersize=5.5,
+                linewidth=2.2,
+                label=regularization_labels[method_name],
+            )
+        axis.set_xscale("log")
+        axis.set_title(dist.name)
+        axis.set_xlabel("sample size $n$")
+        axis.set_ylabel(r"$\sqrt{n}\times$ CI width")
+        axis.grid(True, linestyle="--", alpha=0.3)
+        if legend_handles is None:
+            legend_handles, legend_labels = axis.get_legend_handles_labels()
+
+    fig.suptitle(
+        "Residual-variance regularization: paired means "
+        f"($1-\\delta={1.0-delta:.2f}$)",
+        fontsize=15,
+    )
+    fig.legend(
+        legend_handles,
+        legend_labels,
+        loc="lower center",
+        ncol=3,
+        fontsize=9.5,
+        frameon=False,
+    )
+    fig.tight_layout(rect=(0.0, 0.08, 1.0, 0.95))
+    destination = plot_dir / "scaled_width_probit_regularization_means.png"
+    fig.savefig(destination, dpi=220, bbox_inches="tight")
+    plt.close(fig)
+    outputs.append(destination)
+
+    fig, axes = plt.subplots(3, 3, figsize=(13, 11), sharex=True)
+    legend_handles = None
+    legend_labels = None
+    for axis, dist in zip(axes.ravel(), DISTRIBUTIONS):
+        ddf = summary[summary["distribution"] == dist.name]
+        n_values = np.sort(ddf["n"].unique())
+        gaussian_limit = 2.0 * math.sqrt(dist.variance) * norm.isf(
+            delta / 2.0
+        )
+        axis.plot(
+            n_values,
+            np.full(n_values.size, gaussian_limit),
+            color="black",
+            linestyle=":",
+            linewidth=1.8,
+            label="Gaussian limit",
+        )
+        for method_name in TARGET_CAPPING_METHOD_ORDER:
+            mdf = ddf[ddf["method"] == method_name].sort_values("n")
+            color, marker = METHOD_STYLES[method_name]
+            axis.plot(
+                mdf["n"],
+                mdf["mean_sqrt_n_width"],
+                color=color,
+                marker=marker,
+                markersize=5.0,
+                linewidth=2.0,
+                label=METHOD_LABELS.get(method_name, method_name),
+            )
+        axis.set_xscale("log")
+        axis.set_title(dist.name)
+        axis.set_xlabel("sample size $n$")
+        axis.set_ylabel(r"$\sqrt{n}\times$ CI width")
+        axis.grid(True, linestyle="--", alpha=0.3)
+        if legend_handles is None:
+            legend_handles, legend_labels = axis.get_legend_handles_labels()
+
+    fig.suptitle(
+        "Target-capping feedback comparison: means only "
+        f"($1-\\delta={1.0-delta:.2f}$)",
+        fontsize=15,
+    )
+    fig.legend(
+        legend_handles,
+        legend_labels,
+        loc="lower center",
+        ncol=3,
+        fontsize=9.2,
+        frameon=False,
+    )
+    fig.tight_layout(rect=(0.0, 0.09, 1.0, 0.95))
+    destination = plot_dir / "scaled_width_target_capping_means.png"
+    fig.savefig(destination, dpi=220, bbox_inches="tight")
+    plt.close(fig)
+    outputs.append(destination)
+
+    unbuffered_name = "Efficient betting"
+    focused_methods = (
+        unbuffered_name,
+        "Common-clock Efficient betting",
+        "Gaffke",
+    )
+    pair_columns = ["distribution", "n", "rep"]
+    focused_pair_mask = df["method"] == unbuffered_name
+    if has_candidate_topology:
+        focused_pair_mask &= df["full_set_diameter"].notna()
+    pair_keys = df.loc[
+        focused_pair_mask, pair_columns
+    ].drop_duplicates()
+    focused_df = df.loc[df["method"].isin(focused_methods)].merge(
+        pair_keys, on=pair_columns, how="inner"
+    )
+    focused_summary = summarize(focused_df)
+
+    fig, axes = plt.subplots(3, 3, figsize=(13, 11), sharex=True)
+    legend_handles = None
+    legend_labels = None
+    for axis, dist in zip(axes.ravel(), DISTRIBUTIONS):
+        ddf = focused_summary[
+            focused_summary["distribution"] == dist.name
+        ]
+        for method_name in focused_methods:
+            mdf = ddf[ddf["method"] == method_name].sort_values("n")
+            color, marker = METHOD_STYLES[method_name]
+            axis.plot(
+                mdf["n"],
+                mdf["mean_sqrt_n_width"],
+                color=color,
+                marker=marker,
+                markersize=5.5,
+                linewidth=2.2,
+                label=METHOD_LABELS.get(method_name, method_name),
+            )
+            axis.fill_between(
+                mdf["n"],
+                mdf["q10_sqrt_n_width"],
+                mdf["q90_sqrt_n_width"],
+                color=color,
+                alpha=0.12,
+                linewidth=0.0,
+            )
+            if method_name == unbuffered_name:
+                axis.plot(
+                    mdf["n"],
+                    mdf["mean_sqrt_n_largest_component"],
+                    color=color,
+                    linestyle="--",
+                    linewidth=1.45,
+                    label="_nolegend_",
+                )
+        axis.set_xscale("log")
+        axis.set_title(dist.name)
+        axis.set_xlabel("sample size $n$")
+        axis.set_ylabel(r"$\sqrt{n}\times$ CI width")
+        axis.grid(True, linestyle="--", alpha=0.3)
+        if legend_handles is None:
+            legend_handles, legend_labels = axis.get_legend_handles_labels()
+
+    legend_handles.extend(
+        [
+            Line2D([0], [0], color="dimgray", linewidth=2.2),
+            Line2D(
+                [0], [0], color="dimgray", linewidth=1.45,
+                linestyle="--",
+            ),
+        ]
+    )
+    legend_labels.extend(["full-set diameter", "largest component"])
+    fig.suptitle(
+        "Gaffke and Efficient betting: candidate-dependent versus common "
+        "clock, paired means with "
+        "empirical 10--90% intervals "
+        f"($1-\\delta={1.0-delta:.2f}$)",
+        fontsize=15,
+    )
+    fig.legend(
+        legend_handles,
+        legend_labels,
+        loc="lower center",
+        ncol=4,
+        fontsize=10.0,
+        frameon=False,
+    )
+    fig.tight_layout(rect=(0.0, 0.08, 1.0, 0.95))
+    destination = (
+        plot_dir / "scaled_width_gaffke_vs_probit_unbuffered_means.png"
+    )
+    fig.savefig(destination, dpi=220, bbox_inches="tight")
+    plt.close(fig)
+    outputs.append(destination)
 
     return outputs
 
@@ -679,6 +1010,16 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
         reps_by_n = {n: REPS_BY_N[n] for n in sample_sizes}
     else:
         reps_by_n = {n: args.reps for n in sample_sizes}
+    unbuffered_reps_by_n = {
+        n: min(args.unbuffered_reps, reps_by_n[n]) for n in sample_sizes
+    }
+
+    def required_methods_for_cell(n: int, rep: int) -> set[str]:
+        required = set(METHOD_ORDER)
+        if rep >= unbuffered_reps_by_n[n]:
+            required.discard("Efficient betting")
+            required.discard("Common-clock Efficient betting")
+        return required
     distributions = DISTRIBUTIONS[: args.distribution_limit]
 
     if args.audit:
@@ -686,7 +1027,6 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
 
     checkpoint = output / "results_checkpoint.csv"
     rows: list[dict[str, object]] = []
-    required_methods = set(METHOD_ORDER)
     observed_methods: dict[tuple[str, int, int], set[str]] = {}
     completed: set[tuple[str, int, int]] = set()
     if args.resume and checkpoint.exists():
@@ -699,7 +1039,7 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
         observed_methods = method_sets.to_dict()
         completed = {
             key for key, observed in observed_methods.items()
-            if required_methods.issubset(observed)
+            if required_methods_for_cell(int(key[1]), int(key[2])).issubset(observed)
         }
         print(f"resuming with {len(completed)} completed dataset/horizon cells")
 
@@ -713,6 +1053,12 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
     )
     methods.compute_M_probit_star_arms(
         warm, 0.5, args.delta, buffer_rounds=float(warm.size) ** (2.0 / 3.0)
+    )
+    methods.compute_M_probit_star_arms(
+        warm, 0.5, args.delta, buffer_rounds=0.0
+    )
+    methods.compute_M_probit_common_clock_arms(
+        warm, 0.5, args.delta, buffer_rounds=0.0
     )
     _feedback_scores_by_kind(
         warm,
@@ -748,9 +1094,14 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                 x = np.ascontiguousarray(path[:n])
 
                 observed = observed_methods.get(key, set())
+                required_methods = required_methods_for_cell(n, rep)
                 missing = required_methods.difference(observed)
-                if missing == {"Capped original feedback"}:
-                    method_name = "Capped original feedback"
+                if len(missing) == 1 and next(iter(missing)) in {
+                    "Capped original feedback",
+                    "Efficient betting",
+                    "Common-clock Efficient betting",
+                }:
+                    method_name = next(iter(missing))
                     t0 = time.perf_counter()
                     lower, upper, empty, evaluations = _betting_interval(
                         x, method_name, args.delta, u_plus, u_minus
@@ -771,6 +1122,17 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                             evaluations,
                         )
                     )
+                    if method_name == "Common-clock Efficient betting":
+                        width = max(float(upper - lower), 0.0)
+                        rows[-1].update({
+                            "backend": "monotone-common-clock-inversion",
+                            "adjacent_component_width": width,
+                            "full_set_diameter": width,
+                            "largest_component_width": width,
+                            "topology_component_count": 0.0 if empty else 1.0,
+                            "topology_scan_points": 0.0,
+                            "topology_point_budget_reached": False,
+                        })
                     cells_done += 1
                     if cells_done % args.progress_every == 0:
                         elapsed = (time.time() - start) / 60.0
@@ -805,7 +1167,83 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                         )
                     )
 
-                method_name = "Efficient betting (Probit-STaR)"
+                method_name = "Regularized Efficient betting"
+                t0 = time.perf_counter()
+                lower, upper, empty, evaluations = _betting_interval(
+                    x, method_name, args.delta, u_plus, u_minus
+                )
+                cell_rows.append(
+                    _record_row(
+                        dist.name,
+                        dist.mean,
+                        dist.variance,
+                        n,
+                        rep,
+                        method_name,
+                        lower,
+                        upper,
+                        empty,
+                        "local-batched-bisection",
+                        time.perf_counter() - t0,
+                        evaluations,
+                    )
+                )
+                if "Efficient betting" in required_methods:
+                    method_name = "Efficient betting"
+                    t0 = time.perf_counter()
+                    lower, upper, empty, evaluations = _betting_interval(
+                        x, method_name, args.delta, u_plus, u_minus
+                    )
+                    cell_rows.append(
+                        _record_row(
+                            dist.name,
+                            dist.mean,
+                            dist.variance,
+                            n,
+                            rep,
+                            method_name,
+                            lower,
+                            upper,
+                            empty,
+                            "local-batched-bisection",
+                            time.perf_counter() - t0,
+                            evaluations,
+                        )
+                    )
+
+                if "Common-clock Efficient betting" in required_methods:
+                    method_name = "Common-clock Efficient betting"
+                    t0 = time.perf_counter()
+                    lower, upper, empty, evaluations = _betting_interval(
+                        x, method_name, args.delta, u_plus, u_minus
+                    )
+                    row = _record_row(
+                        dist.name,
+                        dist.mean,
+                        dist.variance,
+                        n,
+                        rep,
+                        method_name,
+                        lower,
+                        upper,
+                        empty,
+                        "monotone-common-clock-inversion",
+                        time.perf_counter() - t0,
+                        evaluations,
+                    )
+                    width = max(float(upper - lower), 0.0)
+                    row.update({
+                        "adjacent_component_width": width,
+                        "full_set_diameter": width,
+                        "largest_component_width": width,
+                        "topology_component_count": 0.0 if empty else 1.0,
+                        "topology_scan_points": 0.0,
+                        "topology_point_budget_reached": False,
+                    })
+                    cell_rows.append(row)
+
+
+                method_name = "Capped original feedback"
                 t0 = time.perf_counter()
                 lower, upper, empty, evaluations = _betting_interval(
                     x, method_name, args.delta, u_plus, u_minus
@@ -871,11 +1309,26 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
         "seed": args.seed,
         "sample_sizes": sample_sizes,
         "reps_by_n": {str(n): reps_by_n[n] for n in sample_sizes},
+        "unbuffered_reps_by_n": {
+            str(n): unbuffered_reps_by_n[n] for n in sample_sizes
+        },
         "distributions": [dist.name for dist in distributions],
         "methods": list(METHOD_ORDER),
         "gaffke_exact_cutoff": args.gaffke_exact_cutoff,
         "continuous_gaffke_large_n_backend": "fourth-order Cornish-Fisher from exact Dirichlet moments",
-        "betting_inversion": "local geometric bracket plus paired bisection",
+        "betting_inversion": (
+            "candidate-dependent methods use a local geometric bracket plus "
+            "paired bisection"
+        ),
+        "common_clock_inversion": (
+            "parallel multisection of the two globally monotone arm "
+            "boundaries; the reported set is an exact interval"
+        ),
+        "reported_width": "accepted component adjacent to the sample mean",
+        "full_set_topology": (
+            "not assumed; use ../audit_confidence_set_topology.py for the "
+            "global finite-mesh audit"
+        ),
         "empirical_interval": "pointwise 10th--90th percentiles of CI widths",
     }
     with (output / "config.json").open("w", encoding="utf-8") as stream:
@@ -896,6 +1349,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=20260723)
     parser.add_argument("--sample-sizes", nargs="+", type=int)
     parser.add_argument("--reps", type=int)
+    parser.add_argument("--unbuffered-reps", type=int, default=5)
     parser.add_argument("--distribution-limit", type=int, default=len(DISTRIBUTIONS))
     parser.add_argument("--gaffke-exact-cutoff", type=int, default=3_000)
     parser.add_argument("--progress-every", type=int, default=5)
@@ -903,6 +1357,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--plot-only", action="store_true")
     args = parser.parse_args()
+    if args.unbuffered_reps <= 0:
+        parser.error("--unbuffered-reps must be positive")
     if args.reps is not None and args.reps <= 0:
         parser.error("--reps must be positive")
     if args.distribution_limit <= 0 or args.distribution_limit > len(DISTRIBUTIONS):

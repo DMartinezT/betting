@@ -23,24 +23,43 @@
     "3000000": 15,
     "10000000": 10
   },
+  "unbuffered_reps_by_n": {
+    "1000": 5,
+    "3000": 5,
+    "10000": 5,
+    "30000": 5,
+    "100000": 5,
+    "300000": 5,
+    "1000000": 5,
+    "3000000": 5,
+    "10000000": 5
+  },
   "distributions": [
     "Beta(2,2)",
     "Beta(1,5)",
     "Bernoulli(0.5)",
     "Uniform(0,1)",
     "Beta(0.5,0.5)",
-    "Bernoulli(0.1)"
+    "Bernoulli(0.1)",
+    "Beta(50,50)",
+    "Beta(20,80)",
+    "Uniform(0.45,0.55)"
   ],
   "methods": [
     "Square-root feedback",
     "Capped original feedback",
     "Squared-hinge feedback",
     "Target-capped feedback",
-    "Efficient betting (Probit-STaR)",
+    "Regularized Efficient betting",
+    "Efficient betting",
+    "Common-clock Efficient betting",
     "Gaffke"
   ],
   "gaffke_exact_cutoff": 3000,
   "continuous_gaffke_large_n_backend": "fourth-order Cornish-Fisher from exact Dirichlet moments",
-  "betting_inversion": "local geometric bracket plus paired bisection",
+  "betting_inversion": "candidate-dependent methods use a local geometric bracket plus paired bisection",
+  "common_clock_inversion": "parallel multisection of the two globally monotone arm boundaries; the reported set is an exact interval",
+  "reported_width": "accepted component adjacent to the sample mean",
+  "full_set_topology": "not assumed; use ../audit_confidence_set_topology.py for the global finite-mesh audit",
   "empirical_interval": "pointwise 10th--90th percentiles of CI widths"
 }

@@ -3,7 +3,7 @@
 
 The legacy polynomial Constructions 1 and 2 live in legacy_constructions.py.
 This module contains the Waudby-Smith--Ramdas product martingale, its
-target-recalculating STaR variant, the buffered randomized Probit-STaR rule,
+target-recalculating STaR variant, the regularized Efficient betting rule,
 a digital-payoff DP hedge, the exact Bernoulli DP benchmark, the nonnegative
 heat-flow Construction 3, confidence-set inversion, and the current
 comparison experiment.
@@ -662,15 +662,15 @@ def compute_M_probit_star_arms(
     c=1.0,
     buffer_rounds=0.0,
 ):
-    """Return the two arms of the buffered probit STaR approximation.
+    """Return the two arms of the Efficient betting rule with optional residual-variance regularization.
 
     The raw leverage is the inverse-Mills ratio at current target fraction
     alpha*M, divided by the estimated remaining standard deviation.  A
-    positive buffer_rounds regularizes the terminal singularity.  With
-    sqrt(n) = o(buffer_rounds) and buffer_rounds = o(n), terminal
-    all-or-nothing randomization yields the Gaussian-efficiency result
-    described in the paper.  The inverse Mills ratio is evaluated directly
-    to machine precision.
+    positive buffer_rounds regularizes the terminal singularity; zero uses the
+    unbuffered recursion.  Under the corresponding tracking conditions, the
+    paper proves Gaussian efficiency in both cases after terminal
+    all-or-nothing randomization.  The inverse Mills ratio is evaluated
+    directly to machine precision.
     """
     n = len(X)
     alpha = delta / 2.0
@@ -734,6 +734,74 @@ def compute_M_probit_star_arms(
 
 
 @njit
+def compute_M_probit_common_clock_arms(
+    X,
+    m,
+    delta,
+    c=1.0,
+    buffer_rounds=0.0,
+):
+    """Efficient-betting arms with one data-only variance clock.
+
+    The predictable variance estimate is computed from residuals around the
+    past empirical mean and is therefore shared by both arms and every
+    candidate ``m``.  Only the centered payoff and the one-step solvency caps
+    depend on ``m``.  Target capping makes this the common-clock recursion
+    covered by the paper's pathwise interval theorem.
+    """
+    n = len(X)
+    alpha = delta / 2.0
+    target = 1.0 / alpha
+    eps = 1e-12
+
+    M_plus = 1.0
+    M_minus = 1.0
+    sum_x = 0.0
+    pred_sq = 0.0
+
+    for i in range(n):
+        mean_hat = (0.5 + sum_x) / (1.0 + i)
+        var_hat = max((0.25 + pred_sq) / (1.0 + i), eps)
+        remaining = float(n - i) + max(buffer_rounds, 0.0)
+
+        if 0.0 < M_plus < target:
+            target_fraction = alpha * M_plus
+            bet_plus = (
+                probit_target_leverage(target_fraction)
+                / np.sqrt(remaining * var_hat)
+            )
+            bet_plus = min(bet_plus, c / (m + eps))
+        else:
+            bet_plus = 0.0
+
+        if 0.0 < M_minus < target:
+            target_fraction = alpha * M_minus
+            bet_minus = (
+                probit_target_leverage(target_fraction)
+                / np.sqrt(remaining * var_hat)
+            )
+            bet_minus = min(bet_minus, c / (1.0 - m + eps))
+        else:
+            bet_minus = 0.0
+
+        centered = X[i] - m
+        M_plus = min(
+            max(M_plus * (1.0 + bet_plus * centered), 0.0),
+            target,
+        )
+        M_minus = min(
+            max(M_minus * (1.0 - bet_minus * centered), 0.0),
+            target,
+        )
+
+        residual = X[i] - mean_hat
+        sum_x += X[i]
+        pred_sq += residual * residual
+
+    return M_plus, M_minus
+
+
+@njit
 def compute_M_probit_star(
     X,
     m,
@@ -742,7 +810,7 @@ def compute_M_probit_star(
     c=1.0,
     buffer_rounds=0.0,
 ):
-    """Two-sided wealth from the inverse-Mills/probit STaR rule."""
+    """Two-sided wealth from the inverse-Mills implementation of Efficient betting."""
     M_plus, M_minus = compute_M_probit_star_arms(
         X, m, delta, regularization, c, buffer_rounds
     )
@@ -773,6 +841,57 @@ def _probit_randomized_scores(
             alpha * M_minus / u_minus,
         )
     return scores
+
+
+@njit(parallel=True)
+def _probit_common_clock_randomized_scores(
+    X,
+    means,
+    delta,
+    buffer_rounds,
+    u_plus,
+    u_minus,
+):
+    """Evaluate randomized common-clock rejection scores in parallel."""
+    alpha = delta / 2.0
+    scores = np.empty(len(means))
+    for j in prange(len(means)):
+        M_plus, M_minus = compute_M_probit_common_clock_arms(
+            X,
+            means[j],
+            delta,
+            buffer_rounds=buffer_rounds,
+        )
+        scores[j] = max(
+            alpha * M_plus / u_plus,
+            alpha * M_minus / u_minus,
+        )
+    return scores
+
+
+@njit(parallel=True)
+def _probit_common_clock_arm_randomized_scores(
+    X,
+    means,
+    delta,
+    buffer_rounds,
+    u_plus,
+    u_minus,
+):
+    """Evaluate the two normalized common-clock arm scores in parallel."""
+    alpha = delta / 2.0
+    plus_scores = np.empty(len(means))
+    minus_scores = np.empty(len(means))
+    for j in prange(len(means)):
+        M_plus, M_minus = compute_M_probit_common_clock_arms(
+            X,
+            means[j],
+            delta,
+            buffer_rounds=buffer_rounds,
+        )
+        plus_scores[j] = alpha * M_plus / u_plus
+        minus_scores[j] = alpha * M_minus / u_minus
+    return plus_scores, minus_scores
 
 
 # ------------------------------------------------------------------
@@ -837,8 +956,8 @@ def compute_M_digital_dp(X, m, delta, boundary, c=1.0):
             beta_minus = 0.0
 
         centered = X[i] - m
-        M_plus += beta_plus * centered
-        M_minus -= beta_minus * centered
+        M_plus = max(M_plus + beta_plus * centered, 0.0)
+        M_minus = max(M_minus - beta_minus * centered, 0.0)
         S_plus += gamma * centered
         S_minus -= gamma * centered
 
@@ -890,8 +1009,8 @@ def compute_M_heat_path(X, m, strike, initial_wealth, c=1.0):
             beta_minus = min(beta_minus, c * M_minus / one_m)
 
         centered = X[i] - m
-        M_plus += beta_plus * centered
-        M_minus -= beta_minus * centered
+        M_plus = max(M_plus + beta_plus * centered, 0.0)
+        M_minus = max(M_minus - beta_minus * centered, 0.0)
 
         # Preserve the full statistical information clock after a wealth clip.
         S_plus += gamma * centered
@@ -905,7 +1024,7 @@ def compute_M_heat_path(X, m, strike, initial_wealth, c=1.0):
 
 
 @njit
-def _compute_M_heat_star_path(
+def _compute_M_heat_star_path_arms(
     X,
     m,
     delta,
@@ -975,14 +1094,48 @@ def _compute_M_heat_star_path(
                 )
 
         centered = X[i] - m
-        M_plus += beta_plus * centered
-        M_minus -= beta_minus * centered
+        M_plus = max(M_plus + beta_plus * centered, 0.0)
+        M_minus = max(M_minus - beta_minus * centered, 0.0)
 
         residual = X[i] - mean_hat
         sum_x += X[i]
         pred_sq += residual * residual
 
+    return M_plus, M_minus
+
+
+@njit
+def _compute_M_heat_star_path(
+    X,
+    m,
+    delta,
+    initial_wealth,
+    c,
+    feedback_kind,
+):
+    """Average the two common-clock target-recalculating arms."""
+    M_plus, M_minus = _compute_M_heat_star_path_arms(
+        X, m, delta, initial_wealth, c, feedback_kind
+    )
     return 0.5 * (M_plus + M_minus)
+
+
+@njit
+def compute_M_heat_star_arms(
+    X, m, delta, initial_wealth, c=1.0
+):
+    """Common-clock squared-hinge STaR arms for interval inversion.
+
+    The score clock is computed only from past residuals, so it is shared by
+    both arms and every candidate mean.  The concavity result in the paper
+    implies that upper-arm rejection is a lower set in ``m`` and lower-arm
+    rejection is an upper set in ``m``.
+    """
+    M_plus, M_minus = _compute_M_heat_star_path_arms(
+        X, m, delta, initial_wealth, c, 0
+    )
+    target = 2.0 * initial_wealth / delta
+    return min(M_plus, target), min(M_minus, target)
 
 
 @njit
@@ -1052,8 +1205,8 @@ def compute_M_heat_trajectory(X, m, strike, initial_wealth, c=1.0):
             beta_minus = min(beta_minus, c * M_minus / one_m)
 
         centered = X[i] - m
-        M_plus += beta_plus * centered
-        M_minus -= beta_minus * centered
+        M_plus = max(M_plus + beta_plus * centered, 0.0)
+        M_minus = max(M_minus - beta_minus * centered, 0.0)
         S_plus += gamma * centered
         S_minus -= gamma * centered
 
@@ -1107,8 +1260,8 @@ def heat_clip_fractions(X, m, strike, initial_wealth, c=1.0):
                 clipped_minus += 1
 
         centered = X[i] - m
-        M_plus += beta_plus * centered
-        M_minus -= beta_minus * centered
+        M_plus = max(M_plus + beta_plus * centered, 0.0)
+        M_minus = max(M_minus - beta_minus * centered, 0.0)
         S_plus += gamma * centered
         S_minus -= gamma * centered
 
@@ -1185,6 +1338,400 @@ def _interval_component(
         )
 
     return boundary(0.0), boundary(1.0)
+
+
+def _confidence_set_components(
+    statistic,
+    threshold,
+    scan_points=4097,
+    batch_statistic=None,
+    extra_points=None,
+    boundary_tolerance=1e-10,
+):
+    """Numerically invert the full acceptance set on ``[0, 1]``.
+
+    Every accepted run on a global candidate-mean grid is returned as a
+    separate interval, with each observed accept/reject transition refined by
+    bisection.  This does not assume that the statistic is quasiconvex.  Like
+    any finite topology grid, it can miss two or more crossings contained in
+    one grid cell; callers should compare successively refined grids when
+    topology itself is under study.
+    """
+    if int(scan_points) != scan_points or scan_points < 3:
+        raise ValueError("scan_points must be an integer at least three")
+    if boundary_tolerance <= 0.0:
+        raise ValueError("boundary_tolerance must be positive")
+
+    grid = np.linspace(0.0, 1.0, int(scan_points))
+    if extra_points is not None:
+        extra = np.asarray(extra_points, dtype=float)
+        if np.any(~np.isfinite(extra)):
+            raise ValueError("extra_points must be finite")
+        grid = np.unique(np.r_[grid, np.clip(extra, 0.0, 1.0)])
+
+    cache = {}
+
+    def centered_statistic(m):
+        key = float(m)
+        if key not in cache:
+            cache[key] = float(statistic(key)) - threshold
+        return cache[key]
+
+    if batch_statistic is None:
+        values = np.asarray([centered_statistic(m) for m in grid])
+    else:
+        values = np.asarray(batch_statistic(grid), dtype=float) - threshold
+        if values.shape != grid.shape:
+            raise ValueError("batch_statistic must return one value per point")
+        for m, value in zip(grid, values):
+            cache[float(m)] = float(value)
+
+    accepted = values < 0.0
+    starts = np.flatnonzero(accepted & np.r_[True, ~accepted[:-1]])
+    ends = np.flatnonzero(accepted & np.r_[~accepted[1:], True])
+
+    def transition(left, right, left_is_accepted):
+        while right - left > boundary_tolerance:
+            midpoint = 0.5 * (left + right)
+            midpoint_is_accepted = centered_statistic(midpoint) < 0.0
+            if midpoint_is_accepted == left_is_accepted:
+                left = midpoint
+            else:
+                right = midpoint
+        return 0.5 * (left + right)
+
+    components = []
+    for start, end in zip(starts, ends):
+        if start == 0:
+            lower = 0.0
+        else:
+            lower = transition(
+                float(grid[start - 1]), float(grid[start]), False
+            )
+        if end == grid.size - 1:
+            upper = 1.0
+        else:
+            upper = transition(
+                float(grid[end]), float(grid[end + 1]), True
+            )
+        components.append((float(lower), float(upper)))
+    return tuple(components)
+
+
+def _confidence_set_widths(components, center=None):
+    """Summarize a union of accepted intervals without assuming convexity."""
+    components = tuple((float(lo), float(hi)) for lo, hi in components)
+    if not components:
+        return {
+            "component_count": 0,
+            "total_length": 0.0,
+            "hull_width": 0.0,
+            "largest_component_width": 0.0,
+            "center_component_width": 0.0,
+        }
+    total_length = float(sum(hi - lo for lo, hi in components))
+    hull_width = float(components[-1][1] - components[0][0])
+    largest_component_width = float(
+        max(upper - lower for lower, upper in components)
+    )
+    center_width = 0.0
+    if center is not None:
+        center = float(center)
+        for lower, upper in components:
+            if lower <= center <= upper:
+                center_width = float(upper - lower)
+                break
+    return {
+        "component_count": len(components),
+        "total_length": total_length,
+        "hull_width": hull_width,
+        "largest_component_width": largest_component_width,
+        "center_component_width": center_width,
+    }
+
+
+def _confidence_set_hull_endpoints(
+    statistic,
+    threshold,
+    center,
+    scan_points=4097,
+    batch_statistic=None,
+    extra_points=None,
+):
+    """Return the convex hull of the mesh-resolved full confidence set."""
+    components = _confidence_set_components(
+        statistic,
+        threshold,
+        scan_points=scan_points,
+        batch_statistic=batch_statistic,
+        extra_points=extra_points,
+    )
+    widths = _confidence_set_widths(components, center=center)
+    if not components:
+        center = float(center)
+        return center, center, True, widths
+    return components[0][0], components[-1][1], False, widths
+
+
+def _adaptive_confidence_set_components(
+    statistic,
+    threshold,
+    center,
+    standard_error,
+    batch_statistic=None,
+    local_radius=8.0,
+    base_points_per_se=4,
+    global_scan_points=17,
+    geometric_tail_points=12,
+    verification_scan_points=257,
+    refinement_factor=4,
+    max_refinement_levels=4,
+    max_scan_points=32769,
+    boundary_tolerance=1e-10,
+):
+    """Adaptively invert a possibly disconnected confidence set.
+
+    The initial mesh is fine on the statistical standard-error scale, coarse
+    over all of ``[0, 1]``, and geometrically spaced between those two scales.
+    If that survey detects more than one accepted run, the entire accepted
+    hull is refined exponentially.  Thus ordinary interval-like paths remain
+    inexpensive, while fragmented paths receive a much finer mesh.
+
+    The result is still a finite-mesh numerical inversion: a component and two
+    crossings lying wholly inside one final mesh cell can be missed.  The
+    returned diagnostics expose the final resolution and whether the point
+    budget stopped refinement.
+    """
+    center = float(np.clip(center, 0.0, 1.0))
+    standard_error = max(float(standard_error), 1e-12)
+    if local_radius <= 0.0:
+        raise ValueError("local_radius must be positive")
+    if int(base_points_per_se) != base_points_per_se or base_points_per_se < 1:
+        raise ValueError("base_points_per_se must be a positive integer")
+    if int(global_scan_points) != global_scan_points or global_scan_points < 3:
+        raise ValueError("global_scan_points must be an integer at least three")
+    if int(geometric_tail_points) != geometric_tail_points or geometric_tail_points < 2:
+        raise ValueError("geometric_tail_points must be an integer at least two")
+    if int(verification_scan_points) != verification_scan_points or verification_scan_points < 3:
+        raise ValueError("verification_scan_points must be an integer at least three")
+    if int(refinement_factor) != refinement_factor or refinement_factor < 2:
+        raise ValueError("refinement_factor must be an integer at least two")
+    if int(max_refinement_levels) != max_refinement_levels or max_refinement_levels < 0:
+        raise ValueError("max_refinement_levels must be a nonnegative integer")
+    if int(max_scan_points) != max_scan_points or max_scan_points < 3:
+        raise ValueError("max_scan_points must be an integer at least three")
+    if boundary_tolerance <= 0.0:
+        raise ValueError("boundary_tolerance must be positive")
+
+    cache = {}
+    evaluation_count = 0
+
+    def evaluate(candidates):
+        nonlocal evaluation_count
+        candidates = np.unique(np.clip(np.asarray(candidates, dtype=float), 0.0, 1.0))
+        missing = np.asarray(
+            [candidate for candidate in candidates if float(candidate) not in cache],
+            dtype=float,
+        )
+        if missing.size:
+            if batch_statistic is None:
+                raw = np.asarray([statistic(float(m)) for m in missing], dtype=float)
+            else:
+                raw = np.asarray(batch_statistic(missing), dtype=float)
+                if raw.shape != missing.shape:
+                    raise ValueError("batch_statistic must return one value per point")
+            for candidate, value in zip(missing, raw):
+                cache[float(candidate)] = float(value) - threshold
+            evaluation_count += int(missing.size)
+        return np.asarray([cache[float(candidate)] for candidate in candidates])
+
+    def centered_statistic(candidate):
+        candidate = float(candidate)
+        if candidate not in cache:
+            evaluate(np.asarray([candidate]))
+        return cache[candidate]
+
+    def mesh_components(grid):
+        values = np.asarray([cache[float(candidate)] for candidate in grid])
+        accepted = values < 0.0
+        starts = np.flatnonzero(accepted & np.r_[True, ~accepted[:-1]])
+        ends = np.flatnonzero(accepted & np.r_[~accepted[1:], True])
+        return accepted, starts, ends
+
+    local_lower = max(0.0, center - local_radius * standard_error)
+    local_upper = min(1.0, center + local_radius * standard_error)
+    local_spacing = standard_error / float(base_points_per_se)
+    local_count = max(
+        3,
+        int(np.ceil((local_upper - local_lower) / local_spacing)) + 1,
+    )
+    local_grid = np.linspace(local_lower, local_upper, local_count)
+    global_grid = np.linspace(0.0, 1.0, int(global_scan_points))
+    tail_grids = []
+    minimum_distance = max(local_spacing, 1e-12)
+    for boundary in (0.0, 1.0):
+        maximum_distance = abs(boundary - center)
+        if maximum_distance <= minimum_distance:
+            continue
+        distances = np.geomspace(
+            minimum_distance,
+            maximum_distance,
+            int(geometric_tail_points),
+        )
+        direction = -1.0 if boundary < center else 1.0
+        tail_grids.append(center + direction * distances)
+    grid = np.unique(np.concatenate((global_grid, local_grid, [center], *tail_grids)))
+    if grid.size > max_scan_points:
+        indices = np.linspace(0, grid.size - 1, max_scan_points).round().astype(int)
+        grid = np.unique(grid[indices])
+    evaluate(grid)
+    accepted, starts, ends = mesh_components(grid)
+    preliminary_accepted, _, _ = mesh_components(grid)
+    if np.any(preliminary_accepted):
+        preliminary_indices = np.flatnonzero(preliminary_accepted)
+        verification_lower = max(
+            0.0, grid[preliminary_indices[0]] - standard_error
+        )
+        verification_upper = min(
+            1.0, grid[preliminary_indices[-1]] + standard_error
+        )
+        remaining_budget = int(max_scan_points) - grid.size
+        verification_count = min(
+            int(verification_scan_points), max(remaining_budget, 0)
+        )
+        if verification_count >= 3:
+            verification_grid = np.linspace(
+                verification_lower,
+                verification_upper,
+                verification_count,
+            )
+            grid = np.unique(np.r_[grid, verification_grid])
+            evaluate(grid)
+    accepted, starts, ends = mesh_components(grid)
+    fragmentation_detected = len(starts) > 1
+    refinement_levels = 0
+    point_budget_reached = False
+
+    if fragmentation_detected:
+        for level in range(1, int(max_refinement_levels) + 1):
+            accepted_indices = np.flatnonzero(accepted)
+            if accepted_indices.size == 0:
+                break
+            padding = standard_error
+            refinement_lower = max(0.0, grid[accepted_indices[0]] - padding)
+            refinement_upper = min(1.0, grid[accepted_indices[-1]] + padding)
+            spacing = standard_error / (
+                float(base_points_per_se) * float(refinement_factor) ** level
+            )
+            requested = max(
+                3,
+                int(np.ceil((refinement_upper - refinement_lower) / spacing)) + 1,
+            )
+            remaining_budget = int(max_scan_points) - grid.size
+            if remaining_budget <= 0:
+                point_budget_reached = True
+                break
+            if requested > remaining_budget:
+                requested = remaining_budget
+                point_budget_reached = True
+            refinement_grid = np.linspace(
+                refinement_lower,
+                refinement_upper,
+                requested,
+            )
+            grid = np.unique(np.r_[grid, refinement_grid])
+            evaluate(grid)
+            accepted, starts, ends = mesh_components(grid)
+            refinement_levels = level
+            if point_budget_reached:
+                break
+
+    def transition(left, right, left_is_accepted):
+        for _ in range(100):
+            if right - left <= boundary_tolerance:
+                break
+            midpoint = 0.5 * (left + right)
+            midpoint_is_accepted = centered_statistic(midpoint) < 0.0
+            if midpoint_is_accepted == left_is_accepted:
+                left = midpoint
+            else:
+                right = midpoint
+        return 0.5 * (left + right)
+
+    components = []
+    for start, end in zip(starts, ends):
+        if start == 0:
+            lower = 0.0
+        else:
+            lower = transition(float(grid[start - 1]), float(grid[start]), False)
+        if end == grid.size - 1:
+            upper = 1.0
+        else:
+            upper = transition(float(grid[end]), float(grid[end + 1]), True)
+        components.append((float(lower), float(upper)))
+    components = tuple(components)
+    widths = _confidence_set_widths(components, center=center)
+
+    if np.any(accepted):
+        accepted_indices = np.flatnonzero(accepted)
+        relevant = grid[accepted_indices[0]:accepted_indices[-1] + 1]
+        final_mesh_resolution = (
+            float(np.max(np.diff(relevant))) if relevant.size > 1 else 1.0
+        )
+    else:
+        final_mesh_resolution = float(np.max(np.diff(grid)))
+    diagnostics = {
+        **widths,
+        "evaluation_count": evaluation_count,
+        "scan_point_count": int(grid.size),
+        "refinement_levels": refinement_levels,
+        "fragmentation_detected": fragmentation_detected,
+        "point_budget_reached": point_budget_reached,
+        "final_mesh_resolution": final_mesh_resolution,
+        "standard_error": standard_error,
+        "finite_mesh": True,
+    }
+    return components, diagnostics
+
+
+def _topology_scan_parameters(
+    sample_size,
+    score_work_budget=1_000_000,
+    minimum_verification_points=65,
+    maximum_verification_points=8193,
+    maximum_scan_points=32769,
+):
+    """Allocate topology resolution under an observation-score work budget."""
+    sample_size = int(sample_size)
+    if sample_size <= 0:
+        raise ValueError("sample_size must be positive")
+    verification_points = int(
+        np.clip(
+            score_work_budget // sample_size,
+            minimum_verification_points,
+            maximum_verification_points,
+        )
+    )
+    if sample_size <= 1000:
+        scan_points = int(maximum_scan_points)
+    else:
+        scan_points = min(
+            int(maximum_scan_points),
+            max(verification_points + 256, 4 * verification_points + 512),
+        )
+    return {
+        "verification_scan_points": verification_points,
+        "max_scan_points": scan_points,
+    }
+
+
+def _sample_standard_error(X):
+    """Empirical standard error with a nondegenerate bounded-data floor."""
+    X = np.asarray(X, dtype=float)
+    if X.size == 0:
+        raise ValueError("X must be nonempty")
+    empirical_sd = float(np.std(X, ddof=1)) if X.size > 1 else 0.0
+    return max(empirical_sd / np.sqrt(float(X.size)), 1.0 / float(X.size))
 
 
 def heat_ci_endpoints(X, delta, strike, initial_wealth):
@@ -1321,11 +1868,11 @@ def probit_star_ci_endpoints(
     asymptotic equivalence requires the paper's local-crossing condition.
 
     If a pair of randomizers is supplied, each terminal arm is projected to
-    zero or its one-sided target using that uniform randomizer.  A diverging
-    buffer satisfying sqrt(n) = o(buffer_rounds) and buffer_rounds = o(n)
-    should be paired with this randomized inversion for the
-    Gaussian-efficiency construction.  The same randomizers must be retained
-    while scanning all candidate means.
+    zero or its one-sided target using that uniform randomizer.  The paper's
+    Gaussian-efficiency theorem covers both a diverging buffer satisfying
+    sqrt(n) = o(buffer_rounds), buffer_rounds = o(n), and buffer_rounds = 0,
+    under the corresponding tracking conditions.  The same randomizers must
+    be retained while scanning all candidate means.
     """
     X = np.asarray(X)
     center = float(np.mean(X))
@@ -1375,6 +1922,326 @@ def probit_star_ci_endpoints(
     )
 
 
+def heat_star_common_clock_ci_endpoints(
+    X,
+    delta,
+    initial_wealth,
+    c=1.0,
+    return_diagnostics=False,
+):
+    """Invert common-clock squared-hinge STaR as its full interval.
+
+    Each one-sided arm rejects at ``2 * initial_wealth / delta``.  Strict
+    concavity of the optimized squared-hinge volatility makes upper-arm
+    rejection a lower set in the candidate mean and lower-arm rejection an
+    upper set, so their simultaneous nonrejection set is an interval.
+    """
+    X = np.asarray(X)
+    center = float(np.mean(X))
+    target = 2.0 * initial_wealth / delta
+    cache = {}
+    evaluations = 0
+
+    def arms(m):
+        nonlocal evaluations
+        key = float(m)
+        if key not in cache:
+            cache[key] = compute_M_heat_star_arms(
+                X, key, delta, initial_wealth, c=c
+            )
+            evaluations += 1
+        return cache[key]
+
+    def upper_score(m):
+        return arms(m)[0] - target
+
+    def lower_score(m):
+        return arms(m)[1] - target
+
+    upper_at_zero = upper_score(0.0)
+    upper_at_one = upper_score(1.0)
+    lower_at_zero = lower_score(0.0)
+    lower_at_one = lower_score(1.0)
+
+    if upper_at_one >= 0.0 or lower_at_zero >= 0.0:
+        result = (center, center, True, evaluations)
+        return result if return_diagnostics else result[:3]
+
+    if upper_at_zero < 0.0:
+        lower_endpoint = 0.0
+    else:
+        rejected = 0.0
+        accepted = 1.0
+        while accepted - rejected > 1e-9:
+            midpoint = 0.5 * (rejected + accepted)
+            if upper_score(midpoint) >= 0.0:
+                rejected = midpoint
+            else:
+                accepted = midpoint
+        lower_endpoint = 0.5 * (rejected + accepted)
+
+    if lower_at_one < 0.0:
+        upper_endpoint = 1.0
+    else:
+        accepted = 0.0
+        rejected = 1.0
+        while rejected - accepted > 1e-9:
+            midpoint = 0.5 * (accepted + rejected)
+            if lower_score(midpoint) < 0.0:
+                accepted = midpoint
+            else:
+                rejected = midpoint
+        upper_endpoint = 0.5 * (accepted + rejected)
+
+    empty = lower_endpoint > upper_endpoint
+    if empty:
+        lower_endpoint = center
+        upper_endpoint = center
+    result = (lower_endpoint, upper_endpoint, empty, evaluations)
+    return result if return_diagnostics else result[:3]
+
+
+def probit_common_clock_ci_endpoints(
+    X,
+    delta,
+    buffer_rounds=0.0,
+    randomizers=(1.0, 1.0),
+    return_diagnostics=False,
+):
+    """Invert common-clock Efficient betting as its full interval.
+
+    The upper-arm wealth is nonincreasing in the candidate mean and the
+    lower-arm wealth is nondecreasing.  Their simultaneous nonrejection set
+    is therefore an interval (possibly empty), whose two global boundaries
+    can be found directly without a discovery mesh.
+    """
+    X = np.asarray(X)
+    center = float(np.mean(X))
+    u_plus, u_minus = (float(value) for value in randomizers)
+    if not (0.0 < u_plus <= 1.0 and 0.0 < u_minus <= 1.0):
+        raise ValueError("randomizers must lie in (0,1]")
+    alpha = delta / 2.0
+    cache = {}
+    evaluations = 0
+
+    def arms(m):
+        nonlocal evaluations
+        key = float(m)
+        if key not in cache:
+            cache[key] = compute_M_probit_common_clock_arms(
+                X,
+                key,
+                delta,
+                buffer_rounds=buffer_rounds,
+            )
+            evaluations += 1
+        return cache[key]
+
+    def upper_score(m):
+        return alpha * arms(m)[0] / u_plus - 1.0
+
+    def lower_score(m):
+        return alpha * arms(m)[1] / u_minus - 1.0
+
+    upper_at_zero = upper_score(0.0)
+    upper_at_one = upper_score(1.0)
+    lower_at_zero = lower_score(0.0)
+    lower_at_one = lower_score(1.0)
+
+    # The upper arm accepts an upper interval and the lower arm accepts a
+    # lower interval.  If either arm accepts nowhere, their intersection is
+    # empty.  Equality is rejection under the randomized test convention.
+    if upper_at_one >= 0.0 or lower_at_zero >= 0.0:
+        result = (center, center, True, evaluations)
+        return result if return_diagnostics else result[:3]
+
+    if upper_at_zero < 0.0:
+        lower_endpoint = 0.0
+    else:
+        lower_endpoint = float(
+            brentq(
+                upper_score,
+                0.0,
+                1.0,
+                xtol=1e-9,
+                rtol=1e-10,
+                maxiter=100,
+            )
+        )
+
+    if lower_at_one < 0.0:
+        upper_endpoint = 1.0
+    else:
+        upper_endpoint = float(
+            brentq(
+                lower_score,
+                0.0,
+                1.0,
+                xtol=1e-9,
+                rtol=1e-10,
+                maxiter=100,
+            )
+        )
+
+    empty = lower_endpoint > upper_endpoint
+    if empty:
+        lower_endpoint = center
+        upper_endpoint = center
+    result = (lower_endpoint, upper_endpoint, empty, evaluations)
+    return result if return_diagnostics else result[:3]
+
+
+def probit_common_clock_batched_ci_endpoints(
+    X,
+    delta,
+    buffer_rounds=0.0,
+    randomizers=(1.0, 1.0),
+    sections=16,
+    return_diagnostics=False,
+):
+    """Parallel multisection inversion of common-clock Efficient betting.
+
+    This returns the same full interval as
+    :func:`probit_common_clock_ci_endpoints`, but evaluates many ordered
+    candidate means simultaneously.  It is intended for very long simulated
+    paths, where parallel multisection is substantially cheaper than scalar
+    root finding.
+    """
+    X = np.asarray(X)
+    if int(sections) != sections or sections < 2:
+        raise ValueError("sections must be an integer at least two")
+    sections = int(sections)
+    center = float(np.mean(X))
+    u_plus, u_minus = (float(value) for value in randomizers)
+    if not (0.0 < u_plus <= 1.0 and 0.0 < u_minus <= 1.0):
+        raise ValueError("randomizers must lie in (0,1]")
+    evaluations = 0
+
+    def evaluate(means):
+        nonlocal evaluations
+        means = np.asarray(means, dtype=float)
+        evaluations += means.size
+        plus, minus = _probit_common_clock_arm_randomized_scores(
+            X,
+            means,
+            delta,
+            buffer_rounds,
+            u_plus,
+            u_minus,
+        )
+        return np.asarray(plus) - 1.0, np.asarray(minus) - 1.0
+
+    center_plus, center_minus = evaluate(np.asarray([center]))
+    if center_plus[0] >= 0.0 or center_minus[0] >= 0.0:
+        result = probit_common_clock_ci_endpoints(
+            X,
+            delta,
+            buffer_rounds=buffer_rounds,
+            randomizers=randomizers,
+            return_diagnostics=True,
+        )
+        result = (*result[:3], evaluations + result[3])
+        return result if return_diagnostics else result[:3]
+
+    standard_error = _sample_standard_error(X)
+    inner = {-1: center, 1: center}
+    step = {-1: 4.0 * standard_error, 1: 4.0 * standard_error}
+    brackets = {}
+    boundary_values = {}
+    unresolved = [-1, 1]
+    for _ in range(12):
+        if not unresolved:
+            break
+        candidates = np.asarray([
+            np.clip(center + direction * step[direction], 0.0, 1.0)
+            for direction in unresolved
+        ])
+        plus_scores, minus_scores = evaluate(candidates)
+        next_unresolved = []
+        for index, (direction, current) in enumerate(
+            zip(unresolved, candidates)
+        ):
+            current = float(current)
+            value = (
+                float(plus_scores[index])
+                if direction < 0
+                else float(minus_scores[index])
+            )
+            if value >= 0.0:
+                brackets[direction] = (
+                    (current, inner[direction])
+                    if direction < 0
+                    else (inner[direction], current)
+                )
+                continue
+            outer = 0.0 if direction < 0 else 1.0
+            if current == outer:
+                boundary_values[direction] = outer
+                continue
+            inner[direction] = current
+            step[direction] *= 1.8
+            next_unresolved.append(direction)
+        unresolved = next_unresolved
+    if unresolved:
+        raise RuntimeError("failed to bracket a common-clock endpoint")
+
+    root_tolerance = max(2.0e-10, 2.0e-4 * standard_error)
+    while True:
+        active = [
+            direction for direction in (-1, 1)
+            if direction in brackets
+            and brackets[direction][1] - brackets[direction][0]
+            > root_tolerance
+        ]
+        if not active:
+            break
+        grids = []
+        for direction in active:
+            left, right = brackets[direction]
+            interior = np.linspace(left, right, sections + 1)[1:-1]
+            grids.append(interior)
+        candidates = np.concatenate(grids)
+        plus_scores, minus_scores = evaluate(candidates)
+        offset = 0
+        for direction, interior in zip(active, grids):
+            count = interior.size
+            values = (
+                plus_scores[offset:offset + count]
+                if direction < 0
+                else minus_scores[offset:offset + count]
+            )
+            left, right = brackets[direction]
+            if direction < 0:
+                accepted = np.flatnonzero(values < 0.0)
+                if accepted.size == 0:
+                    left = float(interior[-1])
+                else:
+                    index = int(accepted[0])
+                    right = float(interior[index])
+                    if index > 0:
+                        left = float(interior[index - 1])
+            else:
+                rejected = np.flatnonzero(values >= 0.0)
+                if rejected.size == 0:
+                    left = float(interior[-1])
+                else:
+                    index = int(rejected[0])
+                    right = float(interior[index])
+                    if index > 0:
+                        left = float(interior[index - 1])
+            brackets[direction] = (left, right)
+            offset += count
+
+    endpoints = {}
+    for direction in (-1, 1):
+        if direction in boundary_values:
+            endpoints[direction] = boundary_values[direction]
+        else:
+            endpoints[direction] = 0.5 * sum(brackets[direction])
+    result = (float(endpoints[-1]), float(endpoints[1]), False, evaluations)
+    return result if return_diagnostics else result[:3]
+
+
 def probit_star_randomized_ci_endpoints(
     X,
     delta,
@@ -1398,7 +2265,7 @@ def probit_star_randomized_ci_endpoints(
     )
 
 
-def _probit_star_experiment_component(X, delta, rng):
+def _probit_star_experiment_component(X, delta, rng, buffer_rounds=None):
     """Return the randomized center component and whether it is empty.
 
     A randomized confidence set may reject the sample mean.  The experiments
@@ -1411,7 +2278,7 @@ def _probit_star_experiment_component(X, delta, rng):
     center = float(np.mean(X))
     try:
         endpoints = probit_star_randomized_ci_endpoints(
-            X, delta, rng=rng
+            X, delta, buffer_rounds=buffer_rounds, rng=rng
         )
     except ValueError as error:
         if str(error) != "the supplied center is not in the confidence set":
@@ -1580,6 +2447,9 @@ _TRUE_SIGMAS = {
     "Uniform(0,1)": np.sqrt(1.0 / 12.0),
     "Beta(0.5,0.5)": np.sqrt(1.0 / 8.0),
     "Bernoulli(0.1)": 0.3,
+    "Beta(50,50)": np.sqrt(1.0 / 404.0),
+    "Beta(20,80)": np.sqrt(1600.0 / 1_010_000.0),
+    "Uniform(0.45,0.55)": np.sqrt(0.1**2 / 12.0),
 }
 
 
@@ -1630,6 +2500,9 @@ def run_dp_experiment(
         "Bernoulli(0.1)": (
             lambda n: rng.binomial(1, 0.1, n).astype(float)
         ),
+        "Beta(50,50)": lambda n: rng.beta(50, 50, n),
+        "Beta(20,80)": lambda n: rng.beta(20, 80, n),
+        "Uniform(0.45,0.55)": lambda n: rng.uniform(0.45, 0.55, n),
     }
     results = {
         name: {
@@ -1790,7 +2663,7 @@ def run_dp_experiment(
                 f"(target {results[name]['target_heat']:.3f})  "
                 f"WSR={np.mean(wsr_widths):.3f} "
                 f"STaR={np.mean(star_widths):.3f} "
-                f"Probit-STaR={np.mean(probit_widths):.3f} "
+                f"Efficient betting={np.mean(probit_widths):.3f} "
                 f"(empty={np.mean(probit_empty):.1%}) "
                 f"DigDP={np.mean(digital_widths):.3f}"
                 + (
@@ -1805,7 +2678,7 @@ def run_dp_experiment(
     def plot_widths(scaled):
         suffix = "" if scaled else "_raw"
         n_array = np.asarray(n_values, dtype=float)
-        fig, axes = plt.subplots(2, 3, figsize=(16, 9))
+        fig, axes = plt.subplots(3, 3, figsize=(13, 11))
         for axis, name in zip(axes.ravel(), samplers):
             target_heat = results[name]["target_heat"]
             target_wsr = results[name]["target_wsr"]
@@ -1904,7 +2777,7 @@ def run_dp_experiment(
         """Plot the target-aware strategies against the original product."""
         suffix = "" if scaled else "_raw"
         n_array = np.asarray(n_values, dtype=float)
-        fig, axes = plt.subplots(2, 3, figsize=(16, 9))
+        fig, axes = plt.subplots(3, 3, figsize=(13, 11))
 
         for axis, name in zip(axes.ravel(), samplers):
             target_digital = results[name]["target_digital"]
@@ -1945,7 +2818,7 @@ def run_dp_experiment(
                     f"probit_star{suffix}",
                     "purple",
                     "v",
-                    "Probit STaR (randomized)",
+                    "Efficient betting (randomized)",
                 ),
                 (
                     f"digital_dp{suffix}",
@@ -2034,6 +2907,10 @@ def run_dp_experiment(
                 "digital_boundary": digital_boundary,
                 "probit_buffer_power": 2.0 / 3.0,
                 "probit_terminal_randomization": True,
+                "reported_width": (
+                    "accepted component adjacent to the sample mean; "
+                    "use audit_confidence_set_topology.py for global inversion"
+                ),
                 "results": results,
             },
             output_file,
@@ -2048,12 +2925,13 @@ def run_experiment(
     num_sims=50,
     n_values=DEFAULT_N_VALUES,
     seed=42,
+    resume=False,
 ):
-    """Compare fixed, square-root STaR, and probit-STaR intervals."""
+    """Compare fixed, square-root STaR, and Efficient betting intervals."""
     rng = np.random.default_rng(seed)
-    probit_rng = np.random.default_rng(
-        np.random.SeedSequence(seed).spawn(1)[0]
-    )
+    probit_seed = np.random.SeedSequence(seed).spawn(1)[0]
+    probit_rng = np.random.default_rng(probit_seed)
+    probit_unbuffered_rng = np.random.default_rng(probit_seed)
     n_values = _validated_n_values(n_values)
     num_sims_by_n = _simulation_counts(n_values, num_sims)
     simulation_label = _simulation_label(num_sims_by_n)
@@ -2073,6 +2951,9 @@ def run_experiment(
         "Bernoulli(0.1)": (
             lambda n: rng.binomial(1, 0.1, n).astype(float)
         ),
+        "Beta(50,50)": lambda n: rng.beta(50, 50, n),
+        "Beta(20,80)": lambda n: rng.beta(20, 80, n),
+        "Uniform(0.45,0.55)": lambda n: rng.uniform(0.45, 0.55, n),
     }
     results = {
         name: {
@@ -2100,9 +2981,35 @@ def run_experiment(
             "probit_star": [],
             "probit_star_raw": [],
             "probit_empty_rate": [],
+            "probit_star_unbuffered": [],
+            "probit_star_unbuffered_raw": [],
+            "probit_unbuffered_empty_rate": [],
         }
         for name in samplers
     }
+    summary_output = "plots/ci_width_original_vs_star.json"
+    loaded_names = set()
+    if resume and os.path.exists(summary_output):
+        with open(summary_output, encoding="utf-8") as input_file:
+            previous = json.load(input_file)
+        expected_counts = {str(n): num_sims_by_n[n] for n in n_values}
+        if (
+            previous.get("delta") != delta
+            or previous.get("seed") != seed
+            or previous.get("n_values") != n_values
+            or previous.get("num_sims_by_n") != expected_counts
+        ):
+            raise ValueError(
+                "saved experiment configuration does not match resume request"
+            )
+        for name, saved in previous.get("results", {}).items():
+            if name in results:
+                results[name].update(saved)
+                loaded_names.add(name)
+        print(
+            "Loaded saved distributions: "
+            + ", ".join(sorted(loaded_names))
+        )
 
     warm = rng.uniform(0.0, 1.0, 20)
     compute_M_inf(warm, 0.5, delta)
@@ -2114,6 +3021,9 @@ def run_experiment(
         delta,
         buffer_rounds=float(len(warm)) ** (2.0 / 3.0),
     )
+    compute_M_probit_star(
+        warm, 0.5, delta, buffer_rounds=0.0
+    )
     compute_M_heat_path(warm, 0.5, strike, initial_wealth)
     compute_M_heat_star_path(
         warm, 0.5, delta, initial_wealth
@@ -2121,10 +3031,65 @@ def run_experiment(
     compute_M_capped_feedback_star(warm, 0.5, delta)
     compute_M_capped_exponential_feedback_star(warm, 0.5, delta)
 
-    for n in n_values:
+    existing_method_keys = (
+        "heat_original", "heat_star", "product_original", "product_star",
+        "hinge_feedback_star", "capped_feedback_star",
+        "capped_exponential_feedback_star", "probit_star",
+    )
+    for n_index, n in enumerate(n_values):
         sims_at_n = num_sims_by_n[n]
         print(f"n={n}  sims={sims_at_n}")
         for name, sample in samplers.items():
+            existing_complete = all(
+                len(results[name][key]) > n_index
+                and len(results[name][f"{key}_raw"]) > n_index
+                for key in existing_method_keys
+            ) and len(results[name]["probit_empty_rate"]) > n_index
+            unbuffered_complete = (
+                len(results[name]["probit_star_unbuffered"]) > n_index
+                and len(results[name]["probit_star_unbuffered_raw"]) > n_index
+                and len(results[name]["probit_unbuffered_empty_rate"]) > n_index
+            )
+
+            if existing_complete:
+                unbuffered_widths = []
+                unbuffered_raw_widths = []
+                unbuffered_empty = []
+                for _ in range(sims_at_n):
+                    X = sample(n)
+                    probit_rng.uniform(0.0, 1.0, size=2)
+                    if unbuffered_complete:
+                        probit_unbuffered_rng.uniform(0.0, 1.0, size=2)
+                        continue
+                    lower, upper, is_empty = _probit_star_experiment_component(
+                        X, delta, probit_unbuffered_rng, buffer_rounds=0.0
+                    )
+                    raw = upper - lower
+                    unbuffered_raw_widths.append(raw)
+                    unbuffered_widths.append(np.sqrt(n) * raw)
+                    unbuffered_empty.append(is_empty)
+                if unbuffered_complete:
+                    continue
+                for key, values in (
+                    ("probit_star_unbuffered", unbuffered_widths),
+                    ("probit_star_unbuffered_raw", unbuffered_raw_widths),
+                ):
+                    values = np.asarray(values)
+                    results[name][key].append({
+                        "mean": float(np.mean(values)),
+                        "lo": float(np.quantile(values, 0.1)),
+                        "hi": float(np.quantile(values, 0.9)),
+                    })
+                results[name]["probit_unbuffered_empty_rate"].append(
+                    float(np.mean(unbuffered_empty))
+                )
+                print(
+                    f"  {name:16s} Efficient betting="
+                    f"{np.mean(unbuffered_widths):.3f} "
+                    f"(empty={np.mean(unbuffered_empty):.1%})"
+                )
+                continue
+
             widths = {
                 "heat_original": [],
                 "heat_star": [],
@@ -2134,9 +3099,11 @@ def run_experiment(
                 "capped_feedback_star": [],
                 "capped_exponential_feedback_star": [],
                 "probit_star": [],
+                "probit_star_unbuffered": [],
             }
             raw_widths = {key: [] for key in widths}
             probit_empty = []
+            probit_unbuffered_empty = []
 
             for _ in range(sims_at_n):
                 X = sample(n)
@@ -2177,6 +3144,19 @@ def run_experiment(
                     X, delta, probit_rng
                 )
                 probit_empty.append(probit_is_empty)
+                (
+                    probit_unbuffered_lo,
+                    probit_unbuffered_hi,
+                    probit_unbuffered_is_empty,
+                ) = _probit_star_experiment_component(
+                    X,
+                    delta,
+                    probit_unbuffered_rng,
+                    buffer_rounds=0.0,
+                )
+                probit_unbuffered_empty.append(
+                    probit_unbuffered_is_empty
+                )
 
                 endpoints = {
                     "heat_original": (heat_lo, heat_hi),
@@ -2199,6 +3179,10 @@ def run_experiment(
                         capped_exponential_hi,
                     ),
                     "probit_star": (probit_lo, probit_hi),
+                    "probit_star_unbuffered": (
+                        probit_unbuffered_lo,
+                        probit_unbuffered_hi,
+                    ),
                 }
                 for key, (lower, upper) in endpoints.items():
                     raw = upper - lower
@@ -2221,6 +3205,9 @@ def run_experiment(
             results[name]["probit_empty_rate"].append(
                 float(np.mean(probit_empty))
             )
+            results[name]["probit_unbuffered_empty_rate"].append(
+                float(np.mean(probit_unbuffered_empty))
+            )
 
             print(
                 f"  {name:16s} "
@@ -2231,8 +3218,11 @@ def run_experiment(
                 f"Matched-Hinge={np.mean(widths['hinge_feedback_star']):.3f} "
                 f"Capped-STaR={np.mean(widths['capped_feedback_star']):.3f} "
                 f"Capped-exp-STaR={np.mean(widths['capped_exponential_feedback_star']):.3f} "
-                f"Probit-STaR={np.mean(widths['probit_star']):.3f} "
-                f"(empty={np.mean(probit_empty):.1%})"
+                f"Regularized Efficient betting={np.mean(widths['probit_star']):.3f} "
+                f"(empty={np.mean(probit_empty):.1%}) "
+                f"Efficient betting="
+                f"{np.mean(widths['probit_star_unbuffered']):.3f} "
+                f"(empty={np.mean(probit_unbuffered_empty):.1%})"
             )
 
     os.makedirs("plots", exist_ok=True)
@@ -2240,7 +3230,7 @@ def run_experiment(
     def plot_widths(scaled):
         suffix = "" if scaled else "_raw"
         n_array = np.asarray(n_values, dtype=float)
-        fig, axes = plt.subplots(2, 3, figsize=(16, 9))
+        fig, axes = plt.subplots(3, 3, figsize=(13, 11))
 
         for axis, name in zip(axes.ravel(), samplers):
             heat_target = results[name]["target_heat"]
@@ -2309,22 +3299,10 @@ def run_experiment(
                     "product STaR-Bets",
                 ),
                 (
-                    f"capped_feedback_star{suffix}",
-                    "deeppink",
-                    "*",
-                    "target-capped quadratic STaR",
-                ),
-                (
-                    f"capped_exponential_feedback_star{suffix}",
-                    "teal",
-                    "X",
-                    "capped original STaR",
-                ),
-                (
-                    f"probit_star{suffix}",
-                    "purple",
-                    "v",
-                    "Probit STaR (randomized)",
+                    f"probit_star_unbuffered{suffix}",
+                    "#8c564b",
+                    "^",
+                    "Efficient betting",
                 ),
             )
             for key, color, marker, label in methods:
@@ -2360,15 +3338,23 @@ def run_experiment(
                 else "CI width (log scale)"
             )
             axis.grid(True, ls="--", alpha=0.35)
-            axis.legend(fontsize=7.2)
-
+        legend_handles, legend_labels = axes.ravel()[0].get_legend_handles_labels()
         scale_label = "scaled" if scaled else "raw"
         fig.suptitle(
             f"Fixed-plan versus STaR betting: {scale_label} widths "
             f"[\N{GREEK SMALL LETTER DELTA}={delta}, "
-            f"sims/n={simulation_label}]"
+            f"sims/n={simulation_label}]",
+            fontsize=14,
         )
-        plt.tight_layout()
+        fig.legend(
+            legend_handles,
+            legend_labels,
+            loc="lower center",
+            ncol=5,
+            fontsize=8.5,
+            frameon=False,
+        )
+        fig.tight_layout(rect=(0.0, 0.11, 1.0, 0.95))
         output = (
             "plots/ci_width_original_vs_star.png"
             if scaled
@@ -2382,18 +3368,20 @@ def run_experiment(
         """Compare feedback maps with clock, cap, and stopping held fixed."""
         suffix = "" if scaled else "_raw"
         n_array = np.asarray(n_values, dtype=float)
-        fig, axes = plt.subplots(2, 3, figsize=(16, 9))
+        fig, axes = plt.subplots(3, 3, figsize=(13, 11))
         methods = (
             (f"product_star{suffix}", "darkorange", "P",
              "square-root/product feedback"),
             (f"hinge_feedback_star{suffix}", "crimson", "D",
              "squared-hinge feedback"),
+            (f"probit_star_unbuffered{suffix}", "#8c564b", "^",
+             r"Efficient betting ($b_n=0$)"),
             (f"capped_feedback_star{suffix}", "deeppink", "*",
              "target-capped quadratic feedback"),
             (f"capped_exponential_feedback_star{suffix}", "teal", "X",
              "capped original feedback"),
             (f"probit_star{suffix}", "purple", "v",
-             "buffered randomized Probit"),
+             "Regularized Efficient betting"),
         )
 
         for axis, name in zip(axes.ravel(), samplers):
@@ -2430,15 +3418,23 @@ def run_experiment(
                 if scaled else "CI width (log scale)"
             )
             axis.grid(True, ls="--", alpha=0.35)
-            axis.legend(fontsize=7.2)
-
+        legend_handles, legend_labels = axes.ravel()[0].get_legend_handles_labels()
         scale_label = "scaled" if scaled else "raw"
         fig.suptitle(
             f"Chronological STaR feedback comparison: {scale_label} widths "
             f"[\N{GREEK SMALL LETTER DELTA}={delta}, "
-            f"sims/n={simulation_label}]"
+            f"sims/n={simulation_label}]",
+            fontsize=14,
         )
-        plt.tight_layout()
+        fig.legend(
+            legend_handles,
+            legend_labels,
+            loc="lower center",
+            ncol=3,
+            fontsize=8.5,
+            frameon=False,
+        )
+        fig.tight_layout(rect=(0.0, 0.11, 1.0, 0.95))
         output = (
             "plots/ci_width_feedback_ablation.png"
             if scaled else "plots/ci_width_raw_feedback_ablation.png"
@@ -2458,6 +3454,7 @@ def run_experiment(
             {
                 "delta": delta,
                 "seed": seed,
+                "probit_unbuffered_rounds": 0.0,
                 "num_sims_by_n": {
                     str(n): num_sims_by_n[n] for n in n_values
                 },
@@ -2486,4 +3483,4 @@ run_convergence_experiment = run_experiment
 
 
 if __name__ == "__main__":
-    run_experiment(num_sims=PUBLICATION_SIMULATION_COUNTS)
+    run_experiment(num_sims=PUBLICATION_SIMULATION_COUNTS, resume=True)

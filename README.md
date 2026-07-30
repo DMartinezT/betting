@@ -19,23 +19,25 @@ python -m pip install -r requirements.txt
 python betting.py
 ```
 
-The driver evaluates the following fixed-horizon procedures on six bounded
+The driver evaluates the following fixed-horizon procedures on nine bounded
 distributions:
 
 - the original two-sided product test martingale;
 - the target-recalculating STaR betting rule from
   [STaR-bets-confidence-interval](https://github.com/vvoracek/STaR-bets-confidence-interval),
   used inside the same two-sided product test;
-- Probit-STaR, the buffered Gaussian-digital feedback rule proposed in the
-  paper, with `b_n = n**(2/3)` and one fixed terminal uniform per arm during
+- Efficient betting, the Gaussian-digital feedback rule proposed in the
+  paper, using the unbuffered recursion and one fixed terminal uniform per arm during
   each confidence-set inversion;
+- common-clock Efficient betting, which uses the same feedback and terminal
+  uniforms but shares one predictable residual-variance estimate across both
+  arms and all candidate means, giving a pathwise interval inversion;
 - Construction 3, the original nonnegative Bentkus/heat-flow hedge;
 - a target-recalculating Bentkus hedge that re-optimizes the local
   squared-hinge strike from current wealth, remaining variance, and the fixed
   rejection target;
-- a matched-clock squared-hinge feedback rule and its guarded version, whose
-  leverage is capped by the product-STaR square-root leverage; and
-- a matched-clock target-capped quadratic feedback rule.
+- a matched-clock squared-hinge feedback rule; and
+- a matched-clock target-capped quadratic feedback rule used in the appendix.
 
 The common sample-size grid is
 `n = 10, 50, 100, 500, 1000, 5000, 10000, 50000, 100000, 500000, 1000000`;
@@ -91,16 +93,37 @@ value closer to a digital target while preserving a continuous
 piecewise-quadratic transition.  The construction is Bentkus-inspired; the
 capped payoff is not a convex Bentkus test function.
 
-The main figure contains the fixed Bentkus hedge, Bentkus-STaR,
-the original and STaR product rules, target-capped quadratic STaR, and
-Probit-STaR.  A separate matched-feedback ablation holds the chronological
-clock, empirical-variance estimate, solvency cap, and target stopping fixed,
-then changes only the feedback map among product square-root, squared-hinge,
-and target-capped quadratic feedback; it also shows Probit
-alongside the Gaussian limit.  This ablation isolates feedback behavior.
+The main fixed-sample figure contains the fixed Bentkus hedge, Bentkus-STaR,
+the original and STaR product rules, and common-clock Efficient betting.  It
+plots confidence-interval widths: a mesh-inverted raw set is replaced by its
+convex hull, while the common-clock inversion is interval-valued pathwise.
+Candidate-dependent Efficient betting and the matched-feedback ablation are
+kept for appendix comparisons.
 
-Confidence-set inversion uses endpoint searches, with a batched geometric
-first-crossing scan for the target-capped feedback.  The run writes:
+`betting.py` first writes fast adjacent-component endpoints.  To obtain the
+publication width convention, replay the same data and terminal-randomizer
+streams with the topology-aware postprocessor, then redraw:
+
+```bash
+python augment_fixed_sample_topology.py
+python plot_saved_experiment.py
+```
+
+The postprocessor does not assume convexity for the candidate-dependent
+procedures.  Its adaptive finite-mesh
+inversion combines a standard-error-scale grid, global and geometric probes,
+and exponential refinement after any detected fragmentation.  It records the
+full-set diameter, the largest accepted-component width, component counts,
+mesh resolution, and point-budget diagnostics.  Figure 1 uses 50 topology
+replications per distribution through `n=1000`, 10 through `n=10000`, and 5
+thereafter.  The main plot uses full-set diameters, equivalently convex-hull
+CI widths, and their empirical bands; largest-component summaries remain in
+the JSON for the appendix audit.  A finite mesh can still miss two crossings
+inside one final cell, so the saved diagnostics are part of the result rather
+than a proof of connectedness.  The common-clock procedure is inverted
+directly from its two monotone arm boundaries, so its diameter and
+largest-component width coincide exactly and require no discovery mesh.  The
+run writes:
 
 - the normalized- and raw-width comparisons to
   `plots/ci_width_original_vs_star.png` and
@@ -111,15 +134,50 @@ first-crossing scan for the target-capped feedback.  The run writes:
 - all numerical summaries to
   `plots/ci_width_original_vs_star.json`.
 
-To redraw all four figures from that JSON without rerunning the simulations,
-use
+To redraw the figures from the augmented JSON without rerunning either the
+simulations or the topology inversion, use `python plot_saved_experiment.py`.
+
+The large-sample main plots, including five paired common-clock intervals per
+distribution and horizon, are produced by
 
 ```bash
-python plot_saved_experiment.py
+python gaffke_comparison/large_sample_feedback_gaffke.py --resume
+python gaffke_comparison/augment_large_sample_topology.py
+python gaffke_comparison/large_sample_feedback_gaffke.py --plot-only
 ```
 
+This audit uses five paired paths per distribution and horizon for every main
+method.  Through `n=10000` it uses the full multiresolution scan.  At larger
+horizons it reuses the accurately bisected local component, checks 31 evenly
+spaced interior points for gaps, and probes outside at standard-error distances
+`1/8, 1/4, 1/2, 1, 2, ...`, together with 0 and 1.  Any interior rejection or
+outside acceptance triggers the full scan.  This hybrid screen keeps the work
+manageable through `n=10**7`.  The main Gaffke figure shows convex CI widths
+and uses only common-clock Efficient betting.  The focused appendix figure
+adds candidate-dependent Efficient betting, with solid convex-hull diameters,
+dashed largest-component widths, and pointwise empirical 10--90% fill bands.
+
+Finite-sample confidence sets are not always intervals.  Run the global
+topology audit with
+
+```bash
+python audit_confidence_set_topology.py
+```
+
+The audit evaluates the complete candidate-mean range on successively refined
+meshes, refines every visible crossing, and writes
+`plots/confidence_set_topology_audit.json`.  It reports the component list,
+the sum of component lengths, the full-set diameter (equivalently the width
+of its convex hull), the largest-component length, and the center-component
+length.  The convex hull remains
+a valid confidence interval because it contains the original confidence set.
+As with any finite grid, the audit can miss multiple crossings contained
+inside one mesh cell, so topology claims should be checked across resolutions.
+The underlying helpers are `_confidence_set_components(...)`,
+`_confidence_set_widths(...)`, and `_confidence_set_hull_endpoints(...)`.
+
 The earlier exact-Bernoulli and Gaussian digital-DP benchmarks remain
-available through `run_dp_experiment(...)`, which also includes Probit-STaR,
+available through `run_dp_experiment(...)`, which also includes Efficient betting,
 but they are not part of the default comparison.
 
 The local-Gaussian comparison in the paper is reproducible with
@@ -141,14 +199,19 @@ Two implementation details support the comparisons in the paper:
   product comparators. They use the same variance estimate, solvency cap, and
   target stopping as product STaR, differing only in whether the target and
   horizon are recalculated.
+- `compute_M_heat_star_arms(...)` target-caps the two common-clock
+  squared-hinge STaR arms, and `heat_star_common_clock_ci_endpoints(...)`
+  inverts their ordered rejection boundaries directly.  This is the code path
+  covered by the squared-hinge concavity lemma.
 - `probit_star_randomized_ci_endpoints(...)` implements the Gaussian digital-
   delta feedback approximation. The experiment uses an RNG stream separate
   from the data stream, so adding the terminal randomizers
-  does not change the other curves. The helper returns the accepted component
-  containing the sample mean; the finite-sample coverage guarantee formally
-  applies to the full inverted set. If randomization rejects the sample mean,
-  the reported center component is empty (width zero), and its frequency is
-  stored as `probit_empty_rate` rather than redrawing the uniforms.
+  does not change the other curves. The endpoint helper returns the accepted
+  component containing the sample mean, whereas
+  `_confidence_set_components(...)` performs the global inversion.  If
+  randomization rejects the sample mean, the adjacent component is empty
+  (width zero), and its frequency is stored as `probit_empty_rate` rather than
+  redrawing the uniforms.
 - `capped_exponential_feedback_star_ci_endpoints(...)` caps and re-prices
   the exponential planning claim while retaining original STaR's
   state-dependent slope. `hinge_feedback_star_ci_endpoints(...)` and
