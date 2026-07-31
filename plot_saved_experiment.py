@@ -11,6 +11,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
+from matplotlib.lines import Line2D
 
 
 HERE = Path(__file__).resolve().parent
@@ -24,7 +25,16 @@ def _simulation_label(counts_by_n: dict[str, int]) -> str:
     return f"{min(counts)}\N{EN DASH}{max(counts)}"
 
 
-def _series(axis, n_values, rows, color, marker, label):
+def _series(
+    axis,
+    n_values,
+    rows,
+    color,
+    marker,
+    label,
+    linestyle="-",
+    fill=True,
+):
     means = [row["mean"] for row in rows]
     lows = [row["lo"] for row in rows]
     highs = [row["hi"] for row in rows]
@@ -35,9 +45,11 @@ def _series(axis, n_values, rows, color, marker, label):
         marker=marker,
         ms=4.5,
         lw=2,
+        ls=linestyle,
         label=label,
     )
-    axis.fill_between(n_values, lows, highs, color=color, alpha=0.08)
+    if fill:
+        axis.fill_between(n_values, lows, highs, color=color, alpha=0.08)
 
 
 def _largest_component_series(axis, n_values, rows, color):
@@ -109,7 +121,7 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
             # is interval-valued before post-processing.  The raw-set versus
             # convex-hull comparison is kept in the appendix figure generated
             # by the large-sample script.
-            for key, color, marker, label in (
+            methods = (
                 ("heat_original", "navy", "o", "Bentkus fixed claim"),
                 ("heat_star", "crimson", "D", "Bentkus STaR"),
                 ("product_original", "seagreen", "s", "WSR product comparator"),
@@ -120,12 +132,28 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
                     "h",
                     "Efficient betting (common clock)",
                 ),
-            ):
-                diameter_key = f"{key}_diameter{suffix}"
+            )
+            for key, color, marker, label in methods:
+                deterministic_key = (
+                    f"{key}_deterministic_markov_diameter{suffix}"
+                )
+                randomized_key = (
+                    f"{key}_randomized_markov_diameter{suffix}"
+                )
                 _series(
                     axis,
                     n_values,
-                    model_results[diameter_key],
+                    model_results[deterministic_key],
+                    color,
+                    None,
+                    "_nolegend_",
+                    linestyle="--",
+                    fill=False,
+                )
+                _series(
+                    axis,
+                    n_values,
+                    model_results[randomized_key],
                     color,
                     marker,
                     label,
@@ -133,9 +161,17 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
             _finish_axis(axis, name, scaled)
 
         legend_handles, legend_labels = axes.ravel()[0].get_legend_handles_labels()
+        legend_handles.extend([
+            Line2D([0], [0], color="0.25", ls="--", lw=2),
+            Line2D([0], [0], color="0.25", ls="-", marker="o", lw=2),
+        ])
+        legend_labels.extend([
+            "deterministic Markov",
+            "uniformly randomized Markov",
+        ])
         scale_label = "scaled" if scaled else "raw"
         fig.suptitle(
-            f"Fixed-plan versus STaR betting: {scale_label} confidence-interval widths "
+            f"Matched Markov calibration: {scale_label} confidence-interval widths "
             f"[\N{GREEK SMALL LETTER DELTA}={delta}, "
             f"sims/n={simulation_label}]",
             fontsize=14,
@@ -145,7 +181,7 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
             legend_labels,
             loc="lower center",
             ncol=5,
-            fontsize=8.5,
+            fontsize=8.0,
             frameon=False,
         )
         fig.tight_layout(rect=(0.0, 0.11, 1.0, 0.95))

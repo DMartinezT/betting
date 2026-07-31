@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""Add full-set diameter and largest-component widths to Figure 1 results.
+"""Add matched Markov-calibration widths to the Figure 1 results.
 
 The script exactly replays the data and terminal-randomizer streams used by
-``betting.run_experiment``.  Candidate means are evaluated with the adaptive
-multiresolution topology inverter: a standard-error-scale mesh, global and
-geometric safety probes, a sample-size-aware verification mesh, and
-exponential refinement whenever fragmentation is detected.
+``betting.run_experiment``.  Every method is calibrated armwise at level
+``delta / 2``.  The deterministic regime uses thresholds ``u_plus=u_minus=1``;
+the uniformly randomized Markov regime uses the same independent uniforms
+for every method on a given dataset.  Candidate means without an analytic
+ordering guarantee are evaluated with the adaptive multiresolution topology
+inverter.
 """
 
 from __future__ import annotations
@@ -25,8 +27,12 @@ METHODS = (
     "heat_star",
     "product_original",
     "product_star",
-    "probit_star_unbuffered",
     "probit_common_clock",
+)
+
+CALIBRATIONS = (
+    "deterministic_markov",
+    "randomized_markov",
 )
 
 
@@ -46,34 +52,30 @@ def _scores(
     for index in prange(means.size):
         mean = means[index]
         if kind == 0:
-            value = betting.compute_M_heat_path(
+            plus, minus = betting.compute_M_heat_path_arms(
                 x, mean, strike, initial_wealth
             )
+            scale = initial_wealth
         elif kind == 1:
-            value = betting.compute_M_heat_star_path(
+            plus, minus = betting.compute_M_heat_star_arms(
                 x, mean, delta, initial_wealth
             )
+            scale = initial_wealth
         elif kind == 2:
-            value = betting.compute_M_inf(x, mean, delta)
+            plus, minus = betting.compute_M_inf_arms(x, mean, delta)
+            scale = 1.0
         elif kind == 3:
-            value = betting.compute_M_star(x, mean, delta)
-        elif kind == 4:
-            plus, minus = betting.compute_M_probit_star_arms(
-                x, mean, delta, buffer_rounds=0.0
-            )
-            value = max(
-                alpha * plus / u_plus,
-                alpha * minus / u_minus,
-            )
+            plus, minus = betting.compute_M_star_arms(x, mean, delta)
+            scale = 1.0
         else:
             plus, minus = betting.compute_M_probit_common_clock_arms(
                 x, mean, delta, buffer_rounds=0.0
             )
-            value = max(
-                alpha * plus / u_plus,
-                alpha * minus / u_minus,
-            )
-        output[index] = value
+            scale = 1.0
+        output[index] = max(
+            alpha * plus / (scale * u_plus),
+            alpha * minus / (scale * u_minus),
+        )
     return output
 
 
@@ -114,12 +116,7 @@ def _topology_summary(
     u_minus,
     score_work_budget,
 ):
-    if kind < 2:
-        threshold = initial_wealth / delta
-    elif kind < 4:
-        threshold = 1.0 / delta
-    else:
-        threshold = 1.0
+    threshold = 1.0
 
     def batch(means):
         return _scores(
@@ -207,9 +204,10 @@ def parse_args():
     parser.add_argument(
         "--score-work-budget",
         type=int,
-        default=300_000,
+        default=100_000,
         help="rough observation-by-candidate budget per method and dataset",
     )
+    parser.add_argument("--small-reps", type=int, default=20)
     parser.add_argument("--large-reps", type=int, default=5)
     parser.add_argument("--medium-reps", type=int, default=10)
     parser.add_argument("--progress-every", type=int, default=10)
@@ -246,7 +244,7 @@ def main():
     cell_count = 0
     topology_counts = {
         n: (
-            counts[n]
+            min(args.small_reps, counts[n])
             if n <= 1000
             else min(args.medium_reps, counts[n])
             if n <= 10_000
@@ -266,24 +264,30 @@ def main():
                 if replication >= topology_counts[n]:
                     continue
                 method_results = dict(completed.get(key, {}))
-                for kind, method in enumerate(METHODS):
-                    if method in method_results:
-                        continue
-                    if method == "probit_common_clock":
-                        method_results[method] = _common_clock_summary(
-                            x, delta, u_plus, u_minus
-                        )
-                    else:
-                        method_results[method] = _topology_summary(
-                            x,
-                            delta,
-                            strike,
-                            initial_wealth,
-                            kind,
-                            u_plus,
-                            u_minus,
-                            args.score_work_budget,
-                        )
+                for calibration in CALIBRATIONS:
+                    calibration_uniforms = (
+                        (1.0, 1.0)
+                        if calibration == "deterministic_markov"
+                        else (u_plus, u_minus)
+                    )
+                    for kind, method in enumerate(METHODS):
+                        result_key = f"{method}|{calibration}"
+                        if result_key in method_results:
+                            continue
+                        if method == "probit_common_clock":
+                            method_results[result_key] = _common_clock_summary(
+                                x, delta, *calibration_uniforms
+                            )
+                        else:
+                            method_results[result_key] = _topology_summary(
+                                x,
+                                delta,
+                                strike,
+                                initial_wealth,
+                                kind,
+                                *calibration_uniforms,
+                                args.score_work_budget,
+                            )
                 completed[key] = method_results
                 cell_count += 1
                 if cell_count % args.progress_every == 0:
@@ -321,50 +325,53 @@ def main():
 
     for distribution in samplers:
         result = payload["results"][distribution]
-        for method in METHODS:
-            diameter_by_n = []
-            largest_by_n = []
-            diameter_raw_by_n = []
-            largest_raw_by_n = []
-            component_counts_by_n = []
-            budget_rates = []
-            for n in n_values:
-                rows = [
-                    completed[f"{distribution}|{n}|{replication}"][method]
-                    for replication in range(topology_counts[n])
-                ]
-                diameter = np.asarray(
-                    [row["hull_width"] for row in rows], dtype=float
-                )
-                largest = np.asarray(
-                    [row["largest_component_width"] for row in rows],
-                    dtype=float,
-                )
-                diameter_by_n.append(_summary(np.sqrt(n) * diameter))
-                diameter_raw_by_n.append(_summary(diameter))
-                largest_raw_by_n.append(_summary(largest))
-                largest_by_n.append(_summary(np.sqrt(n) * largest))
-                component_counts_by_n.append(
-                    _summary([row["component_count"] for row in rows])
-                )
-                budget_rates.append(
-                    float(np.mean(
-                        [row["point_budget_reached"] for row in rows]
-                    ))
-                )
-            result[f"{method}_diameter"] = diameter_by_n
-            result[f"{method}_diameter_raw"] = diameter_raw_by_n
-            result[f"{method}_largest_component_raw"] = largest_raw_by_n
-            result[f"{method}_largest_component"] = largest_by_n
-            result[f"{method}_component_count"] = component_counts_by_n
-            result[f"{method}_topology_budget_rate"] = budget_rates
+        for calibration in CALIBRATIONS:
+            for method in METHODS:
+                diameter_by_n = []
+                largest_by_n = []
+                diameter_raw_by_n = []
+                largest_raw_by_n = []
+                component_counts_by_n = []
+                budget_rates = []
+                result_key = f"{method}|{calibration}"
+                for n in n_values:
+                    rows = [
+                        completed[f"{distribution}|{n}|{replication}"][result_key]
+                        for replication in range(topology_counts[n])
+                    ]
+                    diameter = np.asarray(
+                        [row["hull_width"] for row in rows], dtype=float
+                    )
+                    largest = np.asarray(
+                        [row["largest_component_width"] for row in rows],
+                        dtype=float,
+                    )
+                    diameter_by_n.append(_summary(np.sqrt(n) * diameter))
+                    diameter_raw_by_n.append(_summary(diameter))
+                    largest_raw_by_n.append(_summary(largest))
+                    largest_by_n.append(_summary(np.sqrt(n) * largest))
+                    component_counts_by_n.append(
+                        _summary([row["component_count"] for row in rows])
+                    )
+                    budget_rates.append(
+                        float(np.mean(
+                            [row["point_budget_reached"] for row in rows]
+                        ))
+                    )
+                prefix = f"{method}_{calibration}"
+                result[f"{prefix}_diameter"] = diameter_by_n
+                result[f"{prefix}_diameter_raw"] = diameter_raw_by_n
+                result[f"{prefix}_largest_component_raw"] = largest_raw_by_n
+                result[f"{prefix}_largest_component"] = largest_by_n
+                result[f"{prefix}_component_count"] = component_counts_by_n
+                result[f"{prefix}_topology_budget_rate"] = budget_rates
 
     payload["base_inversion_width"] = payload.get("reported_width")
     payload["reported_width"] = (
         "mesh-resolved full-set diameter; largest-component width also stored"
     )
     payload["topology_inversion"] = {
-        "method": "adaptive multiresolution global finite-mesh inversion",
+        "method": "matched armwise Markov-calibration comparison",
         "score_work_budget": args.score_work_budget,
         "topology_reps_by_n": {
             str(n): topology_counts[n] for n in n_values
@@ -373,6 +380,14 @@ def main():
             "full-set diameter",
             "largest accepted-component width",
         ],
+        "calibrations": {
+            "deterministic_markov": "u_plus = u_minus = 1",
+            "randomized_markov": (
+                "independent Uniform(0,1) thresholds, fixed over candidate means; "
+                "the same pair is used by every betting method on a dataset"
+            ),
+            "arm_level": "delta / 2",
+        },
         "common_clock_inversion": (
             "exact interval from the two monotone one-sided arm boundaries; "
             "no discovery mesh"

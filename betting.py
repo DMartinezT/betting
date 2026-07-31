@@ -388,8 +388,8 @@ def digital_payoff_delta(x, remaining_variance, boundary):
 # ------------------------------------------------------------------
 
 @njit
-def compute_M_inf(X, m, delta, c=0.5):
-    """Two-sided Waudby-Smith--Ramdas product martingale at time n."""
+def compute_M_inf_arms(X, m, delta, c=0.5):
+    """Return the two WSR product-martingale arms at time n."""
     n = len(X)
     M_plus = 1.0
     M_minus = 1.0
@@ -413,11 +413,18 @@ def compute_M_inf(X, m, delta, c=0.5):
         sum_x += X[i]
         pred_sq += residual * residual
 
+    return M_plus, M_minus
+
+
+@njit
+def compute_M_inf(X, m, delta, c=0.5):
+    """Two-sided Waudby-Smith--Ramdas product martingale at time n."""
+    M_plus, M_minus = compute_M_inf_arms(X, m, delta, c)
     return 0.5 * (M_plus + M_minus)
 
 
 @njit
-def _compute_M_product_target(
+def _compute_M_product_target_arms(
     X,
     m,
     delta,
@@ -487,6 +494,22 @@ def _compute_M_product_target(
         M_minus *= max(1.0 - bet_minus * centered, 0.0)
         centered_sq_sum += centered * centered
 
+    return M_plus, M_minus
+
+
+@njit
+def _compute_M_product_target(
+    X,
+    m,
+    delta,
+    regularization,
+    c,
+    recalculate,
+):
+    """Average the two matched product-strategy arms."""
+    M_plus, M_minus = _compute_M_product_target_arms(
+        X, m, delta, regularization, c, recalculate
+    )
     return 0.5 * (M_plus + M_minus)
 
 
@@ -499,6 +522,14 @@ def compute_M_bets(X, m, delta, regularization=1.0, c=1.0):
     retaining the original log target and horizon in every round.
     """
     return _compute_M_product_target(
+        X, m, delta, regularization, c, False
+    )
+
+
+@njit
+def compute_M_bets_arms(X, m, delta, regularization=1.0, c=1.0):
+    """Return the two matched non-recalculating product arms."""
+    return _compute_M_product_target_arms(
         X, m, delta, regularization, c, False
     )
 
@@ -518,7 +549,15 @@ def compute_M_star(X, m, delta, regularization=1.0, c=1.0):
 
 
 @njit
-def _compute_M_recalculating_feedback(
+def compute_M_star_arms(X, m, delta, regularization=1.0, c=1.0):
+    """Return the two original STaR target-recalculating arms."""
+    return _compute_M_product_target_arms(
+        X, m, delta, regularization, c, True
+    )
+
+
+@njit
+def _compute_M_recalculating_feedback_arms(
     X,
     m,
     delta,
@@ -609,7 +648,38 @@ def _compute_M_recalculating_feedback(
         M_minus *= max(1.0 - bet_minus * centered, 0.0)
         centered_sq_sum += centered * centered
 
+    return M_plus, M_minus
+
+
+@njit
+def _compute_M_recalculating_feedback(
+    X,
+    m,
+    delta,
+    regularization,
+    c,
+    feedback_kind,
+):
+    """Average the two matched target-recalculating feedback arms."""
+    M_plus, M_minus = _compute_M_recalculating_feedback_arms(
+        X, m, delta, regularization, c, feedback_kind
+    )
     return 0.5 * (M_plus + M_minus)
+
+
+@njit
+def compute_M_recalculating_feedback_arms(
+    X,
+    m,
+    delta,
+    feedback_kind,
+    regularization=1.0,
+    c=1.0,
+):
+    """Return both arms for one of the matched feedback strategies."""
+    return _compute_M_recalculating_feedback_arms(
+        X, m, delta, regularization, c, feedback_kind
+    )
 
 
 @njit
@@ -973,8 +1043,8 @@ def compute_M_digital_dp(X, m, delta, boundary, c=1.0):
 # ------------------------------------------------------------------
 
 @njit
-def compute_M_heat_path(X, m, strike, initial_wealth, c=1.0):
-    """Terminal Construction 3 wealth for one fixed data ordering.
+def compute_M_heat_path_arms(X, m, strike, initial_wealth, c=1.0):
+    """Terminal Construction 3 arms for one fixed data ordering.
 
     The raw amount invested is the delta of the Gaussian continuation value.
     It is clipped to the largest one-step-safe amount. The standardized score
@@ -1020,6 +1090,15 @@ def compute_M_heat_path(X, m, strike, initial_wealth, c=1.0):
         sum_x += X[i]
         pred_sq += residual * residual
 
+    return M_plus, M_minus
+
+
+@njit
+def compute_M_heat_path(X, m, strike, initial_wealth, c=1.0):
+    """Average the two terminal Construction 3 wealth arms."""
+    M_plus, M_minus = compute_M_heat_path_arms(
+        X, m, strike, initial_wealth, c
+    )
     return 0.5 * (M_plus + M_minus)
 
 
@@ -1927,11 +2006,15 @@ def heat_star_common_clock_ci_endpoints(
     delta,
     initial_wealth,
     c=1.0,
+    randomizers=(1.0, 1.0),
     return_diagnostics=False,
 ):
     """Invert common-clock squared-hinge STaR as its full interval.
 
-    Each one-sided arm rejects at ``2 * initial_wealth / delta``.  Strict
+    With randomizers ``(u_plus, u_minus)``, the two arms reject at
+    ``2 * initial_wealth * u / delta``.  Taking both values equal to one is
+    deterministic Markov calibration; independent uniforms give uniformly
+    randomized Markov calibration.  Strict
     concavity of the optimized squared-hinge volatility makes upper-arm
     rejection a lower set in the candidate mean and lower-arm rejection an
     upper set, so their simultaneous nonrejection set is an interval.
@@ -1939,6 +2022,9 @@ def heat_star_common_clock_ci_endpoints(
     X = np.asarray(X)
     center = float(np.mean(X))
     target = 2.0 * initial_wealth / delta
+    u_plus, u_minus = (float(value) for value in randomizers)
+    if not (0.0 < u_plus <= 1.0 and 0.0 < u_minus <= 1.0):
+        raise ValueError("randomizers must lie in (0,1]")
     cache = {}
     evaluations = 0
 
@@ -1953,10 +2039,10 @@ def heat_star_common_clock_ci_endpoints(
         return cache[key]
 
     def upper_score(m):
-        return arms(m)[0] - target
+        return arms(m)[0] - u_plus * target
 
     def lower_score(m):
-        return arms(m)[1] - target
+        return arms(m)[1] - u_minus * target
 
     upper_at_zero = upper_score(0.0)
     upper_at_one = upper_score(1.0)
@@ -2058,30 +2144,31 @@ def probit_common_clock_ci_endpoints(
     if upper_at_zero < 0.0:
         lower_endpoint = 0.0
     else:
-        lower_endpoint = float(
-            brentq(
-                upper_score,
-                0.0,
-                1.0,
-                xtol=1e-9,
-                rtol=1e-10,
-                maxiter=100,
-            )
-        )
+        # Target absorption creates a rejection plateau with score exactly
+        # zero when u_plus=1.  A generic root finder may return m=0, the
+        # outer edge of that plateau, instead of the acceptance boundary.
+        rejected = 0.0
+        accepted = 1.0
+        while accepted - rejected > 1e-9:
+            midpoint = 0.5 * (rejected + accepted)
+            if upper_score(midpoint) >= 0.0:
+                rejected = midpoint
+            else:
+                accepted = midpoint
+        lower_endpoint = 0.5 * (rejected + accepted)
 
     if lower_at_one < 0.0:
         upper_endpoint = 1.0
     else:
-        upper_endpoint = float(
-            brentq(
-                lower_score,
-                0.0,
-                1.0,
-                xtol=1e-9,
-                rtol=1e-10,
-                maxiter=100,
-            )
-        )
+        accepted = 0.0
+        rejected = 1.0
+        while rejected - accepted > 1e-9:
+            midpoint = 0.5 * (accepted + rejected)
+            if lower_score(midpoint) < 0.0:
+                accepted = midpoint
+            else:
+                rejected = midpoint
+        upper_endpoint = 0.5 * (accepted + rejected)
 
     empty = lower_endpoint > upper_endpoint
     if empty:

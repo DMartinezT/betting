@@ -1,0 +1,25 @@
+{
+  "delta": 0.01,
+  "seed": 20260730,
+  "sample_sizes": [
+    1000,
+    10000,
+    100000,
+    1000000,
+    10000000
+  ],
+  "replications": 3,
+  "betting_methods": [
+    "Original STaR",
+    "Squared-hinge STaR",
+    "Efficient betting"
+  ],
+  "calibrations": {
+    "deterministic_markov": "u_plus = u_minus = 1",
+    "randomized_markov": "shared independent Uniform(0,1) pair per dataset, fixed over m",
+    "arm_level": "delta / 2"
+  },
+  "gaffke": "ordinary equal-tail interval shown as the deterministic baseline",
+  "randomized_gaffke": "Ming--Ramdas--Shen--Wang--Waudby-Smith randomized product-orthant p-value, inverted with the shared armwise uniform pair",
+  "topology": "local bisection plus 31 interior checks and exponentially spaced outside probes; adaptive global inversion after any anomaly"
+}

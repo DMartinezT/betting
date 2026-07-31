@@ -504,18 +504,20 @@ class HeatFlowConstructionTests(unittest.TestCase):
         rng = np.random.default_rng(20260801)
         X = rng.beta(2.0, 3.0, 200)
         delta = 0.01
+        for randomizers in ((1.0, 1.0), (0.35, 0.65)):
+            lower, upper, empty = betting.probit_common_clock_ci_endpoints(
+                X, delta, randomizers=randomizers
+            )
+            self.assertFalse(empty)
+            self.assertLess(upper - lower, 1.0)
+            batched = betting.probit_common_clock_batched_ci_endpoints(
+                X, delta, randomizers=randomizers
+            )
+            self.assertFalse(batched[2])
+            np.testing.assert_allclose(
+                batched[:2], (lower, upper), atol=1e-6, rtol=0.0
+            )
         randomizers = (0.35, 0.65)
-        lower, upper, empty = betting.probit_common_clock_ci_endpoints(
-            X, delta, randomizers=randomizers
-        )
-        self.assertFalse(empty)
-        batched = betting.probit_common_clock_batched_ci_endpoints(
-            X, delta, randomizers=randomizers
-        )
-        self.assertFalse(batched[2])
-        np.testing.assert_allclose(
-            batched[:2], (lower, upper), atol=1e-6, rtol=0.0
-        )
         scores = lambda means: (
             betting._probit_common_clock_randomized_scores(
                 X,
@@ -796,6 +798,108 @@ class HeatFlowConstructionTests(unittest.TestCase):
             atol=2e-9,
             rtol=0.0,
         )
+
+    def test_exposed_arms_preserve_existing_two_sided_statistics(self):
+        rng = np.random.default_rng(20260730)
+        X = rng.beta(2.0, 2.0, 80)
+        mean = 0.43
+        delta = 0.01
+        strike, initial_wealth = betting.get_optimal_lambda(delta / 2.0)
+        comparisons = (
+            (
+                betting.compute_M_inf(X, mean, delta),
+                betting.compute_M_inf_arms(X, mean, delta),
+            ),
+            (
+                betting.compute_M_star(X, mean, delta),
+                betting.compute_M_star_arms(X, mean, delta),
+            ),
+            (
+                betting.compute_M_hinge_feedback_star(X, mean, delta),
+                betting.compute_M_recalculating_feedback_arms(
+                    X, mean, delta, 1
+                ),
+            ),
+            (
+                betting.compute_M_heat_path(
+                    X, mean, strike, initial_wealth
+                ),
+                betting.compute_M_heat_path_arms(
+                    X, mean, strike, initial_wealth
+                ),
+            ),
+        )
+        for combined, arms in comparisons:
+            self.assertAlmostEqual(combined, 0.5 * sum(arms), places=12)
+
+    def test_randomized_markov_thresholds_shrink_ordered_intervals(self):
+        rng = np.random.default_rng(11)
+        X = rng.beta(2.0, 2.0, 250)
+        delta = 0.01
+        _, initial_wealth = betting.get_optimal_lambda(delta / 2.0)
+
+        heat_det = betting.heat_star_common_clock_ci_endpoints(
+            X, delta, initial_wealth, randomizers=(1.0, 1.0)
+        )
+        heat_rand = betting.heat_star_common_clock_ci_endpoints(
+            X, delta, initial_wealth, randomizers=(0.4, 0.7)
+        )
+        self.assertFalse(heat_det[2])
+        self.assertFalse(heat_rand[2])
+        self.assertGreaterEqual(heat_rand[0], heat_det[0])
+        self.assertLessEqual(heat_rand[1], heat_det[1])
+
+        efficient_det = betting.probit_common_clock_ci_endpoints(
+            X, delta, randomizers=(1.0, 1.0)
+        )
+        efficient_rand = betting.probit_common_clock_ci_endpoints(
+            X, delta, randomizers=(0.4, 0.7)
+        )
+        self.assertFalse(efficient_det[2])
+        self.assertFalse(efficient_rand[2])
+        self.assertGreaterEqual(efficient_rand[0], efficient_det[0])
+        self.assertLessEqual(efficient_rand[1], efficient_det[1])
+
+    def test_randomized_product_orthant_gaffke_endpoints(self):
+        from compare_markov_calibrations_large import (
+            fast_gaffke_ci,
+            randomized_product_orthant_gaffke_ci,
+        )
+
+        delta = 0.01
+        tail_probability = delta / 2.0
+        X = np.full(8, 0.4)
+        deterministic = fast_gaffke_ci(
+            X,
+            delta,
+            binary=False,
+            exact_cutoff=3000,
+        )[:2]
+        randomizers = (0.25, 0.75)
+        observed = randomized_product_orthant_gaffke_ci(
+            X,
+            delta,
+            deterministic,
+            randomizers,
+        )
+        expected = (
+            0.4 * (tail_probability / randomizers[0]) ** (1.0 / len(X)),
+            1.0
+            - 0.6
+            * (tail_probability / randomizers[1]) ** (1.0 / len(X)),
+        )
+        np.testing.assert_allclose(observed, expected, atol=1e-14, rtol=0.0)
+        self.assertGreaterEqual(observed[0], deterministic[0])
+        self.assertLessEqual(observed[1], deterministic[1])
+
+        mixed = np.asarray([0.1, 0.4, 0.8])
+        unchanged = randomized_product_orthant_gaffke_ci(
+            mixed,
+            delta,
+            (0.2, 0.7),
+            randomizers,
+        )
+        self.assertEqual(unchanged, (0.2, 0.7))
 
     def test_scaled_width_matches_bentkus_limit(self):
         delta = 0.01
