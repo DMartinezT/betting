@@ -98,7 +98,7 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
         for axis, (name, model_results) in zip(axes.ravel(), results.items()):
             for target_key, color, label in (
                 ("target_heat", "navy", "Bentkus theory"),
-                ("target_product", "seagreen", "product theory"),
+                ("target_product", "#9467bd", "product theory"),
                 ("target_probit", "black", "Gaussian limit"),
             ):
                 target = model_results[target_key]
@@ -123,9 +123,8 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
             # by the large-sample script.
             methods = (
                 ("heat_original", "navy", "o", "Bentkus fixed claim"),
-                ("heat_star", "crimson", "D", "Bentkus STaR"),
-                ("product_original", "seagreen", "s", "WSR product comparator"),
-                ("product_star", "darkorange", "P", "product STaR-Bets"),
+                ("product_original", "#9467bd", "s", "WSR product comparator"),
+                ("product_star", "darkorange", "P", "STaR betting"),
                 (
                     "probit_common_clock",
                     "#2ca02c",
@@ -193,6 +192,61 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
         fig.savefig(output, dpi=180, bbox_inches="tight")
         plt.close(fig)
         outputs.append(output)
+
+    # Keep the replanned squared-hinge comparison out of the main figure and
+    # report it separately in the appendix.
+    fig, axes = plt.subplots(3, 3, figsize=(13, 11))
+    for axis, (name, model_results) in zip(axes.ravel(), results.items()):
+        for key, color, marker, label in (
+            ("heat_star", "crimson", "D", "Bentkus STaR"),
+            ("product_star", "darkorange", "P", "STaR betting"),
+        ):
+            _series(
+                axis,
+                n_values,
+                model_results[f"{key}_deterministic_markov_diameter"],
+                color,
+                None,
+                "_nolegend_",
+                linestyle="--",
+                fill=False,
+            )
+            _series(
+                axis,
+                n_values,
+                model_results[f"{key}_randomized_markov_diameter"],
+                color,
+                marker,
+                label,
+            )
+        _finish_axis(axis, name, True)
+
+    legend_handles, legend_labels = axes.ravel()[0].get_legend_handles_labels()
+    legend_handles.extend([
+        Line2D([0], [0], color="0.25", ls="--", lw=2),
+        Line2D([0], [0], color="0.25", ls="-", marker="o", lw=2),
+    ])
+    legend_labels.extend([
+        "deterministic Markov",
+        "uniformly randomized Markov",
+    ])
+    fig.suptitle(
+        "Bentkus STaR versus STaR betting: scaled confidence-interval widths",
+        fontsize=14,
+    )
+    fig.legend(
+        legend_handles,
+        legend_labels,
+        loc="lower center",
+        ncol=4,
+        fontsize=9.0,
+        frameon=False,
+    )
+    fig.tight_layout(rect=(0.0, 0.09, 1.0, 0.95))
+    output = output_dir / "ci_width_bentkus_star_vs_original_star.png"
+    fig.savefig(output, dpi=180, bbox_inches="tight")
+    plt.close(fig)
+    outputs.append(output)
 
     fig, axes = plt.subplots(3, 3, figsize=(13, 11))
     for axis, (name, model_results) in zip(axes.ravel(), results.items()):

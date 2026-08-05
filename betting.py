@@ -3342,7 +3342,7 @@ def run_experiment(
                     if scaled
                     else product_target / np.sqrt(n_array)
                 ),
-                color="seagreen",
+                color="#9467bd",
                 ls=":",
                 lw=1.6,
                 label="product theory",
@@ -3375,7 +3375,7 @@ def run_experiment(
                 ),
                 (
                     f"product_original{suffix}",
-                    "seagreen",
+                    "#9467bd",
                     "s",
                     "WSR product comparator",
                 ),

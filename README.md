@@ -128,6 +128,8 @@ run writes:
 - the normalized- and raw-width comparisons to
   `plots/ci_width_original_vs_star.png` and
   `plots/ci_width_raw_original_vs_star.png`; and
+- the appendix-only Bentkus-STaR comparison to
+  `plots/ci_width_bentkus_star_vs_original_star.png`; and
 - the normalized- and raw-width matched-feedback ablations to
   `plots/ci_width_feedback_ablation.png` and
   `plots/ci_width_raw_feedback_ablation.png`; and

@@ -45,6 +45,10 @@ BETTING_METHODS = (
     "Squared-hinge STaR",
     "Efficient betting",
 )
+MAIN_BETTING_METHODS = (
+    "Original STaR",
+    "Efficient betting",
+)
 CALIBRATIONS = ("deterministic_markov", "randomized_markov")
 METHOD_STYLES = {
     "Original STaR": ("darkorange", "P"),
@@ -52,6 +56,10 @@ METHOD_STYLES = {
     "Efficient betting": ("#2ca02c", "h"),
     "Gaffke": ("#1976b9", "o"),
     "Randomized Gaffke": ("#00a6d6", "x"),
+}
+METHOD_LABELS = {
+    "Original STaR": "STaR betting",
+    "Efficient betting": "Efficient betting",
 }
 
 
@@ -308,7 +316,7 @@ def _plot(frame, output, delta):
             lw=1.7,
             label="Gaussian limit",
         )
-        for method in BETTING_METHODS:
+        for method in MAIN_BETTING_METHODS:
             color, marker = METHOD_STYLES[method]
             for calibration, linestyle, current_marker, fill in (
                 ("deterministic_markov", "--", None, False),
@@ -326,7 +334,11 @@ def _plot(frame, output, delta):
                     marker=current_marker,
                     ms=4.7,
                     lw=2.0,
-                    label=method if calibration == "randomized_markov" else "_nolegend_",
+                    label=(
+                        METHOD_LABELS[method]
+                        if calibration == "randomized_markov"
+                        else "_nolegend_"
+                    ),
                 )
                 if fill:
                     axis.fill_between(
