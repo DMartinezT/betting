@@ -97,8 +97,7 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
         fig, axes = plt.subplots(3, 3, figsize=(13, 11))
         for axis, (name, model_results) in zip(axes.ravel(), results.items()):
             for target_key, color, label in (
-                ("target_heat", "navy", "Bentkus theory"),
-                ("target_product", "#9467bd", "product theory"),
+                ("target_product", "#9467bd", "Product limit"),
                 ("target_probit", "black", "Gaussian limit"),
             ):
                 target = model_results[target_key]
@@ -119,11 +118,9 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
             # whose raw inversion was audited on a mesh, ``diameter`` is the
             # width of its convex hull; the common-clock Efficient interval
             # is interval-valued before post-processing.  The raw-set versus
-            # convex-hull comparison is kept in the appendix figure generated
-            # by the large-sample script.
+            # convex-hull comparison is documented in the appendix.
             methods = (
-                ("heat_original", "navy", "o", "Bentkus fixed claim"),
-                ("product_original", "#9467bd", "s", "WSR product comparator"),
+                ("product_original", "#9467bd", "s", "Product betting"),
                 ("product_star", "darkorange", "P", "STaR betting"),
                 (
                     "probit_common_clock",
@@ -192,6 +189,75 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
         fig.savefig(output, dpi=180, bbox_inches="tight")
         plt.close(fig)
         outputs.append(output)
+
+    # Compare the two fixed-horizon test functions separately in the
+    # appendix: Section 4.1's exponential/product construction and
+    # Appendix D.1's fixed squared-hinge construction.
+    fig, axes = plt.subplots(3, 3, figsize=(13, 11))
+    for axis, (name, model_results) in zip(axes.ravel(), results.items()):
+        for target_key, color, label in (
+            ("target_heat", "navy", "Squared-hinge limit"),
+            ("target_product", "#9467bd", "Product limit"),
+        ):
+            axis.plot(
+                n_values,
+                np.full_like(n_array, model_results[target_key]),
+                color=color,
+                ls=":",
+                lw=1.6,
+                label=label,
+            )
+
+        for key, color, marker, label in (
+            ("heat_original", "navy", "o", "Fixed squared-hinge betting"),
+            ("product_original", "#9467bd", "s", "Product betting"),
+        ):
+            _series(
+                axis,
+                n_values,
+                model_results[f"{key}_deterministic_markov_diameter"],
+                color,
+                None,
+                "_nolegend_",
+                linestyle="--",
+                fill=False,
+            )
+            _series(
+                axis,
+                n_values,
+                model_results[f"{key}_randomized_markov_diameter"],
+                color,
+                marker,
+                label,
+            )
+        _finish_axis(axis, name, True)
+
+    legend_handles, legend_labels = axes.ravel()[0].get_legend_handles_labels()
+    legend_handles.extend([
+        Line2D([0], [0], color="0.25", ls="--", lw=2),
+        Line2D([0], [0], color="0.25", ls="-", marker="o", lw=2),
+    ])
+    legend_labels.extend([
+        "deterministic Markov",
+        "uniformly randomized Markov",
+    ])
+    fig.suptitle(
+        "Fixed squared-hinge versus product betting: scaled confidence-interval widths",
+        fontsize=14,
+    )
+    fig.legend(
+        legend_handles,
+        legend_labels,
+        loc="lower center",
+        ncol=3,
+        fontsize=8.5,
+        frameon=False,
+    )
+    fig.tight_layout(rect=(0.0, 0.09, 1.0, 0.95))
+    output = output_dir / "ci_width_fixed_hinge_vs_product.png"
+    fig.savefig(output, dpi=180, bbox_inches="tight")
+    plt.close(fig)
+    outputs.append(output)
 
     # Keep the replanned squared-hinge comparison out of the main figure and
     # report it separately in the appendix.

@@ -27,6 +27,7 @@ METHODS = (
     "heat_star",
     "product_original",
     "product_star",
+    "product_star_common_clock",
     "probit_common_clock",
 )
 
@@ -66,6 +67,11 @@ def _scores(
             scale = 1.0
         elif kind == 3:
             plus, minus = betting.compute_M_star_arms(x, mean, delta)
+            scale = 1.0
+        elif kind == 4:
+            plus, minus = betting.compute_M_star_common_clock_arms(
+                x, mean, delta
+            )
             scale = 1.0
         else:
             plus, minus = betting.compute_M_probit_common_clock_arms(
@@ -157,6 +163,34 @@ def _topology_summary(
         **adaptive_options,
         **parameters,
     )
+    return diagnostics
+
+
+def _star_common_clock_summary(x, delta, u_plus, u_minus):
+    """Return exact STaR diagnostics from its ordered arm boundaries."""
+    lower, upper, empty, evaluations = (
+        betting.star_common_clock_batched_ci_endpoints(
+            x,
+            delta,
+            randomizers=(u_plus, u_minus),
+            return_diagnostics=True,
+        )
+    )
+    components = () if empty else ((lower, upper),)
+    diagnostics = betting._confidence_set_widths(
+        components, center=float(np.mean(x))
+    )
+    diagnostics.update({
+        "evaluation_count": int(evaluations),
+        "scan_point_count": 0,
+        "refinement_levels": 0,
+        "fragmentation_detected": False,
+        "point_budget_reached": False,
+        "final_mesh_resolution": 0.0,
+        "standard_error": betting._sample_standard_error(x),
+        "finite_mesh": False,
+        "analytic_connectedness": True,
+    })
     return diagnostics
 
 
@@ -277,6 +311,12 @@ def main():
                         if method == "probit_common_clock":
                             method_results[result_key] = _common_clock_summary(
                                 x, delta, *calibration_uniforms
+                            )
+                        elif method == "product_star_common_clock":
+                            method_results[result_key] = (
+                                _star_common_clock_summary(
+                                    x, delta, *calibration_uniforms
+                                )
                             )
                         else:
                             method_results[result_key] = _topology_summary(

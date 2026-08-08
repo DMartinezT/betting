@@ -53,6 +53,8 @@
     "Regularized Efficient betting",
     "Efficient betting",
     "Common-clock Efficient betting",
+    "STaR betting",
+    "Common-clock STaR betting",
     "Gaffke"
   ],
   "gaffke_exact_cutoff": 3000,

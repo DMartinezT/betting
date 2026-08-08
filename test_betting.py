@@ -437,6 +437,56 @@ class HeatFlowConstructionTests(unittest.TestCase):
         self.assertTrue(np.all(np.diff(arms[:, 0]) <= 1e-11))
         self.assertTrue(np.all(np.diff(arms[:, 1]) >= -1e-11))
 
+    def test_common_clock_star_arms_are_ordered(self):
+        rng = np.random.default_rng(20260807)
+        X = rng.beta(2.0, 5.0, 250)
+        means = np.linspace(0.02, 0.98, 97)
+        arms = np.asarray([
+            betting.compute_M_star_common_clock_arms(
+                X, mean, 0.01
+            )
+            for mean in means
+        ])
+        self.assertTrue(np.all(np.diff(arms[:, 0]) <= 1e-11))
+        self.assertTrue(np.all(np.diff(arms[:, 1]) >= -1e-11))
+
+    def test_common_clock_star_direct_and_batched_inversion_match_mesh(self):
+        rng = np.random.default_rng(20260808)
+        X = rng.beta(2.0, 3.0, 200)
+        delta = 0.01
+        randomizers = (0.35, 0.65)
+        lower, upper, empty = betting.star_common_clock_ci_endpoints(
+            X, delta, randomizers=randomizers
+        )
+        self.assertFalse(empty)
+        batched = betting.star_common_clock_batched_ci_endpoints(
+            X, delta, randomizers=randomizers
+        )
+        self.assertFalse(batched[2])
+        np.testing.assert_allclose(
+            batched[:2], (lower, upper), atol=5e-6, rtol=0.0
+        )
+        alpha = delta / 2.0
+
+        def score(mean):
+            plus, minus = betting.compute_M_star_common_clock_arms(
+                X, mean, delta
+            )
+            return max(
+                alpha * plus / randomizers[0],
+                alpha * minus / randomizers[1],
+            )
+
+        components = betting._confidence_set_components(
+            score,
+            threshold=1.0,
+            scan_points=1001,
+        )
+        self.assertEqual(len(components), 1)
+        np.testing.assert_allclose(
+            (lower, upper), components[0], atol=2e-8, rtol=0.0
+        )
+
     def test_common_clock_hinge_star_arms_are_ordered(self):
         rng = np.random.default_rng(20260802)
         X = rng.beta(2.0, 5.0, 250)

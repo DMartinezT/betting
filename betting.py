@@ -557,6 +557,66 @@ def compute_M_star_arms(X, m, delta, regularization=1.0, c=1.0):
 
 
 @njit
+def compute_M_star_common_clock_arms(X, m, delta, c=1.0):
+    """Return STaR arms driven by one data-only variance clock.
+
+    The square-root wealth feedback is the same as in the published STaR
+    recursion, but the predictable variance estimate is formed from
+    residuals around the past empirical mean.  It is therefore shared by
+    both arms and every candidate mean.  Capping at the one-sided target
+    gives the ordered recursion covered by the pathwise interval theorem.
+    """
+    n = len(X)
+    alpha = delta / 2.0
+    target = 1.0 / alpha
+    eps = 1e-12
+
+    M_plus = 1.0
+    M_minus = 1.0
+    sum_x = 0.0
+    pred_sq = 0.0
+
+    for i in range(n):
+        mean_hat = (0.5 + sum_x) / (1.0 + i)
+        var_hat = max((0.25 + pred_sq) / (1.0 + i), eps)
+        remaining = float(n - i)
+
+        if 0.0 < M_plus < target:
+            target_fraction = alpha * M_plus
+            bet_plus = exponential_target_leverage(target_fraction) / np.sqrt(
+                remaining * var_hat
+            )
+            bet_plus = min(bet_plus, c / (m + eps))
+        else:
+            bet_plus = 0.0
+
+        if 0.0 < M_minus < target:
+            target_fraction = alpha * M_minus
+            bet_minus = exponential_target_leverage(target_fraction) / np.sqrt(
+                remaining * var_hat
+            )
+            bet_minus = min(bet_minus, c / (1.0 - m + eps))
+        else:
+            bet_minus = 0.0
+
+        centered = X[i] - m
+        M_plus = min(
+            max(M_plus * (1.0 + bet_plus * centered), 0.0),
+            target,
+        )
+        M_minus = min(
+            max(M_minus * (1.0 - bet_minus * centered), 0.0),
+            target,
+        )
+
+        residual = X[i] - mean_hat
+        sum_x += X[i]
+        pred_sq += residual * residual
+
+    return M_plus, M_minus
+
+
+@njit
 def _compute_M_recalculating_feedback_arms(
     X,
     m,
@@ -958,6 +1018,47 @@ def _probit_common_clock_arm_randomized_scores(
             means[j],
             delta,
             buffer_rounds=buffer_rounds,
+        )
+        plus_scores[j] = alpha * M_plus / u_plus
+        minus_scores[j] = alpha * M_minus / u_minus
+    return plus_scores, minus_scores
+
+
+@njit(parallel=True)
+def _star_randomized_scores(
+    X,
+    means,
+    delta,
+    u_plus,
+    u_minus,
+):
+    """Evaluate candidate-centered randomized STaR scores in parallel."""
+    alpha = delta / 2.0
+    scores = np.empty(len(means))
+    for j in prange(len(means)):
+        M_plus, M_minus = compute_M_star_arms(X, means[j], delta)
+        scores[j] = max(
+            alpha * M_plus / u_plus,
+            alpha * M_minus / u_minus,
+        )
+    return scores
+
+
+@njit(parallel=True)
+def _star_common_clock_arm_randomized_scores(
+    X,
+    means,
+    delta,
+    u_plus,
+    u_minus,
+):
+    """Evaluate the two normalized common-clock STaR arms in parallel."""
+    alpha = delta / 2.0
+    plus_scores = np.empty(len(means))
+    minus_scores = np.empty(len(means))
+    for j in prange(len(means)):
+        M_plus, M_minus = compute_M_star_common_clock_arms(
+            X, means[j], delta
         )
         plus_scores[j] = alpha * M_plus / u_plus
         minus_scores[j] = alpha * M_minus / u_minus
@@ -1999,6 +2100,220 @@ def probit_star_ci_endpoints(
         geometric_scan=True,
         batch_statistic=batched_randomized_rejection_score,
     )
+
+
+def star_common_clock_ci_endpoints(
+    X,
+    delta,
+    randomizers=(1.0, 1.0),
+    return_diagnostics=False,
+):
+    """Invert common-clock STaR as its full pathwise interval."""
+    X = np.asarray(X)
+    center = float(np.mean(X))
+    u_plus, u_minus = (float(value) for value in randomizers)
+    if not (0.0 < u_plus <= 1.0 and 0.0 < u_minus <= 1.0):
+        raise ValueError("randomizers must lie in (0,1]")
+    alpha = delta / 2.0
+    cache = {}
+    evaluations = 0
+
+    def arms(m):
+        nonlocal evaluations
+        key = float(m)
+        if key not in cache:
+            cache[key] = compute_M_star_common_clock_arms(X, key, delta)
+            evaluations += 1
+        return cache[key]
+
+    def upper_score(m):
+        return alpha * arms(m)[0] / u_plus - 1.0
+
+    def lower_score(m):
+        return alpha * arms(m)[1] / u_minus - 1.0
+
+    upper_at_zero = upper_score(0.0)
+    upper_at_one = upper_score(1.0)
+    lower_at_zero = lower_score(0.0)
+    lower_at_one = lower_score(1.0)
+
+    if upper_at_one >= 0.0 or lower_at_zero >= 0.0:
+        result = (center, center, True, evaluations)
+        return result if return_diagnostics else result[:3]
+
+    if upper_at_zero < 0.0:
+        lower_endpoint = 0.0
+    else:
+        rejected = 0.0
+        accepted = 1.0
+        while accepted - rejected > 1e-9:
+            midpoint = 0.5 * (rejected + accepted)
+            if upper_score(midpoint) >= 0.0:
+                rejected = midpoint
+            else:
+                accepted = midpoint
+        lower_endpoint = 0.5 * (rejected + accepted)
+
+    if lower_at_one < 0.0:
+        upper_endpoint = 1.0
+    else:
+        accepted = 0.0
+        rejected = 1.0
+        while rejected - accepted > 1e-9:
+            midpoint = 0.5 * (accepted + rejected)
+            if lower_score(midpoint) < 0.0:
+                accepted = midpoint
+            else:
+                rejected = midpoint
+        upper_endpoint = 0.5 * (accepted + rejected)
+
+    empty = lower_endpoint > upper_endpoint
+    if empty:
+        lower_endpoint = center
+        upper_endpoint = center
+    result = (lower_endpoint, upper_endpoint, empty, evaluations)
+    return result if return_diagnostics else result[:3]
+
+
+def star_common_clock_batched_ci_endpoints(
+    X,
+    delta,
+    randomizers=(1.0, 1.0),
+    sections=16,
+    return_diagnostics=False,
+):
+    """Parallel multisection inversion of common-clock STaR."""
+    X = np.asarray(X)
+    if int(sections) != sections or sections < 2:
+        raise ValueError("sections must be an integer at least two")
+    sections = int(sections)
+    center = float(np.mean(X))
+    u_plus, u_minus = (float(value) for value in randomizers)
+    if not (0.0 < u_plus <= 1.0 and 0.0 < u_minus <= 1.0):
+        raise ValueError("randomizers must lie in (0,1]")
+    evaluations = 0
+
+    def evaluate(means):
+        nonlocal evaluations
+        means = np.asarray(means, dtype=float)
+        evaluations += means.size
+        plus, minus = _star_common_clock_arm_randomized_scores(
+            X,
+            means,
+            delta,
+            u_plus,
+            u_minus,
+        )
+        return np.asarray(plus) - 1.0, np.asarray(minus) - 1.0
+
+    center_plus, center_minus = evaluate(np.asarray([center]))
+    if center_plus[0] >= 0.0 or center_minus[0] >= 0.0:
+        result = star_common_clock_ci_endpoints(
+            X,
+            delta,
+            randomizers=randomizers,
+            return_diagnostics=True,
+        )
+        result = (*result[:3], evaluations + result[3])
+        return result if return_diagnostics else result[:3]
+
+    standard_error = _sample_standard_error(X)
+    inner = {-1: center, 1: center}
+    step = {-1: 4.0 * standard_error, 1: 4.0 * standard_error}
+    brackets = {}
+    boundary_values = {}
+    unresolved = [-1, 1]
+    for _ in range(12):
+        if not unresolved:
+            break
+        candidates = np.asarray([
+            np.clip(center + direction * step[direction], 0.0, 1.0)
+            for direction in unresolved
+        ])
+        plus_scores, minus_scores = evaluate(candidates)
+        next_unresolved = []
+        for index, (direction, current) in enumerate(
+            zip(unresolved, candidates)
+        ):
+            current = float(current)
+            value = (
+                float(plus_scores[index])
+                if direction < 0
+                else float(minus_scores[index])
+            )
+            if value >= 0.0:
+                brackets[direction] = (
+                    (current, inner[direction])
+                    if direction < 0
+                    else (inner[direction], current)
+                )
+                continue
+            outer = 0.0 if direction < 0 else 1.0
+            if current == outer:
+                boundary_values[direction] = outer
+                continue
+            inner[direction] = current
+            step[direction] *= 1.8
+            next_unresolved.append(direction)
+        unresolved = next_unresolved
+    if unresolved:
+        raise RuntimeError("failed to bracket a common-clock STaR endpoint")
+
+    root_tolerance = max(2.0e-10, 2.0e-4 * standard_error)
+    while True:
+        active = [
+            direction for direction in (-1, 1)
+            if direction in brackets
+            and brackets[direction][1] - brackets[direction][0]
+            > root_tolerance
+        ]
+        if not active:
+            break
+        grids = []
+        for direction in active:
+            left, right = brackets[direction]
+            interior = np.linspace(left, right, sections + 1)[1:-1]
+            grids.append(interior)
+        candidates = np.concatenate(grids)
+        plus_scores, minus_scores = evaluate(candidates)
+        offset = 0
+        for direction, interior in zip(active, grids):
+            count = interior.size
+            values = (
+                plus_scores[offset:offset + count]
+                if direction < 0
+                else minus_scores[offset:offset + count]
+            )
+            left, right = brackets[direction]
+            if direction < 0:
+                accepted = np.flatnonzero(values < 0.0)
+                if accepted.size == 0:
+                    left = float(interior[-1])
+                else:
+                    index = int(accepted[0])
+                    right = float(interior[index])
+                    if index > 0:
+                        left = float(interior[index - 1])
+            else:
+                rejected = np.flatnonzero(values >= 0.0)
+                if rejected.size == 0:
+                    left = float(interior[-1])
+                else:
+                    index = int(rejected[0])
+                    right = float(interior[index])
+                    if index > 0:
+                        left = float(interior[index - 1])
+            brackets[direction] = (left, right)
+            offset += count
+
+    endpoints = {}
+    for direction in (-1, 1):
+        if direction in boundary_values:
+            endpoints[direction] = boundary_values[direction]
+        else:
+            endpoints[direction] = 0.5 * sum(brackets[direction])
+    result = (float(endpoints[-1]), float(endpoints[1]), False, evaluations)
+    return result if return_diagnostics else result[:3]
 
 
 def heat_star_common_clock_ci_endpoints(

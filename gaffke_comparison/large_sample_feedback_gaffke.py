@@ -35,6 +35,7 @@ from scipy.stats import norm
 
 
 BETTING_DIR = Path(__file__).resolve().parents[1]
+PAPER_PLOT_DIR = BETTING_DIR.parent / "paper" / "plots"
 if str(BETTING_DIR) not in sys.path:
     sys.path.insert(0, str(BETTING_DIR))
 
@@ -53,6 +54,8 @@ METHOD_ORDER = (
     "Regularized Efficient betting",
     "Efficient betting",
     "Common-clock Efficient betting",
+    "STaR betting",
+    "Common-clock STaR betting",
     "Gaffke",
 )
 
@@ -66,6 +69,8 @@ MAIN_METHOD_ORDER = tuple(
         # convexification appendix plot below.  The main figure uses the
         # pathwise interval-valued common-clock implementation.
         "Efficient betting",
+        "STaR betting",
+        "Common-clock STaR betting",
     }
 )
 
@@ -84,6 +89,8 @@ METHOD_STYLES = {
     "Target-capped feedback": ("deeppink", "*"),
     "Efficient betting": ("#8c564b", "^"),
     "Common-clock Efficient betting": ("#2ca02c", "h"),
+    "STaR betting": ("#c44e52", "P"),
+    "Common-clock STaR betting": ("darkorange", "o"),
     "Regularized Efficient betting": ("purple", "v"),
     "Gaffke": ("#1976b9", "o"),
 }
@@ -91,7 +98,9 @@ METHOD_STYLES = {
 METHOD_LABELS = {
     "Regularized Efficient betting": r"Efficient betting ($b_n=n^{2/3}$)",
     "Efficient betting": "Efficient betting",
-    "Common-clock Efficient betting": "Efficient betting (common clock)",
+    "Common-clock Efficient betting": "Efficient betting (shared estimator)",
+    "STaR betting": "STaR (candidate-centered)",
+    "Common-clock STaR betting": "STaR (shared estimator)",
     "Square-root feedback": "Original STaR-Bets (square-root)",
     "Capped original feedback": "Capped original STaR",
 }
@@ -459,6 +468,31 @@ def _betting_interval(
 ) -> tuple[float, float, bool, int]:
     threshold = 1.0 / delta
 
+    if method_name == "STaR betting":
+        alpha = delta / 2.0
+
+        def randomized_score(m: float) -> float:
+            plus, minus = methods.compute_M_star_arms(x, m, delta)
+            return max(
+                alpha * plus / u_plus,
+                alpha * minus / u_minus,
+            ) - 1.0
+
+        def randomized_scores(ms: np.ndarray) -> np.ndarray:
+            return methods._star_randomized_scores(
+                x, ms, delta, u_plus, u_minus
+            ) - 1.0
+
+        return invert_local_component(
+            x, randomized_score, randomized_scores
+        )
+    if method_name == "Common-clock STaR betting":
+        return methods.star_common_clock_batched_ci_endpoints(
+            x,
+            delta,
+            randomizers=(u_plus, u_minus),
+            return_diagnostics=True,
+        )
     if method_name == "Square-root feedback":
         return invert_local_component(
             x,
@@ -535,6 +569,26 @@ def audit_local_inversion(delta: float, seed: int) -> None:
         (
             "Square-root feedback",
             lambda: methods.star_ci_endpoints(x, delta),
+        ),
+        (
+            "STaR betting",
+            lambda: invert_local_component(
+                x,
+                lambda m: max(
+                    delta * methods.compute_M_star_arms(x, m, delta)[0]
+                    / (2.0 * u_plus),
+                    delta * methods.compute_M_star_arms(x, m, delta)[1]
+                    / (2.0 * u_minus),
+                ) - 1.0,
+            )[:2],
+        ),
+        (
+            "Common-clock STaR betting",
+            lambda: methods.star_common_clock_ci_endpoints(
+                x,
+                delta,
+                randomizers=(u_plus, u_minus),
+            )[:2],
         ),
         (
             "Capped original feedback",
@@ -906,9 +960,10 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
 
     unbuffered_name = "Efficient betting"
     focused_methods = (
+        "STaR betting",
+        "Common-clock STaR betting",
         unbuffered_name,
         "Common-clock Efficient betting",
-        "Gaffke",
     )
     pair_columns = ["distribution", "n", "rep"]
     focused_pair_mask = df["method"] == unbuffered_name
@@ -977,8 +1032,8 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
     )
     legend_labels.extend(["full-set diameter", "largest component"])
     fig.suptitle(
-        "Gaffke and Efficient betting: candidate-dependent versus common "
-        "clock, paired means with "
+        "STaR and Efficient betting: candidate-centered versus shared "
+        "estimators, paired means with "
         "empirical 10--90% intervals "
         f"($1-\\delta={1.0-delta:.2f}$)",
         fontsize=15,
@@ -992,10 +1047,11 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
         frameon=False,
     )
     fig.tight_layout(rect=(0.0, 0.08, 1.0, 0.95))
-    destination = (
-        plot_dir / "scaled_width_gaffke_vs_probit_unbuffered_means.png"
-    )
-    fig.savefig(destination, dpi=220, bbox_inches="tight")
+    filename = "scaled_width_star_efficient_shared_estimator_comparison.png"
+    destination = plot_dir / filename
+    PAPER_PLOT_DIR.mkdir(parents=True, exist_ok=True)
+    for figure_path in (destination, PAPER_PLOT_DIR / filename):
+        fig.savefig(figure_path, dpi=220, bbox_inches="tight")
     plt.close(fig)
     outputs.append(destination)
 
@@ -1019,6 +1075,8 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
         if rep >= unbuffered_reps_by_n[n]:
             required.discard("Efficient betting")
             required.discard("Common-clock Efficient betting")
+            required.discard("STaR betting")
+            required.discard("Common-clock STaR betting")
         return required
     distributions = DISTRIBUTIONS[: args.distribution_limit]
 
@@ -1046,6 +1104,13 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
     # Trigger compilation outside timed regions.
     warm = np.linspace(0.1, 0.9, 64)
     methods.compute_M_star(warm, 0.5, args.delta)
+    methods.compute_M_star_common_clock_arms(warm, 0.5, args.delta)
+    methods._star_randomized_scores(
+        warm, np.asarray([0.5]), args.delta, 0.5, 0.5
+    )
+    methods._star_common_clock_arm_randomized_scores(
+        warm, np.asarray([0.5]), args.delta, 0.5, 0.5
+    )
     methods.compute_M_hinge_feedback_star(warm, 0.5, args.delta)
     methods.compute_M_capped_feedback_star(warm, 0.5, args.delta)
     methods.compute_M_capped_exponential_feedback_star(
@@ -1096,18 +1161,20 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                 observed = observed_methods.get(key, set())
                 required_methods = required_methods_for_cell(n, rep)
                 missing = required_methods.difference(observed)
-                if len(missing) == 1 and next(iter(missing)) in {
+                incremental_methods = {
                     "Capped original feedback",
                     "Efficient betting",
                     "Common-clock Efficient betting",
-                }:
-                    method_name = next(iter(missing))
-                    t0 = time.perf_counter()
-                    lower, upper, empty, evaluations = _betting_interval(
-                        x, method_name, args.delta, u_plus, u_minus
-                    )
-                    rows.append(
-                        _record_row(
+                    "STaR betting",
+                    "Common-clock STaR betting",
+                }
+                if missing and missing.issubset(incremental_methods):
+                    for method_name in sorted(missing):
+                        t0 = time.perf_counter()
+                        lower, upper, empty, evaluations = _betting_interval(
+                            x, method_name, args.delta, u_plus, u_minus
+                        )
+                        row = _record_row(
                             dist.name,
                             dist.mean,
                             dist.variance,
@@ -1117,22 +1184,33 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                             lower,
                             upper,
                             empty,
-                            "local-batched-bisection",
+                            (
+                                "monotone-common-clock-inversion"
+                                if method_name in {
+                                    "Common-clock Efficient betting",
+                                    "Common-clock STaR betting",
+                                }
+                                else "local-batched-bisection"
+                            ),
                             time.perf_counter() - t0,
                             evaluations,
                         )
-                    )
-                    if method_name == "Common-clock Efficient betting":
-                        width = max(float(upper - lower), 0.0)
-                        rows[-1].update({
-                            "backend": "monotone-common-clock-inversion",
-                            "adjacent_component_width": width,
-                            "full_set_diameter": width,
-                            "largest_component_width": width,
-                            "topology_component_count": 0.0 if empty else 1.0,
-                            "topology_scan_points": 0.0,
-                            "topology_point_budget_reached": False,
-                        })
+                        if method_name in {
+                            "Common-clock Efficient betting",
+                            "Common-clock STaR betting",
+                        }:
+                            width = max(float(upper - lower), 0.0)
+                            row.update({
+                                "adjacent_component_width": width,
+                                "full_set_diameter": width,
+                                "largest_component_width": width,
+                                "topology_component_count": (
+                                    0.0 if empty else 1.0
+                                ),
+                                "topology_scan_points": 0.0,
+                                "topology_point_budget_reached": False,
+                            })
+                        rows.append(row)
                     cells_done += 1
                     if cells_done % args.progress_every == 0:
                         elapsed = (time.time() - start) / 60.0
@@ -1240,6 +1318,49 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                         "topology_scan_points": 0.0,
                         "topology_point_budget_reached": False,
                     })
+                    cell_rows.append(row)
+
+
+                for method_name in (
+                    "STaR betting",
+                    "Common-clock STaR betting",
+                ):
+                    if method_name not in required_methods:
+                        continue
+                    t0 = time.perf_counter()
+                    lower, upper, empty, evaluations = _betting_interval(
+                        x, method_name, args.delta, u_plus, u_minus
+                    )
+                    row = _record_row(
+                        dist.name,
+                        dist.mean,
+                        dist.variance,
+                        n,
+                        rep,
+                        method_name,
+                        lower,
+                        upper,
+                        empty,
+                        (
+                            "monotone-common-clock-inversion"
+                            if method_name == "Common-clock STaR betting"
+                            else "local-batched-bisection"
+                        ),
+                        time.perf_counter() - t0,
+                        evaluations,
+                    )
+                    if method_name == "Common-clock STaR betting":
+                        width = max(float(upper - lower), 0.0)
+                        row.update({
+                            "adjacent_component_width": width,
+                            "full_set_diameter": width,
+                            "largest_component_width": width,
+                            "topology_component_count": (
+                                0.0 if empty else 1.0
+                            ),
+                            "topology_scan_points": 0.0,
+                            "topology_point_budget_reached": False,
+                        })
                     cell_rows.append(row)
 
 
