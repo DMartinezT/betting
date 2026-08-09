@@ -56,6 +56,17 @@ PANEL_ORDER = (
 )
 ROW_MINIMUM_N = (10, 100, 1_000)
 MAXIMUM_N = 1_000_000
+GAFFKE_RANDOMIZED_ORDER = (
+    "Uniform(0,1)",
+    "Beta(1,5)",
+    "Beta(0.5,0.5)",
+    "Bernoulli(0.1)",
+    "Beta(50,50)",
+    "Beta(20,80)",
+    "Beta(2,2)",
+    "Bernoulli(0.5)",
+    "Uniform(0.45,0.55)",
+)
 
 METHODS = (
     ("product_original", "#9467bd", "s", "Product betting"),
@@ -214,7 +225,9 @@ def _reconstruct_source(
     tail_probability = float(config["delta"]) / 2.0
     randomized_rows: list[dict[str, object]] = []
 
-    for distribution_name in allowed_distributions:
+    for distribution_name in GAFFKE_RANDOMIZED_ORDER:
+        if distribution_name not in allowed_distributions:
+            continue
         distribution_index, distribution = distribution_by_name[
             distribution_name
         ]
@@ -368,7 +381,10 @@ def _plot_saved_rows(
     marker: str | None,
     label: str,
     linestyle: str,
-    fill: bool,
+    show_band: bool,
+    filled_marker: bool,
+    marker_size: float,
+    zorder: float,
 ) -> None:
     means = np.asarray([row["mean"] for row in rows], dtype=float)
     axis.plot(
@@ -376,12 +392,16 @@ def _plot_saved_rows(
         means,
         color=color,
         marker=marker,
-        ms=4.2,
+        markerfacecolor=color if filled_marker else "none",
+        markeredgecolor=color,
+        markeredgewidth=0.9,
+        ms=marker_size,
         lw=1.9,
         ls=linestyle,
         label=label,
+        zorder=zorder,
     )
-    if fill:
+    if show_band:
         lows = np.asarray([row["lo"] for row in rows], dtype=float)
         highs = np.asarray([row["hi"] for row in rows], dtype=float)
         axis.fill_between(
@@ -391,6 +411,7 @@ def _plot_saved_rows(
             color=color,
             alpha=0.07,
             linewidth=0.0,
+            zorder=1,
         )
 
 
@@ -437,7 +458,7 @@ def make_figure() -> Path:
                 color=color,
                 ls=":",
                 lw=1.5,
-                label=label,
+                label="_nolegend_",
             )
 
         row_methods = METHODS if panel_index < 3 else METHODS[1:]
@@ -459,22 +480,28 @@ def make_figure() -> Path:
             _plot_saved_rows(
                 axis,
                 betting_n,
-                [deterministic[index] for index in betting_indices],
+                [randomized[index] for index in betting_indices],
                 color=color,
-                marker=None,
+                marker=marker,
                 label="_nolegend_",
-                linestyle="--",
-                fill=False,
+                linestyle="-",
+                show_band=True,
+                filled_marker=True,
+                marker_size=3.8,
+                zorder=3,
             )
             _plot_saved_rows(
                 axis,
                 betting_n,
-                [randomized[index] for index in betting_indices],
+                [deterministic[index] for index in betting_indices],
                 color=color,
                 marker=marker,
-                label=label,
-                linestyle="-",
-                fill=True,
+                label="_nolegend_",
+                linestyle="--",
+                show_band=False,
+                filled_marker=False,
+                marker_size=5.2,
+                zorder=4,
             )
 
         panel_gaffke = gaffke[
@@ -482,20 +509,20 @@ def make_figure() -> Path:
             & (gaffke["n"] >= minimum_n)
             & (gaffke["n"] <= MAXIMUM_N)
         ]
-        for method, color, marker, linestyle, label in (
+        for method, linestyle, filled_marker, marker_size, zorder in (
             (
-                "Gaffke",
-                "#1976b9",
-                "o",
-                "--",
-                "Gaffke",
+                "Randomized Gaffke",
+                "-",
+                True,
+                3.8,
+                3,
             ),
             (
-                "Randomized Gaffke",
-                "#00a6d6",
-                "x",
-                "-",
-                "Randomized Gaffke",
+                "Gaffke",
+                "--",
+                False,
+                5.2,
+                4,
             ),
         ):
             method_rows = panel_gaffke[
@@ -504,13 +531,18 @@ def make_figure() -> Path:
             axis.plot(
                 method_rows["n"],
                 method_rows["mean"],
-                color=color,
-                marker=marker,
+                color="#1976b9",
+                marker="o",
+                markerfacecolor=(
+                    "#1976b9" if filled_marker else "none"
+                ),
+                markeredgecolor="#1976b9",
+                markeredgewidth=0.9,
                 ls=linestyle,
                 lw=1.8,
-                ms=4.3,
-                label=label,
-                zorder=4,
+                ms=marker_size,
+                label="_nolegend_",
+                zorder=zorder,
             )
 
         axis.set_xscale("log")
@@ -520,39 +552,78 @@ def make_figure() -> Path:
         axis.set_ylabel(r"$\sqrt{n}\times$ CI width")
         axis.grid(True, ls="--", alpha=0.3)
 
-    handles, labels = axes.ravel()[0].get_legend_handles_labels()
-    handles.extend(
-        [
-            Line2D([0], [0], color="0.25", ls="--", lw=2),
-            Line2D(
-                [0],
-                [0],
-                color="0.25",
-                ls="-",
-                marker="o",
-                lw=2,
-            ),
-        ]
-    )
-    labels.extend(
-        [
-            "deterministic Markov",
-            "uniformly randomized Markov",
-        ]
-    )
+    method_handles = [
+        Line2D(
+            [0], [0], color=color, marker=marker, lw=2,
+            markerfacecolor=color, markeredgecolor=color, ms=4.5,
+        )
+        for color, marker in (
+            ("#9467bd", "s"),
+            ("darkorange", "P"),
+            ("#2ca02c", "h"),
+            ("#1976b9", "o"),
+        )
+    ]
+    method_labels = [
+        "Product betting",
+        "STaR betting",
+        "Efficient betting",
+        "Gaffke",
+    ]
+    calibration_handles = [
+        Line2D(
+            [0], [0], color="0.25", ls="--", marker="o", lw=2,
+            markerfacecolor="none", markeredgecolor="0.25", ms=5.2,
+        ),
+        Line2D(
+            [0], [0], color="0.25", ls="-", marker="o", lw=2,
+            markerfacecolor="0.25", markeredgecolor="0.25", ms=3.8,
+        ),
+    ]
+    calibration_labels = ["Deterministic", "Uniformly randomized"]
+    reference_handles = [
+        Line2D([0], [0], color="#9467bd", ls=":", lw=1.7),
+        Line2D([0], [0], color="black", ls=":", lw=1.7),
+    ]
+    reference_labels = ["Product limit", "Gaussian limit"]
     fig.suptitle(
         "Betting and Gaffke confidence intervals",
         fontsize=15,
     )
     fig.legend(
-        handles,
-        labels,
+        method_handles,
+        method_labels,
         loc="lower center",
-        ncol=5,
-        fontsize=8.1,
+        bbox_to_anchor=(0.27, 0.012),
+        ncol=4,
+        fontsize=8.4,
+        title="Construction (color and marker)",
+        title_fontsize=8.6,
         frameon=False,
     )
-    fig.tight_layout(rect=(0.0, 0.115, 1.0, 0.955))
+    fig.legend(
+        calibration_handles,
+        calibration_labels,
+        loc="lower center",
+        bbox_to_anchor=(0.65, 0.012),
+        ncol=2,
+        fontsize=8.4,
+        title="Calibration (line and marker fill)",
+        title_fontsize=8.6,
+        frameon=False,
+    )
+    fig.legend(
+        reference_handles,
+        reference_labels,
+        loc="lower center",
+        bbox_to_anchor=(0.89, 0.012),
+        ncol=2,
+        fontsize=8.4,
+        title="Asymptotic reference (dotted)",
+        title_fontsize=8.6,
+        frameon=False,
+    )
+    fig.tight_layout(rect=(0.0, 0.09, 1.0, 0.955))
     for destination in (PAPER_OUTPUT, BETTING_OUTPUT):
         destination.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(destination, dpi=220, bbox_inches="tight")
