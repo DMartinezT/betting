@@ -1,4 +1,4 @@
-"""Plot the efficient-betting fraction and its target-normalized exposure."""
+"""Plot the efficient-betting fraction and the corresponding amount bet."""
 
 from pathlib import Path
 
@@ -20,9 +20,9 @@ CODE_OUTPUT = HERE / "plots" / "efficient_betting_function.pdf"
 def main() -> None:
     """Write the figure to the code and paper repositories."""
     p = np.linspace(1e-4, 1.0 - 1e-4, 4_000)
-    normal_score = norm.ppf(p)
-    exposure = norm.pdf(normal_score)
-    betting_fraction = exposure / p
+    q = norm.ppf(p)
+    amount_bet = norm.pdf(q)
+    betting_fraction = amount_bet / p
 
     plt.rcParams.update(
         {
@@ -38,8 +38,8 @@ def main() -> None:
     axes[0].set_title("Fraction of current wealth")
     axes[0].set_ylabel(r"$\psi(p)=\phi\{\Phi^{-1}(p)\}/p$")
 
-    axes[1].plot(p, exposure, color="#D55E00", linewidth=2.1)
-    axes[1].set_title("Target-normalized exposure")
+    axes[1].plot(p, amount_bet, color="#D55E00", linewidth=2.1)
+    axes[1].set_title("Amount bet relative to target")
     axes[1].set_ylabel(r"$p\psi(p)=\phi\{\Phi^{-1}(p)\}$")
 
     for axis in axes:
