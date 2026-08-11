@@ -19,20 +19,20 @@
     "30000": 40,
     "100000": 40,
     "300000": 30,
-    "1000000": 20,
-    "3000000": 15,
-    "10000000": 10
+    "1000000": 30,
+    "3000000": 30,
+    "10000000": 30
   },
   "unbuffered_reps_by_n": {
-    "1000": 5,
-    "3000": 5,
-    "10000": 5,
-    "30000": 5,
-    "100000": 5,
-    "300000": 5,
-    "1000000": 5,
-    "3000000": 5,
-    "10000000": 5
+    "1000": 30,
+    "3000": 30,
+    "10000": 30,
+    "30000": 30,
+    "100000": 30,
+    "300000": 30,
+    "1000000": 30,
+    "3000000": 30,
+    "10000000": 30
   },
   "distributions": [
     "Beta(2,2)",
@@ -61,7 +61,19 @@
   "continuous_gaffke_large_n_backend": "fourth-order Cornish-Fisher from exact Dirichlet moments",
   "betting_inversion": "candidate-dependent methods use a local geometric bracket plus paired bisection",
   "common_clock_inversion": "parallel multisection of the two globally monotone arm boundaries; the reported set is an exact interval",
-  "reported_width": "accepted component adjacent to the sample mean",
+  "reported_width": "mesh-resolved full-set diameter; largest-component width also stored",
   "full_set_topology": "not assumed; use ../audit_confidence_set_topology.py for the global finite-mesh audit",
-  "empirical_interval": "pointwise 10th--90th percentiles of CI widths"
+  "empirical_interval": "pointwise 10th--90th percentiles of CI widths",
+  "base_inversion_width": "accepted component adjacent to the sample mean",
+  "topology_inversion": {
+    "rep_limit": 30,
+    "score_work_budget": 300000,
+    "reported_widths": [
+      "full-set diameter",
+      "largest accepted-component width"
+    ],
+    "large_n_screen": "known local component plus 31 interior probes and endpoint-anchored outside probes at standard-error distances 1/8, 1/4, 1/2, 1, 2, ...; full multiresolution inversion on any interior rejection or outside acceptance",
+    "finite_mesh": true,
+    "checkpoint": "topology_checkpoint.json"
+  }
 }

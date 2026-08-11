@@ -16,6 +16,7 @@ from matplotlib.lines import Line2D
 
 HERE = Path(__file__).resolve().parent
 DEFAULT_INPUT = HERE / "plots" / "ci_width_original_vs_star.json"
+PAPER_PLOT_DIR = HERE.parent / "paper" / "plots"
 
 
 def _simulation_label(counts_by_n: dict[str, int]) -> str:
@@ -34,19 +35,29 @@ def _series(
     label,
     linestyle="-",
     fill=True,
+    filled_marker=None,
+    marker_size=4.5,
 ):
     means = [row["mean"] for row in rows]
     lows = [row["lo"] for row in rows]
     highs = [row["hi"] for row in rows]
+    marker_kwargs = {}
+    if filled_marker is not None:
+        marker_kwargs = {
+            "markerfacecolor": color if filled_marker else "none",
+            "markeredgecolor": color,
+            "markeredgewidth": 0.9,
+        }
     axis.plot(
         n_values,
         means,
         color=color,
         marker=marker,
-        ms=4.5,
+        ms=marker_size,
         lw=2,
         ls=linestyle,
         label=label,
+        **marker_kwargs,
     )
     if fill:
         axis.fill_between(n_values, lows, highs, color=color, alpha=0.08)
@@ -205,7 +216,7 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
                 color=color,
                 ls=":",
                 lw=1.6,
-                label=label,
+                label="_nolegend_",
             )
 
         for key, color, marker, label in (
@@ -217,10 +228,12 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
                 n_values,
                 model_results[f"{key}_deterministic_markov_diameter"],
                 color,
-                None,
+                marker,
                 "_nolegend_",
                 linestyle="--",
                 fill=False,
+                filled_marker=False,
+                marker_size=5.2,
             )
             _series(
                 axis,
@@ -228,34 +241,79 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
                 model_results[f"{key}_randomized_markov_diameter"],
                 color,
                 marker,
-                label,
+                "_nolegend_",
+                fill=False,
+                filled_marker=True,
+                marker_size=3.8,
             )
         _finish_axis(axis, name, True)
 
-    legend_handles, legend_labels = axes.ravel()[0].get_legend_handles_labels()
-    legend_handles.extend([
-        Line2D([0], [0], color="0.25", ls="--", lw=2),
-        Line2D([0], [0], color="0.25", ls="-", marker="o", lw=2),
-    ])
-    legend_labels.extend([
-        "deterministic Markov",
-        "uniformly randomized Markov",
-    ])
+    construction_handles = [
+        Line2D(
+            [0], [0], color=color, marker=marker, lw=2,
+            markerfacecolor=color, markeredgecolor=color, ms=4.5,
+        )
+        for color, marker in (("navy", "o"), ("#9467bd", "s"))
+    ]
+    construction_labels = ["Fixed squared-hinge betting", "Product betting"]
+    calibration_handles = [
+        Line2D(
+            [0], [0], color="0.25", ls="--", marker="o", lw=2,
+            markerfacecolor="none", markeredgecolor="0.25", ms=5.2,
+        ),
+        Line2D(
+            [0], [0], color="0.25", ls="-", marker="o", lw=2,
+            markerfacecolor="0.25", markeredgecolor="0.25", ms=3.8,
+        ),
+    ]
+    calibration_labels = ["Deterministic", "Uniformly randomized"]
+    reference_handles = [
+        Line2D([0], [0], color="navy", ls=":", lw=1.7),
+        Line2D([0], [0], color="#9467bd", ls=":", lw=1.7),
+    ]
+    reference_labels = ["Squared-hinge limit", "Product limit"]
     fig.suptitle(
         "Fixed squared-hinge versus product betting: scaled confidence-interval widths",
         fontsize=14,
     )
     fig.legend(
-        legend_handles,
-        legend_labels,
+        construction_handles,
+        construction_labels,
         loc="lower center",
-        ncol=3,
-        fontsize=8.5,
+        bbox_to_anchor=(0.25, 0.012),
+        ncol=2,
+        fontsize=8.4,
+        title="Construction (color and marker)",
+        title_fontsize=8.6,
+        frameon=False,
+    )
+    fig.legend(
+        calibration_handles,
+        calibration_labels,
+        loc="lower center",
+        bbox_to_anchor=(0.64, 0.012),
+        ncol=2,
+        fontsize=8.4,
+        title="Calibration (line and marker fill)",
+        title_fontsize=8.6,
+        frameon=False,
+    )
+    fig.legend(
+        reference_handles,
+        reference_labels,
+        loc="lower center",
+        bbox_to_anchor=(0.89, 0.012),
+        ncol=2,
+        fontsize=8.4,
+        title="Asymptotic reference (dotted)",
+        title_fontsize=8.6,
         frameon=False,
     )
     fig.tight_layout(rect=(0.0, 0.09, 1.0, 0.95))
     output = output_dir / "ci_width_fixed_hinge_vs_product.png"
-    fig.savefig(output, dpi=180, bbox_inches="tight")
+    PAPER_PLOT_DIR.mkdir(parents=True, exist_ok=True)
+    for figure_path in (output, PAPER_PLOT_DIR / output.name):
+        fig.savefig(figure_path, dpi=180, bbox_inches="tight")
     plt.close(fig)
     outputs.append(output)
 

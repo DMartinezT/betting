@@ -124,7 +124,7 @@ SAMPLE_SIZES = (
     10_000_000,
 )
 
-REPS_BY_N = {
+BASE_REPS_BY_N = {
     1_000: 50,
     3_000: 50,
     10_000: 50,
@@ -134,6 +134,16 @@ REPS_BY_N = {
     1_000_000: 20,
     3_000_000: 15,
     10_000_000: 10,
+}
+REPS_BY_N = {
+    n: max(base_reps, 30)
+    for n, base_reps in BASE_REPS_BY_N.items()
+}
+FIGURE3_METHODS = {
+    "Efficient betting",
+    "Common-clock Efficient betting",
+    "STaR betting",
+    "Common-clock STaR betting",
 }
 
 
@@ -902,9 +912,17 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
     plt.close(fig)
     outputs.append(destination)
 
+    focused_styles = {
+        "STaR betting": ("darkorange", "P", "--", False, 5.2),
+        "Common-clock STaR betting": (
+            "darkorange", "P", "-", True, 3.8,
+        ),
+        unbuffered_name: ("#2ca02c", "h", "--", False, 5.2),
+        "Common-clock Efficient betting": (
+            "#2ca02c", "h", "-", True, 3.8,
+        ),
+    }
     fig, axes = plt.subplots(3, 3, figsize=(13, 11), sharex=True)
-    legend_handles = None
-    legend_labels = None
     for axis, dist in zip(axes.ravel(), DISTRIBUTIONS):
         ddf = summary[summary["distribution"] == dist.name]
         n_values = np.sort(ddf["n"].unique())
@@ -986,31 +1004,29 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
         ]
         for method_name in focused_methods:
             mdf = ddf[ddf["method"] == method_name].sort_values("n")
-            color, marker = METHOD_STYLES[method_name]
+            color, marker, linestyle, filled_marker, marker_size = (
+                focused_styles[method_name]
+            )
             axis.plot(
                 mdf["n"],
                 mdf["mean_sqrt_n_width"],
                 color=color,
                 marker=marker,
-                markersize=5.5,
-                linewidth=2.2,
-                label=METHOD_LABELS.get(method_name, method_name),
-            )
-            axis.fill_between(
-                mdf["n"],
-                mdf["q10_sqrt_n_width"],
-                mdf["q90_sqrt_n_width"],
-                color=color,
-                alpha=0.12,
-                linewidth=0.0,
+                markerfacecolor=color if filled_marker else "none",
+                markeredgecolor=color,
+                markeredgewidth=0.9,
+                markersize=marker_size,
+                linestyle=linestyle,
+                linewidth=1.9,
+                label="_nolegend_",
             )
             if method_name == unbuffered_name:
                 axis.plot(
                     mdf["n"],
                     mdf["mean_sqrt_n_largest_component"],
                     color=color,
-                    linestyle="--",
-                    linewidth=1.45,
+                    linestyle=":",
+                    linewidth=1.6,
                     label="_nolegend_",
                 )
         axis.set_xscale("log")
@@ -1018,32 +1034,66 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
         axis.set_xlabel("sample size $n$")
         axis.set_ylabel(r"$\sqrt{n}\times$ CI width")
         axis.grid(True, linestyle="--", alpha=0.3)
-        if legend_handles is None:
-            legend_handles, legend_labels = axis.get_legend_handles_labels()
 
-    legend_handles.extend(
-        [
-            Line2D([0], [0], color="dimgray", linewidth=2.2),
-            Line2D(
-                [0], [0], color="dimgray", linewidth=1.45,
-                linestyle="--",
-            ),
-        ]
-    )
-    legend_labels.extend(["full-set diameter", "largest component"])
+    construction_handles = [
+        Line2D(
+            [0], [0], color=color, marker=marker, lw=2,
+            markerfacecolor=color, markeredgecolor=color, ms=4.5,
+        )
+        for color, marker in (("darkorange", "P"), ("#2ca02c", "h"))
+    ]
+    construction_labels = ["STaR betting", "Efficient betting"]
+    estimator_handles = [
+        Line2D(
+            [0], [0], color="0.25", ls="--", marker="o", lw=2,
+            markerfacecolor="none", markeredgecolor="0.25", ms=5.2,
+        ),
+        Line2D(
+            [0], [0], color="0.25", ls="-", marker="o", lw=2,
+            markerfacecolor="0.25", markeredgecolor="0.25", ms=3.8,
+        ),
+    ]
+    estimator_labels = ["Candidate-specific", "Shared"]
+    component_handles = [
+        Line2D([0], [0], color="#2ca02c", ls=":", lw=1.7),
+    ]
+    component_labels = ["Largest connected piece"]
     fig.suptitle(
-        "STaR and Efficient betting: candidate-centered versus shared "
-        "estimators, paired means with "
-        "empirical 10--90% intervals "
+        "STaR and Efficient betting: mean scaled confidence-interval widths "
         f"($1-\\delta={1.0-delta:.2f}$)",
         fontsize=15,
     )
     fig.legend(
-        legend_handles,
-        legend_labels,
+        construction_handles,
+        construction_labels,
         loc="lower center",
-        ncol=4,
-        fontsize=10.0,
+        bbox_to_anchor=(0.23, 0.012),
+        ncol=2,
+        fontsize=8.4,
+        title="Construction (color and marker)",
+        title_fontsize=8.6,
+        frameon=False,
+    )
+    fig.legend(
+        estimator_handles,
+        estimator_labels,
+        loc="lower center",
+        bbox_to_anchor=(0.61, 0.012),
+        ncol=2,
+        fontsize=8.4,
+        title="Variance estimator (line and marker fill)",
+        title_fontsize=8.6,
+        frameon=False,
+    )
+    fig.legend(
+        component_handles,
+        component_labels,
+        loc="lower center",
+        bbox_to_anchor=(0.88, 0.012),
+        ncol=1,
+        fontsize=8.4,
+        title="Additional width (dotted)",
+        title_fontsize=8.6,
         frameon=False,
     )
     fig.tight_layout(rect=(0.0, 0.08, 1.0, 0.95))
@@ -1072,11 +1122,10 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
 
     def required_methods_for_cell(n: int, rep: int) -> set[str]:
         required = set(METHOD_ORDER)
+        if args.reps is None and rep >= BASE_REPS_BY_N[n]:
+            required.intersection_update(FIGURE3_METHODS)
         if rep >= unbuffered_reps_by_n[n]:
-            required.discard("Efficient betting")
-            required.discard("Common-clock Efficient betting")
-            required.discard("STaR betting")
-            required.discard("Common-clock STaR betting")
+            required.difference_update(FIGURE3_METHODS)
         return required
     distributions = DISTRIBUTIONS[: args.distribution_limit]
 
@@ -1470,7 +1519,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--seed", type=int, default=20260723)
     parser.add_argument("--sample-sizes", nargs="+", type=int)
     parser.add_argument("--reps", type=int)
-    parser.add_argument("--unbuffered-reps", type=int, default=5)
+    parser.add_argument("--unbuffered-reps", type=int, default=30)
     parser.add_argument("--distribution-limit", type=int, default=len(DISTRIBUTIONS))
     parser.add_argument("--gaffke-exact-cutoff", type=int, default=3_000)
     parser.add_argument("--progress-every", type=int, default=5)

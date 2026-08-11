@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""Add matched Markov-calibration widths to the Figure 1 results.
+"""Add matched Markov-calibration widths to the fixed-sample figures.
 
-The script exactly replays the data and terminal-randomizer streams used by
-``betting.run_experiment``.  Every method is calibrated armwise at level
-``delta / 2``.  The deterministic regime uses thresholds ``u_plus=u_minus=1``;
+The script replays the data and terminal-randomizer streams stored by
+``betting.run_experiment`` and uses independently indexed streams when the
+requested figure count exceeds the base count.  Every method is calibrated
+armwise at level ``delta / 2``.  The deterministic regime uses thresholds
+``u_plus=u_minus=1``;
 the uniformly randomized Markov regime uses the same independent uniforms
 for every method on a given dataset.  Candidate means without an analytic
 ordering guarantee are evaluated with the adaptive multiresolution topology
@@ -24,12 +26,19 @@ import betting
 
 METHODS = (
     "heat_original",
-    "heat_star",
     "product_original",
-    "product_star",
     "product_star_common_clock",
     "probit_common_clock",
 )
+
+# These identifiers are consumed by the compiled score evaluator below.  Keep
+# the mapping explicit: the plotted subset need not have the same order as the
+# complete method list for which the evaluator was originally written.
+SCORE_KIND_BY_METHOD = {
+    "heat_original": 0,
+    "product_original": 2,
+}
+CHECKPOINT_VERSION = 2
 
 CALIBRATIONS = (
     "deterministic_markov",
@@ -48,6 +57,8 @@ def _scores(
     u_plus,
     u_minus,
 ):
+    if kind < 0 or kind > 5:
+        raise ValueError("unknown score kind")
     output = np.empty(means.size)
     alpha = delta / 2.0
     for index in prange(means.size):
@@ -197,7 +208,7 @@ def _star_common_clock_summary(x, delta, u_plus, u_minus):
 def _common_clock_summary(x, delta, u_plus, u_minus):
     """Return exact topology diagnostics from the monotone arm boundaries."""
     lower, upper, empty, evaluations = (
-        betting.probit_common_clock_ci_endpoints(
+        betting.probit_common_clock_batched_ci_endpoints(
             x,
             delta,
             buffer_rounds=0.0,
@@ -241,9 +252,9 @@ def parse_args():
         default=100_000,
         help="rough observation-by-candidate budget per method and dataset",
     )
-    parser.add_argument("--small-reps", type=int, default=20)
-    parser.add_argument("--large-reps", type=int, default=5)
-    parser.add_argument("--medium-reps", type=int, default=10)
+    parser.add_argument("--small-reps", type=int, default=120)
+    parser.add_argument("--large-reps", type=int, default=30)
+    parser.add_argument("--medium-reps", type=int, default=60)
     parser.add_argument("--progress-every", type=int, default=10)
     return parser.parse_args()
 
@@ -264,9 +275,35 @@ def main():
     initial_wealth = float(payload["initial_wealth"])
 
     completed = {}
+    checkpoint_version = 0
     if args.checkpoint.exists():
         with args.checkpoint.open(encoding="utf-8") as stream:
-            completed = json.load(stream).get("cells", {})
+            checkpoint_payload = json.load(stream)
+        completed = checkpoint_payload.get("cells", {})
+        checkpoint_version = int(checkpoint_payload.get("version", 0))
+
+    # Version 1 paired ``enumerate(METHODS)`` with numeric score codes.  Once
+    # the plotted method list was shortened, this made product betting use
+    # score kind 1 (squared-hinge STaR) instead of score kind 2 (the product
+    # e-process).  Discard only those stale entries; all other cached results
+    # remain valid.
+    if checkpoint_version < CHECKPOINT_VERSION:
+        stale_keys = {
+            f"product_original|{calibration}"
+            for calibration in CALIBRATIONS
+        }
+        invalidated = 0
+        for method_results in completed.values():
+            for result_key in stale_keys:
+                invalidated += int(
+                    method_results.pop(result_key, None) is not None
+                )
+        if invalidated:
+            print(
+                f"invalidated {invalidated} product-betting checkpoint entries "
+                "computed with the obsolete positional dispatch",
+                flush=True,
+            )
 
     rng = np.random.default_rng(seed)
     randomizer_seed = np.random.SeedSequence(seed).spawn(1)[0]
@@ -276,38 +313,61 @@ def main():
     samplers = _samplers(rng)
 
     cell_count = 0
+    if min(args.small_reps, args.medium_reps, args.large_reps) <= 0:
+        raise ValueError("replication counts must be positive")
     topology_counts = {
         n: (
-            min(args.small_reps, counts[n])
+            args.small_reps
             if n <= 1000
-            else min(args.medium_reps, counts[n])
+            else args.medium_reps
             if n <= 10_000
-            else min(args.large_reps, counts[n])
+            else args.large_reps
         )
         for n in n_values
     }
     for n in n_values:
-        for distribution, sampler in samplers.items():
-            for replication in range(counts[n]):
-                x = np.asarray(sampler(n), dtype=float)
-                regularized_rng.uniform(size=2)
-                u_plus, u_minus = (
-                    float(value) for value in unbuffered_rng.uniform(size=2)
-                )
+        for distribution_index, (distribution, sampler) in enumerate(
+            samplers.items()
+        ):
+            for replication in range(max(counts[n], topology_counts[n])):
+                if replication < counts[n]:
+                    x = np.asarray(sampler(n), dtype=float)
+                    regularized_rng.uniform(size=2)
+                    u_plus, u_minus = (
+                        float(value)
+                        for value in unbuffered_rng.uniform(size=2)
+                    )
+                else:
+                    extension_seed = np.random.SeedSequence(
+                        [seed, 8675309, n, distribution_index, replication]
+                    )
+                    data_seed, auxiliary_seed = extension_seed.spawn(2)
+                    extension_rng = np.random.default_rng(data_seed)
+                    extension_sampler = _samplers(extension_rng)[distribution]
+                    x = np.asarray(extension_sampler(n), dtype=float)
+                    extension_auxiliary_rng = np.random.default_rng(
+                        auxiliary_seed
+                    )
+                    u_plus, u_minus = (
+                        float(value)
+                        for value in extension_auxiliary_rng.uniform(size=2)
+                    )
                 key = f"{distribution}|{n}|{replication}"
                 if replication >= topology_counts[n]:
                     continue
                 method_results = dict(completed.get(key, {}))
+                cell_updated = False
                 for calibration in CALIBRATIONS:
                     calibration_uniforms = (
                         (1.0, 1.0)
                         if calibration == "deterministic_markov"
                         else (u_plus, u_minus)
                     )
-                    for kind, method in enumerate(METHODS):
+                    for method in METHODS:
                         result_key = f"{method}|{calibration}"
                         if result_key in method_results:
                             continue
+                        cell_updated = True
                         if method == "probit_common_clock":
                             method_results[result_key] = _common_clock_summary(
                                 x, delta, *calibration_uniforms
@@ -324,10 +384,12 @@ def main():
                                 delta,
                                 strike,
                                 initial_wealth,
-                                kind,
+                                SCORE_KIND_BY_METHOD[method],
                                 *calibration_uniforms,
                                 args.score_work_budget,
                             )
+                if not cell_updated:
+                    continue
                 completed[key] = method_results
                 cell_count += 1
                 if cell_count % args.progress_every == 0:
@@ -345,6 +407,8 @@ def main():
                     ) as stream:
                         json.dump(
                             {
+                                "version": CHECKPOINT_VERSION,
+                                "score_kind_by_method": SCORE_KIND_BY_METHOD,
                                 "score_work_budget": (
                                     args.score_work_budget
                                 ),
@@ -357,6 +421,8 @@ def main():
     with args.checkpoint.open("w", encoding="utf-8") as stream:
         json.dump(
             {
+                "version": CHECKPOINT_VERSION,
+                "score_kind_by_method": SCORE_KIND_BY_METHOD,
                 "score_work_budget": args.score_work_budget,
                 "cells": completed,
             },
@@ -413,6 +479,14 @@ def main():
     payload["topology_inversion"] = {
         "method": "matched armwise Markov-calibration comparison",
         "score_work_budget": args.score_work_budget,
+        "base_replayed_reps_by_n": {
+            str(n): min(counts[n], topology_counts[n]) for n in n_values
+        },
+        "extension_sampling": (
+            "Replications beyond the base JSON count use independent "
+            "SeedSequence streams indexed by horizon, distribution, and "
+            "replication."
+        ),
         "topology_reps_by_n": {
             str(n): topology_counts[n] for n in n_values
         },

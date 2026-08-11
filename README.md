@@ -114,11 +114,11 @@ procedures.  Its adaptive finite-mesh
 inversion combines a standard-error-scale grid, global and geometric probes,
 and exponential refinement after any detected fragmentation.  It records the
 full-set diameter, the largest accepted-component width, component counts,
-mesh resolution, and point-budget diagnostics.  Figure 1 uses 50 topology
-replications per distribution through `n=1000`, 10 through `n=10000`, and 5
-thereafter.  The main plot uses full-set diameters, equivalently convex-hull
-CI widths, and their empirical bands; largest-component summaries remain in
-the JSON for the appendix audit.  A finite mesh can still miss two crossings
+mesh resolution, and point-budget diagnostics.  Figures 2 and 4 use 120
+topology replications per distribution through `n=1000`, 60 through
+`n=10000`, and 30 thereafter.  The plots show mean full-set diameters,
+equivalently convex-hull CI widths; percentile and largest-component
+summaries remain in the JSON.  A finite mesh can still miss two crossings
 inside one final cell, so the saved diagnostics are part of the result rather
 than a proof of connectedness.  The common-clock procedure is inverted
 directly from its two monotone arm boundaries, so its diameter and
@@ -139,7 +139,7 @@ run writes:
 To redraw the figures from the augmented JSON without rerunning either the
 simulations or the topology inversion, use `python plot_saved_experiment.py`.
 
-The large-sample main plots, including five paired common-clock intervals per
+The large-sample main plots, including 30 paired common-clock intervals per
 distribution and horizon, are produced by
 
 ```bash
@@ -148,7 +148,7 @@ python gaffke_comparison/augment_large_sample_topology.py
 python gaffke_comparison/large_sample_feedback_gaffke.py --plot-only
 ```
 
-This audit uses five paired paths per distribution and horizon for every main
+This audit uses 30 paired paths per distribution and horizon for every main
 method.  Through `n=10000` it uses the full multiresolution scan.  At larger
 horizons it reuses the accurately bisected local component, checks 31 evenly
 spaced interior points for gaps, and probes outside at standard-error distances
@@ -156,8 +156,8 @@ spaced interior points for gaps, and probes outside at standard-error distances
 outside acceptance triggers the full scan.  This hybrid screen keeps the work
 manageable through `n=10**7`.  The main Gaffke figure shows convex CI widths
 and uses only common-clock Efficient betting.  The focused appendix figure
-adds candidate-dependent Efficient betting, with solid convex-hull diameters,
-dashed largest-component widths, and pointwise empirical 10--90% fill bands.
+adds candidate-dependent Efficient betting, with full-set diameters and
+largest-component widths retained separately in the saved results.
 
 Finite-sample confidence sets are not always intervals.  Run the global
 topology audit with

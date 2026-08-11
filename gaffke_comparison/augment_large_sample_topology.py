@@ -27,11 +27,12 @@ import betting as methods  # noqa: E402
 from gaffke_comparison.compare_star_probit_gaffke import (  # noqa: E402
     DISTRIBUTIONS,
 )
+from gaffke_comparison.large_sample_feedback_gaffke import (  # noqa: E402
+    summarize,
+)
 
 
 BETTING_METHODS = (
-    "Square-root feedback",
-    "Squared-hinge feedback",
     "Efficient betting",
 )
 
@@ -231,7 +232,7 @@ def parse_args():
         type=Path,
         default=Path(__file__).with_name("large_sample_gaffke_results"),
     )
-    parser.add_argument("--rep-limit", type=int, default=5)
+    parser.add_argument("--rep-limit", type=int, default=30)
     parser.add_argument("--score-work-budget", type=int, default=300_000)
     parser.add_argument("--progress-every", type=int, default=5)
     return parser.parse_args()
@@ -430,6 +431,7 @@ def main():
 
     frame.to_csv(results_path, index=False)
     frame.to_csv(results_dir / "results_checkpoint.csv", index=False)
+    summarize(frame).to_csv(results_dir / "summary.csv", index=False)
     config["base_inversion_width"] = config.get("reported_width")
     config["reported_width"] = (
         "mesh-resolved full-set diameter; largest-component width also stored"

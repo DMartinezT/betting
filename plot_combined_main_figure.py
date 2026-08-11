@@ -1,10 +1,9 @@
 """Build the paper's combined betting--Gaffke confidence-interval figure.
 
-The betting curves come from the saved fixed-horizon experiment.  Ordinary
-Gaffke curves come from the two saved Gaffke experiments.  The randomized
-product-orthant Gaffke endpoints are reconstructed from those experiments'
-documented seeds and ordinary endpoints, without rerunning any betting
-inversions.
+The betting curves come from the saved fixed-horizon experiment.  The Gaffke
+curves come from a dedicated saved experiment with the same replication
+schedule; the two older Gaffke experiments remain as a backward-compatible
+fallback for rebuilding the plot.
 """
 
 from __future__ import annotations
@@ -39,6 +38,9 @@ LARGE_GAFFKE_DIR = (
 )
 GAFFKE_CACHE = (
     HERE / "gaffke_comparison" / "combined_main_figure_gaffke.csv"
+)
+FIGURE_GAFFKE_DIR = (
+    HERE / "gaffke_comparison" / "figure2_gaffke_results"
 )
 PAPER_OUTPUT = PAPER_DIR / "plots" / "ci_width_original_vs_star.png"
 BETTING_OUTPUT = HERE / "plots" / "ci_width_original_vs_star.png"
@@ -342,6 +344,11 @@ def _reconstruct_source(
 
 
 def _load_gaffke_results() -> pd.DataFrame:
+    dedicated_results = FIGURE_GAFFKE_DIR / "results.csv"
+    if dedicated_results.exists():
+        output = pd.read_csv(dedicated_results)
+        output.to_csv(GAFFKE_CACHE, index=False)
+        return output
     first_six = set(PANEL_ORDER[:6])
     low_variance = set(PANEL_ORDER[6:])
     small = _reconstruct_source(
@@ -485,7 +492,7 @@ def make_figure() -> Path:
                 marker=marker,
                 label="_nolegend_",
                 linestyle="-",
-                show_band=True,
+                show_band=False,
                 filled_marker=True,
                 marker_size=3.8,
                 zorder=3,

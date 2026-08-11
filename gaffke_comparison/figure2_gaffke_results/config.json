@@ -1,0 +1,44 @@
+{
+  "delta": 0.01,
+  "seed": 20260810,
+  "sample_sizes": [
+    10,
+    50,
+    100,
+    500,
+    1000,
+    3000,
+    10000,
+    30000,
+    100000,
+    300000,
+    1000000
+  ],
+  "reps_by_n": {
+    "10": 120,
+    "50": 120,
+    "100": 120,
+    "500": 120,
+    "1000": 120,
+    "3000": 60,
+    "10000": 60,
+    "30000": 30,
+    "100000": 30,
+    "300000": 30,
+    "1000000": 30
+  },
+  "distributions": [
+    "Beta(2,2)",
+    "Beta(1,5)",
+    "Bernoulli(0.5)",
+    "Uniform(0,1)",
+    "Beta(0.5,0.5)",
+    "Bernoulli(0.1)",
+    "Beta(50,50)",
+    "Beta(20,80)",
+    "Uniform(0.45,0.55)"
+  ],
+  "low_variance_minimum_n": 1000,
+  "gaffke_exact_cutoff": 3000,
+  "randomization": "product-orthant refinement with one uniform per arm"
+}
