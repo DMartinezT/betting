@@ -177,7 +177,9 @@ def _topology_summary(
     return diagnostics
 
 
-def _star_common_clock_summary(x, delta, u_plus, u_minus):
+def _star_common_clock_summary(
+    x, delta, u_plus, u_minus, solvency_c
+):
     """Return exact STaR diagnostics from its ordered arm boundaries."""
     lower, upper, empty, evaluations = (
         betting.star_common_clock_batched_ci_endpoints(
@@ -185,6 +187,7 @@ def _star_common_clock_summary(x, delta, u_plus, u_minus):
             delta,
             randomizers=(u_plus, u_minus),
             return_diagnostics=True,
+            c=solvency_c,
         )
     )
     components = () if empty else ((lower, upper),)
@@ -205,7 +208,9 @@ def _star_common_clock_summary(x, delta, u_plus, u_minus):
     return diagnostics
 
 
-def _common_clock_summary(x, delta, u_plus, u_minus):
+def _common_clock_summary(
+    x, delta, u_plus, u_minus, solvency_c
+):
     """Return exact topology diagnostics from the monotone arm boundaries."""
     lower, upper, empty, evaluations = (
         betting.probit_common_clock_batched_ci_endpoints(
@@ -214,6 +219,7 @@ def _common_clock_summary(x, delta, u_plus, u_minus):
             buffer_rounds=0.0,
             randomizers=(u_plus, u_minus),
             return_diagnostics=True,
+            c=solvency_c,
         )
     )
     components = () if empty else ((lower, upper),)
@@ -252,6 +258,15 @@ def parse_args():
         default=100_000,
         help="rough observation-by-candidate budget per method and dataset",
     )
+    parser.add_argument(
+        "--solvency-c",
+        type=float,
+        default=1.0,
+        help=(
+            "fraction of the one-step solvency limit used by STaR and "
+            "efficient betting"
+        ),
+    )
     parser.add_argument("--small-reps", type=int, default=120)
     parser.add_argument("--large-reps", type=int, default=30)
     parser.add_argument("--medium-reps", type=int, default=60)
@@ -281,6 +296,14 @@ def main():
             checkpoint_payload = json.load(stream)
         completed = checkpoint_payload.get("cells", {})
         checkpoint_version = int(checkpoint_payload.get("version", 0))
+        checkpoint_solvency_c = float(
+            checkpoint_payload.get("solvency_c", 1.0)
+        )
+        if not np.isclose(checkpoint_solvency_c, args.solvency_c):
+            raise ValueError(
+                f"checkpoint uses c={checkpoint_solvency_c}, but "
+                f"--solvency-c={args.solvency_c}"
+            )
 
     # Version 1 paired ``enumerate(METHODS)`` with numeric score codes.  Once
     # the plotted method list was shortened, this made product betting use
@@ -315,6 +338,8 @@ def main():
     cell_count = 0
     if min(args.small_reps, args.medium_reps, args.large_reps) <= 0:
         raise ValueError("replication counts must be positive")
+    if not 0.0 < args.solvency_c <= 1.0:
+        raise ValueError("--solvency-c must lie in (0,1]")
     topology_counts = {
         n: (
             args.small_reps
@@ -370,12 +395,14 @@ def main():
                         cell_updated = True
                         if method == "probit_common_clock":
                             method_results[result_key] = _common_clock_summary(
-                                x, delta, *calibration_uniforms
+                                x, delta, *calibration_uniforms,
+                                solvency_c=args.solvency_c
                             )
                         elif method == "product_star_common_clock":
                             method_results[result_key] = (
                                 _star_common_clock_summary(
-                                    x, delta, *calibration_uniforms
+                                    x, delta, *calibration_uniforms,
+                                    solvency_c=args.solvency_c
                                 )
                             )
                         else:
@@ -408,6 +435,7 @@ def main():
                         json.dump(
                             {
                                 "version": CHECKPOINT_VERSION,
+                                "solvency_c": args.solvency_c,
                                 "score_kind_by_method": SCORE_KIND_BY_METHOD,
                                 "score_work_budget": (
                                     args.score_work_budget
@@ -422,6 +450,7 @@ def main():
         json.dump(
             {
                 "version": CHECKPOINT_VERSION,
+                "solvency_c": args.solvency_c,
                 "score_kind_by_method": SCORE_KIND_BY_METHOD,
                 "score_work_budget": args.score_work_budget,
                 "cells": completed,
@@ -473,6 +502,7 @@ def main():
                 result[f"{prefix}_topology_budget_rate"] = budget_rates
 
     payload["base_inversion_width"] = payload.get("reported_width")
+    payload["solvency_c"] = args.solvency_c
     payload["reported_width"] = (
         "mesh-resolved full-set diameter; largest-component width also stored"
     )

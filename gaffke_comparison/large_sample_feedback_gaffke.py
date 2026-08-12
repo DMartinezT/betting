@@ -475,6 +475,7 @@ def _betting_interval(
     delta: float,
     u_plus: float,
     u_minus: float,
+    solvency_c: float,
 ) -> tuple[float, float, bool, int]:
     threshold = 1.0 / delta
 
@@ -482,7 +483,9 @@ def _betting_interval(
         alpha = delta / 2.0
 
         def randomized_score(m: float) -> float:
-            plus, minus = methods.compute_M_star_arms(x, m, delta)
+            plus, minus = methods.compute_M_star_arms(
+                x, m, delta, c=solvency_c
+            )
             return max(
                 alpha * plus / u_plus,
                 alpha * minus / u_minus,
@@ -490,7 +493,7 @@ def _betting_interval(
 
         def randomized_scores(ms: np.ndarray) -> np.ndarray:
             return methods._star_randomized_scores(
-                x, ms, delta, u_plus, u_minus
+                x, ms, delta, u_plus, u_minus, solvency_c
             ) - 1.0
 
         return invert_local_component(
@@ -502,6 +505,7 @@ def _betting_interval(
             delta,
             randomizers=(u_plus, u_minus),
             return_diagnostics=True,
+            c=solvency_c,
         )
     if method_name == "Square-root feedback":
         return invert_local_component(
@@ -548,13 +552,14 @@ def _betting_interval(
 
         def randomized_score(m: float) -> float:
             plus, minus = methods.compute_M_probit_star_arms(
-                x, m, delta, buffer_rounds=buffer_rounds
+                x, m, delta, c=solvency_c,
+                buffer_rounds=buffer_rounds
             )
             return max(alpha * plus / u_plus, alpha * minus / u_minus) - 1.0
 
         def randomized_scores(ms: np.ndarray) -> np.ndarray:
             return methods._probit_randomized_scores(
-                x, ms, delta, buffer_rounds, u_plus, u_minus
+                x, ms, delta, buffer_rounds, u_plus, u_minus, solvency_c
             ) - 1.0
 
         return invert_local_component(x, randomized_score, randomized_scores)
@@ -565,11 +570,14 @@ def _betting_interval(
             buffer_rounds=0.0,
             randomizers=(u_plus, u_minus),
             return_diagnostics=True,
+            c=solvency_c,
         )
     raise ValueError(f"unknown method {method_name}")
 
 
-def audit_local_inversion(delta: float, seed: int) -> None:
+def audit_local_inversion(
+    delta: float, seed: int, solvency_c: float
+) -> None:
     """Check local endpoints against the paper's global inversion helpers."""
     rng = np.random.default_rng(seed)
     x = rng.beta(2.0, 2.0, 2_000)
@@ -585,9 +593,15 @@ def audit_local_inversion(delta: float, seed: int) -> None:
             lambda: invert_local_component(
                 x,
                 lambda m: max(
-                    delta * methods.compute_M_star_arms(x, m, delta)[0]
+                    delta
+                    * methods.compute_M_star_arms(
+                        x, m, delta, c=solvency_c
+                    )[0]
                     / (2.0 * u_plus),
-                    delta * methods.compute_M_star_arms(x, m, delta)[1]
+                    delta
+                    * methods.compute_M_star_arms(
+                        x, m, delta, c=solvency_c
+                    )[1]
                     / (2.0 * u_minus),
                 ) - 1.0,
             )[:2],
@@ -598,6 +612,7 @@ def audit_local_inversion(delta: float, seed: int) -> None:
                 x,
                 delta,
                 randomizers=(u_plus, u_minus),
+                c=solvency_c,
             )[:2],
         ),
         (
@@ -621,6 +636,7 @@ def audit_local_inversion(delta: float, seed: int) -> None:
                 delta,
                 buffer_rounds=float(x.size) ** (2.0 / 3.0),
                 randomizers=(u_plus, u_minus),
+                c=solvency_c,
             ),
         ),
         (
@@ -630,6 +646,7 @@ def audit_local_inversion(delta: float, seed: int) -> None:
                 delta,
                 buffer_rounds=0.0,
                 randomizers=(u_plus, u_minus),
+                c=solvency_c,
             ),
         ),
         (
@@ -639,6 +656,7 @@ def audit_local_inversion(delta: float, seed: int) -> None:
                 delta,
                 buffer_rounds=0.0,
                 randomizers=(u_plus, u_minus),
+                c=solvency_c,
             )[:2],
         ),
     )
@@ -647,7 +665,9 @@ def audit_local_inversion(delta: float, seed: int) -> None:
         if name in feedback_local:
             local = feedback_local[name][:2]
         else:
-            local = _betting_interval(x, name, delta, u_plus, u_minus)[:2]
+            local = _betting_interval(
+                x, name, delta, u_plus, u_minus, solvency_c
+            )[:2]
         global_endpoints = global_fn()
         error = max(abs(local[0] - global_endpoints[0]), abs(local[1] - global_endpoints[1]))
         print(f"audit {name:36s} max endpoint error={error:.3e}")
@@ -1127,10 +1147,18 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
         if rep >= unbuffered_reps_by_n[n]:
             required.difference_update(FIGURE3_METHODS)
         return required
-    distributions = DISTRIBUTIONS[: args.distribution_limit]
+    if args.distribution_indices is None:
+        distribution_pairs = list(enumerate(
+            DISTRIBUTIONS[: args.distribution_limit]
+        ))
+    else:
+        distribution_pairs = [
+            (index, DISTRIBUTIONS[index])
+            for index in args.distribution_indices
+        ]
 
     if args.audit:
-        audit_local_inversion(args.delta, args.seed)
+        audit_local_inversion(args.delta, args.seed, args.solvency_c)
 
     checkpoint = output / "results_checkpoint.csv"
     rows: list[dict[str, object]] = []
@@ -1152,13 +1180,17 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
 
     # Trigger compilation outside timed regions.
     warm = np.linspace(0.1, 0.9, 64)
-    methods.compute_M_star(warm, 0.5, args.delta)
-    methods.compute_M_star_common_clock_arms(warm, 0.5, args.delta)
+    methods.compute_M_star(warm, 0.5, args.delta, c=args.solvency_c)
+    methods.compute_M_star_common_clock_arms(
+        warm, 0.5, args.delta, c=args.solvency_c
+    )
     methods._star_randomized_scores(
-        warm, np.asarray([0.5]), args.delta, 0.5, 0.5
+        warm, np.asarray([0.5]), args.delta, 0.5, 0.5,
+        args.solvency_c
     )
     methods._star_common_clock_arm_randomized_scores(
-        warm, np.asarray([0.5]), args.delta, 0.5, 0.5
+        warm, np.asarray([0.5]), args.delta, 0.5, 0.5,
+        args.solvency_c
     )
     methods.compute_M_hinge_feedback_star(warm, 0.5, args.delta)
     methods.compute_M_capped_feedback_star(warm, 0.5, args.delta)
@@ -1166,13 +1198,16 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
         warm, 0.5, args.delta
     )
     methods.compute_M_probit_star_arms(
-        warm, 0.5, args.delta, buffer_rounds=float(warm.size) ** (2.0 / 3.0)
+        warm, 0.5, args.delta, c=args.solvency_c,
+        buffer_rounds=float(warm.size) ** (2.0 / 3.0)
     )
     methods.compute_M_probit_star_arms(
-        warm, 0.5, args.delta, buffer_rounds=0.0
+        warm, 0.5, args.delta, c=args.solvency_c,
+        buffer_rounds=0.0
     )
     methods.compute_M_probit_common_clock_arms(
-        warm, 0.5, args.delta, buffer_rounds=0.0
+        warm, 0.5, args.delta, c=args.solvency_c,
+        buffer_rounds=0.0
     )
     _feedback_scores_by_kind(
         warm,
@@ -1186,7 +1221,7 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
     start = time.time()
     cells_done = 0
 
-    for dist_idx, dist in enumerate(distributions):
+    for dist_idx, dist in distribution_pairs:
         print(f"\n=== {dist.name} ===", flush=True)
         for rep in range(max_reps):
             max_n = _path_max_n(rep, sample_sizes, reps_by_n)
@@ -1221,7 +1256,8 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                     for method_name in sorted(missing):
                         t0 = time.perf_counter()
                         lower, upper, empty, evaluations = _betting_interval(
-                            x, method_name, args.delta, u_plus, u_minus
+                            x, method_name, args.delta, u_plus, u_minus,
+                            args.solvency_c,
                         )
                         row = _record_row(
                             dist.name,
@@ -1297,7 +1333,8 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                 method_name = "Regularized Efficient betting"
                 t0 = time.perf_counter()
                 lower, upper, empty, evaluations = _betting_interval(
-                    x, method_name, args.delta, u_plus, u_minus
+                    x, method_name, args.delta, u_plus, u_minus,
+                    args.solvency_c,
                 )
                 cell_rows.append(
                     _record_row(
@@ -1319,7 +1356,8 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                     method_name = "Efficient betting"
                     t0 = time.perf_counter()
                     lower, upper, empty, evaluations = _betting_interval(
-                        x, method_name, args.delta, u_plus, u_minus
+                        x, method_name, args.delta, u_plus, u_minus,
+                        args.solvency_c,
                     )
                     cell_rows.append(
                         _record_row(
@@ -1342,7 +1380,8 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                     method_name = "Common-clock Efficient betting"
                     t0 = time.perf_counter()
                     lower, upper, empty, evaluations = _betting_interval(
-                        x, method_name, args.delta, u_plus, u_minus
+                        x, method_name, args.delta, u_plus, u_minus,
+                        args.solvency_c,
                     )
                     row = _record_row(
                         dist.name,
@@ -1378,7 +1417,8 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                         continue
                     t0 = time.perf_counter()
                     lower, upper, empty, evaluations = _betting_interval(
-                        x, method_name, args.delta, u_plus, u_minus
+                        x, method_name, args.delta, u_plus, u_minus,
+                        args.solvency_c,
                     )
                     row = _record_row(
                         dist.name,
@@ -1416,7 +1456,8 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                 method_name = "Capped original feedback"
                 t0 = time.perf_counter()
                 lower, upper, empty, evaluations = _betting_interval(
-                    x, method_name, args.delta, u_plus, u_minus
+                    x, method_name, args.delta, u_plus, u_minus,
+                    args.solvency_c,
                 )
                 cell_rows.append(
                     _record_row(
@@ -1476,13 +1517,16 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
     summary.to_csv(output / "summary.csv", index=False)
     config = {
         "delta": args.delta,
+        "solvency_c": args.solvency_c,
         "seed": args.seed,
         "sample_sizes": sample_sizes,
         "reps_by_n": {str(n): reps_by_n[n] for n in sample_sizes},
         "unbuffered_reps_by_n": {
             str(n): unbuffered_reps_by_n[n] for n in sample_sizes
         },
-        "distributions": [dist.name for dist in distributions],
+        "distributions": [
+            dist.name for _, dist in distribution_pairs
+        ],
         "methods": list(METHOD_ORDER),
         "gaffke_exact_cutoff": args.gaffke_exact_cutoff,
         "continuous_gaffke_large_n_backend": "fourth-order Cornish-Fisher from exact Dirichlet moments",
@@ -1517,10 +1561,12 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--delta", type=float, default=0.01)
     parser.add_argument("--seed", type=int, default=20260723)
+    parser.add_argument("--solvency-c", type=float, default=1.0)
     parser.add_argument("--sample-sizes", nargs="+", type=int)
     parser.add_argument("--reps", type=int)
     parser.add_argument("--unbuffered-reps", type=int, default=30)
     parser.add_argument("--distribution-limit", type=int, default=len(DISTRIBUTIONS))
+    parser.add_argument("--distribution-indices", nargs="+", type=int)
     parser.add_argument("--gaffke-exact-cutoff", type=int, default=3_000)
     parser.add_argument("--progress-every", type=int, default=5)
     parser.add_argument("--audit", action="store_true")
@@ -1529,10 +1575,20 @@ def parse_args() -> argparse.Namespace:
     args = parser.parse_args()
     if args.unbuffered_reps <= 0:
         parser.error("--unbuffered-reps must be positive")
+    if not 0.0 < args.solvency_c <= 1.0:
+        parser.error("--solvency-c must lie in (0,1]")
     if args.reps is not None and args.reps <= 0:
         parser.error("--reps must be positive")
     if args.distribution_limit <= 0 or args.distribution_limit > len(DISTRIBUTIONS):
         parser.error("--distribution-limit is out of range")
+    if args.distribution_indices is not None:
+        if len(set(args.distribution_indices)) != len(args.distribution_indices):
+            parser.error("--distribution-indices must be unique")
+        if any(
+            index < 0 or index >= len(DISTRIBUTIONS)
+            for index in args.distribution_indices
+        ):
+            parser.error("--distribution-indices contains an out-of-range index")
     return args
 
 

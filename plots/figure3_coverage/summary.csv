@@ -1,0 +1,1165 @@
+source,distribution,n,method,calibration,solvency_c,rejections,replications,noncoverage,wilson_lower,wilson_upper
+betting,Bernoulli(0.1),10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),10,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),50,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),50,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),50,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.1),50,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),50,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),50,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),50,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),50,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),50,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.1),50,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),100,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),100,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),500,Efficient betting,Deterministic,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),500,Efficient betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),500,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),500,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),500,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.1),500,STaR betting,Deterministic,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),500,STaR betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),500,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),500,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.1),1000,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),1000,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.1),5000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),5000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),10000,Efficient betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),10000,Efficient betting,Deterministic,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),10000,Efficient betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),10000,Efficient betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),10000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.1),10000,Product betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),10000,STaR betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),10000,STaR betting,Deterministic,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),10000,STaR betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),10000,STaR betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,Bernoulli(0.1),50000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),50000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),500000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.1),1000000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),10,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),10,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),10,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),10,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),10,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),50,Efficient betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),50,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),50,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),50,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),50,Product betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),50,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),50,STaR betting,Deterministic,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),50,STaR betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),50,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),50,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),100,Efficient betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),100,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),100,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),100,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),100,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),100,STaR betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),100,STaR betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),100,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),100,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),500,Efficient betting,Deterministic,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),500,Efficient betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),500,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),500,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),500,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),500,STaR betting,Deterministic,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),500,STaR betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),500,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),500,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,Bernoulli(0.5),1000,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),1000,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),1000,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),1000,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),1000,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),1000,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,Bernoulli(0.5),1000,STaR betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),1000,STaR betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),1000,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),1000,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,Bernoulli(0.5),5000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),5000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),10000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,Bernoulli(0.5),50000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),50000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,Product betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,Bernoulli(0.5),100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),500000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,Bernoulli(0.5),1000000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",10,Efficient betting,Uniformly randomized,0.5,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Beta(0.5,0.5)",10,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",10,Product betting,Uniformly randomized,0.5,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Beta(0.5,0.5)",10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",10,STaR betting,Uniformly randomized,0.5,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Beta(0.5,0.5)",10,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",50,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",50,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",50,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",50,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",50,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",50,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",50,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",50,STaR betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",50,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",50,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",100,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",100,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",500,Efficient betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",500,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",500,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",500,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",500,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",500,STaR betting,Deterministic,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",500,STaR betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",500,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",500,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",1000,Efficient betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",1000,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",1000,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",1000,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(0.5,0.5)",1000,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",1000,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(0.5,0.5)",1000,STaR betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",1000,STaR betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",1000,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",1000,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(0.5,0.5)",5000,Efficient betting,Deterministic,0.5,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(0.5,0.5)",5000,Efficient betting,Deterministic,1.0,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(0.5,0.5)",5000,Efficient betting,Uniformly randomized,0.5,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(0.5,0.5)",5000,Efficient betting,Uniformly randomized,1.0,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(0.5,0.5)",5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",5000,Product betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(0.5,0.5)",5000,STaR betting,Deterministic,0.5,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(0.5,0.5)",5000,STaR betting,Deterministic,1.0,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(0.5,0.5)",5000,STaR betting,Uniformly randomized,0.5,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(0.5,0.5)",5000,STaR betting,Uniformly randomized,1.0,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(0.5,0.5)",10000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",10000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",10000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",10000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",10000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",10000,Product betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(0.5,0.5)",10000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",10000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",10000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",10000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(0.5,0.5)",50000,Efficient betting,Deterministic,0.5,3,30,0.1,0.03459988874733419,0.25621082579184085
+betting,"Beta(0.5,0.5)",50000,Efficient betting,Deterministic,1.0,3,30,0.1,0.03459988874733419,0.25621082579184085
+betting,"Beta(0.5,0.5)",50000,Efficient betting,Uniformly randomized,0.5,3,30,0.1,0.03459988874733419,0.25621082579184085
+betting,"Beta(0.5,0.5)",50000,Efficient betting,Uniformly randomized,1.0,3,30,0.1,0.03459988874733419,0.25621082579184085
+betting,"Beta(0.5,0.5)",50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",50000,Product betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",50000,STaR betting,Deterministic,0.5,3,30,0.1,0.03459988874733419,0.25621082579184085
+betting,"Beta(0.5,0.5)",50000,STaR betting,Deterministic,1.0,3,30,0.1,0.03459988874733419,0.25621082579184085
+betting,"Beta(0.5,0.5)",50000,STaR betting,Uniformly randomized,0.5,3,30,0.1,0.03459988874733419,0.25621082579184085
+betting,"Beta(0.5,0.5)",50000,STaR betting,Uniformly randomized,1.0,3,30,0.1,0.03459988874733419,0.25621082579184085
+betting,"Beta(0.5,0.5)",100000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",500000,Efficient betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",500000,Efficient betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",500000,Efficient betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",500000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",500000,Product betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",500000,STaR betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",500000,STaR betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",500000,STaR betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",500000,STaR betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(0.5,0.5)",1000000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(0.5,0.5)",1000000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",10,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",50,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",50,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",50,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",50,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",50,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",50,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",50,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",50,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",50,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",50,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",100,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",100,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",100,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",100,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",100,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",100,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",100,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",100,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",100,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",500,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",500,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",500,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",500,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",500,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",500,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",500,STaR betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",500,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",500,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",1000,Efficient betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",1000,Efficient betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(1,5)",1000,Efficient betting,Uniformly randomized,0.5,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Beta(1,5)",1000,Efficient betting,Uniformly randomized,1.0,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Beta(1,5)",1000,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(1,5)",1000,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(1,5)",1000,STaR betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",1000,STaR betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",1000,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",1000,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(1,5)",5000,Efficient betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(1,5)",5000,Efficient betting,Deterministic,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(1,5)",5000,Efficient betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(1,5)",5000,Efficient betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(1,5)",5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",5000,Product betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(1,5)",5000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",5000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",5000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",5000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,Product betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(1,5)",10000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",10000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(1,5)",50000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",50000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",500000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",500000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",500000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",500000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",500000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",500000,STaR betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(1,5)",500000,STaR betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(1,5)",500000,STaR betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(1,5)",500000,STaR betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(1,5)",1000000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(1,5)",1000000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",10,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",10,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(2,2)",10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",10,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",10,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",10,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(2,2)",50,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",50,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",50,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(2,2)",50,Efficient betting,Uniformly randomized,1.0,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Beta(2,2)",50,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",50,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(2,2)",50,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",50,STaR betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(2,2)",50,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(2,2)",50,STaR betting,Uniformly randomized,1.0,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Beta(2,2)",100,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",100,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",100,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",100,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",100,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",100,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",100,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",100,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",100,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",500,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",1000,Efficient betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",1000,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",1000,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",1000,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",1000,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",1000,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(2,2)",1000,STaR betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",1000,STaR betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",1000,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",1000,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(2,2)",5000,Efficient betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",5000,Efficient betting,Deterministic,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",5000,Efficient betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",5000,Efficient betting,Uniformly randomized,1.0,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Beta(2,2)",5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(2,2)",5000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(2,2)",5000,STaR betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",5000,STaR betting,Deterministic,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",5000,STaR betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",5000,STaR betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,Efficient betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,Efficient betting,Deterministic,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,Efficient betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,Efficient betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(2,2)",10000,Product betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,STaR betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,STaR betting,Deterministic,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,STaR betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",10000,STaR betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(2,2)",50000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",50000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",50000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",50000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",50000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",50000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",50000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",50000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",50000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",100000,Efficient betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",100000,Efficient betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",100000,Efficient betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",100000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",100000,Product betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",500000,Efficient betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",500000,Efficient betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",500000,Efficient betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",500000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(2,2)",500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",500000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",500000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",500000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",500000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",500000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(2,2)",1000000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",10,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",50,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",50,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",50,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",50,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",50,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",50,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",50,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",50,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",50,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",50,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",100,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",100,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",500,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",1000,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",1000,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",1000,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",1000,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",1000,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",1000,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",1000,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",1000,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(20,80)",1000,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",1000,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(20,80)",5000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",5000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(20,80)",10000,Efficient betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(20,80)",10000,Efficient betting,Deterministic,1.0,4,60,0.06666666666666667,0.026228698724506214,0.1592535731319717
+betting,"Beta(20,80)",10000,Efficient betting,Uniformly randomized,0.5,4,60,0.06666666666666667,0.026228698724506214,0.1592535731319717
+betting,"Beta(20,80)",10000,Efficient betting,Uniformly randomized,1.0,4,60,0.06666666666666667,0.026228698724506214,0.1592535731319717
+betting,"Beta(20,80)",10000,Product betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(20,80)",10000,Product betting,Uniformly randomized,0.5,3,60,0.05,0.01714950216439568,0.1370051647634852
+betting,"Beta(20,80)",10000,STaR betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(20,80)",10000,STaR betting,Deterministic,1.0,3,60,0.05,0.01714950216439568,0.1370051647634852
+betting,"Beta(20,80)",10000,STaR betting,Uniformly randomized,0.5,3,60,0.05,0.01714950216439568,0.1370051647634852
+betting,"Beta(20,80)",10000,STaR betting,Uniformly randomized,1.0,3,60,0.05,0.01714950216439568,0.1370051647634852
+betting,"Beta(20,80)",50000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",50000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",500000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(20,80)",1000000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",10,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",50,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",50,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",50,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(50,50)",50,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(50,50)",50,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",50,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(50,50)",50,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",50,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",50,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(50,50)",50,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(50,50)",100,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",100,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",500,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",500,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",500,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(50,50)",500,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(50,50)",500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",500,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(50,50)",500,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",500,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",500,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(50,50)",500,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Beta(50,50)",1000,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",1000,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",1000,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(50,50)",1000,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",1000,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",1000,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(50,50)",1000,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",1000,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",1000,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Beta(50,50)",1000,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Beta(50,50)",5000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",5000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",5000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",5000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",5000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",5000,STaR betting,Deterministic,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(50,50)",5000,STaR betting,Deterministic,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(50,50)",5000,STaR betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(50,50)",5000,STaR betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Beta(50,50)",10000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",10000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Beta(50,50)",50000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",50000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",500000,Efficient betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",500000,Efficient betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",500000,Efficient betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",500000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",500000,Product betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",500000,STaR betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",500000,STaR betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",500000,STaR betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",500000,STaR betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",1000000,Efficient betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",1000000,Efficient betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",1000000,Efficient betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",1000000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Beta(50,50)",1000000,STaR betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",1000000,STaR betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",1000000,STaR betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Beta(50,50)",1000000,STaR betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0,1)",10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",10,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",10,Efficient betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",10,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",10,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",10,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",50,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",50,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",50,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",50,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",50,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",50,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",50,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",50,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",50,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",50,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,Efficient betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,Product betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,STaR betting,Uniformly randomized,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",100,STaR betting,Uniformly randomized,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",500,Efficient betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",500,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",500,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",500,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0,1)",500,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",500,STaR betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",500,STaR betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",500,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",500,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",1000,Efficient betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",1000,Efficient betting,Deterministic,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",1000,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0,1)",1000,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0,1)",1000,Product betting,Deterministic,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0,1)",1000,Product betting,Uniformly randomized,0.5,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Uniform(0,1)",1000,STaR betting,Deterministic,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0,1)",1000,STaR betting,Deterministic,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0,1)",1000,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0,1)",1000,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0,1)",5000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",5000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,Efficient betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,Efficient betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,Product betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,STaR betting,Uniformly randomized,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",10000,STaR betting,Uniformly randomized,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0,1)",50000,Efficient betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0,1)",50000,Efficient betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0,1)",50000,Efficient betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0,1)",50000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0,1)",50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",50000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",50000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",50000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",50000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",50000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",500000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",1000000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",1000000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",1000000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",1000000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0,1)",1000000,STaR betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0,1)",1000000,STaR betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0,1)",1000000,STaR betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0,1)",1000000,STaR betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",10,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",10,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",10,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",10,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",10,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",10,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",10,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",10,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",10,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",10,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",50,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",50,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",50,Efficient betting,Uniformly randomized,0.5,4,120,0.03333333333333333,0.0130375510983506,0.082580337559106
+betting,"Uniform(0.45,0.55)",50,Efficient betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0.45,0.55)",50,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",50,Product betting,Uniformly randomized,0.5,4,120,0.03333333333333333,0.0130375510983506,0.082580337559106
+betting,"Uniform(0.45,0.55)",50,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",50,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",50,STaR betting,Uniformly randomized,0.5,4,120,0.03333333333333333,0.0130375510983506,0.082580337559106
+betting,"Uniform(0.45,0.55)",50,STaR betting,Uniformly randomized,1.0,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0.45,0.55)",100,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",100,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",100,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",100,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",100,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",100,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",100,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",100,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",100,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",100,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",500,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",500,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",500,Efficient betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0.45,0.55)",500,Efficient betting,Uniformly randomized,1.0,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Uniform(0.45,0.55)",500,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",500,Product betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0.45,0.55)",500,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",500,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",500,STaR betting,Uniformly randomized,0.5,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+betting,"Uniform(0.45,0.55)",500,STaR betting,Uniformly randomized,1.0,3,120,0.025,0.008538174769902228,0.0709300333278661
+betting,"Uniform(0.45,0.55)",1000,Efficient betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",1000,Efficient betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",1000,Efficient betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",1000,Efficient betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",1000,Product betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",1000,Product betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",1000,STaR betting,Deterministic,0.5,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",1000,STaR betting,Deterministic,1.0,0,120,0.0,0.0,0.031019166418703486
+betting,"Uniform(0.45,0.55)",1000,STaR betting,Uniformly randomized,0.5,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",1000,STaR betting,Uniformly randomized,1.0,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+betting,"Uniform(0.45,0.55)",5000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",5000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",5000,Efficient betting,Uniformly randomized,0.5,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Uniform(0.45,0.55)",5000,Efficient betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Uniform(0.45,0.55)",5000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",5000,Product betting,Uniformly randomized,0.5,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Uniform(0.45,0.55)",5000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",5000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",5000,STaR betting,Uniformly randomized,0.5,2,60,0.03333333333333333,0.009189319256197877,0.113637742743086
+betting,"Uniform(0.45,0.55)",5000,STaR betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Uniform(0.45,0.55)",10000,Efficient betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",10000,Efficient betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",10000,Efficient betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Uniform(0.45,0.55)",10000,Efficient betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Uniform(0.45,0.55)",10000,Product betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",10000,Product betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Uniform(0.45,0.55)",10000,STaR betting,Deterministic,0.5,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",10000,STaR betting,Deterministic,1.0,0,60,0.0,0.0,0.06017185214208986
+betting,"Uniform(0.45,0.55)",10000,STaR betting,Uniformly randomized,0.5,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Uniform(0.45,0.55)",10000,STaR betting,Uniformly randomized,1.0,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+betting,"Uniform(0.45,0.55)",50000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",50000,Efficient betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",50000,Efficient betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",50000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",50000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",50000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",50000,STaR betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",50000,STaR betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",50000,STaR betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",50000,STaR betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",100000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",100000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,Efficient betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,Efficient betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,Efficient betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,Efficient betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,STaR betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,STaR betting,Deterministic,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,STaR betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",500000,STaR betting,Uniformly randomized,1.0,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",1000000,Efficient betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",1000000,Efficient betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",1000000,Efficient betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",1000000,Efficient betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",1000000,Product betting,Deterministic,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",1000000,Product betting,Uniformly randomized,0.5,0,30,0.0,0.0,0.11351339317396876
+betting,"Uniform(0.45,0.55)",1000000,STaR betting,Deterministic,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",1000000,STaR betting,Deterministic,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",1000000,STaR betting,Uniformly randomized,0.5,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+betting,"Uniform(0.45,0.55)",1000000,STaR betting,Uniformly randomized,1.0,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,Bernoulli(0.1),10,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.1),10,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.1),50,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.1),50,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.1),100,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,Bernoulli(0.1),100,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,Bernoulli(0.1),500,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,Bernoulli(0.1),500,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,Bernoulli(0.1),1000,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.1),1000,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.1),3000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,Bernoulli(0.1),3000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,Bernoulli(0.1),10000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,Bernoulli(0.1),10000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,Bernoulli(0.1),30000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.1),30000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.1),100000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.1),100000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.1),300000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.1),300000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.1),1000000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,Bernoulli(0.1),1000000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,Bernoulli(0.5),10,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.5),10,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.5),50,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.5),50,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.5),100,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.5),100,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.5),500,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,Bernoulli(0.5),500,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,Bernoulli(0.5),1000,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.5),1000,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,Bernoulli(0.5),3000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,Bernoulli(0.5),3000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,Bernoulli(0.5),10000,Gaffke,Deterministic,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,Bernoulli(0.5),10000,Gaffke,Uniformly randomized,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,Bernoulli(0.5),30000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,Bernoulli(0.5),30000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,Bernoulli(0.5),100000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,Bernoulli(0.5),100000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,Bernoulli(0.5),300000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.5),300000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.5),1000000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,Bernoulli(0.5),1000000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(0.5,0.5)",10,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(0.5,0.5)",10,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(0.5,0.5)",50,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(0.5,0.5)",50,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(0.5,0.5)",100,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(0.5,0.5)",100,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(0.5,0.5)",500,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(0.5,0.5)",500,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(0.5,0.5)",1000,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(0.5,0.5)",1000,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(0.5,0.5)",3000,Gaffke,Deterministic,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Beta(0.5,0.5)",3000,Gaffke,Uniformly randomized,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Beta(0.5,0.5)",10000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(0.5,0.5)",10000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(0.5,0.5)",30000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(0.5,0.5)",30000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(0.5,0.5)",100000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(0.5,0.5)",100000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(0.5,0.5)",300000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(0.5,0.5)",300000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(0.5,0.5)",1000000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(0.5,0.5)",1000000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(1,5)",10,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(1,5)",10,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(1,5)",50,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(1,5)",50,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(1,5)",100,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(1,5)",100,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(1,5)",500,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(1,5)",500,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(1,5)",1000,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(1,5)",1000,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(1,5)",3000,Gaffke,Deterministic,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Beta(1,5)",3000,Gaffke,Uniformly randomized,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Beta(1,5)",10000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(1,5)",10000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(1,5)",30000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(1,5)",30000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(1,5)",100000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(1,5)",100000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(1,5)",300000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(1,5)",300000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(1,5)",1000000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(1,5)",1000000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(2,2)",10,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(2,2)",10,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(2,2)",50,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(2,2)",50,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(2,2)",100,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(2,2)",100,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(2,2)",500,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(2,2)",500,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Beta(2,2)",1000,Gaffke,Deterministic,,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+gaffke,"Beta(2,2)",1000,Gaffke,Uniformly randomized,,2,120,0.016666666666666666,0.004582564565921141,0.0587359629721589
+gaffke,"Beta(2,2)",3000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(2,2)",3000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(2,2)",10000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(2,2)",10000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(2,2)",30000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(2,2)",30000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(2,2)",100000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(2,2)",100000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(2,2)",300000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(2,2)",300000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(2,2)",1000000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(2,2)",1000000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(20,80)",1000,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(20,80)",1000,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(20,80)",3000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(20,80)",3000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(20,80)",10000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(20,80)",10000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(20,80)",30000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(20,80)",30000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(20,80)",100000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(20,80)",100000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(20,80)",300000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(20,80)",300000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(20,80)",1000000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(20,80)",1000000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(50,50)",1000,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(50,50)",1000,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Beta(50,50)",3000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(50,50)",3000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Beta(50,50)",10000,Gaffke,Deterministic,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Beta(50,50)",10000,Gaffke,Uniformly randomized,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Beta(50,50)",30000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(50,50)",30000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Beta(50,50)",100000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(50,50)",100000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(50,50)",300000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(50,50)",300000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Beta(50,50)",1000000,Gaffke,Deterministic,,2,30,0.06666666666666667,0.018477023791270378,0.2132345836261692
+gaffke,"Beta(50,50)",1000000,Gaffke,Uniformly randomized,,2,30,0.06666666666666667,0.018477023791270378,0.2132345836261692
+gaffke,"Uniform(0,1)",10,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Uniform(0,1)",10,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Uniform(0,1)",50,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Uniform(0,1)",50,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Uniform(0,1)",100,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Uniform(0,1)",100,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Uniform(0,1)",500,Gaffke,Deterministic,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Uniform(0,1)",500,Gaffke,Uniformly randomized,,1,120,0.008333333333333333,0.0014725557333420923,0.045696291245049675
+gaffke,"Uniform(0,1)",1000,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Uniform(0,1)",1000,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Uniform(0,1)",3000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Uniform(0,1)",3000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Uniform(0,1)",10000,Gaffke,Deterministic,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Uniform(0,1)",10000,Gaffke,Uniformly randomized,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Uniform(0,1)",30000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0,1)",30000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0,1)",100000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0,1)",100000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0,1)",300000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0,1)",300000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0,1)",1000000,Gaffke,Deterministic,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Uniform(0,1)",1000000,Gaffke,Uniformly randomized,,1,30,0.03333333333333333,0.005908590381612455,0.16670390991409173
+gaffke,"Uniform(0.45,0.55)",1000,Gaffke,Deterministic,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Uniform(0.45,0.55)",1000,Gaffke,Uniformly randomized,,0,120,0.0,0.0,0.031019166418703486
+gaffke,"Uniform(0.45,0.55)",3000,Gaffke,Deterministic,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Uniform(0.45,0.55)",3000,Gaffke,Uniformly randomized,,0,60,0.0,0.0,0.06017185214208986
+gaffke,"Uniform(0.45,0.55)",10000,Gaffke,Deterministic,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Uniform(0.45,0.55)",10000,Gaffke,Uniformly randomized,,1,60,0.016666666666666666,0.0029481597947862495,0.08855129727590061
+gaffke,"Uniform(0.45,0.55)",30000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0.45,0.55)",30000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0.45,0.55)",100000,Gaffke,Deterministic,,2,30,0.06666666666666667,0.018477023791270378,0.2132345836261692
+gaffke,"Uniform(0.45,0.55)",100000,Gaffke,Uniformly randomized,,2,30,0.06666666666666667,0.018477023791270378,0.2132345836261692
+gaffke,"Uniform(0.45,0.55)",300000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0.45,0.55)",300000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0.45,0.55)",1000000,Gaffke,Deterministic,,0,30,0.0,0.0,0.11351339317396876
+gaffke,"Uniform(0.45,0.55)",1000000,Gaffke,Uniformly randomized,,0,30,0.0,0.0,0.11351339317396876

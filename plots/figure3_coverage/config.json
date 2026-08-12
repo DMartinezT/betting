@@ -1,0 +1,24 @@
+{
+  "delta": 0.01,
+  "betting_seed": 42,
+  "betting_reps_by_n": {
+    "10": 120,
+    "50": 120,
+    "100": 120,
+    "500": 120,
+    "1000": 120,
+    "5000": 60,
+    "10000": 60,
+    "50000": 30,
+    "100000": 30,
+    "500000": 30,
+    "1000000": 30
+  },
+  "solvency_c_values": [
+    0.5,
+    1.0
+  ],
+  "main_figure_solvency_c": 0.5,
+  "membership_check": "terminal rejection evaluated at the true mean",
+  "gaffke_results": "/home/diegomar/empirical_bentkus/betting/gaffke_comparison/figure2_gaffke_results/results.csv"
+}

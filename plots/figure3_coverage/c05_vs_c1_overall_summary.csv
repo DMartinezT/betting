@@ -1,0 +1,9 @@
+method,calibration,solvency_c,rejections,replications,noncoverage
+Efficient betting,Deterministic,0.5,29,7560,0.003835978835978836
+Efficient betting,Deterministic,1.0,37,7560,0.004894179894179894
+Efficient betting,Uniformly randomized,0.5,70,7560,0.009259259259259259
+Efficient betting,Uniformly randomized,1.0,70,7560,0.009259259259259259
+STaR betting,Deterministic,0.5,33,7560,0.004365079365079365
+STaR betting,Deterministic,1.0,39,7560,0.005158730158730159
+STaR betting,Uniformly randomized,0.5,67,7560,0.008862433862433862
+STaR betting,Uniformly randomized,1.0,63,7560,0.008333333333333333

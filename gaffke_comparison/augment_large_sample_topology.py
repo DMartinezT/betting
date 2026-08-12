@@ -37,7 +37,9 @@ BETTING_METHODS = (
 )
 
 
-def _score_functions(x, method_name, delta, u_plus, u_minus):
+def _score_functions(
+    x, method_name, delta, u_plus, u_minus, solvency_c
+):
     threshold = 1.0 / delta
     if method_name == "Square-root feedback":
         return (
@@ -62,7 +64,7 @@ def _score_functions(x, method_name, delta, u_plus, u_minus):
 
         def scalar(mean):
             plus, minus = methods.compute_M_probit_star_arms(
-                x, mean, delta, buffer_rounds=0.0
+                x, mean, delta, c=solvency_c, buffer_rounds=0.0
             )
             return max(
                 alpha * plus / u_plus,
@@ -78,6 +80,7 @@ def _score_functions(x, method_name, delta, u_plus, u_minus):
                 0.0,
                 u_plus,
                 u_minus,
+                solvency_c,
             ),
             1.0,
         )
@@ -111,9 +114,10 @@ def _topology(
     local_lower,
     local_upper,
     local_empty,
+    solvency_c,
 ):
     scalar, batch, threshold = _score_functions(
-        x, method_name, delta, u_plus, u_minus
+        x, method_name, delta, u_plus, u_minus, solvency_c
     )
     standard_error = methods._sample_standard_error(x)
 
@@ -243,13 +247,21 @@ def main():
     results_dir = args.results_dir.resolve()
     with (results_dir / "config.json").open(encoding="utf-8") as stream:
         config = json.load(stream)
+    solvency_c = float(config.get("solvency_c", 1.0))
     results_path = results_dir / "results.csv"
     frame = pd.read_csv(results_path)
     checkpoint_path = results_dir / "topology_checkpoint.json"
     completed = {}
     if checkpoint_path.exists():
         with checkpoint_path.open(encoding="utf-8") as stream:
-            completed = json.load(stream).get("cells", {})
+            checkpoint_payload = json.load(stream)
+        checkpoint_c = float(checkpoint_payload.get("solvency_c", 1.0))
+        if not np.isclose(checkpoint_c, solvency_c):
+            raise ValueError(
+                f"checkpoint uses c={checkpoint_c}, but results use "
+                f"c={solvency_c}"
+            )
+        completed = checkpoint_payload.get("cells", {})
 
     sample_sizes = [int(value) for value in config["sample_sizes"]]
     reps_by_n = {
@@ -257,14 +269,17 @@ def main():
     }
     delta = float(config["delta"])
     seed = int(config["seed"])
-    distributions = [
-        distribution
-        for distribution in DISTRIBUTIONS
-        if distribution.name in config["distributions"]
+    distribution_by_name = {
+        distribution.name: (index, distribution)
+        for index, distribution in enumerate(DISTRIBUTIONS)
+    }
+    distribution_pairs = [
+        distribution_by_name[name]
+        for name in config["distributions"]
     ]
 
     new_cells = 0
-    for distribution_index, distribution in enumerate(distributions):
+    for distribution_index, distribution in distribution_pairs:
         maximum_replications = min(
             args.rep_limit, max(reps_by_n.values())
         )
@@ -326,6 +341,7 @@ def main():
                         float(row["lower"]),
                         float(row["upper"]),
                         bool(row["empty_center_component"]),
+                        solvency_c,
                     )
                     new_cells += 1
                     if new_cells % args.progress_every == 0:
@@ -341,6 +357,7 @@ def main():
                             json.dump(
                                 {
                                     "rep_limit": args.rep_limit,
+                                    "solvency_c": solvency_c,
                                     "score_work_budget": (
                                         args.score_work_budget
                                     ),
@@ -353,6 +370,7 @@ def main():
         json.dump(
             {
                 "rep_limit": args.rep_limit,
+                "solvency_c": solvency_c,
                 "score_work_budget": args.score_work_budget,
                 "cells": completed,
             },

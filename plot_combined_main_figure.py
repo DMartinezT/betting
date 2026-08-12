@@ -1,9 +1,11 @@
-"""Build the paper's combined betting--Gaffke confidence-interval figure.
+"""Build the paper's betting--Gaffke confidence-interval figures.
 
 The betting curves come from the saved fixed-horizon experiment.  The Gaffke
 curves come from a dedicated saved experiment with the same replication
 schedule; the two older Gaffke experiments remain as a backward-compatible
-fallback for rebuilding the plot.
+fallback for rebuilding the plots.  The introductory figure contains three
+representative deterministic comparisons; the full experimental figure keeps
+all nine distributions and both calibrations.
 """
 
 from __future__ import annotations
@@ -44,6 +46,12 @@ FIGURE_GAFFKE_DIR = (
 )
 PAPER_OUTPUT = PAPER_DIR / "plots" / "ci_width_original_vs_star.png"
 BETTING_OUTPUT = HERE / "plots" / "ci_width_original_vs_star.png"
+INTRO_PAPER_OUTPUT = (
+    PAPER_DIR / "plots" / "intro_deterministic_comparison.png"
+)
+INTRO_BETTING_OUTPUT = (
+    HERE / "plots" / "intro_deterministic_comparison.png"
+)
 
 PANEL_ORDER = (
     "Uniform(0,1)",
@@ -58,6 +66,12 @@ PANEL_ORDER = (
 )
 ROW_MINIMUM_N = (10, 100, 1_000)
 MAXIMUM_N = 1_000_000
+INTRO_MINIMUM_N = 1_000
+INTRO_PANEL_ORDER = (
+    "Bernoulli(0.5)",
+    "Beta(50,50)",
+    "Beta(1,5)",
+)
 GAFFKE_RANDOMIZED_ORDER = (
     "Uniform(0,1)",
     "Beta(1,5)",
@@ -422,6 +436,130 @@ def _plot_saved_rows(
         )
 
 
+def make_intro_figure() -> Path:
+    """Plot three deterministic comparisons for the introduction."""
+    with BETTING_RESULTS.open(encoding="utf-8") as stream:
+        payload = json.load(stream)
+    results = payload["results"]
+    all_n = np.asarray(payload["n_values"], dtype=int)
+    delta = float(payload["delta"])
+    gaussian_quantile = NormalDist().inv_cdf(1.0 - delta / 2.0)
+    gaffke = _summarize_gaffke(_load_gaffke_results())
+
+    betting_mask = (
+        (all_n >= INTRO_MINIMUM_N) & (all_n <= MAXIMUM_N)
+    )
+    betting_n = all_n[betting_mask]
+    betting_indices = np.flatnonzero(betting_mask)
+    fig, axes = plt.subplots(1, 3, figsize=(11.2, 3.45))
+
+    for axis, name in zip(axes, INTRO_PANEL_ORDER):
+        model_results = results[name]
+        gaussian_limit = (
+            2.0
+            * math.sqrt(DISTRIBUTION_BY_NAME[name].variance)
+            * gaussian_quantile
+        )
+        axis.plot(
+            betting_n,
+            np.full(betting_n.size, gaussian_limit),
+            color="black",
+            ls=":",
+            lw=1.6,
+            label="_nolegend_",
+            zorder=2,
+        )
+
+        for key, color, marker in (
+            (
+                "product_star_common_clock",
+                "darkorange",
+                "P",
+            ),
+            (
+                _efficient_saved_key(model_results),
+                "#2ca02c",
+                "h",
+            ),
+        ):
+            rows = model_results[
+                f"{key}_deterministic_markov_diameter"
+            ]
+            _plot_saved_rows(
+                axis,
+                betting_n,
+                [rows[index] for index in betting_indices],
+                color=color,
+                marker=marker,
+                label="_nolegend_",
+                linestyle="-",
+                show_band=False,
+                filled_marker=True,
+                marker_size=4.4,
+                zorder=4,
+            )
+
+        gaffke_rows = gaffke[
+            (gaffke["distribution"] == name)
+            & (gaffke["method"] == "Gaffke")
+            & (gaffke["n"] >= INTRO_MINIMUM_N)
+            & (gaffke["n"] <= MAXIMUM_N)
+        ].sort_values("n")
+        axis.plot(
+            gaffke_rows["n"],
+            gaffke_rows["mean"],
+            color="#1976b9",
+            marker="o",
+            markerfacecolor="#1976b9",
+            markeredgecolor="#1976b9",
+            lw=1.9,
+            ms=4.0,
+            label="_nolegend_",
+            zorder=3,
+        )
+
+        axis.set_xscale("log")
+        axis.set_xlim(INTRO_MINIMUM_N, MAXIMUM_N)
+        axis.set_title(name)
+        axis.set_xlabel("sample size $n$")
+        axis.set_ylabel(r"$\sqrt{n}\times$ CI width")
+        axis.grid(True, ls="--", alpha=0.3)
+
+    handles = [
+        Line2D(
+            [0], [0], color=color, marker=marker, lw=2,
+            markerfacecolor=color, markeredgecolor=color, ms=4.5,
+        )
+        for color, marker in (
+            ("#2ca02c", "h"),
+            ("darkorange", "P"),
+            ("#1976b9", "o"),
+        )
+    ]
+    handles.append(Line2D([0], [0], color="black", ls=":", lw=1.7))
+    labels = [
+        "Efficient betting",
+        "STaR betting",
+        "Gaffke",
+        "Gaussian limit",
+    ]
+    fig.legend(
+        handles,
+        labels,
+        loc="lower center",
+        bbox_to_anchor=(0.5, 0.005),
+        ncol=4,
+        fontsize=8.8,
+        frameon=False,
+    )
+    fig.tight_layout(rect=(0.0, 0.14, 1.0, 1.0))
+    for destination in (INTRO_PAPER_OUTPUT, INTRO_BETTING_OUTPUT):
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(destination, dpi=220, bbox_inches="tight")
+    plt.close(fig)
+    return INTRO_PAPER_OUTPUT
+
+
 def make_figure() -> Path:
     with BETTING_RESULTS.open(encoding="utf-8") as stream:
         payload = json.load(stream)
@@ -639,4 +777,5 @@ def make_figure() -> Path:
 
 
 if __name__ == "__main__":
+    print(make_intro_figure())
     print(make_figure())

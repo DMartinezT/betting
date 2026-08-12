@@ -138,6 +138,17 @@ run writes:
 
 To redraw the figures from the augmented JSON without rerunning either the
 simulations or the topology inversion, use `python plot_saved_experiment.py`.
+The deterministic three-panel introductory comparison and the full
+betting--Gaffke comparison use the dedicated Gaffke sample and are generated
+together by
+
+```bash
+python gaffke_comparison/figure2_gaffke.py
+python plot_combined_main_figure.py
+```
+
+The plotting command writes `plots/intro_deterministic_comparison.png` and
+`plots/ci_width_original_vs_star.png`, copying both into the paper repository.
 
 The large-sample main plots, including 30 paired common-clock intervals per
 distribution and horizon, are produced by

@@ -1,5 +1,6 @@
 {
   "delta": 0.01,
+  "solvency_c": 0.5,
   "seed": 20260723,
   "sample_sizes": [
     1000,
@@ -75,5 +76,26 @@
     "large_n_screen": "known local component plus 31 interior probes and endpoint-anchored outside probes at standard-error distances 1/8, 1/4, 1/2, 1, 2, ...; full multiresolution inversion on any interior rejection or outside acceptance",
     "finite_mesh": true,
     "checkpoint": "topology_checkpoint.json"
+  },
+  "parallel_generation": {
+    "distribution_groups": [
+      [
+        0,
+        1,
+        2
+      ],
+      [
+        3,
+        4,
+        5
+      ],
+      [
+        6,
+        7,
+        8
+      ]
+    ],
+    "threads_per_group": 10,
+    "seed_indexing": "global distribution indices"
   }
 }

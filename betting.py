@@ -773,12 +773,14 @@ def compute_M_capped_exponential_feedback_star(
 
 
 @njit(parallel=True)
-def _recalculating_feedback_scores(X, means, delta, feedback_kind):
+def _recalculating_feedback_scores(
+    X, means, delta, feedback_kind, c=1.0
+):
     """Evaluate one matched feedback rule over candidate means in parallel."""
     scores = np.empty(len(means))
     for j in prange(len(means)):
         scores[j] = _compute_M_recalculating_feedback(
-            X, means[j], delta, 1.0, 1.0, feedback_kind
+            X, means[j], delta, 1.0, c, feedback_kind
         )
     return scores
 
@@ -955,6 +957,7 @@ def _probit_randomized_scores(
     buffer_rounds,
     u_plus,
     u_minus,
+    c=1.0,
 ):
     """Evaluate randomized Probit rejection scores over candidate means."""
     alpha = delta / 2.0
@@ -964,6 +967,7 @@ def _probit_randomized_scores(
             X,
             means[j],
             delta,
+            c=c,
             buffer_rounds=buffer_rounds,
         )
         scores[j] = max(
@@ -981,6 +985,7 @@ def _probit_common_clock_randomized_scores(
     buffer_rounds,
     u_plus,
     u_minus,
+    c=1.0,
 ):
     """Evaluate randomized common-clock rejection scores in parallel."""
     alpha = delta / 2.0
@@ -990,6 +995,7 @@ def _probit_common_clock_randomized_scores(
             X,
             means[j],
             delta,
+            c=c,
             buffer_rounds=buffer_rounds,
         )
         scores[j] = max(
@@ -1007,6 +1013,7 @@ def _probit_common_clock_arm_randomized_scores(
     buffer_rounds,
     u_plus,
     u_minus,
+    c=1.0,
 ):
     """Evaluate the two normalized common-clock arm scores in parallel."""
     alpha = delta / 2.0
@@ -1017,6 +1024,7 @@ def _probit_common_clock_arm_randomized_scores(
             X,
             means[j],
             delta,
+            c=c,
             buffer_rounds=buffer_rounds,
         )
         plus_scores[j] = alpha * M_plus / u_plus
@@ -1031,12 +1039,15 @@ def _star_randomized_scores(
     delta,
     u_plus,
     u_minus,
+    c=1.0,
 ):
     """Evaluate candidate-centered randomized STaR scores in parallel."""
     alpha = delta / 2.0
     scores = np.empty(len(means))
     for j in prange(len(means)):
-        M_plus, M_minus = compute_M_star_arms(X, means[j], delta)
+        M_plus, M_minus = compute_M_star_arms(
+            X, means[j], delta, c=c
+        )
         scores[j] = max(
             alpha * M_plus / u_plus,
             alpha * M_minus / u_minus,
@@ -1051,6 +1062,7 @@ def _star_common_clock_arm_randomized_scores(
     delta,
     u_plus,
     u_minus,
+    c=1.0,
 ):
     """Evaluate the two normalized common-clock STaR arms in parallel."""
     alpha = delta / 2.0
@@ -1058,7 +1070,7 @@ def _star_common_clock_arm_randomized_scores(
     minus_scores = np.empty(len(means))
     for j in prange(len(means)):
         M_plus, M_minus = compute_M_star_common_clock_arms(
-            X, means[j], delta
+            X, means[j], delta, c=c
         )
         plus_scores[j] = alpha * M_plus / u_plus
         minus_scores[j] = alpha * M_minus / u_minus
@@ -1975,16 +1987,16 @@ def bets_ci_endpoints(X, delta):
     )
 
 
-def star_ci_endpoints(X, delta):
+def star_ci_endpoints(X, delta, c=1.0):
     """Invert the two-sided target-recalculating product supermartingale."""
     X = np.asarray(X)
     center = float(np.mean(X))
     return _interval_component(
-        lambda m: compute_M_star(X, m, delta),
+        lambda m: compute_M_star(X, m, delta, c=c),
         1.0 / delta,
         center,
         batch_statistic=lambda means: _recalculating_feedback_scores(
-            X, np.asarray(means), delta, 0
+            X, np.asarray(means), delta, 0, c
         ),
     )
 
@@ -2040,6 +2052,7 @@ def probit_star_ci_endpoints(
     delta,
     buffer_rounds=0.0,
     randomizers=None,
+    c=1.0,
 ):
     """Return the sample-mean component of the probit acceptance set.
 
@@ -2060,7 +2073,7 @@ def probit_star_ci_endpoints(
     if randomizers is None:
         return _interval_component(
             lambda m: compute_M_probit_star(
-                X, m, delta, buffer_rounds=buffer_rounds
+                X, m, delta, c=c, buffer_rounds=buffer_rounds
             ),
             1.0 / delta,
             center,
@@ -2075,7 +2088,7 @@ def probit_star_ci_endpoints(
 
     def randomized_rejection_score(m):
         M_plus, M_minus = compute_M_probit_star_arms(
-            X, m, delta, buffer_rounds=buffer_rounds
+            X, m, delta, c=c, buffer_rounds=buffer_rounds
         )
         return max(
             alpha * M_plus / u_plus,
@@ -2090,6 +2103,7 @@ def probit_star_ci_endpoints(
             buffer_rounds,
             u_plus,
             u_minus,
+            c,
         )
 
     return _interval_component(
@@ -2107,6 +2121,7 @@ def star_common_clock_ci_endpoints(
     delta,
     randomizers=(1.0, 1.0),
     return_diagnostics=False,
+    c=1.0,
 ):
     """Invert common-clock STaR as its full pathwise interval."""
     X = np.asarray(X)
@@ -2122,7 +2137,9 @@ def star_common_clock_ci_endpoints(
         nonlocal evaluations
         key = float(m)
         if key not in cache:
-            cache[key] = compute_M_star_common_clock_arms(X, key, delta)
+            cache[key] = compute_M_star_common_clock_arms(
+                X, key, delta, c=c
+            )
             evaluations += 1
         return cache[key]
 
@@ -2181,6 +2198,7 @@ def star_common_clock_batched_ci_endpoints(
     randomizers=(1.0, 1.0),
     sections=16,
     return_diagnostics=False,
+    c=1.0,
 ):
     """Parallel multisection inversion of common-clock STaR."""
     X = np.asarray(X)
@@ -2203,6 +2221,7 @@ def star_common_clock_batched_ci_endpoints(
             delta,
             u_plus,
             u_minus,
+            c,
         )
         return np.asarray(plus) - 1.0, np.asarray(minus) - 1.0
 
@@ -2213,6 +2232,7 @@ def star_common_clock_batched_ci_endpoints(
             delta,
             randomizers=randomizers,
             return_diagnostics=True,
+            c=c,
         )
         result = (*result[:3], evaluations + result[3])
         return result if return_diagnostics else result[:3]
@@ -2408,6 +2428,7 @@ def probit_common_clock_ci_endpoints(
     buffer_rounds=0.0,
     randomizers=(1.0, 1.0),
     return_diagnostics=False,
+    c=1.0,
 ):
     """Invert common-clock Efficient betting as its full interval.
 
@@ -2433,6 +2454,7 @@ def probit_common_clock_ci_endpoints(
                 X,
                 key,
                 delta,
+                c=c,
                 buffer_rounds=buffer_rounds,
             )
             evaluations += 1
@@ -2500,6 +2522,7 @@ def probit_common_clock_batched_ci_endpoints(
     randomizers=(1.0, 1.0),
     sections=16,
     return_diagnostics=False,
+    c=1.0,
 ):
     """Parallel multisection inversion of common-clock Efficient betting.
 
@@ -2530,6 +2553,7 @@ def probit_common_clock_batched_ci_endpoints(
             buffer_rounds,
             u_plus,
             u_minus,
+            c,
         )
         return np.asarray(plus) - 1.0, np.asarray(minus) - 1.0
 
@@ -2541,6 +2565,7 @@ def probit_common_clock_batched_ci_endpoints(
             buffer_rounds=buffer_rounds,
             randomizers=randomizers,
             return_diagnostics=True,
+            c=c,
         )
         result = (*result[:3], evaluations + result[3])
         return result if return_diagnostics else result[:3]
@@ -2649,6 +2674,7 @@ def probit_star_randomized_ci_endpoints(
     delta,
     buffer_rounds=None,
     rng=None,
+    c=1.0,
 ):
     """Return the randomized probit set component containing the sample mean."""
     X = np.asarray(X)
@@ -2664,6 +2690,7 @@ def probit_star_randomized_ci_endpoints(
         delta,
         buffer_rounds=buffer_rounds,
         randomizers=randomizers,
+        c=c,
     )
 
 
