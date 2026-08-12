@@ -1,0 +1,26 @@
+{
+  "delta": 0.01,
+  "betting_seed": 42,
+  "n_values": [
+    10,
+    50,
+    100,
+    500,
+    1000,
+    5000,
+    10000
+  ],
+  "replications": 120,
+  "solvency_c": 0.75,
+  "third_moment_shrinkage": 10.0,
+  "skewness_epsilon": 0.05,
+  "poisson_lookup": "real-order regularized-incomplete-gamma inversion; linear interpolation in target probability and log lambda",
+  "randomization": "one independent uniform per arm, fixed over candidate means and shared with the replayed Figure 3 betting paths",
+  "gaffke_results": "plots/poisson_betting/gaffke_complete.csv",
+  "gaffke_complete_results": "plots/poisson_betting_c075/gaffke_complete.csv",
+  "gaffke_extension_seed": 20260810,
+  "gaffke_extension_seed_tag": 602214076,
+  "gaffke_extension_randomization": "independently indexed by distribution, replication, and n",
+  "complete_method_grid": true,
+  "plot_name": "ci_width_poisson_betting_c075.png"
+}

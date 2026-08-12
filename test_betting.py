@@ -424,6 +424,94 @@ class HeatFlowConstructionTests(unittest.TestCase):
             )
         np.testing.assert_allclose(observed, expected, rtol=0.0, atol=0.0)
 
+
+
+    def test_poisson_target_lookup_matches_real_order_gamma_inversion(self):
+        for poisson_mean in (1e-4, 0.1, 1.0, 10.0, 100.0):
+            for probability in (0.005, 0.05, 0.5, 0.9):
+                for upper_tail in (True, False):
+                    expected = float(betting._poisson_real_order_amounts(
+                        probability, poisson_mean, upper_tail
+                    ))
+                    observed = betting.poisson_scaled_target_amount(
+                        probability, poisson_mean, upper_tail
+                    )
+                    self.assertAlmostEqual(
+                        observed,
+                        expected,
+                        delta=1e-3 * max(expected, 1e-12),
+                    )
+
+    def test_poisson_fallback_is_exactly_ge_betting(self):
+        rng = np.random.default_rng(20260812)
+        X = rng.beta(2.0, 2.0, 250)
+        for mean in (0.2, 0.5, 0.8):
+            poisson = betting.compute_M_poisson_common_clock_arms(
+                X,
+                mean,
+                0.01,
+                c=0.5,
+                skewness_epsilon=1e9,
+            )
+            gaussian = betting.compute_M_probit_common_clock_arms(
+                X, mean, 0.01, c=0.5, buffer_rounds=0.0
+            )
+            np.testing.assert_allclose(
+                poisson, gaussian, rtol=0.0, atol=0.0
+            )
+
+    def test_poisson_common_clock_arms_are_ordered(self):
+        rng = np.random.default_rng(20260813)
+        for X in (
+            rng.binomial(1, 0.1, 250).astype(float),
+            rng.beta(2.0, 2.0, 250),
+        ):
+            means = np.linspace(0.02, 0.98, 97)
+            arms = np.asarray([
+                betting.compute_M_poisson_common_clock_arms(
+                    X, mean, 0.01, c=0.5
+                )
+                for mean in means
+            ])
+            self.assertTrue(np.all(np.diff(arms[:, 0]) <= 1e-11))
+            self.assertTrue(np.all(np.diff(arms[:, 1]) >= -1e-11))
+
+    def test_poisson_endpoint_matches_global_mesh_and_horizon_guard(self):
+        rng = np.random.default_rng(20260814)
+        X = rng.binomial(1, 0.1, 200).astype(float)
+        delta = 0.01
+        randomizers = (0.35, 0.65)
+        lower, upper, empty = betting.poisson_common_clock_ci_endpoints(
+            X, delta, randomizers=randomizers, c=0.5
+        )
+        self.assertFalse(empty)
+        alpha = delta / 2.0
+
+        def score(mean):
+            plus, minus = betting.compute_M_poisson_common_clock_arms(
+                X, mean, delta, c=0.5
+            )
+            return max(
+                alpha * plus / randomizers[0],
+                alpha * minus / randomizers[1],
+            )
+
+        components = betting._confidence_set_components(
+            score, threshold=1.0, scan_points=1001
+        )
+        self.assertEqual(len(components), 1)
+        np.testing.assert_allclose(
+            (lower, upper), components[0], atol=2e-8, rtol=0.0
+        )
+        at_limit = betting.compute_M_poisson_common_clock_arms(
+            np.zeros(10000), 0.5, delta
+        )
+        self.assertTrue(np.all(np.isfinite(at_limit)))
+        with self.assertRaisesRegex(ValueError, "n <= 10000"):
+            betting.compute_M_poisson_common_clock_arms(
+                np.zeros(10001), 0.5, delta
+            )
+
     def test_common_clock_probit_arms_are_ordered_in_candidate_mean(self):
         rng = np.random.default_rng(20260730)
         X = rng.beta(2.0, 5.0, 250)

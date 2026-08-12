@@ -150,6 +150,37 @@ python plot_combined_main_figure.py
 The plotting command writes `plots/intro_deterministic_comparison.png` and
 `plots/ci_width_original_vs_star.png`, copying both into the paper repository.
 
+
+The Appendix D finite-sample comparison adds Poisson-efficient (PE) betting,
+the skew-corrected GE rule of Definition D9.  Its predictable clock matches
+the variance and third cumulant to a compensated Poisson device, uses
+real-order regularized-incomplete-gamma tails, and falls back exactly to GE
+when the estimated squared skewness is below the configured threshold.  The
+implementation deliberately enforces `n <= 10000`.  Reproduce the paired
+120-path comparison through `n=10000` and copy its figure into the paper with
+
+```bash
+python poisson_betting_figure.py
+```
+
+The default run replays the Figure 3 data and terminal-randomizer streams,
+uses `c=0.5`, third-moment shrinkage `t0=10`, and fallback threshold
+`epsilon=0.05`, and writes the interval-level audit, summary, configuration,
+and figure under `plots/poisson_betting/`.  It also copies
+`ci_width_poisson_betting.png` to `../paper/plots/`.  Use `--resume` to
+continue from `pe_intervals.csv` or `--plot-only` to redraw without
+rerunning the simulation.
+
+Appendix D also includes matched sensitivity plots at `c=0.75` and `c=1`.
+Their PE audits live under `plots/poisson_betting_c075/` and
+`plots/poisson_betting_c1/`; the paper-facing figures are named
+`ci_width_poisson_betting_c05.png`,
+`ci_width_poisson_betting_c075.png`, and
+`ci_width_poisson_betting_c1.png`.  The plotting script accepts
+`--solvency-c`, `--input`, `--output-dir`, and `--plot-name` so each variant
+is checked against betting summaries computed with the same common solvency
+fraction.
+
 The large-sample main plots, including 30 paired common-clock intervals per
 distribution and horizon, are produced by
 
@@ -329,4 +360,37 @@ Run the dedicated tests with
 
 ```bash
 python -m unittest -v test_confidence_sequences.py
+```
+
+## Fixed-event survival confidence intervals
+
+`survival_fixed_event.py` compares terminal 95% log-hazard-ratio intervals
+after exactly 200 failures.  It does not monitor methods before the terminal
+event count and does not use external terminal randomization.  The design
+crosses four hazard patterns (null, proportional HR 0.70, delayed effect, and
+crossing hazards) with no, balanced, and arm-differential independent
+censoring.
+
+The five methods are the classical logrank score interval, GE-logrank, the
+published AV prequential plug-in interval, the published eventwise two-sided
+conditional-GROW process, and a once-at-time-zero mixture of the two complete
+directional AV point-alternative processes.  The last two are intentionally
+kept separate: averaging the directional likelihood ratios at every event is
+not the same as averaging their complete products.
+
+Reproduce the paper experiment (10,000 replications in each of 12 scenarios)
+with
+
+```bash
+python survival_fixed_event.py --repetitions 10000 --events 200
+```
+
+The command writes `summary.json`, compressed replicate-level endpoints, and
+the publication figure under `plots/survival_fixed_event/`, and copies the
+figure to `../paper/plots/`.  On the development machine (AMD Ryzen 9 9950X),
+the audited run took about 65 seconds end to end.  Run the dedicated tests
+with
+
+```bash
+python -m unittest -v test_survival_fixed_event.py
 ```

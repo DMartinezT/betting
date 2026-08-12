@@ -5,8 +5,8 @@ The legacy polynomial Constructions 1 and 2 live in legacy_constructions.py.
 This module contains the Waudby-Smith--Ramdas product martingale, its
 target-recalculating STaR variant, the regularized Efficient betting rule,
 a digital-payoff DP hedge, the exact Bernoulli DP benchmark, the nonnegative
-heat-flow Construction 3, confidence-set inversion, and the current
-comparison experiment.
+heat-flow Construction 3, the small-sample skew-corrected Poisson/PE rule,
+confidence-set inversion, and the current comparison experiment.
 """
 
 import math
@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from numba import njit, prange
 from scipy.optimize import brentq, minimize_scalar
+from scipy.special import gammainc, gammaincc
 from scipy.stats import binom, norm
 
 
@@ -362,6 +363,170 @@ def probit_target_leverage(target_fraction):
         -0.5 * quantile * quantile
         - 0.5 * np.log(2.0 * np.pi)
         - np.log(target_fraction)
+    )
+
+
+# ------------------------------------------------------------------
+# Skew-corrected (Poisson-efficient, or PE) feedback
+# ------------------------------------------------------------------
+
+POISSON_MAX_N = 10_000
+POISSON_THIRD_MOMENT_SHRINKAGE = 10.0
+POISSON_SKEWNESS_EPSILON = 0.05
+
+
+def _poisson_real_order_amounts(probabilities, lambdas, upper_tail):
+    """Evaluate the real-order Poisson target amounts in Definition D9.
+
+    ``probabilities`` and ``lambdas`` must be broadcast-compatible arrays.
+    The returned value is ``sqrt(lambda)`` times the pmf-to-tail numerator,
+    i.e. the Poisson analogue of ``phi(Phi^{-1}(p))``. Quantiles are found
+    by vectorized bisection in the (real) gamma shape parameter. The lower
+    tail is extended linearly from the origin below the atom at zero, which
+    is the lattice interpolation used in Proposition D7.
+    """
+    probabilities, lambdas = np.broadcast_arrays(
+        np.asarray(probabilities, dtype=float),
+        np.asarray(lambdas, dtype=float),
+    )
+    if np.any((probabilities <= 0.0) | (probabilities >= 1.0)):
+        raise ValueError("probabilities must lie strictly between zero and one")
+    if np.any(lambdas <= 0.0):
+        raise ValueError("Poisson means must be positive")
+
+    log_lower = np.full(probabilities.shape, np.log(1e-12), dtype=float)
+    log_upper = np.log(
+        lambdas + 50.0 * np.sqrt(lambdas + 1.0) + 100.0
+    )
+    for _ in range(56):
+        log_midpoint = 0.5 * (log_lower + log_upper)
+        midpoint = np.exp(log_midpoint)
+        if upper_tail:
+            values = gammainc(midpoint, lambdas)
+            move_lower = values > probabilities
+        else:
+            # Here midpoint is nu + 1, so this is L_lambda(nu).
+            values = gammaincc(midpoint, lambdas)
+            move_lower = values < probabilities
+        log_lower = np.where(move_lower, log_midpoint, log_lower)
+        log_upper = np.where(move_lower, log_upper, log_midpoint)
+
+    shape = np.exp(0.5 * (log_lower + log_upper))
+    if upper_tail:
+        previous = np.ones_like(shape)
+        interior = shape > 1.0
+        previous[interior] = gammainc(
+            shape[interior] - 1.0,
+            lambdas[interior],
+        )
+        amount = previous - probabilities
+    else:
+        previous = np.zeros_like(shape)
+        interior = shape > 1.0
+        previous[interior] = gammaincc(
+            shape[interior] - 1.0,
+            lambdas[interior],
+        )
+        amount = probabilities - previous
+    return np.sqrt(lambdas) * np.maximum(amount, 0.0)
+
+
+def _build_poisson_target_amount_table():
+    """Tabulate the two Poisson inverse-Mills target amounts."""
+    lambda_axis = np.geomspace(1e-6, 1_000.0, 193)
+    probability_axis = np.unique(np.concatenate((
+        np.geomspace(1e-12, 0.1, 769),
+        np.linspace(0.1, 0.9, 385),
+        1.0 - np.geomspace(0.1, 1e-10, 257),
+    )))
+    probabilities = np.broadcast_to(
+        probability_axis[None, :],
+        (lambda_axis.size, probability_axis.size),
+    )
+    lambdas = np.broadcast_to(
+        lambda_axis[:, None],
+        probabilities.shape,
+    )
+    upper = _poisson_real_order_amounts(probabilities, lambdas, True)
+    lower = _poisson_real_order_amounts(probabilities, lambdas, False)
+    return lambda_axis, probability_axis, upper, lower
+
+
+(
+    _POISSON_LAMBDA_AXIS,
+    _POISSON_PROBABILITY_AXIS,
+    _POISSON_UPPER_TARGET_AMOUNTS,
+    _POISSON_LOWER_TARGET_AMOUNTS,
+) = _build_poisson_target_amount_table()
+_POISSON_LOG_LAMBDA_AXIS = np.log(_POISSON_LAMBDA_AXIS)
+
+
+@njit
+def poisson_scaled_target_amount(target_fraction, poisson_mean, upper_tail):
+    """Interpolate ``sqrt(lambda)`` times a Poisson target amount.
+
+    Dividing this quantity by ``p * sqrt(r * v)`` gives the PE-betting
+    fraction in Definition D9. Linear interpolation is performed in the
+    target probability (rather than its log), retaining the concave amount
+    map behind the interval-valued inversion.
+    """
+    if target_fraction <= 0.0:
+        return 0.0
+    if target_fraction >= 1.0:
+        return 0.0
+    if poisson_mean >= _POISSON_LAMBDA_AXIS[-1]:
+        quantile = _normal_ppf(target_fraction)
+        return _normal_pdf(quantile)
+
+    probability = target_fraction
+    probability_scale = 1.0
+    if probability <= _POISSON_PROBABILITY_AXIS[0]:
+        probability_scale = probability / _POISSON_PROBABILITY_AXIS[0]
+        probability = _POISSON_PROBABILITY_AXIS[0]
+    elif probability >= _POISSON_PROBABILITY_AXIS[-1]:
+        probability_scale = (
+            (1.0 - probability)
+            / (1.0 - _POISSON_PROBABILITY_AXIS[-1])
+        )
+        probability = _POISSON_PROBABILITY_AXIS[-1]
+
+    probability_upper = np.searchsorted(
+        _POISSON_PROBABILITY_AXIS, probability
+    )
+    probability_upper = min(
+        max(probability_upper, 1),
+        _POISSON_PROBABILITY_AXIS.size - 1,
+    )
+    probability_lower = probability_upper - 1
+    p_left = _POISSON_PROBABILITY_AXIS[probability_lower]
+    p_right = _POISSON_PROBABILITY_AXIS[probability_upper]
+    p_weight = (probability - p_left) / (p_right - p_left)
+
+    log_mean = np.log(max(poisson_mean, _POISSON_LAMBDA_AXIS[0]))
+    lambda_upper = np.searchsorted(_POISSON_LOG_LAMBDA_AXIS, log_mean)
+    lambda_upper = min(max(lambda_upper, 1), _POISSON_LAMBDA_AXIS.size - 1)
+    lambda_lower = lambda_upper - 1
+    log_left = _POISSON_LOG_LAMBDA_AXIS[lambda_lower]
+    log_right = _POISSON_LOG_LAMBDA_AXIS[lambda_upper]
+    lambda_weight = (log_mean - log_left) / (log_right - log_left)
+    lambda_weight = min(max(lambda_weight, 0.0), 1.0)
+
+    table = (
+        _POISSON_UPPER_TARGET_AMOUNTS
+        if upper_tail
+        else _POISSON_LOWER_TARGET_AMOUNTS
+    )
+    lower_row = (
+        (1.0 - p_weight) * table[lambda_lower, probability_lower]
+        + p_weight * table[lambda_lower, probability_upper]
+    )
+    upper_row = (
+        (1.0 - p_weight) * table[lambda_upper, probability_lower]
+        + p_weight * table[lambda_upper, probability_upper]
+    )
+    return probability_scale * (
+        (1.0 - lambda_weight) * lower_row
+        + lambda_weight * upper_row
     )
 
 
@@ -931,6 +1096,176 @@ def compute_M_probit_common_clock_arms(
         pred_sq += residual * residual
 
     return M_plus, M_minus
+
+
+@njit
+def _poisson_common_clock_parameters(
+    X,
+    third_moment_shrinkage,
+    skewness_epsilon,
+):
+    """Build the predictable variance, skewness, and Poisson clocks."""
+    if third_moment_shrinkage <= 0.0:
+        raise ValueError("third_moment_shrinkage must be positive")
+    if skewness_epsilon < 0.0:
+        raise ValueError("skewness_epsilon must be nonnegative")
+
+    n = len(X)
+    variances = np.empty(n)
+    betas = np.zeros(n)
+    poisson_means = np.empty(n)
+    use_poisson = np.zeros(n, dtype=np.bool_)
+    sum_x = 0.0
+    pred_sq = 0.0
+    pred_cube = 0.0
+    eps = 1e-12
+
+    for i in range(n):
+        mean_hat = (0.5 + sum_x) / (1.0 + i)
+        variance = max((0.25 + pred_sq) / (1.0 + i), eps)
+        variances[i] = variance
+        if i > 0:
+            past = float(i)
+            third_moment = (
+                pred_cube
+                * past
+                / (
+                    (past + 1.0)
+                    * (past + third_moment_shrinkage)
+                )
+            )
+            beta = third_moment / variance
+            skewness_squared = beta * beta / variance
+            if skewness_squared >= skewness_epsilon:
+                betas[i] = beta
+                poisson_means[i] = float(n - i) / skewness_squared
+                use_poisson[i] = True
+            else:
+                poisson_means[i] = np.inf
+        else:
+            poisson_means[i] = np.inf
+
+        residual = X[i] - mean_hat
+        sum_x += X[i]
+        pred_sq += residual * residual
+        pred_cube += residual * residual * residual
+
+    return variances, betas, poisson_means, use_poisson
+
+
+@njit
+def _compute_M_poisson_from_clock_arms(
+    X,
+    m,
+    delta,
+    c,
+    variances,
+    betas,
+    poisson_means,
+    use_poisson,
+):
+    """Run the two PE arms from a precomputed predictable shared clock."""
+    n = len(X)
+    alpha = delta / 2.0
+    target = 1.0 / alpha
+    eps = 1e-12
+    tiny = 1e-300
+    M_plus = 1.0
+    M_minus = 1.0
+
+    for i in range(n):
+        remaining_variance = float(n - i) * variances[i]
+
+        if 0.0 < M_plus < target:
+            target_fraction = alpha * M_plus
+            if use_poisson[i]:
+                amount = poisson_scaled_target_amount(
+                    target_fraction,
+                    poisson_means[i],
+                    betas[i] > 0.0,
+                )
+                bet_plus = amount / (
+                    max(target_fraction, tiny)
+                    * np.sqrt(remaining_variance)
+                )
+            else:
+                bet_plus = (
+                    probit_target_leverage(target_fraction)
+                    / np.sqrt(remaining_variance)
+                )
+            bet_plus = min(bet_plus, c / (m + eps))
+        else:
+            bet_plus = 0.0
+
+        if 0.0 < M_minus < target:
+            target_fraction = alpha * M_minus
+            if use_poisson[i]:
+                # Reflection changes the sign of the third cumulant.
+                amount = poisson_scaled_target_amount(
+                    target_fraction,
+                    poisson_means[i],
+                    betas[i] < 0.0,
+                )
+                bet_minus = amount / (
+                    max(target_fraction, tiny)
+                    * np.sqrt(remaining_variance)
+                )
+            else:
+                bet_minus = (
+                    probit_target_leverage(target_fraction)
+                    / np.sqrt(remaining_variance)
+                )
+            bet_minus = min(bet_minus, c / (1.0 - m + eps))
+        else:
+            bet_minus = 0.0
+
+        centered = X[i] - m
+        M_plus = min(
+            max(M_plus * (1.0 + bet_plus * centered), 0.0),
+            target,
+        )
+        M_minus = min(
+            max(M_minus * (1.0 - bet_minus * centered), 0.0),
+            target,
+        )
+
+    return M_plus, M_minus
+
+
+@njit
+def compute_M_poisson_common_clock_arms(
+    X,
+    m,
+    delta,
+    c=1.0,
+    third_moment_shrinkage=POISSON_THIRD_MOMENT_SHRINKAGE,
+    skewness_epsilon=POISSON_SKEWNESS_EPSILON,
+):
+    """Return the skew-corrected GE/PE-betting arms of Definition D9.
+
+    The variance and shrunken third-moment estimates are data-only predictable
+    clocks, shared by both arms and every candidate mean. When estimated
+    squared skewness is below ``skewness_epsilon``, the update is exactly
+    Gaussian-efficient betting. This implementation is deliberately limited
+    to the finite-sample regime through n=10,000 used in Figure 6.
+    """
+    if len(X) > POISSON_MAX_N:
+        raise ValueError("Poisson betting is implemented only for n <= 10000")
+    clocks = _poisson_common_clock_parameters(
+        X,
+        third_moment_shrinkage,
+        skewness_epsilon,
+    )
+    return _compute_M_poisson_from_clock_arms(
+        X,
+        m,
+        delta,
+        c,
+        clocks[0],
+        clocks[1],
+        clocks[2],
+        clocks[3],
+    )
 
 
 @njit
@@ -2384,6 +2719,98 @@ def heat_star_common_clock_ci_endpoints(
     lower_at_zero = lower_score(0.0)
     lower_at_one = lower_score(1.0)
 
+    if upper_at_one >= 0.0 or lower_at_zero >= 0.0:
+        result = (center, center, True, evaluations)
+        return result if return_diagnostics else result[:3]
+
+    if upper_at_zero < 0.0:
+        lower_endpoint = 0.0
+    else:
+        rejected = 0.0
+        accepted = 1.0
+        while accepted - rejected > 1e-9:
+            midpoint = 0.5 * (rejected + accepted)
+            if upper_score(midpoint) >= 0.0:
+                rejected = midpoint
+            else:
+                accepted = midpoint
+        lower_endpoint = 0.5 * (rejected + accepted)
+
+    if lower_at_one < 0.0:
+        upper_endpoint = 1.0
+    else:
+        accepted = 0.0
+        rejected = 1.0
+        while rejected - accepted > 1e-9:
+            midpoint = 0.5 * (accepted + rejected)
+            if lower_score(midpoint) < 0.0:
+                accepted = midpoint
+            else:
+                rejected = midpoint
+        upper_endpoint = 0.5 * (accepted + rejected)
+
+    empty = lower_endpoint > upper_endpoint
+    if empty:
+        lower_endpoint = center
+        upper_endpoint = center
+    result = (lower_endpoint, upper_endpoint, empty, evaluations)
+    return result if return_diagnostics else result[:3]
+
+
+
+def poisson_common_clock_ci_endpoints(
+    X,
+    delta,
+    randomizers=(1.0, 1.0),
+    return_diagnostics=False,
+    c=1.0,
+    third_moment_shrinkage=POISSON_THIRD_MOMENT_SHRINKAGE,
+    skewness_epsilon=POISSON_SKEWNESS_EPSILON,
+):
+    """Invert PE-betting from its two ordered one-sided boundaries."""
+    X = np.ascontiguousarray(np.asarray(X, dtype=float))
+    if X.size > POISSON_MAX_N:
+        raise ValueError("Poisson betting is implemented only for n <= 10000")
+    center = float(np.mean(X))
+    u_plus, u_minus = (float(value) for value in randomizers)
+    if not (0.0 < u_plus <= 1.0 and 0.0 < u_minus <= 1.0):
+        raise ValueError("randomizers must lie in (0,1]")
+    clocks = _poisson_common_clock_parameters(
+        X,
+        float(third_moment_shrinkage),
+        float(skewness_epsilon),
+    )
+    alpha = delta / 2.0
+    cache = {}
+    evaluations = 0
+
+    def arms(m):
+        nonlocal evaluations
+        key = float(m)
+        if key not in cache:
+            cache[key] = _compute_M_poisson_from_clock_arms(
+                X,
+                key,
+                delta,
+                c,
+                clocks[0],
+                clocks[1],
+                clocks[2],
+                clocks[3],
+            )
+            evaluations += 1
+        return cache[key]
+
+    def upper_score(m):
+        return alpha * arms(m)[0] / u_plus - 1.0
+
+    def lower_score(m):
+        return alpha * arms(m)[1] / u_minus - 1.0
+
+    upper_at_zero = upper_score(0.0)
+    upper_at_one = upper_score(1.0)
+    lower_at_zero = lower_score(0.0)
+    lower_at_one = lower_score(1.0)
     if upper_at_one >= 0.0 or lower_at_zero >= 0.0:
         result = (center, center, True, evaluations)
         return result if return_diagnostics else result[:3]

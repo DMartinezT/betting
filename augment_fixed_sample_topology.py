@@ -38,7 +38,7 @@ SCORE_KIND_BY_METHOD = {
     "heat_original": 0,
     "product_original": 2,
 }
-CHECKPOINT_VERSION = 2
+CHECKPOINT_VERSION = 3
 
 CALIBRATIONS = (
     "deterministic_markov",
@@ -56,6 +56,7 @@ def _scores(
     kind,
     u_plus,
     u_minus,
+    solvency_c=0.5,
 ):
     if kind < 0 or kind > 5:
         raise ValueError("unknown score kind")
@@ -74,19 +75,23 @@ def _scores(
             )
             scale = initial_wealth
         elif kind == 2:
-            plus, minus = betting.compute_M_inf_arms(x, mean, delta)
+            plus, minus = betting.compute_M_inf_arms(
+                x, mean, delta, c=solvency_c
+            )
             scale = 1.0
         elif kind == 3:
-            plus, minus = betting.compute_M_star_arms(x, mean, delta)
+            plus, minus = betting.compute_M_star_arms(
+                x, mean, delta, c=solvency_c
+            )
             scale = 1.0
         elif kind == 4:
             plus, minus = betting.compute_M_star_common_clock_arms(
-                x, mean, delta
+                x, mean, delta, c=solvency_c
             )
             scale = 1.0
         else:
             plus, minus = betting.compute_M_probit_common_clock_arms(
-                x, mean, delta, buffer_rounds=0.0
+                x, mean, delta, c=solvency_c, buffer_rounds=0.0
             )
             scale = 1.0
         output[index] = max(
@@ -132,6 +137,7 @@ def _topology_summary(
     u_plus,
     u_minus,
     score_work_budget,
+    solvency_c,
 ):
     threshold = 1.0
 
@@ -145,6 +151,7 @@ def _topology_summary(
             kind,
             u_plus,
             u_minus,
+            solvency_c,
         )
 
     small_sample = len(x) <= 1000
@@ -248,6 +255,11 @@ def parse_args():
         default=Path("plots/ci_width_original_vs_star.json"),
     )
     parser.add_argument(
+        "--output",
+        type=Path,
+        help="write the augmented JSON here instead of overwriting --input",
+    )
+    parser.add_argument(
         "--checkpoint",
         type=Path,
         default=Path("plots/ci_width_topology_checkpoint.json"),
@@ -267,9 +279,27 @@ def parse_args():
             "efficient betting"
         ),
     )
+    parser.add_argument(
+        "--product-solvency-c",
+        type=float,
+        default=0.5,
+        help="fraction of the one-step solvency limit used by product betting",
+    )
+    parser.add_argument(
+        "--methods",
+        nargs="+",
+        choices=METHODS,
+        default=list(METHODS),
+        help="methods to recompute; unselected series are retained from --input",
+    )
     parser.add_argument("--small-reps", type=int, default=120)
     parser.add_argument("--large-reps", type=int, default=30)
     parser.add_argument("--medium-reps", type=int, default=60)
+    parser.add_argument(
+        "--max-n",
+        type=int,
+        help="restrict the augmented output to horizons at most this value",
+    )
     parser.add_argument("--progress-every", type=int, default=10)
     return parser.parse_args()
 
@@ -278,10 +308,18 @@ def main():
     args = parse_args()
     with args.input.open(encoding="utf-8") as stream:
         payload = json.load(stream)
+    output_path = args.output if args.output is not None else args.input
+    selected_methods = tuple(dict.fromkeys(args.methods))
 
     delta = float(payload["delta"])
     seed = int(payload["seed"])
-    n_values = [int(value) for value in payload["n_values"]]
+    n_values = [
+        int(value)
+        for value in payload["n_values"]
+        if args.max_n is None or int(value) <= args.max_n
+    ]
+    if not n_values:
+        raise ValueError("--max-n excludes every configured horizon")
     counts = {
         int(n): int(count)
         for n, count in payload["num_sims_by_n"].items()
@@ -303,6 +341,14 @@ def main():
             raise ValueError(
                 f"checkpoint uses c={checkpoint_solvency_c}, but "
                 f"--solvency-c={args.solvency_c}"
+            )
+        checkpoint_product_c = float(
+            checkpoint_payload.get("product_solvency_c", 0.5)
+        )
+        if not np.isclose(checkpoint_product_c, args.product_solvency_c):
+            raise ValueError(
+                f"checkpoint uses product c={checkpoint_product_c}, but "
+                f"--product-solvency-c={args.product_solvency_c}"
             )
 
     # Version 1 paired ``enumerate(METHODS)`` with numeric score codes.  Once
@@ -340,6 +386,8 @@ def main():
         raise ValueError("replication counts must be positive")
     if not 0.0 < args.solvency_c <= 1.0:
         raise ValueError("--solvency-c must lie in (0,1]")
+    if not 0.0 < args.product_solvency_c <= 1.0:
+        raise ValueError("--product-solvency-c must lie in (0,1]")
     topology_counts = {
         n: (
             args.small_reps
@@ -388,11 +436,16 @@ def main():
                         if calibration == "deterministic_markov"
                         else (u_plus, u_minus)
                     )
-                    for method in METHODS:
+                    for method in selected_methods:
                         result_key = f"{method}|{calibration}"
                         if result_key in method_results:
                             continue
                         cell_updated = True
+                        method_solvency_c = (
+                            args.product_solvency_c
+                            if method == "product_original"
+                            else args.solvency_c
+                        )
                         if method == "probit_common_clock":
                             method_results[result_key] = _common_clock_summary(
                                 x, delta, *calibration_uniforms,
@@ -414,6 +467,7 @@ def main():
                                 SCORE_KIND_BY_METHOD[method],
                                 *calibration_uniforms,
                                 args.score_work_budget,
+                                method_solvency_c,
                             )
                 if not cell_updated:
                     continue
@@ -436,6 +490,7 @@ def main():
                             {
                                 "version": CHECKPOINT_VERSION,
                                 "solvency_c": args.solvency_c,
+                                "product_solvency_c": args.product_solvency_c,
                                 "score_kind_by_method": SCORE_KIND_BY_METHOD,
                                 "score_work_budget": (
                                     args.score_work_budget
@@ -451,6 +506,7 @@ def main():
             {
                 "version": CHECKPOINT_VERSION,
                 "solvency_c": args.solvency_c,
+                "product_solvency_c": args.product_solvency_c,
                 "score_kind_by_method": SCORE_KIND_BY_METHOD,
                 "score_work_budget": args.score_work_budget,
                 "cells": completed,
@@ -461,7 +517,7 @@ def main():
     for distribution in samplers:
         result = payload["results"][distribution]
         for calibration in CALIBRATIONS:
-            for method in METHODS:
+            for method in selected_methods:
                 diameter_by_n = []
                 largest_by_n = []
                 diameter_raw_by_n = []
@@ -502,7 +558,13 @@ def main():
                 result[f"{prefix}_topology_budget_rate"] = budget_rates
 
     payload["base_inversion_width"] = payload.get("reported_width")
+    payload["n_values"] = n_values
+    payload["num_sims_by_n"] = {
+        str(n): counts[n] for n in n_values
+    }
     payload["solvency_c"] = args.solvency_c
+    payload["product_solvency_c"] = args.product_solvency_c
+    payload["recomputed_methods"] = list(selected_methods)
     payload["reported_width"] = (
         "mesh-resolved full-set diameter; largest-component width also stored"
     )
@@ -542,9 +604,10 @@ def main():
         ),
         "checkpoint": str(args.checkpoint),
     }
-    with args.input.open("w", encoding="utf-8") as stream:
+    output_path.parent.mkdir(parents=True, exist_ok=True)
+    with output_path.open("w", encoding="utf-8") as stream:
         json.dump(payload, stream, indent=2)
-    print(f"updated {args.input}")
+    print(f"updated {output_path}")
 
 
 if __name__ == "__main__":

@@ -758,7 +758,12 @@ def summarize(df: pd.DataFrame) -> pd.DataFrame:
     )
 
 
-def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
+def make_plots(
+    df: pd.DataFrame,
+    output: Path,
+    delta: float,
+    copy_to_paper: bool = True,
+) -> list[Path]:
     plot_dir = output / "plots"
     plot_dir.mkdir(parents=True, exist_ok=True)
     summary = summarize(df)
@@ -1119,9 +1124,12 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> list[Path]:
     fig.tight_layout(rect=(0.0, 0.08, 1.0, 0.95))
     filename = "scaled_width_star_efficient_shared_estimator_comparison.png"
     destination = plot_dir / filename
-    PAPER_PLOT_DIR.mkdir(parents=True, exist_ok=True)
-    for figure_path in (destination, PAPER_PLOT_DIR / filename):
-        fig.savefig(figure_path, dpi=220, bbox_inches="tight")
+    fig.savefig(destination, dpi=220, bbox_inches="tight")
+    if copy_to_paper:
+        PAPER_PLOT_DIR.mkdir(parents=True, exist_ok=True)
+        fig.savefig(
+            PAPER_PLOT_DIR / filename, dpi=220, bbox_inches="tight"
+        )
     plt.close(fig)
     outputs.append(destination)
 
@@ -1247,6 +1255,7 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
                 missing = required_methods.difference(observed)
                 incremental_methods = {
                     "Capped original feedback",
+                    "Regularized Efficient betting",
                     "Efficient betting",
                     "Common-clock Efficient betting",
                     "STaR betting",
@@ -1547,7 +1556,7 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
     }
     with (output / "config.json").open("w", encoding="utf-8") as stream:
         json.dump(config, stream, indent=2)
-    for plot in make_plots(df, output, args.delta):
+    for plot in make_plots(df, output, args.delta, not args.no_paper_copy):
         print(f"saved {plot}")
     print(f"saved results to {output}")
     return df
@@ -1572,6 +1581,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--audit", action="store_true")
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--plot-only", action="store_true")
+    parser.add_argument("--no-paper-copy", action="store_true")
     args = parser.parse_args()
     if args.unbuffered_reps <= 0:
         parser.error("--unbuffered-reps must be positive")
@@ -1597,7 +1607,9 @@ def main() -> None:
     if args.plot_only:
         results_path = Path(args.output).resolve() / "results.csv"
         df = pd.read_csv(results_path)
-        for plot in make_plots(df, Path(args.output).resolve(), args.delta):
+        for plot in make_plots(
+            df, Path(args.output).resolve(), args.delta, not args.no_paper_copy
+        ):
             print(f"saved {plot}")
         return
     run_experiment(args)

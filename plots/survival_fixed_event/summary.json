@@ -1,0 +1,1117 @@
+{
+  "config": {
+    "repetitions_per_scenario": 10000,
+    "event_horizon": 200,
+    "subject_count": 600,
+    "subject_multiplier": 3,
+    "delta": 0.05,
+    "seed": 20260812,
+    "solvency_constant": 0.5,
+    "grow_hazard_ratio": 0.7,
+    "candidate_bound": 5.0,
+    "grid_size": 81,
+    "method_labels": {
+      "classical": "Classical logrank",
+      "ge": "GE-logrank",
+      "av_preq": "AV-prequential",
+      "av_grow": "AV conditional-GROW",
+      "av_path_mix": "AV path mixture"
+    },
+    "fixed_terminal_analysis_only": true
+  },
+  "elapsed_seconds_excluding_compilation": 56.166356462053955,
+  "summaries": {
+    "null__none": {
+      "hazard": {
+        "key": "null",
+        "label": "Null",
+        "treatment_hazard_early": 1.0,
+        "treatment_hazard_late": 1.0,
+        "change_time": 0.35,
+        "true_log_hr": 0.0
+      },
+      "censoring": {
+        "key": "none",
+        "label": "No censoring",
+        "control_rate": 0.0,
+        "treatment_rate": 0.0
+      },
+      "mean_terminal_time": 0.405038524639805,
+      "mean_censoring_exit_fraction": 0.0,
+      "mean_null_information": 49.898603225801736,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0471,
+          "rejection_mcse": 0.0021185275546945336,
+          "mean_log_hr_width": 0.5540082600082337,
+          "median_log_hr_width": 0.5533035378257409,
+          "q10_log_hr_width": 0.5526484434007216,
+          "q90_log_hr_width": 0.5561231586056238,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9529,
+          "coverage_mcse": 0.002118527554694534
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0338,
+          "rejection_mcse": 0.001807140282324535,
+          "mean_log_hr_width": 0.5905389898859825,
+          "median_log_hr_width": 0.5892551282977365,
+          "q10_log_hr_width": 0.5862643231639595,
+          "q90_log_hr_width": 0.5964173158205085,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9662,
+          "coverage_mcse": 0.0018071402823245364
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0007,
+          "rejection_mcse": 0.00026448251359967073,
+          "mean_log_hr_width": 0.9381571626545486,
+          "median_log_hr_width": 0.9367088253011389,
+          "q10_log_hr_width": 0.935467547407643,
+          "q90_log_hr_width": 0.9427479961468634,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9993,
+          "coverage_mcse": 0.00026448251359967713
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.463738826622338,
+          "median_log_hr_width": 3.4529373858849794,
+          "q10_log_hr_width": 3.443780571487332,
+          "q90_log_hr_width": 3.498097961122949,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 1.0,
+          "coverage_mcse": 0.0
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0055,
+          "rejection_mcse": 0.0007395775821372629,
+          "mean_log_hr_width": 0.775123357344997,
+          "median_log_hr_width": 0.7740315116261627,
+          "q10_log_hr_width": 0.7730216161562566,
+          "q90_log_hr_width": 0.7783807730093031,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9945,
+          "coverage_mcse": 0.0007395775821372596
+        }
+      }
+    },
+    "ph_070__none": {
+      "hazard": {
+        "key": "ph_070",
+        "label": "PH 0.70",
+        "treatment_hazard_early": 0.7,
+        "treatment_hazard_late": 0.7,
+        "change_time": 0.35,
+        "true_log_hr": -0.35667494393873245
+      },
+      "censoring": {
+        "key": "none",
+        "label": "No censoring",
+        "control_rate": 0.0,
+        "treatment_rate": 0.0
+      },
+      "mean_terminal_time": 0.4796623673907895,
+      "mean_censoring_exit_fraction": 0.0,
+      "mean_null_information": 49.8204360974105,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.706,
+          "rejection_mcse": 0.004555919226676435,
+          "mean_log_hr_width": 0.5600283101944645,
+          "median_log_hr_width": 0.5582940695157959,
+          "q10_log_hr_width": 0.5534855246152801,
+          "q90_log_hr_width": 0.5680785779513826,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9494,
+          "coverage_mcse": 0.0021917946984149764
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.6647,
+          "rejection_mcse": 0.0047209523403652365,
+          "mean_log_hr_width": 0.598678123667436,
+          "median_log_hr_width": 0.5953802459325743,
+          "q10_log_hr_width": 0.5862677520639409,
+          "q90_log_hr_width": 0.6161240088551494,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9617,
+          "coverage_mcse": 0.0019191954043296373
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.2166,
+          "rejection_mcse": 0.004119277121049274,
+          "mean_log_hr_width": 0.9503975580234706,
+          "median_log_hr_width": 0.9471877199075607,
+          "q10_log_hr_width": 0.9372631117887067,
+          "q90_log_hr_width": 0.9668655685381964,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9991,
+          "coverage_mcse": 0.00029986496961132553
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.5561980366827934,
+          "median_log_hr_width": 3.5306796995810146,
+          "q10_log_hr_width": 3.4564682487378375,
+          "q90_log_hr_width": 3.683785967777658,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 1.0,
+          "coverage_mcse": 0.0
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.4221,
+          "rejection_mcse": 0.004938943105564185,
+          "mean_log_hr_width": 0.784526225710753,
+          "median_log_hr_width": 0.7817507154959458,
+          "q10_log_hr_width": 0.7742996447619589,
+          "q90_log_hr_width": 0.7971403426452526,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9938,
+          "coverage_mcse": 0.0007849560497250775
+        }
+      }
+    },
+    "delayed__none": {
+      "hazard": {
+        "key": "delayed",
+        "label": "Delayed 1.00\u21920.45",
+        "treatment_hazard_early": 1.0,
+        "treatment_hazard_late": 0.45,
+        "change_time": 0.35,
+        "true_log_hr": null
+      },
+      "censoring": {
+        "key": "none",
+        "label": "No censoring",
+        "control_rate": 0.0,
+        "treatment_rate": 0.0
+      },
+      "mean_terminal_time": 0.42623127356701523,
+      "mean_censoring_exit_fraction": 0.0,
+      "mean_null_information": 49.89629663441676,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.1065,
+          "rejection_mcse": 0.003084764982944406,
+          "mean_log_hr_width": 0.5546640791720705,
+          "median_log_hr_width": 0.5536158162067295,
+          "q10_log_hr_width": 0.5526605445180394,
+          "q90_log_hr_width": 0.5581129950032846,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.082,
+          "rejection_mcse": 0.002743647207641682,
+          "mean_log_hr_width": 0.5954653745323955,
+          "median_log_hr_width": 0.5922371332544571,
+          "q10_log_hr_width": 0.5866077371554639,
+          "q90_log_hr_width": 0.6089749500573817,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0055,
+          "rejection_mcse": 0.0007395775821372629,
+          "mean_log_hr_width": 0.9394500085671267,
+          "median_log_hr_width": 0.9373484947382167,
+          "q10_log_hr_width": 0.9355154524375393,
+          "q90_log_hr_width": 0.946179964172552,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.472286582295823,
+          "median_log_hr_width": 3.4569746476508953,
+          "q10_log_hr_width": 3.443734224923901,
+          "q90_log_hr_width": 3.521232531277383,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.022,
+          "rejection_mcse": 0.0014668333238647122,
+          "mean_log_hr_width": 0.7761430233355239,
+          "median_log_hr_width": 0.7745125235032901,
+          "q10_log_hr_width": 0.7730395602278805,
+          "q90_log_hr_width": 0.7814815046887815,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        }
+      }
+    },
+    "crossing__none": {
+      "hazard": {
+        "key": "crossing",
+        "label": "Crossing 0.45\u21921.80",
+        "treatment_hazard_early": 0.45,
+        "treatment_hazard_late": 1.8,
+        "change_time": 0.35,
+        "true_log_hr": null
+      },
+      "censoring": {
+        "key": "none",
+        "label": "No censoring",
+        "control_rate": 0.0,
+        "treatment_rate": 0.0
+      },
+      "mean_terminal_time": 0.4590797946306751,
+      "mean_censoring_exit_fraction": 0.0,
+      "mean_null_information": 49.71022602084735,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.6161,
+          "rejection_mcse": 0.004863340312994763,
+          "mean_log_hr_width": 0.5575871671552682,
+          "median_log_hr_width": 0.5558623788210753,
+          "q10_log_hr_width": 0.5529275747741849,
+          "q90_log_hr_width": 0.5643547331610534,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.5907,
+          "rejection_mcse": 0.004917046979641337,
+          "mean_log_hr_width": 0.57776958427959,
+          "median_log_hr_width": 0.5769321697189298,
+          "q10_log_hr_width": 0.5672825079351241,
+          "q90_log_hr_width": 0.5890094663251147,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.166,
+          "rejection_mcse": 0.0037208063642173053,
+          "mean_log_hr_width": 0.9456886738566272,
+          "median_log_hr_width": 0.9423766378176879,
+          "q10_log_hr_width": 0.9359371054984876,
+          "q90_log_hr_width": 0.9597645014298906,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.5299704195558532,
+          "median_log_hr_width": 3.503823176125479,
+          "q10_log_hr_width": 3.4532552660313742,
+          "q90_log_hr_width": 3.6403202165947732,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.3356,
+          "rejection_mcse": 0.004721997882252808,
+          "mean_log_hr_width": 0.7806931461702583,
+          "median_log_hr_width": 0.7779538596378188,
+          "q10_log_hr_width": 0.7734430508518926,
+          "q90_log_hr_width": 0.7912375013082056,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        }
+      }
+    },
+    "null__balanced": {
+      "hazard": {
+        "key": "null",
+        "label": "Null",
+        "treatment_hazard_early": 1.0,
+        "treatment_hazard_late": 1.0,
+        "change_time": 0.35,
+        "true_log_hr": 0.0
+      },
+      "censoring": {
+        "key": "balanced",
+        "label": "Balanced censoring",
+        "control_rate": 0.45,
+        "treatment_rate": 0.45
+      },
+      "mean_terminal_time": 0.45560057821086436,
+      "mean_censoring_exit_fraction": 0.3095520345333104,
+      "mean_null_information": 49.886702403719404,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0498,
+          "rejection_mcse": 0.00217531514958178,
+          "mean_log_hr_width": 0.5540261245052488,
+          "median_log_hr_width": 0.5533130584035462,
+          "q10_log_hr_width": 0.5526739145007014,
+          "q90_log_hr_width": 0.556217098099478,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9502,
+          "coverage_mcse": 0.0021753151495817785
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0369,
+          "rejection_mcse": 0.0018851628576863062,
+          "mean_log_hr_width": 0.5905758914270578,
+          "median_log_hr_width": 0.5893318347852983,
+          "q10_log_hr_width": 0.5863348337961725,
+          "q90_log_hr_width": 0.5963627032519071,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9631,
+          "coverage_mcse": 0.001885162857686307
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0011,
+          "rejection_mcse": 0.00033148001448051134,
+          "mean_log_hr_width": 0.9381695275077043,
+          "median_log_hr_width": 0.9366812099442541,
+          "q10_log_hr_width": 0.9354953389347429,
+          "q90_log_hr_width": 0.9427938459135475,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9989,
+          "coverage_mcse": 0.0003314800144805098
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.464218610083335,
+          "median_log_hr_width": 3.453440392675475,
+          "q10_log_hr_width": 3.444086400120068,
+          "q90_log_hr_width": 3.498100093182438,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 1.0,
+          "coverage_mcse": 0.0
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0053,
+          "rejection_mcse": 0.0007260791967822794,
+          "mean_log_hr_width": 0.775148759882065,
+          "median_log_hr_width": 0.7740453897340558,
+          "q10_log_hr_width": 0.7730590079348986,
+          "q90_log_hr_width": 0.7785198988745833,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9947,
+          "coverage_mcse": 0.0007260791967822775
+        }
+      }
+    },
+    "ph_070__balanced": {
+      "hazard": {
+        "key": "ph_070",
+        "label": "PH 0.70",
+        "treatment_hazard_early": 0.7,
+        "treatment_hazard_late": 0.7,
+        "change_time": 0.35,
+        "true_log_hr": -0.35667494393873245
+      },
+      "censoring": {
+        "key": "balanced",
+        "label": "Balanced censoring",
+        "control_rate": 0.45,
+        "treatment_rate": 0.45
+      },
+      "mean_terminal_time": 0.5528409655605965,
+      "mean_censoring_exit_fraction": 0.3460740976787222,
+      "mean_null_information": 49.78804686949983,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.7123,
+          "rejection_mcse": 0.004526905234263249,
+          "mean_log_hr_width": 0.5598967918584121,
+          "median_log_hr_width": 0.5583294701500563,
+          "q10_log_hr_width": 0.5534141105275922,
+          "q90_log_hr_width": 0.5681175931125836,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9501,
+          "coverage_mcse": 0.0021773835215689505
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.6717,
+          "rejection_mcse": 0.004695946230526922,
+          "mean_log_hr_width": 0.5985104719071307,
+          "median_log_hr_width": 0.5951119462024508,
+          "q10_log_hr_width": 0.586302316167712,
+          "q90_log_hr_width": 0.6151284996925824,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9634,
+          "coverage_mcse": 0.0018777763445096429
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.2155,
+          "rejection_mcse": 0.004111687609729124,
+          "mean_log_hr_width": 0.9501833264623636,
+          "median_log_hr_width": 0.947272719891771,
+          "q10_log_hr_width": 0.9371306521103179,
+          "q90_log_hr_width": 0.9669854307245259,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9993,
+          "coverage_mcse": 0.00026448251359967713
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.5542022571935994,
+          "median_log_hr_width": 3.5295478540438125,
+          "q10_log_hr_width": 3.4558675108441093,
+          "q90_log_hr_width": 3.6826554739966015,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 1.0,
+          "coverage_mcse": 0.0
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.4231,
+          "rejection_mcse": 0.004940509993917632,
+          "mean_log_hr_width": 0.7843138516170107,
+          "median_log_hr_width": 0.7818033251196539,
+          "q10_log_hr_width": 0.7741944102421258,
+          "q90_log_hr_width": 0.7971993209934226,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9932,
+          "coverage_mcse": 0.0008218126307133535
+        }
+      }
+    },
+    "delayed__balanced": {
+      "hazard": {
+        "key": "delayed",
+        "label": "Delayed 1.00\u21920.45",
+        "treatment_hazard_early": 1.0,
+        "treatment_hazard_late": 0.45,
+        "change_time": 0.35,
+        "true_log_hr": null
+      },
+      "censoring": {
+        "key": "balanced",
+        "label": "Balanced censoring",
+        "control_rate": 0.45,
+        "treatment_rate": 0.45
+      },
+      "mean_terminal_time": 0.49798081103160546,
+      "mean_censoring_exit_fraction": 0.32334134748556614,
+      "mean_null_information": 49.880015486001646,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.1621,
+          "rejection_mcse": 0.0036854252129164145,
+          "mean_log_hr_width": 0.5553156895284681,
+          "median_log_hr_width": 0.5540294797992829,
+          "q10_log_hr_width": 0.5527392713453082,
+          "q90_log_hr_width": 0.5598190060150955,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.128,
+          "rejection_mcse": 0.003340898082851376,
+          "mean_log_hr_width": 0.5987905833284842,
+          "median_log_hr_width": 0.5954103886206212,
+          "q10_log_hr_width": 0.5868179670653262,
+          "q90_log_hr_width": 0.6156456548857022,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0129,
+          "rejection_mcse": 0.0011284320980900887,
+          "mean_log_hr_width": 0.940734644223445,
+          "median_log_hr_width": 0.9382526174194936,
+          "q10_log_hr_width": 0.9356407706087339,
+          "q90_log_hr_width": 0.9492855098867949,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.4803418216557978,
+          "median_log_hr_width": 3.4622353059694433,
+          "q10_log_hr_width": 3.4435606195833315,
+          "q90_log_hr_width": 3.5417965137210556,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0442,
+          "rejection_mcse": 0.002055391933427783,
+          "mean_log_hr_width": 0.7771529592038192,
+          "median_log_hr_width": 0.7751472387608374,
+          "q10_log_hr_width": 0.7731600885659645,
+          "q90_log_hr_width": 0.7841429441225045,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        }
+      }
+    },
+    "crossing__balanced": {
+      "hazard": {
+        "key": "crossing",
+        "label": "Crossing 0.45\u21921.80",
+        "treatment_hazard_early": 0.45,
+        "treatment_hazard_late": 1.8,
+        "change_time": 0.35,
+        "true_log_hr": null
+      },
+      "censoring": {
+        "key": "balanced",
+        "label": "Balanced censoring",
+        "control_rate": 0.45,
+        "treatment_rate": 0.45
+      },
+      "mean_terminal_time": 0.5060472005957448,
+      "mean_censoring_exit_fraction": 0.3366668129565524,
+      "mean_null_information": 49.71015145977533,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.4462,
+          "rejection_mcse": 0.004970971333653012,
+          "mean_log_hr_width": 0.5560770230042706,
+          "median_log_hr_width": 0.5545923967556519,
+          "q10_log_hr_width": 0.5529031611964456,
+          "q90_log_hr_width": 0.561230024838369,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.4177,
+          "rejection_mcse": 0.004931802003324951,
+          "mean_log_hr_width": 0.5800430836075268,
+          "median_log_hr_width": 0.578829053917616,
+          "q10_log_hr_width": 0.5683632225009205,
+          "q90_log_hr_width": 0.5928432079444974,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0786,
+          "rejection_mcse": 0.0026911343333248902,
+          "mean_log_hr_width": 0.9425248365928269,
+          "median_log_hr_width": 0.9395450821275517,
+          "q10_log_hr_width": 0.9358503234923774,
+          "q90_log_hr_width": 0.9534832464256396,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.5046246771583114,
+          "median_log_hr_width": 3.4829245668051954,
+          "q10_log_hr_width": 3.4488264027291735,
+          "q90_log_hr_width": 3.5911777206400073,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.1964,
+          "rejection_mcse": 0.0039727451466209105,
+          "mean_log_hr_width": 0.7783274819197179,
+          "median_log_hr_width": 0.7760050748793219,
+          "q10_log_hr_width": 0.7734012639730281,
+          "q90_log_hr_width": 0.7863180422891674,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        }
+      }
+    },
+    "null__differential": {
+      "hazard": {
+        "key": "null",
+        "label": "Null",
+        "treatment_hazard_early": 1.0,
+        "treatment_hazard_late": 1.0,
+        "change_time": 0.35,
+        "true_log_hr": 0.0
+      },
+      "censoring": {
+        "key": "differential",
+        "label": "Differential censoring",
+        "control_rate": 0.2,
+        "treatment_rate": 0.75
+      },
+      "mean_terminal_time": 0.45735423663893526,
+      "mean_censoring_exit_fraction": 0.3141572431847042,
+      "mean_null_information": 49.66079763787569,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0479,
+          "rejection_mcse": 0.002135546534262365,
+          "mean_log_hr_width": 0.5553050036996902,
+          "median_log_hr_width": 0.554246365830295,
+          "q10_log_hr_width": 0.5531191029685942,
+          "q90_log_hr_width": 0.5589758244279437,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9521,
+          "coverage_mcse": 0.0021355465342623664
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0371,
+          "rejection_mcse": 0.0018900685172765562,
+          "mean_log_hr_width": 0.5924153907848855,
+          "median_log_hr_width": 0.5903682476227914,
+          "q10_log_hr_width": 0.5855388426138234,
+          "q90_log_hr_width": 0.6019009499130334,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9629,
+          "coverage_mcse": 0.0018900685172765568
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0011,
+          "rejection_mcse": 0.00033148001448051134,
+          "mean_log_hr_width": 0.9401513025844203,
+          "median_log_hr_width": 0.9382958657934068,
+          "q10_log_hr_width": 0.9362979697249102,
+          "q90_log_hr_width": 0.9464037115900282,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9989,
+          "coverage_mcse": 0.0003314800144805098
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.4833026198579375,
+          "median_log_hr_width": 3.4687848220164597,
+          "q10_log_hr_width": 3.4474055924729328,
+          "q90_log_hr_width": 3.5375344047981345,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 1.0,
+          "coverage_mcse": 0.0
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0069,
+          "rejection_mcse": 0.0008277916404506632,
+          "mean_log_hr_width": 0.7771079761619052,
+          "median_log_hr_width": 0.7754499697421124,
+          "q10_log_hr_width": 0.7737187610448018,
+          "q90_log_hr_width": 0.7828235493647299,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9931,
+          "coverage_mcse": 0.0008277916404506642
+        }
+      }
+    },
+    "ph_070__differential": {
+      "hazard": {
+        "key": "ph_070",
+        "label": "PH 0.70",
+        "treatment_hazard_early": 0.7,
+        "treatment_hazard_late": 0.7,
+        "change_time": 0.35,
+        "true_log_hr": -0.35667494393873245
+      },
+      "censoring": {
+        "key": "differential",
+        "label": "Differential censoring",
+        "control_rate": 0.2,
+        "treatment_rate": 0.75
+      },
+      "mean_terminal_time": 0.5487555845174255,
+      "mean_censoring_exit_fraction": 0.3522149364859965,
+      "mean_null_information": 49.81929548198347,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.7053,
+          "rejection_mcse": 0.004559077867288515,
+          "mean_log_hr_width": 0.566397369434241,
+          "median_log_hr_width": 0.5651809107903318,
+          "q10_log_hr_width": 0.5567356062059844,
+          "q90_log_hr_width": 0.5773985876769074,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9472,
+          "coverage_mcse": 0.002236339866835986
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.6605,
+          "rejection_mcse": 0.0047353959707716105,
+          "mean_log_hr_width": 0.6111010454836214,
+          "median_log_hr_width": 0.6072486464181566,
+          "q10_log_hr_width": 0.5899790855819447,
+          "q90_log_hr_width": 0.636885692350188,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.963,
+          "coverage_mcse": 0.0018876175460087255
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.2058,
+          "rejection_mcse": 0.004042849984849797,
+          "mean_log_hr_width": 0.9603975350782062,
+          "median_log_hr_width": 0.9577131549449405,
+          "q10_log_hr_width": 0.9424455220099844,
+          "q90_log_hr_width": 0.9818920858151614,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9992,
+          "coverage_mcse": 0.00028272955275316074
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.6600526684976025,
+          "median_log_hr_width": 3.6330135164671447,
+          "q10_log_hr_width": 3.503452599583943,
+          "q90_log_hr_width": 3.84271540316895,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 1.0,
+          "coverage_mcse": 0.0
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.4144,
+          "rejection_mcse": 0.004926181482649619,
+          "mean_log_hr_width": 0.7946074100992031,
+          "median_log_hr_width": 0.7925693929973932,
+          "q10_log_hr_width": 0.7793329423959221,
+          "q90_log_hr_width": 0.812117047049469,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": 0.9944,
+          "coverage_mcse": 0.0007462332075162596
+        }
+      }
+    },
+    "delayed__differential": {
+      "hazard": {
+        "key": "delayed",
+        "label": "Delayed 1.00\u21920.45",
+        "treatment_hazard_early": 1.0,
+        "treatment_hazard_late": 0.45,
+        "change_time": 0.35,
+        "true_log_hr": null
+      },
+      "censoring": {
+        "key": "differential",
+        "label": "Differential censoring",
+        "control_rate": 0.2,
+        "treatment_rate": 0.75
+      },
+      "mean_terminal_time": 0.4941535625152028,
+      "mean_censoring_exit_fraction": 0.3260164490331126,
+      "mean_null_information": 49.6963849597784,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.1667,
+          "rejection_mcse": 0.00372707807806598,
+          "mean_log_hr_width": 0.5584711863169972,
+          "median_log_hr_width": 0.5568552421254935,
+          "q10_log_hr_width": 0.5534434389879607,
+          "q90_log_hr_width": 0.5655579693871914,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.1303,
+          "rejection_mcse": 0.003366331980063761,
+          "mean_log_hr_width": 0.6109873208278285,
+          "median_log_hr_width": 0.6070047815101134,
+          "q10_log_hr_width": 0.5911808347931583,
+          "q90_log_hr_width": 0.6365212267366587,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0126,
+          "rejection_mcse": 0.0011154030661603904,
+          "mean_log_hr_width": 0.9452945847781491,
+          "median_log_hr_width": 0.9421398869635595,
+          "q10_log_hr_width": 0.9365918195626364,
+          "q90_log_hr_width": 0.9582739030471202,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.539610218295522,
+          "median_log_hr_width": 3.514551566528098,
+          "q10_log_hr_width": 3.4635728722889327,
+          "q90_log_hr_width": 3.6523068364063875,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0454,
+          "rejection_mcse": 0.0020817982611194582,
+          "mean_log_hr_width": 0.7820644840556653,
+          "median_log_hr_width": 0.7795079179741151,
+          "q10_log_hr_width": 0.7742153151024468,
+          "q90_log_hr_width": 0.7931376250047834,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        }
+      }
+    },
+    "crossing__differential": {
+      "hazard": {
+        "key": "crossing",
+        "label": "Crossing 0.45\u21921.80",
+        "treatment_hazard_early": 0.45,
+        "treatment_hazard_late": 1.8,
+        "change_time": 0.35,
+        "true_log_hr": null
+      },
+      "censoring": {
+        "key": "differential",
+        "label": "Differential censoring",
+        "control_rate": 0.2,
+        "treatment_rate": 0.75
+      },
+      "mean_terminal_time": 0.5107024640291292,
+      "mean_censoring_exit_fraction": 0.34693083642831324,
+      "mean_null_information": 49.8106804311569,
+      "methods": {
+        "classical": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.4451,
+          "rejection_mcse": 0.004969768505675088,
+          "mean_log_hr_width": 0.5606017452154918,
+          "median_log_hr_width": 0.5590470111674222,
+          "q10_log_hr_width": 0.5540285265309649,
+          "q90_log_hr_width": 0.5692590041162475,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "ge": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.4075,
+          "rejection_mcse": 0.004913692603327969,
+          "mean_log_hr_width": 0.5761951947709806,
+          "median_log_hr_width": 0.5757354200559348,
+          "q10_log_hr_width": 0.5651406533423142,
+          "q90_log_hr_width": 0.5874429900215545,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_preq": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0765,
+          "rejection_mcse": 0.0026579644467148163,
+          "mean_log_hr_width": 0.9508520812696625,
+          "median_log_hr_width": 0.9476081541524763,
+          "q10_log_hr_width": 0.938934357809012,
+          "q90_log_hr_width": 0.966795090562482,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_grow": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.0,
+          "rejection_mcse": 0.0,
+          "mean_log_hr_width": 3.5423049971490568,
+          "median_log_hr_width": 3.514583092142857,
+          "q10_log_hr_width": 3.4293984222988003,
+          "q90_log_hr_width": 3.684621150924613,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        },
+        "av_path_mix": {
+          "repetitions": 10000,
+          "finite_interval_rate": 1.0,
+          "rejection_probability_at_zero": 0.1889,
+          "rejection_mcse": 0.003914291634510642,
+          "mean_log_hr_width": 0.7854156152575353,
+          "median_log_hr_width": 0.7829279673551355,
+          "q10_log_hr_width": 0.7751034606111716,
+          "q90_log_hr_width": 0.7990363296337819,
+          "grid_fragmentation_rate": 0.0,
+          "candidate_boundary_rate": 0.0,
+          "coverage": null,
+          "coverage_mcse": null
+        }
+      }
+    }
+  }
+}
