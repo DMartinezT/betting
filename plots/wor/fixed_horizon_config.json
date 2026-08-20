@@ -1,0 +1,105 @@
+{
+  "population_size": 4000,
+  "populations": [
+    {
+      "name": "Uniform(0,1)",
+      "family": "uniform",
+      "parameters": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "name": "Beta(0.5,0.5)",
+      "family": "beta",
+      "parameters": [
+        0.5,
+        0.5
+      ]
+    },
+    {
+      "name": "Bernoulli(0.1)",
+      "family": "bernoulli",
+      "parameters": [
+        0.1
+      ]
+    },
+    {
+      "name": "Beta(2,2)",
+      "family": "beta",
+      "parameters": [
+        2.0,
+        2.0
+      ]
+    },
+    {
+      "name": "Beta(1,5)",
+      "family": "beta",
+      "parameters": [
+        1.0,
+        5.0
+      ]
+    },
+    {
+      "name": "Bernoulli(0.5)",
+      "family": "bernoulli",
+      "parameters": [
+        0.5
+      ]
+    },
+    {
+      "name": "Beta(50,50)",
+      "family": "beta",
+      "parameters": [
+        50.0,
+        50.0
+      ]
+    },
+    {
+      "name": "Beta(20,80)",
+      "family": "beta",
+      "parameters": [
+        20.0,
+        80.0
+      ]
+    },
+    {
+      "name": "Uniform(0.45,0.55)",
+      "family": "uniform",
+      "parameters": [
+        0.45,
+        0.55
+      ]
+    }
+  ],
+  "sampling_fractions": [
+    0.1,
+    0.3,
+    0.5,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "sample_sizes": [
+    400,
+    1200,
+    2000,
+    2800,
+    3200,
+    3600
+  ],
+  "num_simulations": 200,
+  "seed": 20260813,
+  "delta": 0.01,
+  "solvency_c": 1.0,
+  "randomization": {
+    "methods": [
+      "Bridge-efficient betting",
+      "WSR running intersection"
+    ],
+    "calibration": "uniformly randomized Markov",
+    "pairing": "one independent uniform pair per population, reveal order, and sampling fraction; shared across betting methods"
+  },
+  "bisection_steps": 30,
+  "normalization": "2 * z_(1-delta/2) * sigma_N * sqrt((N-n)/(n*(N-1)))"
+}

@@ -1,0 +1,23 @@
+{
+  "delta": 0.01,
+  "n_values": [
+    50,
+    200,
+    1000,
+    5000
+  ],
+  "repetitions": 200,
+  "seed": 20260814,
+  "bellman_bisection_steps": 15,
+  "width_seconds": 20.424886326305568,
+  "bellman_seconds": 20.904412266798317,
+  "elapsed_seconds": 41.77028924692422,
+  "interpretation": {
+    "Chronological GE": "finite-sample martingale-valid and order-dependent",
+    "Exact Bernoulli rounding": "finite-sample valid and order-invariant in distribution; uses external observation-level randomization",
+    "Symmetric empirical-variance bound": "finite-sample martingale-valid and order-invariant",
+    "Optimistic hard-boundary benchmark (not valid)": "not valid; optimistic lower-width diagnostic for the hard-boundary studentized family"
+  },
+  "all_optimistic_differences_positive": true,
+  "bellman_rows": 27
+}

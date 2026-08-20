@@ -1067,7 +1067,7 @@ def make_plots(
         )
         for color, marker in (("darkorange", "P"), ("#2ca02c", "h"))
     ]
-    construction_labels = ["STaR betting", "Efficient betting"]
+    construction_labels = ["STaR betting", "GE-betting"]
     estimator_handles = [
         Line2D(
             [0], [0], color="0.25", ls="--", marker="o", lw=2,
@@ -1084,7 +1084,7 @@ def make_plots(
     ]
     component_labels = ["Largest connected piece"]
     fig.suptitle(
-        "STaR and Efficient betting: mean scaled confidence-interval widths "
+        "STaR and GE-betting: mean scaled confidence-interval widths "
         f"($1-\\delta={1.0-delta:.2f}$)",
         fontsize=15,
     )

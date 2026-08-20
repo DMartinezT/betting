@@ -15,7 +15,9 @@ from matplotlib.lines import Line2D
 
 
 HERE = Path(__file__).resolve().parent
-DEFAULT_INPUT = HERE / "plots" / "ci_width_original_vs_star.json"
+DEFAULT_INPUT = (
+    HERE / "plots" / "solvency_c_comparison" / "ci_width_all_methods_c1.json"
+)
 PAPER_PLOT_DIR = HERE.parent / "paper" / "plots"
 
 

@@ -1,0 +1,14 @@
+{
+  "delta": 0.01,
+  "n_values": [
+    50,
+    200,
+    1000,
+    5000
+  ],
+  "repetitions": 100,
+  "permutation_count": 32,
+  "seed": 20260813,
+  "elapsed_seconds": 271.10958101786673,
+  "validity_scope": "permutation-integrated methods are finite-sample valid under iid sampling, including the sampled permutations and terminal uniforms"
+}

@@ -1,0 +1,1441 @@
+distribution,replication,method,simultaneously_covered
+"Uniform(0,1)",0,Stitched GE,1
+"Uniform(0,1)",0,aGRAPA,1
+"Uniform(0,1)",0,PRECiSE-A-CO96,1
+"Uniform(0,1)",0,Hedged-CS,1
+"Uniform(0,1)",1,Stitched GE,1
+"Uniform(0,1)",1,aGRAPA,1
+"Uniform(0,1)",1,PRECiSE-A-CO96,1
+"Uniform(0,1)",1,Hedged-CS,1
+"Uniform(0,1)",2,Stitched GE,1
+"Uniform(0,1)",2,aGRAPA,1
+"Uniform(0,1)",2,PRECiSE-A-CO96,1
+"Uniform(0,1)",2,Hedged-CS,1
+"Uniform(0,1)",3,Stitched GE,1
+"Uniform(0,1)",3,aGRAPA,1
+"Uniform(0,1)",3,PRECiSE-A-CO96,1
+"Uniform(0,1)",3,Hedged-CS,1
+"Uniform(0,1)",4,Stitched GE,1
+"Uniform(0,1)",4,aGRAPA,1
+"Uniform(0,1)",4,PRECiSE-A-CO96,1
+"Uniform(0,1)",4,Hedged-CS,1
+"Uniform(0,1)",5,Stitched GE,1
+"Uniform(0,1)",5,aGRAPA,1
+"Uniform(0,1)",5,PRECiSE-A-CO96,1
+"Uniform(0,1)",5,Hedged-CS,1
+"Uniform(0,1)",6,Stitched GE,1
+"Uniform(0,1)",6,aGRAPA,1
+"Uniform(0,1)",6,PRECiSE-A-CO96,1
+"Uniform(0,1)",6,Hedged-CS,1
+"Uniform(0,1)",7,Stitched GE,1
+"Uniform(0,1)",7,aGRAPA,1
+"Uniform(0,1)",7,PRECiSE-A-CO96,1
+"Uniform(0,1)",7,Hedged-CS,1
+"Uniform(0,1)",8,Stitched GE,1
+"Uniform(0,1)",8,aGRAPA,1
+"Uniform(0,1)",8,PRECiSE-A-CO96,1
+"Uniform(0,1)",8,Hedged-CS,1
+"Uniform(0,1)",9,Stitched GE,1
+"Uniform(0,1)",9,aGRAPA,1
+"Uniform(0,1)",9,PRECiSE-A-CO96,1
+"Uniform(0,1)",9,Hedged-CS,1
+"Uniform(0,1)",10,Stitched GE,1
+"Uniform(0,1)",10,aGRAPA,1
+"Uniform(0,1)",10,PRECiSE-A-CO96,1
+"Uniform(0,1)",10,Hedged-CS,1
+"Uniform(0,1)",11,Stitched GE,1
+"Uniform(0,1)",11,aGRAPA,1
+"Uniform(0,1)",11,PRECiSE-A-CO96,1
+"Uniform(0,1)",11,Hedged-CS,1
+"Uniform(0,1)",12,Stitched GE,1
+"Uniform(0,1)",12,aGRAPA,1
+"Uniform(0,1)",12,PRECiSE-A-CO96,1
+"Uniform(0,1)",12,Hedged-CS,1
+"Uniform(0,1)",13,Stitched GE,1
+"Uniform(0,1)",13,aGRAPA,1
+"Uniform(0,1)",13,PRECiSE-A-CO96,1
+"Uniform(0,1)",13,Hedged-CS,1
+"Uniform(0,1)",14,Stitched GE,1
+"Uniform(0,1)",14,aGRAPA,1
+"Uniform(0,1)",14,PRECiSE-A-CO96,1
+"Uniform(0,1)",14,Hedged-CS,1
+"Uniform(0,1)",15,Stitched GE,1
+"Uniform(0,1)",15,aGRAPA,1
+"Uniform(0,1)",15,PRECiSE-A-CO96,1
+"Uniform(0,1)",15,Hedged-CS,1
+"Uniform(0,1)",16,Stitched GE,1
+"Uniform(0,1)",16,aGRAPA,1
+"Uniform(0,1)",16,PRECiSE-A-CO96,1
+"Uniform(0,1)",16,Hedged-CS,1
+"Uniform(0,1)",17,Stitched GE,1
+"Uniform(0,1)",17,aGRAPA,1
+"Uniform(0,1)",17,PRECiSE-A-CO96,1
+"Uniform(0,1)",17,Hedged-CS,1
+"Uniform(0,1)",18,Stitched GE,1
+"Uniform(0,1)",18,aGRAPA,1
+"Uniform(0,1)",18,PRECiSE-A-CO96,1
+"Uniform(0,1)",18,Hedged-CS,1
+"Uniform(0,1)",19,Stitched GE,1
+"Uniform(0,1)",19,aGRAPA,1
+"Uniform(0,1)",19,PRECiSE-A-CO96,1
+"Uniform(0,1)",19,Hedged-CS,1
+"Uniform(0,1)",20,Stitched GE,1
+"Uniform(0,1)",20,aGRAPA,1
+"Uniform(0,1)",20,PRECiSE-A-CO96,1
+"Uniform(0,1)",20,Hedged-CS,1
+"Uniform(0,1)",21,Stitched GE,1
+"Uniform(0,1)",21,aGRAPA,1
+"Uniform(0,1)",21,PRECiSE-A-CO96,1
+"Uniform(0,1)",21,Hedged-CS,1
+"Uniform(0,1)",22,Stitched GE,1
+"Uniform(0,1)",22,aGRAPA,1
+"Uniform(0,1)",22,PRECiSE-A-CO96,1
+"Uniform(0,1)",22,Hedged-CS,1
+"Uniform(0,1)",23,Stitched GE,1
+"Uniform(0,1)",23,aGRAPA,1
+"Uniform(0,1)",23,PRECiSE-A-CO96,1
+"Uniform(0,1)",23,Hedged-CS,1
+"Uniform(0,1)",24,Stitched GE,1
+"Uniform(0,1)",24,aGRAPA,1
+"Uniform(0,1)",24,PRECiSE-A-CO96,1
+"Uniform(0,1)",24,Hedged-CS,1
+"Uniform(0,1)",25,Stitched GE,1
+"Uniform(0,1)",25,aGRAPA,1
+"Uniform(0,1)",25,PRECiSE-A-CO96,1
+"Uniform(0,1)",25,Hedged-CS,1
+"Uniform(0,1)",26,Stitched GE,1
+"Uniform(0,1)",26,aGRAPA,1
+"Uniform(0,1)",26,PRECiSE-A-CO96,1
+"Uniform(0,1)",26,Hedged-CS,1
+"Uniform(0,1)",27,Stitched GE,1
+"Uniform(0,1)",27,aGRAPA,1
+"Uniform(0,1)",27,PRECiSE-A-CO96,1
+"Uniform(0,1)",27,Hedged-CS,1
+"Uniform(0,1)",28,Stitched GE,1
+"Uniform(0,1)",28,aGRAPA,1
+"Uniform(0,1)",28,PRECiSE-A-CO96,1
+"Uniform(0,1)",28,Hedged-CS,1
+"Uniform(0,1)",29,Stitched GE,1
+"Uniform(0,1)",29,aGRAPA,1
+"Uniform(0,1)",29,PRECiSE-A-CO96,1
+"Uniform(0,1)",29,Hedged-CS,1
+"Uniform(0,1)",30,Stitched GE,1
+"Uniform(0,1)",30,aGRAPA,1
+"Uniform(0,1)",30,PRECiSE-A-CO96,1
+"Uniform(0,1)",30,Hedged-CS,1
+"Uniform(0,1)",31,Stitched GE,1
+"Uniform(0,1)",31,aGRAPA,1
+"Uniform(0,1)",31,PRECiSE-A-CO96,1
+"Uniform(0,1)",31,Hedged-CS,1
+"Uniform(0,1)",32,Stitched GE,1
+"Uniform(0,1)",32,aGRAPA,1
+"Uniform(0,1)",32,PRECiSE-A-CO96,1
+"Uniform(0,1)",32,Hedged-CS,1
+"Uniform(0,1)",33,Stitched GE,1
+"Uniform(0,1)",33,aGRAPA,1
+"Uniform(0,1)",33,PRECiSE-A-CO96,1
+"Uniform(0,1)",33,Hedged-CS,1
+"Uniform(0,1)",34,Stitched GE,1
+"Uniform(0,1)",34,aGRAPA,1
+"Uniform(0,1)",34,PRECiSE-A-CO96,1
+"Uniform(0,1)",34,Hedged-CS,1
+"Uniform(0,1)",35,Stitched GE,1
+"Uniform(0,1)",35,aGRAPA,1
+"Uniform(0,1)",35,PRECiSE-A-CO96,1
+"Uniform(0,1)",35,Hedged-CS,1
+"Uniform(0,1)",36,Stitched GE,1
+"Uniform(0,1)",36,aGRAPA,1
+"Uniform(0,1)",36,PRECiSE-A-CO96,1
+"Uniform(0,1)",36,Hedged-CS,1
+"Uniform(0,1)",37,Stitched GE,1
+"Uniform(0,1)",37,aGRAPA,1
+"Uniform(0,1)",37,PRECiSE-A-CO96,1
+"Uniform(0,1)",37,Hedged-CS,1
+"Uniform(0,1)",38,Stitched GE,1
+"Uniform(0,1)",38,aGRAPA,1
+"Uniform(0,1)",38,PRECiSE-A-CO96,1
+"Uniform(0,1)",38,Hedged-CS,1
+"Uniform(0,1)",39,Stitched GE,1
+"Uniform(0,1)",39,aGRAPA,1
+"Uniform(0,1)",39,PRECiSE-A-CO96,1
+"Uniform(0,1)",39,Hedged-CS,1
+"Beta(0.5,0.5)",0,Stitched GE,1
+"Beta(0.5,0.5)",0,aGRAPA,1
+"Beta(0.5,0.5)",0,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",0,Hedged-CS,1
+"Beta(0.5,0.5)",1,Stitched GE,1
+"Beta(0.5,0.5)",1,aGRAPA,1
+"Beta(0.5,0.5)",1,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",1,Hedged-CS,1
+"Beta(0.5,0.5)",2,Stitched GE,1
+"Beta(0.5,0.5)",2,aGRAPA,1
+"Beta(0.5,0.5)",2,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",2,Hedged-CS,1
+"Beta(0.5,0.5)",3,Stitched GE,1
+"Beta(0.5,0.5)",3,aGRAPA,1
+"Beta(0.5,0.5)",3,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",3,Hedged-CS,1
+"Beta(0.5,0.5)",4,Stitched GE,1
+"Beta(0.5,0.5)",4,aGRAPA,1
+"Beta(0.5,0.5)",4,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",4,Hedged-CS,1
+"Beta(0.5,0.5)",5,Stitched GE,1
+"Beta(0.5,0.5)",5,aGRAPA,1
+"Beta(0.5,0.5)",5,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",5,Hedged-CS,1
+"Beta(0.5,0.5)",6,Stitched GE,1
+"Beta(0.5,0.5)",6,aGRAPA,1
+"Beta(0.5,0.5)",6,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",6,Hedged-CS,1
+"Beta(0.5,0.5)",7,Stitched GE,1
+"Beta(0.5,0.5)",7,aGRAPA,1
+"Beta(0.5,0.5)",7,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",7,Hedged-CS,1
+"Beta(0.5,0.5)",8,Stitched GE,1
+"Beta(0.5,0.5)",8,aGRAPA,1
+"Beta(0.5,0.5)",8,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",8,Hedged-CS,1
+"Beta(0.5,0.5)",9,Stitched GE,1
+"Beta(0.5,0.5)",9,aGRAPA,1
+"Beta(0.5,0.5)",9,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",9,Hedged-CS,1
+"Beta(0.5,0.5)",10,Stitched GE,1
+"Beta(0.5,0.5)",10,aGRAPA,1
+"Beta(0.5,0.5)",10,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",10,Hedged-CS,1
+"Beta(0.5,0.5)",11,Stitched GE,1
+"Beta(0.5,0.5)",11,aGRAPA,1
+"Beta(0.5,0.5)",11,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",11,Hedged-CS,1
+"Beta(0.5,0.5)",12,Stitched GE,1
+"Beta(0.5,0.5)",12,aGRAPA,1
+"Beta(0.5,0.5)",12,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",12,Hedged-CS,1
+"Beta(0.5,0.5)",13,Stitched GE,1
+"Beta(0.5,0.5)",13,aGRAPA,1
+"Beta(0.5,0.5)",13,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",13,Hedged-CS,1
+"Beta(0.5,0.5)",14,Stitched GE,1
+"Beta(0.5,0.5)",14,aGRAPA,1
+"Beta(0.5,0.5)",14,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",14,Hedged-CS,1
+"Beta(0.5,0.5)",15,Stitched GE,1
+"Beta(0.5,0.5)",15,aGRAPA,1
+"Beta(0.5,0.5)",15,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",15,Hedged-CS,1
+"Beta(0.5,0.5)",16,Stitched GE,1
+"Beta(0.5,0.5)",16,aGRAPA,1
+"Beta(0.5,0.5)",16,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",16,Hedged-CS,1
+"Beta(0.5,0.5)",17,Stitched GE,1
+"Beta(0.5,0.5)",17,aGRAPA,1
+"Beta(0.5,0.5)",17,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",17,Hedged-CS,1
+"Beta(0.5,0.5)",18,Stitched GE,1
+"Beta(0.5,0.5)",18,aGRAPA,1
+"Beta(0.5,0.5)",18,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",18,Hedged-CS,1
+"Beta(0.5,0.5)",19,Stitched GE,1
+"Beta(0.5,0.5)",19,aGRAPA,1
+"Beta(0.5,0.5)",19,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",19,Hedged-CS,1
+"Beta(0.5,0.5)",20,Stitched GE,1
+"Beta(0.5,0.5)",20,aGRAPA,1
+"Beta(0.5,0.5)",20,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",20,Hedged-CS,1
+"Beta(0.5,0.5)",21,Stitched GE,1
+"Beta(0.5,0.5)",21,aGRAPA,1
+"Beta(0.5,0.5)",21,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",21,Hedged-CS,1
+"Beta(0.5,0.5)",22,Stitched GE,1
+"Beta(0.5,0.5)",22,aGRAPA,1
+"Beta(0.5,0.5)",22,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",22,Hedged-CS,1
+"Beta(0.5,0.5)",23,Stitched GE,1
+"Beta(0.5,0.5)",23,aGRAPA,1
+"Beta(0.5,0.5)",23,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",23,Hedged-CS,1
+"Beta(0.5,0.5)",24,Stitched GE,1
+"Beta(0.5,0.5)",24,aGRAPA,1
+"Beta(0.5,0.5)",24,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",24,Hedged-CS,1
+"Beta(0.5,0.5)",25,Stitched GE,1
+"Beta(0.5,0.5)",25,aGRAPA,1
+"Beta(0.5,0.5)",25,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",25,Hedged-CS,1
+"Beta(0.5,0.5)",26,Stitched GE,1
+"Beta(0.5,0.5)",26,aGRAPA,1
+"Beta(0.5,0.5)",26,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",26,Hedged-CS,1
+"Beta(0.5,0.5)",27,Stitched GE,1
+"Beta(0.5,0.5)",27,aGRAPA,1
+"Beta(0.5,0.5)",27,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",27,Hedged-CS,1
+"Beta(0.5,0.5)",28,Stitched GE,1
+"Beta(0.5,0.5)",28,aGRAPA,1
+"Beta(0.5,0.5)",28,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",28,Hedged-CS,1
+"Beta(0.5,0.5)",29,Stitched GE,1
+"Beta(0.5,0.5)",29,aGRAPA,1
+"Beta(0.5,0.5)",29,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",29,Hedged-CS,1
+"Beta(0.5,0.5)",30,Stitched GE,1
+"Beta(0.5,0.5)",30,aGRAPA,1
+"Beta(0.5,0.5)",30,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",30,Hedged-CS,1
+"Beta(0.5,0.5)",31,Stitched GE,1
+"Beta(0.5,0.5)",31,aGRAPA,1
+"Beta(0.5,0.5)",31,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",31,Hedged-CS,1
+"Beta(0.5,0.5)",32,Stitched GE,1
+"Beta(0.5,0.5)",32,aGRAPA,1
+"Beta(0.5,0.5)",32,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",32,Hedged-CS,1
+"Beta(0.5,0.5)",33,Stitched GE,1
+"Beta(0.5,0.5)",33,aGRAPA,1
+"Beta(0.5,0.5)",33,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",33,Hedged-CS,1
+"Beta(0.5,0.5)",34,Stitched GE,1
+"Beta(0.5,0.5)",34,aGRAPA,1
+"Beta(0.5,0.5)",34,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",34,Hedged-CS,1
+"Beta(0.5,0.5)",35,Stitched GE,1
+"Beta(0.5,0.5)",35,aGRAPA,1
+"Beta(0.5,0.5)",35,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",35,Hedged-CS,1
+"Beta(0.5,0.5)",36,Stitched GE,1
+"Beta(0.5,0.5)",36,aGRAPA,1
+"Beta(0.5,0.5)",36,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",36,Hedged-CS,1
+"Beta(0.5,0.5)",37,Stitched GE,1
+"Beta(0.5,0.5)",37,aGRAPA,1
+"Beta(0.5,0.5)",37,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",37,Hedged-CS,1
+"Beta(0.5,0.5)",38,Stitched GE,1
+"Beta(0.5,0.5)",38,aGRAPA,1
+"Beta(0.5,0.5)",38,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",38,Hedged-CS,1
+"Beta(0.5,0.5)",39,Stitched GE,1
+"Beta(0.5,0.5)",39,aGRAPA,1
+"Beta(0.5,0.5)",39,PRECiSE-A-CO96,1
+"Beta(0.5,0.5)",39,Hedged-CS,1
+Bernoulli(0.1),0,Stitched GE,1
+Bernoulli(0.1),0,aGRAPA,1
+Bernoulli(0.1),0,PRECiSE-A-CO96,1
+Bernoulli(0.1),0,Hedged-CS,1
+Bernoulli(0.1),1,Stitched GE,1
+Bernoulli(0.1),1,aGRAPA,1
+Bernoulli(0.1),1,PRECiSE-A-CO96,1
+Bernoulli(0.1),1,Hedged-CS,1
+Bernoulli(0.1),2,Stitched GE,1
+Bernoulli(0.1),2,aGRAPA,1
+Bernoulli(0.1),2,PRECiSE-A-CO96,1
+Bernoulli(0.1),2,Hedged-CS,1
+Bernoulli(0.1),3,Stitched GE,1
+Bernoulli(0.1),3,aGRAPA,1
+Bernoulli(0.1),3,PRECiSE-A-CO96,1
+Bernoulli(0.1),3,Hedged-CS,1
+Bernoulli(0.1),4,Stitched GE,1
+Bernoulli(0.1),4,aGRAPA,1
+Bernoulli(0.1),4,PRECiSE-A-CO96,1
+Bernoulli(0.1),4,Hedged-CS,1
+Bernoulli(0.1),5,Stitched GE,1
+Bernoulli(0.1),5,aGRAPA,1
+Bernoulli(0.1),5,PRECiSE-A-CO96,1
+Bernoulli(0.1),5,Hedged-CS,1
+Bernoulli(0.1),6,Stitched GE,1
+Bernoulli(0.1),6,aGRAPA,1
+Bernoulli(0.1),6,PRECiSE-A-CO96,1
+Bernoulli(0.1),6,Hedged-CS,1
+Bernoulli(0.1),7,Stitched GE,1
+Bernoulli(0.1),7,aGRAPA,1
+Bernoulli(0.1),7,PRECiSE-A-CO96,1
+Bernoulli(0.1),7,Hedged-CS,1
+Bernoulli(0.1),8,Stitched GE,1
+Bernoulli(0.1),8,aGRAPA,1
+Bernoulli(0.1),8,PRECiSE-A-CO96,1
+Bernoulli(0.1),8,Hedged-CS,1
+Bernoulli(0.1),9,Stitched GE,1
+Bernoulli(0.1),9,aGRAPA,1
+Bernoulli(0.1),9,PRECiSE-A-CO96,1
+Bernoulli(0.1),9,Hedged-CS,1
+Bernoulli(0.1),10,Stitched GE,1
+Bernoulli(0.1),10,aGRAPA,0
+Bernoulli(0.1),10,PRECiSE-A-CO96,1
+Bernoulli(0.1),10,Hedged-CS,1
+Bernoulli(0.1),11,Stitched GE,1
+Bernoulli(0.1),11,aGRAPA,1
+Bernoulli(0.1),11,PRECiSE-A-CO96,1
+Bernoulli(0.1),11,Hedged-CS,1
+Bernoulli(0.1),12,Stitched GE,1
+Bernoulli(0.1),12,aGRAPA,1
+Bernoulli(0.1),12,PRECiSE-A-CO96,1
+Bernoulli(0.1),12,Hedged-CS,1
+Bernoulli(0.1),13,Stitched GE,1
+Bernoulli(0.1),13,aGRAPA,1
+Bernoulli(0.1),13,PRECiSE-A-CO96,1
+Bernoulli(0.1),13,Hedged-CS,1
+Bernoulli(0.1),14,Stitched GE,1
+Bernoulli(0.1),14,aGRAPA,1
+Bernoulli(0.1),14,PRECiSE-A-CO96,1
+Bernoulli(0.1),14,Hedged-CS,1
+Bernoulli(0.1),15,Stitched GE,1
+Bernoulli(0.1),15,aGRAPA,1
+Bernoulli(0.1),15,PRECiSE-A-CO96,1
+Bernoulli(0.1),15,Hedged-CS,1
+Bernoulli(0.1),16,Stitched GE,1
+Bernoulli(0.1),16,aGRAPA,1
+Bernoulli(0.1),16,PRECiSE-A-CO96,1
+Bernoulli(0.1),16,Hedged-CS,1
+Bernoulli(0.1),17,Stitched GE,1
+Bernoulli(0.1),17,aGRAPA,1
+Bernoulli(0.1),17,PRECiSE-A-CO96,1
+Bernoulli(0.1),17,Hedged-CS,1
+Bernoulli(0.1),18,Stitched GE,1
+Bernoulli(0.1),18,aGRAPA,1
+Bernoulli(0.1),18,PRECiSE-A-CO96,1
+Bernoulli(0.1),18,Hedged-CS,1
+Bernoulli(0.1),19,Stitched GE,1
+Bernoulli(0.1),19,aGRAPA,1
+Bernoulli(0.1),19,PRECiSE-A-CO96,1
+Bernoulli(0.1),19,Hedged-CS,1
+Bernoulli(0.1),20,Stitched GE,1
+Bernoulli(0.1),20,aGRAPA,1
+Bernoulli(0.1),20,PRECiSE-A-CO96,1
+Bernoulli(0.1),20,Hedged-CS,1
+Bernoulli(0.1),21,Stitched GE,1
+Bernoulli(0.1),21,aGRAPA,1
+Bernoulli(0.1),21,PRECiSE-A-CO96,1
+Bernoulli(0.1),21,Hedged-CS,1
+Bernoulli(0.1),22,Stitched GE,0
+Bernoulli(0.1),22,aGRAPA,0
+Bernoulli(0.1),22,PRECiSE-A-CO96,0
+Bernoulli(0.1),22,Hedged-CS,0
+Bernoulli(0.1),23,Stitched GE,1
+Bernoulli(0.1),23,aGRAPA,1
+Bernoulli(0.1),23,PRECiSE-A-CO96,1
+Bernoulli(0.1),23,Hedged-CS,1
+Bernoulli(0.1),24,Stitched GE,1
+Bernoulli(0.1),24,aGRAPA,1
+Bernoulli(0.1),24,PRECiSE-A-CO96,1
+Bernoulli(0.1),24,Hedged-CS,1
+Bernoulli(0.1),25,Stitched GE,1
+Bernoulli(0.1),25,aGRAPA,1
+Bernoulli(0.1),25,PRECiSE-A-CO96,1
+Bernoulli(0.1),25,Hedged-CS,1
+Bernoulli(0.1),26,Stitched GE,1
+Bernoulli(0.1),26,aGRAPA,1
+Bernoulli(0.1),26,PRECiSE-A-CO96,1
+Bernoulli(0.1),26,Hedged-CS,1
+Bernoulli(0.1),27,Stitched GE,1
+Bernoulli(0.1),27,aGRAPA,1
+Bernoulli(0.1),27,PRECiSE-A-CO96,1
+Bernoulli(0.1),27,Hedged-CS,1
+Bernoulli(0.1),28,Stitched GE,1
+Bernoulli(0.1),28,aGRAPA,1
+Bernoulli(0.1),28,PRECiSE-A-CO96,1
+Bernoulli(0.1),28,Hedged-CS,1
+Bernoulli(0.1),29,Stitched GE,1
+Bernoulli(0.1),29,aGRAPA,1
+Bernoulli(0.1),29,PRECiSE-A-CO96,1
+Bernoulli(0.1),29,Hedged-CS,1
+Bernoulli(0.1),30,Stitched GE,1
+Bernoulli(0.1),30,aGRAPA,1
+Bernoulli(0.1),30,PRECiSE-A-CO96,1
+Bernoulli(0.1),30,Hedged-CS,1
+Bernoulli(0.1),31,Stitched GE,1
+Bernoulli(0.1),31,aGRAPA,1
+Bernoulli(0.1),31,PRECiSE-A-CO96,1
+Bernoulli(0.1),31,Hedged-CS,1
+Bernoulli(0.1),32,Stitched GE,1
+Bernoulli(0.1),32,aGRAPA,1
+Bernoulli(0.1),32,PRECiSE-A-CO96,1
+Bernoulli(0.1),32,Hedged-CS,1
+Bernoulli(0.1),33,Stitched GE,1
+Bernoulli(0.1),33,aGRAPA,1
+Bernoulli(0.1),33,PRECiSE-A-CO96,1
+Bernoulli(0.1),33,Hedged-CS,1
+Bernoulli(0.1),34,Stitched GE,1
+Bernoulli(0.1),34,aGRAPA,1
+Bernoulli(0.1),34,PRECiSE-A-CO96,1
+Bernoulli(0.1),34,Hedged-CS,1
+Bernoulli(0.1),35,Stitched GE,1
+Bernoulli(0.1),35,aGRAPA,1
+Bernoulli(0.1),35,PRECiSE-A-CO96,1
+Bernoulli(0.1),35,Hedged-CS,1
+Bernoulli(0.1),36,Stitched GE,1
+Bernoulli(0.1),36,aGRAPA,1
+Bernoulli(0.1),36,PRECiSE-A-CO96,1
+Bernoulli(0.1),36,Hedged-CS,1
+Bernoulli(0.1),37,Stitched GE,1
+Bernoulli(0.1),37,aGRAPA,1
+Bernoulli(0.1),37,PRECiSE-A-CO96,1
+Bernoulli(0.1),37,Hedged-CS,1
+Bernoulli(0.1),38,Stitched GE,1
+Bernoulli(0.1),38,aGRAPA,1
+Bernoulli(0.1),38,PRECiSE-A-CO96,1
+Bernoulli(0.1),38,Hedged-CS,1
+Bernoulli(0.1),39,Stitched GE,1
+Bernoulli(0.1),39,aGRAPA,1
+Bernoulli(0.1),39,PRECiSE-A-CO96,1
+Bernoulli(0.1),39,Hedged-CS,1
+"Beta(2,2)",0,Stitched GE,1
+"Beta(2,2)",0,aGRAPA,1
+"Beta(2,2)",0,PRECiSE-A-CO96,1
+"Beta(2,2)",0,Hedged-CS,1
+"Beta(2,2)",1,Stitched GE,1
+"Beta(2,2)",1,aGRAPA,1
+"Beta(2,2)",1,PRECiSE-A-CO96,1
+"Beta(2,2)",1,Hedged-CS,1
+"Beta(2,2)",2,Stitched GE,1
+"Beta(2,2)",2,aGRAPA,1
+"Beta(2,2)",2,PRECiSE-A-CO96,1
+"Beta(2,2)",2,Hedged-CS,1
+"Beta(2,2)",3,Stitched GE,1
+"Beta(2,2)",3,aGRAPA,1
+"Beta(2,2)",3,PRECiSE-A-CO96,1
+"Beta(2,2)",3,Hedged-CS,1
+"Beta(2,2)",4,Stitched GE,1
+"Beta(2,2)",4,aGRAPA,1
+"Beta(2,2)",4,PRECiSE-A-CO96,1
+"Beta(2,2)",4,Hedged-CS,1
+"Beta(2,2)",5,Stitched GE,1
+"Beta(2,2)",5,aGRAPA,1
+"Beta(2,2)",5,PRECiSE-A-CO96,1
+"Beta(2,2)",5,Hedged-CS,1
+"Beta(2,2)",6,Stitched GE,1
+"Beta(2,2)",6,aGRAPA,1
+"Beta(2,2)",6,PRECiSE-A-CO96,1
+"Beta(2,2)",6,Hedged-CS,1
+"Beta(2,2)",7,Stitched GE,0
+"Beta(2,2)",7,aGRAPA,1
+"Beta(2,2)",7,PRECiSE-A-CO96,1
+"Beta(2,2)",7,Hedged-CS,1
+"Beta(2,2)",8,Stitched GE,1
+"Beta(2,2)",8,aGRAPA,1
+"Beta(2,2)",8,PRECiSE-A-CO96,1
+"Beta(2,2)",8,Hedged-CS,1
+"Beta(2,2)",9,Stitched GE,1
+"Beta(2,2)",9,aGRAPA,1
+"Beta(2,2)",9,PRECiSE-A-CO96,1
+"Beta(2,2)",9,Hedged-CS,1
+"Beta(2,2)",10,Stitched GE,1
+"Beta(2,2)",10,aGRAPA,1
+"Beta(2,2)",10,PRECiSE-A-CO96,1
+"Beta(2,2)",10,Hedged-CS,1
+"Beta(2,2)",11,Stitched GE,0
+"Beta(2,2)",11,aGRAPA,0
+"Beta(2,2)",11,PRECiSE-A-CO96,1
+"Beta(2,2)",11,Hedged-CS,0
+"Beta(2,2)",12,Stitched GE,1
+"Beta(2,2)",12,aGRAPA,1
+"Beta(2,2)",12,PRECiSE-A-CO96,1
+"Beta(2,2)",12,Hedged-CS,1
+"Beta(2,2)",13,Stitched GE,1
+"Beta(2,2)",13,aGRAPA,1
+"Beta(2,2)",13,PRECiSE-A-CO96,1
+"Beta(2,2)",13,Hedged-CS,1
+"Beta(2,2)",14,Stitched GE,1
+"Beta(2,2)",14,aGRAPA,1
+"Beta(2,2)",14,PRECiSE-A-CO96,1
+"Beta(2,2)",14,Hedged-CS,1
+"Beta(2,2)",15,Stitched GE,1
+"Beta(2,2)",15,aGRAPA,1
+"Beta(2,2)",15,PRECiSE-A-CO96,1
+"Beta(2,2)",15,Hedged-CS,1
+"Beta(2,2)",16,Stitched GE,1
+"Beta(2,2)",16,aGRAPA,1
+"Beta(2,2)",16,PRECiSE-A-CO96,1
+"Beta(2,2)",16,Hedged-CS,1
+"Beta(2,2)",17,Stitched GE,1
+"Beta(2,2)",17,aGRAPA,1
+"Beta(2,2)",17,PRECiSE-A-CO96,1
+"Beta(2,2)",17,Hedged-CS,1
+"Beta(2,2)",18,Stitched GE,1
+"Beta(2,2)",18,aGRAPA,1
+"Beta(2,2)",18,PRECiSE-A-CO96,1
+"Beta(2,2)",18,Hedged-CS,1
+"Beta(2,2)",19,Stitched GE,1
+"Beta(2,2)",19,aGRAPA,1
+"Beta(2,2)",19,PRECiSE-A-CO96,1
+"Beta(2,2)",19,Hedged-CS,1
+"Beta(2,2)",20,Stitched GE,1
+"Beta(2,2)",20,aGRAPA,1
+"Beta(2,2)",20,PRECiSE-A-CO96,1
+"Beta(2,2)",20,Hedged-CS,1
+"Beta(2,2)",21,Stitched GE,1
+"Beta(2,2)",21,aGRAPA,1
+"Beta(2,2)",21,PRECiSE-A-CO96,1
+"Beta(2,2)",21,Hedged-CS,1
+"Beta(2,2)",22,Stitched GE,1
+"Beta(2,2)",22,aGRAPA,1
+"Beta(2,2)",22,PRECiSE-A-CO96,1
+"Beta(2,2)",22,Hedged-CS,1
+"Beta(2,2)",23,Stitched GE,1
+"Beta(2,2)",23,aGRAPA,1
+"Beta(2,2)",23,PRECiSE-A-CO96,1
+"Beta(2,2)",23,Hedged-CS,1
+"Beta(2,2)",24,Stitched GE,1
+"Beta(2,2)",24,aGRAPA,1
+"Beta(2,2)",24,PRECiSE-A-CO96,1
+"Beta(2,2)",24,Hedged-CS,1
+"Beta(2,2)",25,Stitched GE,1
+"Beta(2,2)",25,aGRAPA,1
+"Beta(2,2)",25,PRECiSE-A-CO96,1
+"Beta(2,2)",25,Hedged-CS,1
+"Beta(2,2)",26,Stitched GE,1
+"Beta(2,2)",26,aGRAPA,1
+"Beta(2,2)",26,PRECiSE-A-CO96,1
+"Beta(2,2)",26,Hedged-CS,1
+"Beta(2,2)",27,Stitched GE,1
+"Beta(2,2)",27,aGRAPA,1
+"Beta(2,2)",27,PRECiSE-A-CO96,1
+"Beta(2,2)",27,Hedged-CS,1
+"Beta(2,2)",28,Stitched GE,1
+"Beta(2,2)",28,aGRAPA,1
+"Beta(2,2)",28,PRECiSE-A-CO96,1
+"Beta(2,2)",28,Hedged-CS,1
+"Beta(2,2)",29,Stitched GE,1
+"Beta(2,2)",29,aGRAPA,1
+"Beta(2,2)",29,PRECiSE-A-CO96,1
+"Beta(2,2)",29,Hedged-CS,1
+"Beta(2,2)",30,Stitched GE,1
+"Beta(2,2)",30,aGRAPA,0
+"Beta(2,2)",30,PRECiSE-A-CO96,1
+"Beta(2,2)",30,Hedged-CS,0
+"Beta(2,2)",31,Stitched GE,1
+"Beta(2,2)",31,aGRAPA,1
+"Beta(2,2)",31,PRECiSE-A-CO96,1
+"Beta(2,2)",31,Hedged-CS,1
+"Beta(2,2)",32,Stitched GE,1
+"Beta(2,2)",32,aGRAPA,1
+"Beta(2,2)",32,PRECiSE-A-CO96,1
+"Beta(2,2)",32,Hedged-CS,1
+"Beta(2,2)",33,Stitched GE,1
+"Beta(2,2)",33,aGRAPA,1
+"Beta(2,2)",33,PRECiSE-A-CO96,1
+"Beta(2,2)",33,Hedged-CS,1
+"Beta(2,2)",34,Stitched GE,1
+"Beta(2,2)",34,aGRAPA,1
+"Beta(2,2)",34,PRECiSE-A-CO96,1
+"Beta(2,2)",34,Hedged-CS,1
+"Beta(2,2)",35,Stitched GE,1
+"Beta(2,2)",35,aGRAPA,1
+"Beta(2,2)",35,PRECiSE-A-CO96,1
+"Beta(2,2)",35,Hedged-CS,1
+"Beta(2,2)",36,Stitched GE,1
+"Beta(2,2)",36,aGRAPA,1
+"Beta(2,2)",36,PRECiSE-A-CO96,1
+"Beta(2,2)",36,Hedged-CS,1
+"Beta(2,2)",37,Stitched GE,1
+"Beta(2,2)",37,aGRAPA,1
+"Beta(2,2)",37,PRECiSE-A-CO96,1
+"Beta(2,2)",37,Hedged-CS,1
+"Beta(2,2)",38,Stitched GE,1
+"Beta(2,2)",38,aGRAPA,1
+"Beta(2,2)",38,PRECiSE-A-CO96,1
+"Beta(2,2)",38,Hedged-CS,1
+"Beta(2,2)",39,Stitched GE,1
+"Beta(2,2)",39,aGRAPA,1
+"Beta(2,2)",39,PRECiSE-A-CO96,1
+"Beta(2,2)",39,Hedged-CS,1
+"Beta(1,5)",0,Stitched GE,1
+"Beta(1,5)",0,aGRAPA,1
+"Beta(1,5)",0,PRECiSE-A-CO96,1
+"Beta(1,5)",0,Hedged-CS,1
+"Beta(1,5)",1,Stitched GE,1
+"Beta(1,5)",1,aGRAPA,1
+"Beta(1,5)",1,PRECiSE-A-CO96,1
+"Beta(1,5)",1,Hedged-CS,1
+"Beta(1,5)",2,Stitched GE,1
+"Beta(1,5)",2,aGRAPA,1
+"Beta(1,5)",2,PRECiSE-A-CO96,1
+"Beta(1,5)",2,Hedged-CS,1
+"Beta(1,5)",3,Stitched GE,1
+"Beta(1,5)",3,aGRAPA,1
+"Beta(1,5)",3,PRECiSE-A-CO96,1
+"Beta(1,5)",3,Hedged-CS,1
+"Beta(1,5)",4,Stitched GE,1
+"Beta(1,5)",4,aGRAPA,1
+"Beta(1,5)",4,PRECiSE-A-CO96,1
+"Beta(1,5)",4,Hedged-CS,1
+"Beta(1,5)",5,Stitched GE,0
+"Beta(1,5)",5,aGRAPA,0
+"Beta(1,5)",5,PRECiSE-A-CO96,1
+"Beta(1,5)",5,Hedged-CS,1
+"Beta(1,5)",6,Stitched GE,1
+"Beta(1,5)",6,aGRAPA,1
+"Beta(1,5)",6,PRECiSE-A-CO96,1
+"Beta(1,5)",6,Hedged-CS,1
+"Beta(1,5)",7,Stitched GE,1
+"Beta(1,5)",7,aGRAPA,1
+"Beta(1,5)",7,PRECiSE-A-CO96,1
+"Beta(1,5)",7,Hedged-CS,1
+"Beta(1,5)",8,Stitched GE,1
+"Beta(1,5)",8,aGRAPA,1
+"Beta(1,5)",8,PRECiSE-A-CO96,1
+"Beta(1,5)",8,Hedged-CS,1
+"Beta(1,5)",9,Stitched GE,1
+"Beta(1,5)",9,aGRAPA,1
+"Beta(1,5)",9,PRECiSE-A-CO96,1
+"Beta(1,5)",9,Hedged-CS,1
+"Beta(1,5)",10,Stitched GE,1
+"Beta(1,5)",10,aGRAPA,1
+"Beta(1,5)",10,PRECiSE-A-CO96,1
+"Beta(1,5)",10,Hedged-CS,1
+"Beta(1,5)",11,Stitched GE,1
+"Beta(1,5)",11,aGRAPA,1
+"Beta(1,5)",11,PRECiSE-A-CO96,1
+"Beta(1,5)",11,Hedged-CS,1
+"Beta(1,5)",12,Stitched GE,1
+"Beta(1,5)",12,aGRAPA,1
+"Beta(1,5)",12,PRECiSE-A-CO96,1
+"Beta(1,5)",12,Hedged-CS,1
+"Beta(1,5)",13,Stitched GE,0
+"Beta(1,5)",13,aGRAPA,0
+"Beta(1,5)",13,PRECiSE-A-CO96,1
+"Beta(1,5)",13,Hedged-CS,1
+"Beta(1,5)",14,Stitched GE,1
+"Beta(1,5)",14,aGRAPA,1
+"Beta(1,5)",14,PRECiSE-A-CO96,1
+"Beta(1,5)",14,Hedged-CS,1
+"Beta(1,5)",15,Stitched GE,1
+"Beta(1,5)",15,aGRAPA,1
+"Beta(1,5)",15,PRECiSE-A-CO96,1
+"Beta(1,5)",15,Hedged-CS,1
+"Beta(1,5)",16,Stitched GE,1
+"Beta(1,5)",16,aGRAPA,1
+"Beta(1,5)",16,PRECiSE-A-CO96,1
+"Beta(1,5)",16,Hedged-CS,1
+"Beta(1,5)",17,Stitched GE,1
+"Beta(1,5)",17,aGRAPA,1
+"Beta(1,5)",17,PRECiSE-A-CO96,1
+"Beta(1,5)",17,Hedged-CS,1
+"Beta(1,5)",18,Stitched GE,1
+"Beta(1,5)",18,aGRAPA,1
+"Beta(1,5)",18,PRECiSE-A-CO96,1
+"Beta(1,5)",18,Hedged-CS,1
+"Beta(1,5)",19,Stitched GE,1
+"Beta(1,5)",19,aGRAPA,1
+"Beta(1,5)",19,PRECiSE-A-CO96,1
+"Beta(1,5)",19,Hedged-CS,1
+"Beta(1,5)",20,Stitched GE,1
+"Beta(1,5)",20,aGRAPA,1
+"Beta(1,5)",20,PRECiSE-A-CO96,1
+"Beta(1,5)",20,Hedged-CS,1
+"Beta(1,5)",21,Stitched GE,1
+"Beta(1,5)",21,aGRAPA,1
+"Beta(1,5)",21,PRECiSE-A-CO96,1
+"Beta(1,5)",21,Hedged-CS,1
+"Beta(1,5)",22,Stitched GE,1
+"Beta(1,5)",22,aGRAPA,1
+"Beta(1,5)",22,PRECiSE-A-CO96,1
+"Beta(1,5)",22,Hedged-CS,1
+"Beta(1,5)",23,Stitched GE,1
+"Beta(1,5)",23,aGRAPA,1
+"Beta(1,5)",23,PRECiSE-A-CO96,1
+"Beta(1,5)",23,Hedged-CS,1
+"Beta(1,5)",24,Stitched GE,1
+"Beta(1,5)",24,aGRAPA,1
+"Beta(1,5)",24,PRECiSE-A-CO96,1
+"Beta(1,5)",24,Hedged-CS,1
+"Beta(1,5)",25,Stitched GE,1
+"Beta(1,5)",25,aGRAPA,1
+"Beta(1,5)",25,PRECiSE-A-CO96,1
+"Beta(1,5)",25,Hedged-CS,1
+"Beta(1,5)",26,Stitched GE,1
+"Beta(1,5)",26,aGRAPA,1
+"Beta(1,5)",26,PRECiSE-A-CO96,1
+"Beta(1,5)",26,Hedged-CS,1
+"Beta(1,5)",27,Stitched GE,1
+"Beta(1,5)",27,aGRAPA,1
+"Beta(1,5)",27,PRECiSE-A-CO96,1
+"Beta(1,5)",27,Hedged-CS,1
+"Beta(1,5)",28,Stitched GE,1
+"Beta(1,5)",28,aGRAPA,1
+"Beta(1,5)",28,PRECiSE-A-CO96,1
+"Beta(1,5)",28,Hedged-CS,1
+"Beta(1,5)",29,Stitched GE,1
+"Beta(1,5)",29,aGRAPA,1
+"Beta(1,5)",29,PRECiSE-A-CO96,1
+"Beta(1,5)",29,Hedged-CS,1
+"Beta(1,5)",30,Stitched GE,1
+"Beta(1,5)",30,aGRAPA,1
+"Beta(1,5)",30,PRECiSE-A-CO96,1
+"Beta(1,5)",30,Hedged-CS,1
+"Beta(1,5)",31,Stitched GE,1
+"Beta(1,5)",31,aGRAPA,1
+"Beta(1,5)",31,PRECiSE-A-CO96,1
+"Beta(1,5)",31,Hedged-CS,1
+"Beta(1,5)",32,Stitched GE,1
+"Beta(1,5)",32,aGRAPA,1
+"Beta(1,5)",32,PRECiSE-A-CO96,1
+"Beta(1,5)",32,Hedged-CS,1
+"Beta(1,5)",33,Stitched GE,1
+"Beta(1,5)",33,aGRAPA,1
+"Beta(1,5)",33,PRECiSE-A-CO96,1
+"Beta(1,5)",33,Hedged-CS,1
+"Beta(1,5)",34,Stitched GE,1
+"Beta(1,5)",34,aGRAPA,0
+"Beta(1,5)",34,PRECiSE-A-CO96,1
+"Beta(1,5)",34,Hedged-CS,1
+"Beta(1,5)",35,Stitched GE,1
+"Beta(1,5)",35,aGRAPA,1
+"Beta(1,5)",35,PRECiSE-A-CO96,1
+"Beta(1,5)",35,Hedged-CS,1
+"Beta(1,5)",36,Stitched GE,1
+"Beta(1,5)",36,aGRAPA,1
+"Beta(1,5)",36,PRECiSE-A-CO96,1
+"Beta(1,5)",36,Hedged-CS,1
+"Beta(1,5)",37,Stitched GE,1
+"Beta(1,5)",37,aGRAPA,1
+"Beta(1,5)",37,PRECiSE-A-CO96,1
+"Beta(1,5)",37,Hedged-CS,1
+"Beta(1,5)",38,Stitched GE,1
+"Beta(1,5)",38,aGRAPA,1
+"Beta(1,5)",38,PRECiSE-A-CO96,1
+"Beta(1,5)",38,Hedged-CS,1
+"Beta(1,5)",39,Stitched GE,1
+"Beta(1,5)",39,aGRAPA,1
+"Beta(1,5)",39,PRECiSE-A-CO96,1
+"Beta(1,5)",39,Hedged-CS,1
+Bernoulli(0.5),0,Stitched GE,1
+Bernoulli(0.5),0,aGRAPA,1
+Bernoulli(0.5),0,PRECiSE-A-CO96,1
+Bernoulli(0.5),0,Hedged-CS,1
+Bernoulli(0.5),1,Stitched GE,1
+Bernoulli(0.5),1,aGRAPA,1
+Bernoulli(0.5),1,PRECiSE-A-CO96,1
+Bernoulli(0.5),1,Hedged-CS,1
+Bernoulli(0.5),2,Stitched GE,1
+Bernoulli(0.5),2,aGRAPA,1
+Bernoulli(0.5),2,PRECiSE-A-CO96,1
+Bernoulli(0.5),2,Hedged-CS,1
+Bernoulli(0.5),3,Stitched GE,1
+Bernoulli(0.5),3,aGRAPA,1
+Bernoulli(0.5),3,PRECiSE-A-CO96,1
+Bernoulli(0.5),3,Hedged-CS,1
+Bernoulli(0.5),4,Stitched GE,1
+Bernoulli(0.5),4,aGRAPA,1
+Bernoulli(0.5),4,PRECiSE-A-CO96,1
+Bernoulli(0.5),4,Hedged-CS,1
+Bernoulli(0.5),5,Stitched GE,1
+Bernoulli(0.5),5,aGRAPA,1
+Bernoulli(0.5),5,PRECiSE-A-CO96,1
+Bernoulli(0.5),5,Hedged-CS,1
+Bernoulli(0.5),6,Stitched GE,1
+Bernoulli(0.5),6,aGRAPA,1
+Bernoulli(0.5),6,PRECiSE-A-CO96,1
+Bernoulli(0.5),6,Hedged-CS,1
+Bernoulli(0.5),7,Stitched GE,0
+Bernoulli(0.5),7,aGRAPA,0
+Bernoulli(0.5),7,PRECiSE-A-CO96,0
+Bernoulli(0.5),7,Hedged-CS,1
+Bernoulli(0.5),8,Stitched GE,1
+Bernoulli(0.5),8,aGRAPA,1
+Bernoulli(0.5),8,PRECiSE-A-CO96,1
+Bernoulli(0.5),8,Hedged-CS,1
+Bernoulli(0.5),9,Stitched GE,1
+Bernoulli(0.5),9,aGRAPA,1
+Bernoulli(0.5),9,PRECiSE-A-CO96,1
+Bernoulli(0.5),9,Hedged-CS,1
+Bernoulli(0.5),10,Stitched GE,1
+Bernoulli(0.5),10,aGRAPA,1
+Bernoulli(0.5),10,PRECiSE-A-CO96,1
+Bernoulli(0.5),10,Hedged-CS,1
+Bernoulli(0.5),11,Stitched GE,1
+Bernoulli(0.5),11,aGRAPA,1
+Bernoulli(0.5),11,PRECiSE-A-CO96,1
+Bernoulli(0.5),11,Hedged-CS,1
+Bernoulli(0.5),12,Stitched GE,1
+Bernoulli(0.5),12,aGRAPA,1
+Bernoulli(0.5),12,PRECiSE-A-CO96,1
+Bernoulli(0.5),12,Hedged-CS,1
+Bernoulli(0.5),13,Stitched GE,1
+Bernoulli(0.5),13,aGRAPA,1
+Bernoulli(0.5),13,PRECiSE-A-CO96,1
+Bernoulli(0.5),13,Hedged-CS,1
+Bernoulli(0.5),14,Stitched GE,0
+Bernoulli(0.5),14,aGRAPA,1
+Bernoulli(0.5),14,PRECiSE-A-CO96,1
+Bernoulli(0.5),14,Hedged-CS,0
+Bernoulli(0.5),15,Stitched GE,1
+Bernoulli(0.5),15,aGRAPA,1
+Bernoulli(0.5),15,PRECiSE-A-CO96,1
+Bernoulli(0.5),15,Hedged-CS,1
+Bernoulli(0.5),16,Stitched GE,1
+Bernoulli(0.5),16,aGRAPA,1
+Bernoulli(0.5),16,PRECiSE-A-CO96,1
+Bernoulli(0.5),16,Hedged-CS,1
+Bernoulli(0.5),17,Stitched GE,1
+Bernoulli(0.5),17,aGRAPA,1
+Bernoulli(0.5),17,PRECiSE-A-CO96,1
+Bernoulli(0.5),17,Hedged-CS,1
+Bernoulli(0.5),18,Stitched GE,1
+Bernoulli(0.5),18,aGRAPA,0
+Bernoulli(0.5),18,PRECiSE-A-CO96,1
+Bernoulli(0.5),18,Hedged-CS,0
+Bernoulli(0.5),19,Stitched GE,1
+Bernoulli(0.5),19,aGRAPA,1
+Bernoulli(0.5),19,PRECiSE-A-CO96,1
+Bernoulli(0.5),19,Hedged-CS,1
+Bernoulli(0.5),20,Stitched GE,1
+Bernoulli(0.5),20,aGRAPA,1
+Bernoulli(0.5),20,PRECiSE-A-CO96,1
+Bernoulli(0.5),20,Hedged-CS,1
+Bernoulli(0.5),21,Stitched GE,1
+Bernoulli(0.5),21,aGRAPA,1
+Bernoulli(0.5),21,PRECiSE-A-CO96,1
+Bernoulli(0.5),21,Hedged-CS,1
+Bernoulli(0.5),22,Stitched GE,1
+Bernoulli(0.5),22,aGRAPA,1
+Bernoulli(0.5),22,PRECiSE-A-CO96,1
+Bernoulli(0.5),22,Hedged-CS,1
+Bernoulli(0.5),23,Stitched GE,1
+Bernoulli(0.5),23,aGRAPA,1
+Bernoulli(0.5),23,PRECiSE-A-CO96,1
+Bernoulli(0.5),23,Hedged-CS,1
+Bernoulli(0.5),24,Stitched GE,1
+Bernoulli(0.5),24,aGRAPA,1
+Bernoulli(0.5),24,PRECiSE-A-CO96,1
+Bernoulli(0.5),24,Hedged-CS,1
+Bernoulli(0.5),25,Stitched GE,1
+Bernoulli(0.5),25,aGRAPA,1
+Bernoulli(0.5),25,PRECiSE-A-CO96,1
+Bernoulli(0.5),25,Hedged-CS,1
+Bernoulli(0.5),26,Stitched GE,1
+Bernoulli(0.5),26,aGRAPA,1
+Bernoulli(0.5),26,PRECiSE-A-CO96,1
+Bernoulli(0.5),26,Hedged-CS,1
+Bernoulli(0.5),27,Stitched GE,1
+Bernoulli(0.5),27,aGRAPA,1
+Bernoulli(0.5),27,PRECiSE-A-CO96,1
+Bernoulli(0.5),27,Hedged-CS,1
+Bernoulli(0.5),28,Stitched GE,0
+Bernoulli(0.5),28,aGRAPA,0
+Bernoulli(0.5),28,PRECiSE-A-CO96,0
+Bernoulli(0.5),28,Hedged-CS,0
+Bernoulli(0.5),29,Stitched GE,1
+Bernoulli(0.5),29,aGRAPA,1
+Bernoulli(0.5),29,PRECiSE-A-CO96,1
+Bernoulli(0.5),29,Hedged-CS,1
+Bernoulli(0.5),30,Stitched GE,1
+Bernoulli(0.5),30,aGRAPA,1
+Bernoulli(0.5),30,PRECiSE-A-CO96,1
+Bernoulli(0.5),30,Hedged-CS,1
+Bernoulli(0.5),31,Stitched GE,1
+Bernoulli(0.5),31,aGRAPA,1
+Bernoulli(0.5),31,PRECiSE-A-CO96,1
+Bernoulli(0.5),31,Hedged-CS,1
+Bernoulli(0.5),32,Stitched GE,1
+Bernoulli(0.5),32,aGRAPA,1
+Bernoulli(0.5),32,PRECiSE-A-CO96,1
+Bernoulli(0.5),32,Hedged-CS,1
+Bernoulli(0.5),33,Stitched GE,1
+Bernoulli(0.5),33,aGRAPA,1
+Bernoulli(0.5),33,PRECiSE-A-CO96,1
+Bernoulli(0.5),33,Hedged-CS,1
+Bernoulli(0.5),34,Stitched GE,1
+Bernoulli(0.5),34,aGRAPA,1
+Bernoulli(0.5),34,PRECiSE-A-CO96,1
+Bernoulli(0.5),34,Hedged-CS,1
+Bernoulli(0.5),35,Stitched GE,1
+Bernoulli(0.5),35,aGRAPA,1
+Bernoulli(0.5),35,PRECiSE-A-CO96,1
+Bernoulli(0.5),35,Hedged-CS,1
+Bernoulli(0.5),36,Stitched GE,1
+Bernoulli(0.5),36,aGRAPA,1
+Bernoulli(0.5),36,PRECiSE-A-CO96,1
+Bernoulli(0.5),36,Hedged-CS,1
+Bernoulli(0.5),37,Stitched GE,1
+Bernoulli(0.5),37,aGRAPA,1
+Bernoulli(0.5),37,PRECiSE-A-CO96,1
+Bernoulli(0.5),37,Hedged-CS,1
+Bernoulli(0.5),38,Stitched GE,1
+Bernoulli(0.5),38,aGRAPA,1
+Bernoulli(0.5),38,PRECiSE-A-CO96,1
+Bernoulli(0.5),38,Hedged-CS,1
+Bernoulli(0.5),39,Stitched GE,1
+Bernoulli(0.5),39,aGRAPA,1
+Bernoulli(0.5),39,PRECiSE-A-CO96,1
+Bernoulli(0.5),39,Hedged-CS,1
+"Beta(50,50)",0,Stitched GE,1
+"Beta(50,50)",0,aGRAPA,0
+"Beta(50,50)",0,PRECiSE-A-CO96,1
+"Beta(50,50)",0,Hedged-CS,1
+"Beta(50,50)",1,Stitched GE,1
+"Beta(50,50)",1,aGRAPA,1
+"Beta(50,50)",1,PRECiSE-A-CO96,1
+"Beta(50,50)",1,Hedged-CS,1
+"Beta(50,50)",2,Stitched GE,1
+"Beta(50,50)",2,aGRAPA,1
+"Beta(50,50)",2,PRECiSE-A-CO96,1
+"Beta(50,50)",2,Hedged-CS,1
+"Beta(50,50)",3,Stitched GE,1
+"Beta(50,50)",3,aGRAPA,1
+"Beta(50,50)",3,PRECiSE-A-CO96,1
+"Beta(50,50)",3,Hedged-CS,1
+"Beta(50,50)",4,Stitched GE,1
+"Beta(50,50)",4,aGRAPA,1
+"Beta(50,50)",4,PRECiSE-A-CO96,1
+"Beta(50,50)",4,Hedged-CS,1
+"Beta(50,50)",5,Stitched GE,1
+"Beta(50,50)",5,aGRAPA,1
+"Beta(50,50)",5,PRECiSE-A-CO96,1
+"Beta(50,50)",5,Hedged-CS,1
+"Beta(50,50)",6,Stitched GE,1
+"Beta(50,50)",6,aGRAPA,1
+"Beta(50,50)",6,PRECiSE-A-CO96,1
+"Beta(50,50)",6,Hedged-CS,1
+"Beta(50,50)",7,Stitched GE,1
+"Beta(50,50)",7,aGRAPA,1
+"Beta(50,50)",7,PRECiSE-A-CO96,1
+"Beta(50,50)",7,Hedged-CS,1
+"Beta(50,50)",8,Stitched GE,1
+"Beta(50,50)",8,aGRAPA,1
+"Beta(50,50)",8,PRECiSE-A-CO96,1
+"Beta(50,50)",8,Hedged-CS,1
+"Beta(50,50)",9,Stitched GE,1
+"Beta(50,50)",9,aGRAPA,1
+"Beta(50,50)",9,PRECiSE-A-CO96,1
+"Beta(50,50)",9,Hedged-CS,1
+"Beta(50,50)",10,Stitched GE,1
+"Beta(50,50)",10,aGRAPA,1
+"Beta(50,50)",10,PRECiSE-A-CO96,1
+"Beta(50,50)",10,Hedged-CS,1
+"Beta(50,50)",11,Stitched GE,1
+"Beta(50,50)",11,aGRAPA,1
+"Beta(50,50)",11,PRECiSE-A-CO96,1
+"Beta(50,50)",11,Hedged-CS,1
+"Beta(50,50)",12,Stitched GE,1
+"Beta(50,50)",12,aGRAPA,0
+"Beta(50,50)",12,PRECiSE-A-CO96,1
+"Beta(50,50)",12,Hedged-CS,1
+"Beta(50,50)",13,Stitched GE,1
+"Beta(50,50)",13,aGRAPA,1
+"Beta(50,50)",13,PRECiSE-A-CO96,1
+"Beta(50,50)",13,Hedged-CS,1
+"Beta(50,50)",14,Stitched GE,1
+"Beta(50,50)",14,aGRAPA,1
+"Beta(50,50)",14,PRECiSE-A-CO96,1
+"Beta(50,50)",14,Hedged-CS,1
+"Beta(50,50)",15,Stitched GE,1
+"Beta(50,50)",15,aGRAPA,1
+"Beta(50,50)",15,PRECiSE-A-CO96,1
+"Beta(50,50)",15,Hedged-CS,1
+"Beta(50,50)",16,Stitched GE,1
+"Beta(50,50)",16,aGRAPA,1
+"Beta(50,50)",16,PRECiSE-A-CO96,1
+"Beta(50,50)",16,Hedged-CS,1
+"Beta(50,50)",17,Stitched GE,1
+"Beta(50,50)",17,aGRAPA,1
+"Beta(50,50)",17,PRECiSE-A-CO96,1
+"Beta(50,50)",17,Hedged-CS,1
+"Beta(50,50)",18,Stitched GE,1
+"Beta(50,50)",18,aGRAPA,1
+"Beta(50,50)",18,PRECiSE-A-CO96,1
+"Beta(50,50)",18,Hedged-CS,1
+"Beta(50,50)",19,Stitched GE,1
+"Beta(50,50)",19,aGRAPA,1
+"Beta(50,50)",19,PRECiSE-A-CO96,1
+"Beta(50,50)",19,Hedged-CS,1
+"Beta(50,50)",20,Stitched GE,1
+"Beta(50,50)",20,aGRAPA,1
+"Beta(50,50)",20,PRECiSE-A-CO96,1
+"Beta(50,50)",20,Hedged-CS,1
+"Beta(50,50)",21,Stitched GE,1
+"Beta(50,50)",21,aGRAPA,1
+"Beta(50,50)",21,PRECiSE-A-CO96,1
+"Beta(50,50)",21,Hedged-CS,1
+"Beta(50,50)",22,Stitched GE,1
+"Beta(50,50)",22,aGRAPA,1
+"Beta(50,50)",22,PRECiSE-A-CO96,1
+"Beta(50,50)",22,Hedged-CS,1
+"Beta(50,50)",23,Stitched GE,1
+"Beta(50,50)",23,aGRAPA,1
+"Beta(50,50)",23,PRECiSE-A-CO96,1
+"Beta(50,50)",23,Hedged-CS,1
+"Beta(50,50)",24,Stitched GE,1
+"Beta(50,50)",24,aGRAPA,1
+"Beta(50,50)",24,PRECiSE-A-CO96,1
+"Beta(50,50)",24,Hedged-CS,1
+"Beta(50,50)",25,Stitched GE,1
+"Beta(50,50)",25,aGRAPA,1
+"Beta(50,50)",25,PRECiSE-A-CO96,1
+"Beta(50,50)",25,Hedged-CS,1
+"Beta(50,50)",26,Stitched GE,1
+"Beta(50,50)",26,aGRAPA,1
+"Beta(50,50)",26,PRECiSE-A-CO96,1
+"Beta(50,50)",26,Hedged-CS,1
+"Beta(50,50)",27,Stitched GE,1
+"Beta(50,50)",27,aGRAPA,1
+"Beta(50,50)",27,PRECiSE-A-CO96,1
+"Beta(50,50)",27,Hedged-CS,1
+"Beta(50,50)",28,Stitched GE,1
+"Beta(50,50)",28,aGRAPA,1
+"Beta(50,50)",28,PRECiSE-A-CO96,1
+"Beta(50,50)",28,Hedged-CS,1
+"Beta(50,50)",29,Stitched GE,1
+"Beta(50,50)",29,aGRAPA,1
+"Beta(50,50)",29,PRECiSE-A-CO96,1
+"Beta(50,50)",29,Hedged-CS,1
+"Beta(50,50)",30,Stitched GE,1
+"Beta(50,50)",30,aGRAPA,1
+"Beta(50,50)",30,PRECiSE-A-CO96,1
+"Beta(50,50)",30,Hedged-CS,1
+"Beta(50,50)",31,Stitched GE,1
+"Beta(50,50)",31,aGRAPA,1
+"Beta(50,50)",31,PRECiSE-A-CO96,1
+"Beta(50,50)",31,Hedged-CS,1
+"Beta(50,50)",32,Stitched GE,1
+"Beta(50,50)",32,aGRAPA,0
+"Beta(50,50)",32,PRECiSE-A-CO96,1
+"Beta(50,50)",32,Hedged-CS,1
+"Beta(50,50)",33,Stitched GE,1
+"Beta(50,50)",33,aGRAPA,1
+"Beta(50,50)",33,PRECiSE-A-CO96,1
+"Beta(50,50)",33,Hedged-CS,1
+"Beta(50,50)",34,Stitched GE,1
+"Beta(50,50)",34,aGRAPA,1
+"Beta(50,50)",34,PRECiSE-A-CO96,1
+"Beta(50,50)",34,Hedged-CS,1
+"Beta(50,50)",35,Stitched GE,1
+"Beta(50,50)",35,aGRAPA,1
+"Beta(50,50)",35,PRECiSE-A-CO96,1
+"Beta(50,50)",35,Hedged-CS,1
+"Beta(50,50)",36,Stitched GE,1
+"Beta(50,50)",36,aGRAPA,1
+"Beta(50,50)",36,PRECiSE-A-CO96,1
+"Beta(50,50)",36,Hedged-CS,1
+"Beta(50,50)",37,Stitched GE,1
+"Beta(50,50)",37,aGRAPA,1
+"Beta(50,50)",37,PRECiSE-A-CO96,1
+"Beta(50,50)",37,Hedged-CS,1
+"Beta(50,50)",38,Stitched GE,1
+"Beta(50,50)",38,aGRAPA,1
+"Beta(50,50)",38,PRECiSE-A-CO96,1
+"Beta(50,50)",38,Hedged-CS,1
+"Beta(50,50)",39,Stitched GE,1
+"Beta(50,50)",39,aGRAPA,1
+"Beta(50,50)",39,PRECiSE-A-CO96,1
+"Beta(50,50)",39,Hedged-CS,1
+"Beta(20,80)",0,Stitched GE,1
+"Beta(20,80)",0,aGRAPA,1
+"Beta(20,80)",0,PRECiSE-A-CO96,1
+"Beta(20,80)",0,Hedged-CS,1
+"Beta(20,80)",1,Stitched GE,1
+"Beta(20,80)",1,aGRAPA,1
+"Beta(20,80)",1,PRECiSE-A-CO96,1
+"Beta(20,80)",1,Hedged-CS,1
+"Beta(20,80)",2,Stitched GE,1
+"Beta(20,80)",2,aGRAPA,1
+"Beta(20,80)",2,PRECiSE-A-CO96,1
+"Beta(20,80)",2,Hedged-CS,1
+"Beta(20,80)",3,Stitched GE,1
+"Beta(20,80)",3,aGRAPA,1
+"Beta(20,80)",3,PRECiSE-A-CO96,1
+"Beta(20,80)",3,Hedged-CS,1
+"Beta(20,80)",4,Stitched GE,1
+"Beta(20,80)",4,aGRAPA,1
+"Beta(20,80)",4,PRECiSE-A-CO96,1
+"Beta(20,80)",4,Hedged-CS,1
+"Beta(20,80)",5,Stitched GE,1
+"Beta(20,80)",5,aGRAPA,1
+"Beta(20,80)",5,PRECiSE-A-CO96,1
+"Beta(20,80)",5,Hedged-CS,1
+"Beta(20,80)",6,Stitched GE,1
+"Beta(20,80)",6,aGRAPA,1
+"Beta(20,80)",6,PRECiSE-A-CO96,1
+"Beta(20,80)",6,Hedged-CS,1
+"Beta(20,80)",7,Stitched GE,1
+"Beta(20,80)",7,aGRAPA,1
+"Beta(20,80)",7,PRECiSE-A-CO96,1
+"Beta(20,80)",7,Hedged-CS,1
+"Beta(20,80)",8,Stitched GE,1
+"Beta(20,80)",8,aGRAPA,1
+"Beta(20,80)",8,PRECiSE-A-CO96,1
+"Beta(20,80)",8,Hedged-CS,1
+"Beta(20,80)",9,Stitched GE,1
+"Beta(20,80)",9,aGRAPA,1
+"Beta(20,80)",9,PRECiSE-A-CO96,1
+"Beta(20,80)",9,Hedged-CS,1
+"Beta(20,80)",10,Stitched GE,1
+"Beta(20,80)",10,aGRAPA,1
+"Beta(20,80)",10,PRECiSE-A-CO96,1
+"Beta(20,80)",10,Hedged-CS,1
+"Beta(20,80)",11,Stitched GE,1
+"Beta(20,80)",11,aGRAPA,1
+"Beta(20,80)",11,PRECiSE-A-CO96,1
+"Beta(20,80)",11,Hedged-CS,1
+"Beta(20,80)",12,Stitched GE,1
+"Beta(20,80)",12,aGRAPA,1
+"Beta(20,80)",12,PRECiSE-A-CO96,1
+"Beta(20,80)",12,Hedged-CS,1
+"Beta(20,80)",13,Stitched GE,1
+"Beta(20,80)",13,aGRAPA,1
+"Beta(20,80)",13,PRECiSE-A-CO96,1
+"Beta(20,80)",13,Hedged-CS,1
+"Beta(20,80)",14,Stitched GE,1
+"Beta(20,80)",14,aGRAPA,1
+"Beta(20,80)",14,PRECiSE-A-CO96,1
+"Beta(20,80)",14,Hedged-CS,1
+"Beta(20,80)",15,Stitched GE,1
+"Beta(20,80)",15,aGRAPA,1
+"Beta(20,80)",15,PRECiSE-A-CO96,1
+"Beta(20,80)",15,Hedged-CS,1
+"Beta(20,80)",16,Stitched GE,1
+"Beta(20,80)",16,aGRAPA,1
+"Beta(20,80)",16,PRECiSE-A-CO96,1
+"Beta(20,80)",16,Hedged-CS,1
+"Beta(20,80)",17,Stitched GE,1
+"Beta(20,80)",17,aGRAPA,1
+"Beta(20,80)",17,PRECiSE-A-CO96,1
+"Beta(20,80)",17,Hedged-CS,1
+"Beta(20,80)",18,Stitched GE,1
+"Beta(20,80)",18,aGRAPA,1
+"Beta(20,80)",18,PRECiSE-A-CO96,1
+"Beta(20,80)",18,Hedged-CS,1
+"Beta(20,80)",19,Stitched GE,1
+"Beta(20,80)",19,aGRAPA,1
+"Beta(20,80)",19,PRECiSE-A-CO96,1
+"Beta(20,80)",19,Hedged-CS,1
+"Beta(20,80)",20,Stitched GE,1
+"Beta(20,80)",20,aGRAPA,1
+"Beta(20,80)",20,PRECiSE-A-CO96,1
+"Beta(20,80)",20,Hedged-CS,1
+"Beta(20,80)",21,Stitched GE,1
+"Beta(20,80)",21,aGRAPA,1
+"Beta(20,80)",21,PRECiSE-A-CO96,1
+"Beta(20,80)",21,Hedged-CS,1
+"Beta(20,80)",22,Stitched GE,1
+"Beta(20,80)",22,aGRAPA,1
+"Beta(20,80)",22,PRECiSE-A-CO96,1
+"Beta(20,80)",22,Hedged-CS,1
+"Beta(20,80)",23,Stitched GE,0
+"Beta(20,80)",23,aGRAPA,0
+"Beta(20,80)",23,PRECiSE-A-CO96,1
+"Beta(20,80)",23,Hedged-CS,1
+"Beta(20,80)",24,Stitched GE,1
+"Beta(20,80)",24,aGRAPA,1
+"Beta(20,80)",24,PRECiSE-A-CO96,1
+"Beta(20,80)",24,Hedged-CS,1
+"Beta(20,80)",25,Stitched GE,1
+"Beta(20,80)",25,aGRAPA,1
+"Beta(20,80)",25,PRECiSE-A-CO96,1
+"Beta(20,80)",25,Hedged-CS,1
+"Beta(20,80)",26,Stitched GE,1
+"Beta(20,80)",26,aGRAPA,1
+"Beta(20,80)",26,PRECiSE-A-CO96,1
+"Beta(20,80)",26,Hedged-CS,1
+"Beta(20,80)",27,Stitched GE,1
+"Beta(20,80)",27,aGRAPA,1
+"Beta(20,80)",27,PRECiSE-A-CO96,1
+"Beta(20,80)",27,Hedged-CS,1
+"Beta(20,80)",28,Stitched GE,1
+"Beta(20,80)",28,aGRAPA,1
+"Beta(20,80)",28,PRECiSE-A-CO96,1
+"Beta(20,80)",28,Hedged-CS,1
+"Beta(20,80)",29,Stitched GE,1
+"Beta(20,80)",29,aGRAPA,1
+"Beta(20,80)",29,PRECiSE-A-CO96,1
+"Beta(20,80)",29,Hedged-CS,1
+"Beta(20,80)",30,Stitched GE,1
+"Beta(20,80)",30,aGRAPA,1
+"Beta(20,80)",30,PRECiSE-A-CO96,1
+"Beta(20,80)",30,Hedged-CS,1
+"Beta(20,80)",31,Stitched GE,1
+"Beta(20,80)",31,aGRAPA,1
+"Beta(20,80)",31,PRECiSE-A-CO96,1
+"Beta(20,80)",31,Hedged-CS,1
+"Beta(20,80)",32,Stitched GE,1
+"Beta(20,80)",32,aGRAPA,1
+"Beta(20,80)",32,PRECiSE-A-CO96,1
+"Beta(20,80)",32,Hedged-CS,1
+"Beta(20,80)",33,Stitched GE,1
+"Beta(20,80)",33,aGRAPA,1
+"Beta(20,80)",33,PRECiSE-A-CO96,1
+"Beta(20,80)",33,Hedged-CS,1
+"Beta(20,80)",34,Stitched GE,1
+"Beta(20,80)",34,aGRAPA,1
+"Beta(20,80)",34,PRECiSE-A-CO96,1
+"Beta(20,80)",34,Hedged-CS,1
+"Beta(20,80)",35,Stitched GE,1
+"Beta(20,80)",35,aGRAPA,1
+"Beta(20,80)",35,PRECiSE-A-CO96,1
+"Beta(20,80)",35,Hedged-CS,1
+"Beta(20,80)",36,Stitched GE,1
+"Beta(20,80)",36,aGRAPA,1
+"Beta(20,80)",36,PRECiSE-A-CO96,1
+"Beta(20,80)",36,Hedged-CS,1
+"Beta(20,80)",37,Stitched GE,0
+"Beta(20,80)",37,aGRAPA,0
+"Beta(20,80)",37,PRECiSE-A-CO96,1
+"Beta(20,80)",37,Hedged-CS,1
+"Beta(20,80)",38,Stitched GE,1
+"Beta(20,80)",38,aGRAPA,1
+"Beta(20,80)",38,PRECiSE-A-CO96,1
+"Beta(20,80)",38,Hedged-CS,1
+"Beta(20,80)",39,Stitched GE,1
+"Beta(20,80)",39,aGRAPA,1
+"Beta(20,80)",39,PRECiSE-A-CO96,1
+"Beta(20,80)",39,Hedged-CS,1
+"Uniform(0.45,0.55)",0,Stitched GE,1
+"Uniform(0.45,0.55)",0,aGRAPA,1
+"Uniform(0.45,0.55)",0,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",0,Hedged-CS,1
+"Uniform(0.45,0.55)",1,Stitched GE,1
+"Uniform(0.45,0.55)",1,aGRAPA,1
+"Uniform(0.45,0.55)",1,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",1,Hedged-CS,1
+"Uniform(0.45,0.55)",2,Stitched GE,1
+"Uniform(0.45,0.55)",2,aGRAPA,1
+"Uniform(0.45,0.55)",2,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",2,Hedged-CS,1
+"Uniform(0.45,0.55)",3,Stitched GE,1
+"Uniform(0.45,0.55)",3,aGRAPA,1
+"Uniform(0.45,0.55)",3,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",3,Hedged-CS,1
+"Uniform(0.45,0.55)",4,Stitched GE,0
+"Uniform(0.45,0.55)",4,aGRAPA,0
+"Uniform(0.45,0.55)",4,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",4,Hedged-CS,1
+"Uniform(0.45,0.55)",5,Stitched GE,1
+"Uniform(0.45,0.55)",5,aGRAPA,1
+"Uniform(0.45,0.55)",5,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",5,Hedged-CS,1
+"Uniform(0.45,0.55)",6,Stitched GE,1
+"Uniform(0.45,0.55)",6,aGRAPA,1
+"Uniform(0.45,0.55)",6,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",6,Hedged-CS,1
+"Uniform(0.45,0.55)",7,Stitched GE,1
+"Uniform(0.45,0.55)",7,aGRAPA,1
+"Uniform(0.45,0.55)",7,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",7,Hedged-CS,1
+"Uniform(0.45,0.55)",8,Stitched GE,1
+"Uniform(0.45,0.55)",8,aGRAPA,1
+"Uniform(0.45,0.55)",8,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",8,Hedged-CS,1
+"Uniform(0.45,0.55)",9,Stitched GE,1
+"Uniform(0.45,0.55)",9,aGRAPA,1
+"Uniform(0.45,0.55)",9,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",9,Hedged-CS,1
+"Uniform(0.45,0.55)",10,Stitched GE,1
+"Uniform(0.45,0.55)",10,aGRAPA,1
+"Uniform(0.45,0.55)",10,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",10,Hedged-CS,1
+"Uniform(0.45,0.55)",11,Stitched GE,1
+"Uniform(0.45,0.55)",11,aGRAPA,1
+"Uniform(0.45,0.55)",11,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",11,Hedged-CS,1
+"Uniform(0.45,0.55)",12,Stitched GE,1
+"Uniform(0.45,0.55)",12,aGRAPA,1
+"Uniform(0.45,0.55)",12,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",12,Hedged-CS,1
+"Uniform(0.45,0.55)",13,Stitched GE,1
+"Uniform(0.45,0.55)",13,aGRAPA,1
+"Uniform(0.45,0.55)",13,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",13,Hedged-CS,1
+"Uniform(0.45,0.55)",14,Stitched GE,1
+"Uniform(0.45,0.55)",14,aGRAPA,1
+"Uniform(0.45,0.55)",14,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",14,Hedged-CS,1
+"Uniform(0.45,0.55)",15,Stitched GE,1
+"Uniform(0.45,0.55)",15,aGRAPA,1
+"Uniform(0.45,0.55)",15,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",15,Hedged-CS,1
+"Uniform(0.45,0.55)",16,Stitched GE,1
+"Uniform(0.45,0.55)",16,aGRAPA,1
+"Uniform(0.45,0.55)",16,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",16,Hedged-CS,1
+"Uniform(0.45,0.55)",17,Stitched GE,1
+"Uniform(0.45,0.55)",17,aGRAPA,1
+"Uniform(0.45,0.55)",17,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",17,Hedged-CS,1
+"Uniform(0.45,0.55)",18,Stitched GE,1
+"Uniform(0.45,0.55)",18,aGRAPA,1
+"Uniform(0.45,0.55)",18,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",18,Hedged-CS,1
+"Uniform(0.45,0.55)",19,Stitched GE,1
+"Uniform(0.45,0.55)",19,aGRAPA,1
+"Uniform(0.45,0.55)",19,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",19,Hedged-CS,1
+"Uniform(0.45,0.55)",20,Stitched GE,1
+"Uniform(0.45,0.55)",20,aGRAPA,0
+"Uniform(0.45,0.55)",20,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",20,Hedged-CS,1
+"Uniform(0.45,0.55)",21,Stitched GE,0
+"Uniform(0.45,0.55)",21,aGRAPA,0
+"Uniform(0.45,0.55)",21,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",21,Hedged-CS,1
+"Uniform(0.45,0.55)",22,Stitched GE,1
+"Uniform(0.45,0.55)",22,aGRAPA,1
+"Uniform(0.45,0.55)",22,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",22,Hedged-CS,1
+"Uniform(0.45,0.55)",23,Stitched GE,1
+"Uniform(0.45,0.55)",23,aGRAPA,1
+"Uniform(0.45,0.55)",23,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",23,Hedged-CS,1
+"Uniform(0.45,0.55)",24,Stitched GE,1
+"Uniform(0.45,0.55)",24,aGRAPA,1
+"Uniform(0.45,0.55)",24,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",24,Hedged-CS,1
+"Uniform(0.45,0.55)",25,Stitched GE,1
+"Uniform(0.45,0.55)",25,aGRAPA,1
+"Uniform(0.45,0.55)",25,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",25,Hedged-CS,1
+"Uniform(0.45,0.55)",26,Stitched GE,1
+"Uniform(0.45,0.55)",26,aGRAPA,1
+"Uniform(0.45,0.55)",26,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",26,Hedged-CS,1
+"Uniform(0.45,0.55)",27,Stitched GE,1
+"Uniform(0.45,0.55)",27,aGRAPA,1
+"Uniform(0.45,0.55)",27,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",27,Hedged-CS,1
+"Uniform(0.45,0.55)",28,Stitched GE,1
+"Uniform(0.45,0.55)",28,aGRAPA,0
+"Uniform(0.45,0.55)",28,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",28,Hedged-CS,1
+"Uniform(0.45,0.55)",29,Stitched GE,1
+"Uniform(0.45,0.55)",29,aGRAPA,1
+"Uniform(0.45,0.55)",29,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",29,Hedged-CS,1
+"Uniform(0.45,0.55)",30,Stitched GE,1
+"Uniform(0.45,0.55)",30,aGRAPA,1
+"Uniform(0.45,0.55)",30,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",30,Hedged-CS,1
+"Uniform(0.45,0.55)",31,Stitched GE,1
+"Uniform(0.45,0.55)",31,aGRAPA,1
+"Uniform(0.45,0.55)",31,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",31,Hedged-CS,1
+"Uniform(0.45,0.55)",32,Stitched GE,1
+"Uniform(0.45,0.55)",32,aGRAPA,1
+"Uniform(0.45,0.55)",32,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",32,Hedged-CS,1
+"Uniform(0.45,0.55)",33,Stitched GE,1
+"Uniform(0.45,0.55)",33,aGRAPA,1
+"Uniform(0.45,0.55)",33,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",33,Hedged-CS,1
+"Uniform(0.45,0.55)",34,Stitched GE,1
+"Uniform(0.45,0.55)",34,aGRAPA,1
+"Uniform(0.45,0.55)",34,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",34,Hedged-CS,1
+"Uniform(0.45,0.55)",35,Stitched GE,1
+"Uniform(0.45,0.55)",35,aGRAPA,1
+"Uniform(0.45,0.55)",35,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",35,Hedged-CS,1
+"Uniform(0.45,0.55)",36,Stitched GE,1
+"Uniform(0.45,0.55)",36,aGRAPA,1
+"Uniform(0.45,0.55)",36,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",36,Hedged-CS,1
+"Uniform(0.45,0.55)",37,Stitched GE,1
+"Uniform(0.45,0.55)",37,aGRAPA,1
+"Uniform(0.45,0.55)",37,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",37,Hedged-CS,1
+"Uniform(0.45,0.55)",38,Stitched GE,1
+"Uniform(0.45,0.55)",38,aGRAPA,1
+"Uniform(0.45,0.55)",38,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",38,Hedged-CS,1
+"Uniform(0.45,0.55)",39,Stitched GE,1
+"Uniform(0.45,0.55)",39,aGRAPA,1
+"Uniform(0.45,0.55)",39,PRECiSE-A-CO96,1
+"Uniform(0.45,0.55)",39,Hedged-CS,1

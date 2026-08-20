@@ -1,0 +1,17 @@
+distribution,n,method,mean_difference,standard_error,win_rate
+"Beta(1,5)",50,Permutation-integrated GE (randomized),0.017644771741009143,0.010767338907707192,0.46
+"Beta(1,5)",200,Permutation-integrated GE (randomized),0.0035042267935979934,0.0077161071041706554,0.5
+"Beta(1,5)",1000,Permutation-integrated GE (randomized),0.003723924430013713,0.004377024923490071,0.44
+"Beta(1,5)",5000,Permutation-integrated GE (randomized),0.0001879710293946979,0.001468941233408165,0.52
+Bernoulli(0.5),50,Permutation-integrated GE (randomized),-0.0008173110188680021,0.0036347903973723674,0.56
+Bernoulli(0.5),50,Exact binomial (randomized),-0.024187905912215407,0.004258637329452196,0.8
+Bernoulli(0.5),200,Permutation-integrated GE (randomized),-0.0008735077412146241,0.0013152145847668642,0.47
+Bernoulli(0.5),200,Exact binomial (randomized),-0.006339566519264359,0.0009340519923591402,0.76
+Bernoulli(0.5),1000,Permutation-integrated GE (randomized),-0.00019602584646601917,0.00025562831052235483,0.57
+Bernoulli(0.5),1000,Exact binomial (randomized),-0.0009247793565068063,0.00020405652348082825,0.72
+Bernoulli(0.5),5000,Permutation-integrated GE (randomized),-2.4342688521991064e-05,9.876968609195665e-05,0.54
+Bernoulli(0.5),5000,Exact binomial (randomized),-0.0005788853618724677,5.727626226879242e-05,0.83
+"Uniform(0.45,0.55)",50,Permutation-integrated GE (randomized),-1.6680135747630943e-05,0.00038296828609868394,0.63
+"Uniform(0.45,0.55)",200,Permutation-integrated GE (randomized),0.00033423203218671207,0.0008775106874099748,0.76
+"Uniform(0.45,0.55)",1000,Permutation-integrated GE (randomized),0.0018075916460481866,0.0026440205902960074,0.59
+"Uniform(0.45,0.55)",5000,Permutation-integrated GE (randomized),0.0008549738409658447,0.0026006095823432004,0.56

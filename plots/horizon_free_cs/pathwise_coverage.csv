@@ -1,0 +1,721 @@
+distribution,replication,method,simultaneously_covered
+"Uniform(0,1)",0,Stitched bridge-efficient,1
+"Uniform(0,1)",0,Hedged-WoR,1
+"Uniform(0,1)",1,Stitched bridge-efficient,1
+"Uniform(0,1)",1,Hedged-WoR,1
+"Uniform(0,1)",2,Stitched bridge-efficient,1
+"Uniform(0,1)",2,Hedged-WoR,1
+"Uniform(0,1)",3,Stitched bridge-efficient,1
+"Uniform(0,1)",3,Hedged-WoR,1
+"Uniform(0,1)",4,Stitched bridge-efficient,1
+"Uniform(0,1)",4,Hedged-WoR,1
+"Uniform(0,1)",5,Stitched bridge-efficient,1
+"Uniform(0,1)",5,Hedged-WoR,1
+"Uniform(0,1)",6,Stitched bridge-efficient,1
+"Uniform(0,1)",6,Hedged-WoR,1
+"Uniform(0,1)",7,Stitched bridge-efficient,1
+"Uniform(0,1)",7,Hedged-WoR,1
+"Uniform(0,1)",8,Stitched bridge-efficient,1
+"Uniform(0,1)",8,Hedged-WoR,1
+"Uniform(0,1)",9,Stitched bridge-efficient,1
+"Uniform(0,1)",9,Hedged-WoR,1
+"Uniform(0,1)",10,Stitched bridge-efficient,1
+"Uniform(0,1)",10,Hedged-WoR,1
+"Uniform(0,1)",11,Stitched bridge-efficient,1
+"Uniform(0,1)",11,Hedged-WoR,1
+"Uniform(0,1)",12,Stitched bridge-efficient,1
+"Uniform(0,1)",12,Hedged-WoR,1
+"Uniform(0,1)",13,Stitched bridge-efficient,1
+"Uniform(0,1)",13,Hedged-WoR,1
+"Uniform(0,1)",14,Stitched bridge-efficient,1
+"Uniform(0,1)",14,Hedged-WoR,1
+"Uniform(0,1)",15,Stitched bridge-efficient,1
+"Uniform(0,1)",15,Hedged-WoR,1
+"Uniform(0,1)",16,Stitched bridge-efficient,1
+"Uniform(0,1)",16,Hedged-WoR,1
+"Uniform(0,1)",17,Stitched bridge-efficient,1
+"Uniform(0,1)",17,Hedged-WoR,1
+"Uniform(0,1)",18,Stitched bridge-efficient,1
+"Uniform(0,1)",18,Hedged-WoR,1
+"Uniform(0,1)",19,Stitched bridge-efficient,1
+"Uniform(0,1)",19,Hedged-WoR,1
+"Uniform(0,1)",20,Stitched bridge-efficient,1
+"Uniform(0,1)",20,Hedged-WoR,1
+"Uniform(0,1)",21,Stitched bridge-efficient,1
+"Uniform(0,1)",21,Hedged-WoR,1
+"Uniform(0,1)",22,Stitched bridge-efficient,1
+"Uniform(0,1)",22,Hedged-WoR,1
+"Uniform(0,1)",23,Stitched bridge-efficient,1
+"Uniform(0,1)",23,Hedged-WoR,1
+"Uniform(0,1)",24,Stitched bridge-efficient,1
+"Uniform(0,1)",24,Hedged-WoR,1
+"Uniform(0,1)",25,Stitched bridge-efficient,1
+"Uniform(0,1)",25,Hedged-WoR,1
+"Uniform(0,1)",26,Stitched bridge-efficient,1
+"Uniform(0,1)",26,Hedged-WoR,1
+"Uniform(0,1)",27,Stitched bridge-efficient,1
+"Uniform(0,1)",27,Hedged-WoR,1
+"Uniform(0,1)",28,Stitched bridge-efficient,1
+"Uniform(0,1)",28,Hedged-WoR,1
+"Uniform(0,1)",29,Stitched bridge-efficient,1
+"Uniform(0,1)",29,Hedged-WoR,1
+"Uniform(0,1)",30,Stitched bridge-efficient,1
+"Uniform(0,1)",30,Hedged-WoR,1
+"Uniform(0,1)",31,Stitched bridge-efficient,1
+"Uniform(0,1)",31,Hedged-WoR,1
+"Uniform(0,1)",32,Stitched bridge-efficient,1
+"Uniform(0,1)",32,Hedged-WoR,1
+"Uniform(0,1)",33,Stitched bridge-efficient,1
+"Uniform(0,1)",33,Hedged-WoR,1
+"Uniform(0,1)",34,Stitched bridge-efficient,1
+"Uniform(0,1)",34,Hedged-WoR,1
+"Uniform(0,1)",35,Stitched bridge-efficient,1
+"Uniform(0,1)",35,Hedged-WoR,1
+"Uniform(0,1)",36,Stitched bridge-efficient,1
+"Uniform(0,1)",36,Hedged-WoR,1
+"Uniform(0,1)",37,Stitched bridge-efficient,1
+"Uniform(0,1)",37,Hedged-WoR,1
+"Uniform(0,1)",38,Stitched bridge-efficient,1
+"Uniform(0,1)",38,Hedged-WoR,1
+"Uniform(0,1)",39,Stitched bridge-efficient,1
+"Uniform(0,1)",39,Hedged-WoR,1
+"Beta(0.5,0.5)",0,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",0,Hedged-WoR,1
+"Beta(0.5,0.5)",1,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",1,Hedged-WoR,1
+"Beta(0.5,0.5)",2,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",2,Hedged-WoR,1
+"Beta(0.5,0.5)",3,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",3,Hedged-WoR,1
+"Beta(0.5,0.5)",4,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",4,Hedged-WoR,1
+"Beta(0.5,0.5)",5,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",5,Hedged-WoR,1
+"Beta(0.5,0.5)",6,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",6,Hedged-WoR,1
+"Beta(0.5,0.5)",7,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",7,Hedged-WoR,1
+"Beta(0.5,0.5)",8,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",8,Hedged-WoR,1
+"Beta(0.5,0.5)",9,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",9,Hedged-WoR,1
+"Beta(0.5,0.5)",10,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",10,Hedged-WoR,1
+"Beta(0.5,0.5)",11,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",11,Hedged-WoR,1
+"Beta(0.5,0.5)",12,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",12,Hedged-WoR,1
+"Beta(0.5,0.5)",13,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",13,Hedged-WoR,1
+"Beta(0.5,0.5)",14,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",14,Hedged-WoR,1
+"Beta(0.5,0.5)",15,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",15,Hedged-WoR,1
+"Beta(0.5,0.5)",16,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",16,Hedged-WoR,1
+"Beta(0.5,0.5)",17,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",17,Hedged-WoR,1
+"Beta(0.5,0.5)",18,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",18,Hedged-WoR,1
+"Beta(0.5,0.5)",19,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",19,Hedged-WoR,1
+"Beta(0.5,0.5)",20,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",20,Hedged-WoR,1
+"Beta(0.5,0.5)",21,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",21,Hedged-WoR,1
+"Beta(0.5,0.5)",22,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",22,Hedged-WoR,1
+"Beta(0.5,0.5)",23,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",23,Hedged-WoR,1
+"Beta(0.5,0.5)",24,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",24,Hedged-WoR,1
+"Beta(0.5,0.5)",25,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",25,Hedged-WoR,1
+"Beta(0.5,0.5)",26,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",26,Hedged-WoR,1
+"Beta(0.5,0.5)",27,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",27,Hedged-WoR,1
+"Beta(0.5,0.5)",28,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",28,Hedged-WoR,1
+"Beta(0.5,0.5)",29,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",29,Hedged-WoR,1
+"Beta(0.5,0.5)",30,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",30,Hedged-WoR,1
+"Beta(0.5,0.5)",31,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",31,Hedged-WoR,1
+"Beta(0.5,0.5)",32,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",32,Hedged-WoR,1
+"Beta(0.5,0.5)",33,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",33,Hedged-WoR,1
+"Beta(0.5,0.5)",34,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",34,Hedged-WoR,1
+"Beta(0.5,0.5)",35,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",35,Hedged-WoR,1
+"Beta(0.5,0.5)",36,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",36,Hedged-WoR,1
+"Beta(0.5,0.5)",37,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",37,Hedged-WoR,1
+"Beta(0.5,0.5)",38,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",38,Hedged-WoR,1
+"Beta(0.5,0.5)",39,Stitched bridge-efficient,1
+"Beta(0.5,0.5)",39,Hedged-WoR,1
+Bernoulli(0.1),0,Stitched bridge-efficient,1
+Bernoulli(0.1),0,Hedged-WoR,1
+Bernoulli(0.1),1,Stitched bridge-efficient,1
+Bernoulli(0.1),1,Hedged-WoR,1
+Bernoulli(0.1),2,Stitched bridge-efficient,1
+Bernoulli(0.1),2,Hedged-WoR,1
+Bernoulli(0.1),3,Stitched bridge-efficient,1
+Bernoulli(0.1),3,Hedged-WoR,1
+Bernoulli(0.1),4,Stitched bridge-efficient,1
+Bernoulli(0.1),4,Hedged-WoR,1
+Bernoulli(0.1),5,Stitched bridge-efficient,1
+Bernoulli(0.1),5,Hedged-WoR,1
+Bernoulli(0.1),6,Stitched bridge-efficient,1
+Bernoulli(0.1),6,Hedged-WoR,1
+Bernoulli(0.1),7,Stitched bridge-efficient,1
+Bernoulli(0.1),7,Hedged-WoR,1
+Bernoulli(0.1),8,Stitched bridge-efficient,1
+Bernoulli(0.1),8,Hedged-WoR,1
+Bernoulli(0.1),9,Stitched bridge-efficient,1
+Bernoulli(0.1),9,Hedged-WoR,1
+Bernoulli(0.1),10,Stitched bridge-efficient,1
+Bernoulli(0.1),10,Hedged-WoR,1
+Bernoulli(0.1),11,Stitched bridge-efficient,1
+Bernoulli(0.1),11,Hedged-WoR,1
+Bernoulli(0.1),12,Stitched bridge-efficient,1
+Bernoulli(0.1),12,Hedged-WoR,1
+Bernoulli(0.1),13,Stitched bridge-efficient,1
+Bernoulli(0.1),13,Hedged-WoR,1
+Bernoulli(0.1),14,Stitched bridge-efficient,1
+Bernoulli(0.1),14,Hedged-WoR,1
+Bernoulli(0.1),15,Stitched bridge-efficient,1
+Bernoulli(0.1),15,Hedged-WoR,1
+Bernoulli(0.1),16,Stitched bridge-efficient,1
+Bernoulli(0.1),16,Hedged-WoR,1
+Bernoulli(0.1),17,Stitched bridge-efficient,1
+Bernoulli(0.1),17,Hedged-WoR,1
+Bernoulli(0.1),18,Stitched bridge-efficient,1
+Bernoulli(0.1),18,Hedged-WoR,1
+Bernoulli(0.1),19,Stitched bridge-efficient,1
+Bernoulli(0.1),19,Hedged-WoR,1
+Bernoulli(0.1),20,Stitched bridge-efficient,1
+Bernoulli(0.1),20,Hedged-WoR,1
+Bernoulli(0.1),21,Stitched bridge-efficient,1
+Bernoulli(0.1),21,Hedged-WoR,1
+Bernoulli(0.1),22,Stitched bridge-efficient,1
+Bernoulli(0.1),22,Hedged-WoR,1
+Bernoulli(0.1),23,Stitched bridge-efficient,1
+Bernoulli(0.1),23,Hedged-WoR,1
+Bernoulli(0.1),24,Stitched bridge-efficient,1
+Bernoulli(0.1),24,Hedged-WoR,1
+Bernoulli(0.1),25,Stitched bridge-efficient,1
+Bernoulli(0.1),25,Hedged-WoR,1
+Bernoulli(0.1),26,Stitched bridge-efficient,1
+Bernoulli(0.1),26,Hedged-WoR,1
+Bernoulli(0.1),27,Stitched bridge-efficient,1
+Bernoulli(0.1),27,Hedged-WoR,1
+Bernoulli(0.1),28,Stitched bridge-efficient,1
+Bernoulli(0.1),28,Hedged-WoR,1
+Bernoulli(0.1),29,Stitched bridge-efficient,1
+Bernoulli(0.1),29,Hedged-WoR,1
+Bernoulli(0.1),30,Stitched bridge-efficient,1
+Bernoulli(0.1),30,Hedged-WoR,1
+Bernoulli(0.1),31,Stitched bridge-efficient,1
+Bernoulli(0.1),31,Hedged-WoR,1
+Bernoulli(0.1),32,Stitched bridge-efficient,1
+Bernoulli(0.1),32,Hedged-WoR,1
+Bernoulli(0.1),33,Stitched bridge-efficient,1
+Bernoulli(0.1),33,Hedged-WoR,1
+Bernoulli(0.1),34,Stitched bridge-efficient,1
+Bernoulli(0.1),34,Hedged-WoR,1
+Bernoulli(0.1),35,Stitched bridge-efficient,1
+Bernoulli(0.1),35,Hedged-WoR,1
+Bernoulli(0.1),36,Stitched bridge-efficient,1
+Bernoulli(0.1),36,Hedged-WoR,1
+Bernoulli(0.1),37,Stitched bridge-efficient,1
+Bernoulli(0.1),37,Hedged-WoR,1
+Bernoulli(0.1),38,Stitched bridge-efficient,1
+Bernoulli(0.1),38,Hedged-WoR,1
+Bernoulli(0.1),39,Stitched bridge-efficient,1
+Bernoulli(0.1),39,Hedged-WoR,1
+"Beta(2,2)",0,Stitched bridge-efficient,1
+"Beta(2,2)",0,Hedged-WoR,1
+"Beta(2,2)",1,Stitched bridge-efficient,1
+"Beta(2,2)",1,Hedged-WoR,1
+"Beta(2,2)",2,Stitched bridge-efficient,1
+"Beta(2,2)",2,Hedged-WoR,1
+"Beta(2,2)",3,Stitched bridge-efficient,1
+"Beta(2,2)",3,Hedged-WoR,1
+"Beta(2,2)",4,Stitched bridge-efficient,1
+"Beta(2,2)",4,Hedged-WoR,1
+"Beta(2,2)",5,Stitched bridge-efficient,1
+"Beta(2,2)",5,Hedged-WoR,1
+"Beta(2,2)",6,Stitched bridge-efficient,1
+"Beta(2,2)",6,Hedged-WoR,1
+"Beta(2,2)",7,Stitched bridge-efficient,1
+"Beta(2,2)",7,Hedged-WoR,1
+"Beta(2,2)",8,Stitched bridge-efficient,1
+"Beta(2,2)",8,Hedged-WoR,1
+"Beta(2,2)",9,Stitched bridge-efficient,1
+"Beta(2,2)",9,Hedged-WoR,0
+"Beta(2,2)",10,Stitched bridge-efficient,1
+"Beta(2,2)",10,Hedged-WoR,1
+"Beta(2,2)",11,Stitched bridge-efficient,1
+"Beta(2,2)",11,Hedged-WoR,1
+"Beta(2,2)",12,Stitched bridge-efficient,1
+"Beta(2,2)",12,Hedged-WoR,1
+"Beta(2,2)",13,Stitched bridge-efficient,1
+"Beta(2,2)",13,Hedged-WoR,1
+"Beta(2,2)",14,Stitched bridge-efficient,1
+"Beta(2,2)",14,Hedged-WoR,1
+"Beta(2,2)",15,Stitched bridge-efficient,1
+"Beta(2,2)",15,Hedged-WoR,1
+"Beta(2,2)",16,Stitched bridge-efficient,1
+"Beta(2,2)",16,Hedged-WoR,1
+"Beta(2,2)",17,Stitched bridge-efficient,0
+"Beta(2,2)",17,Hedged-WoR,0
+"Beta(2,2)",18,Stitched bridge-efficient,1
+"Beta(2,2)",18,Hedged-WoR,1
+"Beta(2,2)",19,Stitched bridge-efficient,1
+"Beta(2,2)",19,Hedged-WoR,1
+"Beta(2,2)",20,Stitched bridge-efficient,1
+"Beta(2,2)",20,Hedged-WoR,1
+"Beta(2,2)",21,Stitched bridge-efficient,1
+"Beta(2,2)",21,Hedged-WoR,1
+"Beta(2,2)",22,Stitched bridge-efficient,1
+"Beta(2,2)",22,Hedged-WoR,1
+"Beta(2,2)",23,Stitched bridge-efficient,1
+"Beta(2,2)",23,Hedged-WoR,1
+"Beta(2,2)",24,Stitched bridge-efficient,1
+"Beta(2,2)",24,Hedged-WoR,1
+"Beta(2,2)",25,Stitched bridge-efficient,0
+"Beta(2,2)",25,Hedged-WoR,1
+"Beta(2,2)",26,Stitched bridge-efficient,1
+"Beta(2,2)",26,Hedged-WoR,1
+"Beta(2,2)",27,Stitched bridge-efficient,1
+"Beta(2,2)",27,Hedged-WoR,1
+"Beta(2,2)",28,Stitched bridge-efficient,1
+"Beta(2,2)",28,Hedged-WoR,1
+"Beta(2,2)",29,Stitched bridge-efficient,1
+"Beta(2,2)",29,Hedged-WoR,1
+"Beta(2,2)",30,Stitched bridge-efficient,1
+"Beta(2,2)",30,Hedged-WoR,1
+"Beta(2,2)",31,Stitched bridge-efficient,1
+"Beta(2,2)",31,Hedged-WoR,1
+"Beta(2,2)",32,Stitched bridge-efficient,1
+"Beta(2,2)",32,Hedged-WoR,1
+"Beta(2,2)",33,Stitched bridge-efficient,1
+"Beta(2,2)",33,Hedged-WoR,1
+"Beta(2,2)",34,Stitched bridge-efficient,1
+"Beta(2,2)",34,Hedged-WoR,1
+"Beta(2,2)",35,Stitched bridge-efficient,0
+"Beta(2,2)",35,Hedged-WoR,1
+"Beta(2,2)",36,Stitched bridge-efficient,1
+"Beta(2,2)",36,Hedged-WoR,1
+"Beta(2,2)",37,Stitched bridge-efficient,1
+"Beta(2,2)",37,Hedged-WoR,1
+"Beta(2,2)",38,Stitched bridge-efficient,1
+"Beta(2,2)",38,Hedged-WoR,1
+"Beta(2,2)",39,Stitched bridge-efficient,1
+"Beta(2,2)",39,Hedged-WoR,1
+"Beta(1,5)",0,Stitched bridge-efficient,1
+"Beta(1,5)",0,Hedged-WoR,1
+"Beta(1,5)",1,Stitched bridge-efficient,1
+"Beta(1,5)",1,Hedged-WoR,1
+"Beta(1,5)",2,Stitched bridge-efficient,1
+"Beta(1,5)",2,Hedged-WoR,1
+"Beta(1,5)",3,Stitched bridge-efficient,1
+"Beta(1,5)",3,Hedged-WoR,1
+"Beta(1,5)",4,Stitched bridge-efficient,1
+"Beta(1,5)",4,Hedged-WoR,1
+"Beta(1,5)",5,Stitched bridge-efficient,1
+"Beta(1,5)",5,Hedged-WoR,1
+"Beta(1,5)",6,Stitched bridge-efficient,1
+"Beta(1,5)",6,Hedged-WoR,1
+"Beta(1,5)",7,Stitched bridge-efficient,1
+"Beta(1,5)",7,Hedged-WoR,1
+"Beta(1,5)",8,Stitched bridge-efficient,1
+"Beta(1,5)",8,Hedged-WoR,1
+"Beta(1,5)",9,Stitched bridge-efficient,1
+"Beta(1,5)",9,Hedged-WoR,1
+"Beta(1,5)",10,Stitched bridge-efficient,1
+"Beta(1,5)",10,Hedged-WoR,1
+"Beta(1,5)",11,Stitched bridge-efficient,1
+"Beta(1,5)",11,Hedged-WoR,1
+"Beta(1,5)",12,Stitched bridge-efficient,1
+"Beta(1,5)",12,Hedged-WoR,1
+"Beta(1,5)",13,Stitched bridge-efficient,1
+"Beta(1,5)",13,Hedged-WoR,1
+"Beta(1,5)",14,Stitched bridge-efficient,1
+"Beta(1,5)",14,Hedged-WoR,1
+"Beta(1,5)",15,Stitched bridge-efficient,1
+"Beta(1,5)",15,Hedged-WoR,1
+"Beta(1,5)",16,Stitched bridge-efficient,1
+"Beta(1,5)",16,Hedged-WoR,1
+"Beta(1,5)",17,Stitched bridge-efficient,1
+"Beta(1,5)",17,Hedged-WoR,1
+"Beta(1,5)",18,Stitched bridge-efficient,1
+"Beta(1,5)",18,Hedged-WoR,1
+"Beta(1,5)",19,Stitched bridge-efficient,1
+"Beta(1,5)",19,Hedged-WoR,1
+"Beta(1,5)",20,Stitched bridge-efficient,1
+"Beta(1,5)",20,Hedged-WoR,1
+"Beta(1,5)",21,Stitched bridge-efficient,1
+"Beta(1,5)",21,Hedged-WoR,1
+"Beta(1,5)",22,Stitched bridge-efficient,1
+"Beta(1,5)",22,Hedged-WoR,1
+"Beta(1,5)",23,Stitched bridge-efficient,1
+"Beta(1,5)",23,Hedged-WoR,1
+"Beta(1,5)",24,Stitched bridge-efficient,1
+"Beta(1,5)",24,Hedged-WoR,1
+"Beta(1,5)",25,Stitched bridge-efficient,1
+"Beta(1,5)",25,Hedged-WoR,1
+"Beta(1,5)",26,Stitched bridge-efficient,1
+"Beta(1,5)",26,Hedged-WoR,1
+"Beta(1,5)",27,Stitched bridge-efficient,1
+"Beta(1,5)",27,Hedged-WoR,1
+"Beta(1,5)",28,Stitched bridge-efficient,1
+"Beta(1,5)",28,Hedged-WoR,1
+"Beta(1,5)",29,Stitched bridge-efficient,1
+"Beta(1,5)",29,Hedged-WoR,1
+"Beta(1,5)",30,Stitched bridge-efficient,0
+"Beta(1,5)",30,Hedged-WoR,0
+"Beta(1,5)",31,Stitched bridge-efficient,1
+"Beta(1,5)",31,Hedged-WoR,1
+"Beta(1,5)",32,Stitched bridge-efficient,1
+"Beta(1,5)",32,Hedged-WoR,1
+"Beta(1,5)",33,Stitched bridge-efficient,1
+"Beta(1,5)",33,Hedged-WoR,1
+"Beta(1,5)",34,Stitched bridge-efficient,1
+"Beta(1,5)",34,Hedged-WoR,1
+"Beta(1,5)",35,Stitched bridge-efficient,1
+"Beta(1,5)",35,Hedged-WoR,1
+"Beta(1,5)",36,Stitched bridge-efficient,1
+"Beta(1,5)",36,Hedged-WoR,1
+"Beta(1,5)",37,Stitched bridge-efficient,1
+"Beta(1,5)",37,Hedged-WoR,1
+"Beta(1,5)",38,Stitched bridge-efficient,1
+"Beta(1,5)",38,Hedged-WoR,1
+"Beta(1,5)",39,Stitched bridge-efficient,1
+"Beta(1,5)",39,Hedged-WoR,1
+Bernoulli(0.5),0,Stitched bridge-efficient,1
+Bernoulli(0.5),0,Hedged-WoR,1
+Bernoulli(0.5),1,Stitched bridge-efficient,1
+Bernoulli(0.5),1,Hedged-WoR,1
+Bernoulli(0.5),2,Stitched bridge-efficient,1
+Bernoulli(0.5),2,Hedged-WoR,1
+Bernoulli(0.5),3,Stitched bridge-efficient,1
+Bernoulli(0.5),3,Hedged-WoR,1
+Bernoulli(0.5),4,Stitched bridge-efficient,1
+Bernoulli(0.5),4,Hedged-WoR,1
+Bernoulli(0.5),5,Stitched bridge-efficient,1
+Bernoulli(0.5),5,Hedged-WoR,1
+Bernoulli(0.5),6,Stitched bridge-efficient,1
+Bernoulli(0.5),6,Hedged-WoR,1
+Bernoulli(0.5),7,Stitched bridge-efficient,0
+Bernoulli(0.5),7,Hedged-WoR,1
+Bernoulli(0.5),8,Stitched bridge-efficient,1
+Bernoulli(0.5),8,Hedged-WoR,1
+Bernoulli(0.5),9,Stitched bridge-efficient,1
+Bernoulli(0.5),9,Hedged-WoR,1
+Bernoulli(0.5),10,Stitched bridge-efficient,1
+Bernoulli(0.5),10,Hedged-WoR,1
+Bernoulli(0.5),11,Stitched bridge-efficient,1
+Bernoulli(0.5),11,Hedged-WoR,1
+Bernoulli(0.5),12,Stitched bridge-efficient,1
+Bernoulli(0.5),12,Hedged-WoR,1
+Bernoulli(0.5),13,Stitched bridge-efficient,1
+Bernoulli(0.5),13,Hedged-WoR,1
+Bernoulli(0.5),14,Stitched bridge-efficient,1
+Bernoulli(0.5),14,Hedged-WoR,1
+Bernoulli(0.5),15,Stitched bridge-efficient,1
+Bernoulli(0.5),15,Hedged-WoR,1
+Bernoulli(0.5),16,Stitched bridge-efficient,1
+Bernoulli(0.5),16,Hedged-WoR,1
+Bernoulli(0.5),17,Stitched bridge-efficient,1
+Bernoulli(0.5),17,Hedged-WoR,1
+Bernoulli(0.5),18,Stitched bridge-efficient,1
+Bernoulli(0.5),18,Hedged-WoR,1
+Bernoulli(0.5),19,Stitched bridge-efficient,1
+Bernoulli(0.5),19,Hedged-WoR,1
+Bernoulli(0.5),20,Stitched bridge-efficient,1
+Bernoulli(0.5),20,Hedged-WoR,1
+Bernoulli(0.5),21,Stitched bridge-efficient,1
+Bernoulli(0.5),21,Hedged-WoR,1
+Bernoulli(0.5),22,Stitched bridge-efficient,1
+Bernoulli(0.5),22,Hedged-WoR,1
+Bernoulli(0.5),23,Stitched bridge-efficient,1
+Bernoulli(0.5),23,Hedged-WoR,1
+Bernoulli(0.5),24,Stitched bridge-efficient,1
+Bernoulli(0.5),24,Hedged-WoR,1
+Bernoulli(0.5),25,Stitched bridge-efficient,1
+Bernoulli(0.5),25,Hedged-WoR,1
+Bernoulli(0.5),26,Stitched bridge-efficient,1
+Bernoulli(0.5),26,Hedged-WoR,1
+Bernoulli(0.5),27,Stitched bridge-efficient,1
+Bernoulli(0.5),27,Hedged-WoR,1
+Bernoulli(0.5),28,Stitched bridge-efficient,1
+Bernoulli(0.5),28,Hedged-WoR,1
+Bernoulli(0.5),29,Stitched bridge-efficient,1
+Bernoulli(0.5),29,Hedged-WoR,1
+Bernoulli(0.5),30,Stitched bridge-efficient,1
+Bernoulli(0.5),30,Hedged-WoR,1
+Bernoulli(0.5),31,Stitched bridge-efficient,0
+Bernoulli(0.5),31,Hedged-WoR,0
+Bernoulli(0.5),32,Stitched bridge-efficient,1
+Bernoulli(0.5),32,Hedged-WoR,1
+Bernoulli(0.5),33,Stitched bridge-efficient,1
+Bernoulli(0.5),33,Hedged-WoR,1
+Bernoulli(0.5),34,Stitched bridge-efficient,1
+Bernoulli(0.5),34,Hedged-WoR,1
+Bernoulli(0.5),35,Stitched bridge-efficient,1
+Bernoulli(0.5),35,Hedged-WoR,1
+Bernoulli(0.5),36,Stitched bridge-efficient,1
+Bernoulli(0.5),36,Hedged-WoR,1
+Bernoulli(0.5),37,Stitched bridge-efficient,1
+Bernoulli(0.5),37,Hedged-WoR,1
+Bernoulli(0.5),38,Stitched bridge-efficient,1
+Bernoulli(0.5),38,Hedged-WoR,1
+Bernoulli(0.5),39,Stitched bridge-efficient,1
+Bernoulli(0.5),39,Hedged-WoR,1
+"Beta(50,50)",0,Stitched bridge-efficient,1
+"Beta(50,50)",0,Hedged-WoR,1
+"Beta(50,50)",1,Stitched bridge-efficient,1
+"Beta(50,50)",1,Hedged-WoR,1
+"Beta(50,50)",2,Stitched bridge-efficient,1
+"Beta(50,50)",2,Hedged-WoR,1
+"Beta(50,50)",3,Stitched bridge-efficient,1
+"Beta(50,50)",3,Hedged-WoR,1
+"Beta(50,50)",4,Stitched bridge-efficient,1
+"Beta(50,50)",4,Hedged-WoR,1
+"Beta(50,50)",5,Stitched bridge-efficient,1
+"Beta(50,50)",5,Hedged-WoR,1
+"Beta(50,50)",6,Stitched bridge-efficient,1
+"Beta(50,50)",6,Hedged-WoR,1
+"Beta(50,50)",7,Stitched bridge-efficient,1
+"Beta(50,50)",7,Hedged-WoR,1
+"Beta(50,50)",8,Stitched bridge-efficient,1
+"Beta(50,50)",8,Hedged-WoR,1
+"Beta(50,50)",9,Stitched bridge-efficient,1
+"Beta(50,50)",9,Hedged-WoR,1
+"Beta(50,50)",10,Stitched bridge-efficient,1
+"Beta(50,50)",10,Hedged-WoR,1
+"Beta(50,50)",11,Stitched bridge-efficient,1
+"Beta(50,50)",11,Hedged-WoR,1
+"Beta(50,50)",12,Stitched bridge-efficient,1
+"Beta(50,50)",12,Hedged-WoR,1
+"Beta(50,50)",13,Stitched bridge-efficient,1
+"Beta(50,50)",13,Hedged-WoR,1
+"Beta(50,50)",14,Stitched bridge-efficient,1
+"Beta(50,50)",14,Hedged-WoR,1
+"Beta(50,50)",15,Stitched bridge-efficient,1
+"Beta(50,50)",15,Hedged-WoR,1
+"Beta(50,50)",16,Stitched bridge-efficient,1
+"Beta(50,50)",16,Hedged-WoR,1
+"Beta(50,50)",17,Stitched bridge-efficient,1
+"Beta(50,50)",17,Hedged-WoR,1
+"Beta(50,50)",18,Stitched bridge-efficient,1
+"Beta(50,50)",18,Hedged-WoR,1
+"Beta(50,50)",19,Stitched bridge-efficient,1
+"Beta(50,50)",19,Hedged-WoR,1
+"Beta(50,50)",20,Stitched bridge-efficient,1
+"Beta(50,50)",20,Hedged-WoR,1
+"Beta(50,50)",21,Stitched bridge-efficient,1
+"Beta(50,50)",21,Hedged-WoR,1
+"Beta(50,50)",22,Stitched bridge-efficient,1
+"Beta(50,50)",22,Hedged-WoR,1
+"Beta(50,50)",23,Stitched bridge-efficient,1
+"Beta(50,50)",23,Hedged-WoR,1
+"Beta(50,50)",24,Stitched bridge-efficient,1
+"Beta(50,50)",24,Hedged-WoR,1
+"Beta(50,50)",25,Stitched bridge-efficient,1
+"Beta(50,50)",25,Hedged-WoR,1
+"Beta(50,50)",26,Stitched bridge-efficient,1
+"Beta(50,50)",26,Hedged-WoR,1
+"Beta(50,50)",27,Stitched bridge-efficient,1
+"Beta(50,50)",27,Hedged-WoR,1
+"Beta(50,50)",28,Stitched bridge-efficient,1
+"Beta(50,50)",28,Hedged-WoR,1
+"Beta(50,50)",29,Stitched bridge-efficient,1
+"Beta(50,50)",29,Hedged-WoR,1
+"Beta(50,50)",30,Stitched bridge-efficient,1
+"Beta(50,50)",30,Hedged-WoR,1
+"Beta(50,50)",31,Stitched bridge-efficient,1
+"Beta(50,50)",31,Hedged-WoR,1
+"Beta(50,50)",32,Stitched bridge-efficient,1
+"Beta(50,50)",32,Hedged-WoR,1
+"Beta(50,50)",33,Stitched bridge-efficient,1
+"Beta(50,50)",33,Hedged-WoR,1
+"Beta(50,50)",34,Stitched bridge-efficient,1
+"Beta(50,50)",34,Hedged-WoR,1
+"Beta(50,50)",35,Stitched bridge-efficient,1
+"Beta(50,50)",35,Hedged-WoR,1
+"Beta(50,50)",36,Stitched bridge-efficient,1
+"Beta(50,50)",36,Hedged-WoR,1
+"Beta(50,50)",37,Stitched bridge-efficient,1
+"Beta(50,50)",37,Hedged-WoR,1
+"Beta(50,50)",38,Stitched bridge-efficient,1
+"Beta(50,50)",38,Hedged-WoR,1
+"Beta(50,50)",39,Stitched bridge-efficient,1
+"Beta(50,50)",39,Hedged-WoR,1
+"Beta(20,80)",0,Stitched bridge-efficient,1
+"Beta(20,80)",0,Hedged-WoR,1
+"Beta(20,80)",1,Stitched bridge-efficient,1
+"Beta(20,80)",1,Hedged-WoR,1
+"Beta(20,80)",2,Stitched bridge-efficient,1
+"Beta(20,80)",2,Hedged-WoR,1
+"Beta(20,80)",3,Stitched bridge-efficient,1
+"Beta(20,80)",3,Hedged-WoR,1
+"Beta(20,80)",4,Stitched bridge-efficient,1
+"Beta(20,80)",4,Hedged-WoR,1
+"Beta(20,80)",5,Stitched bridge-efficient,1
+"Beta(20,80)",5,Hedged-WoR,1
+"Beta(20,80)",6,Stitched bridge-efficient,1
+"Beta(20,80)",6,Hedged-WoR,1
+"Beta(20,80)",7,Stitched bridge-efficient,1
+"Beta(20,80)",7,Hedged-WoR,1
+"Beta(20,80)",8,Stitched bridge-efficient,1
+"Beta(20,80)",8,Hedged-WoR,1
+"Beta(20,80)",9,Stitched bridge-efficient,1
+"Beta(20,80)",9,Hedged-WoR,1
+"Beta(20,80)",10,Stitched bridge-efficient,1
+"Beta(20,80)",10,Hedged-WoR,1
+"Beta(20,80)",11,Stitched bridge-efficient,1
+"Beta(20,80)",11,Hedged-WoR,1
+"Beta(20,80)",12,Stitched bridge-efficient,1
+"Beta(20,80)",12,Hedged-WoR,1
+"Beta(20,80)",13,Stitched bridge-efficient,1
+"Beta(20,80)",13,Hedged-WoR,1
+"Beta(20,80)",14,Stitched bridge-efficient,1
+"Beta(20,80)",14,Hedged-WoR,1
+"Beta(20,80)",15,Stitched bridge-efficient,1
+"Beta(20,80)",15,Hedged-WoR,1
+"Beta(20,80)",16,Stitched bridge-efficient,1
+"Beta(20,80)",16,Hedged-WoR,1
+"Beta(20,80)",17,Stitched bridge-efficient,1
+"Beta(20,80)",17,Hedged-WoR,1
+"Beta(20,80)",18,Stitched bridge-efficient,1
+"Beta(20,80)",18,Hedged-WoR,1
+"Beta(20,80)",19,Stitched bridge-efficient,1
+"Beta(20,80)",19,Hedged-WoR,1
+"Beta(20,80)",20,Stitched bridge-efficient,1
+"Beta(20,80)",20,Hedged-WoR,1
+"Beta(20,80)",21,Stitched bridge-efficient,1
+"Beta(20,80)",21,Hedged-WoR,1
+"Beta(20,80)",22,Stitched bridge-efficient,1
+"Beta(20,80)",22,Hedged-WoR,1
+"Beta(20,80)",23,Stitched bridge-efficient,1
+"Beta(20,80)",23,Hedged-WoR,1
+"Beta(20,80)",24,Stitched bridge-efficient,1
+"Beta(20,80)",24,Hedged-WoR,1
+"Beta(20,80)",25,Stitched bridge-efficient,1
+"Beta(20,80)",25,Hedged-WoR,1
+"Beta(20,80)",26,Stitched bridge-efficient,1
+"Beta(20,80)",26,Hedged-WoR,1
+"Beta(20,80)",27,Stitched bridge-efficient,1
+"Beta(20,80)",27,Hedged-WoR,1
+"Beta(20,80)",28,Stitched bridge-efficient,1
+"Beta(20,80)",28,Hedged-WoR,1
+"Beta(20,80)",29,Stitched bridge-efficient,1
+"Beta(20,80)",29,Hedged-WoR,1
+"Beta(20,80)",30,Stitched bridge-efficient,1
+"Beta(20,80)",30,Hedged-WoR,1
+"Beta(20,80)",31,Stitched bridge-efficient,1
+"Beta(20,80)",31,Hedged-WoR,1
+"Beta(20,80)",32,Stitched bridge-efficient,1
+"Beta(20,80)",32,Hedged-WoR,1
+"Beta(20,80)",33,Stitched bridge-efficient,1
+"Beta(20,80)",33,Hedged-WoR,1
+"Beta(20,80)",34,Stitched bridge-efficient,1
+"Beta(20,80)",34,Hedged-WoR,1
+"Beta(20,80)",35,Stitched bridge-efficient,1
+"Beta(20,80)",35,Hedged-WoR,1
+"Beta(20,80)",36,Stitched bridge-efficient,1
+"Beta(20,80)",36,Hedged-WoR,1
+"Beta(20,80)",37,Stitched bridge-efficient,1
+"Beta(20,80)",37,Hedged-WoR,1
+"Beta(20,80)",38,Stitched bridge-efficient,1
+"Beta(20,80)",38,Hedged-WoR,1
+"Beta(20,80)",39,Stitched bridge-efficient,1
+"Beta(20,80)",39,Hedged-WoR,1
+"Uniform(0.45,0.55)",0,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",0,Hedged-WoR,1
+"Uniform(0.45,0.55)",1,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",1,Hedged-WoR,1
+"Uniform(0.45,0.55)",2,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",2,Hedged-WoR,1
+"Uniform(0.45,0.55)",3,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",3,Hedged-WoR,1
+"Uniform(0.45,0.55)",4,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",4,Hedged-WoR,1
+"Uniform(0.45,0.55)",5,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",5,Hedged-WoR,1
+"Uniform(0.45,0.55)",6,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",6,Hedged-WoR,1
+"Uniform(0.45,0.55)",7,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",7,Hedged-WoR,1
+"Uniform(0.45,0.55)",8,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",8,Hedged-WoR,1
+"Uniform(0.45,0.55)",9,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",9,Hedged-WoR,1
+"Uniform(0.45,0.55)",10,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",10,Hedged-WoR,1
+"Uniform(0.45,0.55)",11,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",11,Hedged-WoR,1
+"Uniform(0.45,0.55)",12,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",12,Hedged-WoR,1
+"Uniform(0.45,0.55)",13,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",13,Hedged-WoR,1
+"Uniform(0.45,0.55)",14,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",14,Hedged-WoR,1
+"Uniform(0.45,0.55)",15,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",15,Hedged-WoR,1
+"Uniform(0.45,0.55)",16,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",16,Hedged-WoR,1
+"Uniform(0.45,0.55)",17,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",17,Hedged-WoR,1
+"Uniform(0.45,0.55)",18,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",18,Hedged-WoR,1
+"Uniform(0.45,0.55)",19,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",19,Hedged-WoR,1
+"Uniform(0.45,0.55)",20,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",20,Hedged-WoR,1
+"Uniform(0.45,0.55)",21,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",21,Hedged-WoR,1
+"Uniform(0.45,0.55)",22,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",22,Hedged-WoR,1
+"Uniform(0.45,0.55)",23,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",23,Hedged-WoR,1
+"Uniform(0.45,0.55)",24,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",24,Hedged-WoR,1
+"Uniform(0.45,0.55)",25,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",25,Hedged-WoR,1
+"Uniform(0.45,0.55)",26,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",26,Hedged-WoR,1
+"Uniform(0.45,0.55)",27,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",27,Hedged-WoR,1
+"Uniform(0.45,0.55)",28,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",28,Hedged-WoR,1
+"Uniform(0.45,0.55)",29,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",29,Hedged-WoR,1
+"Uniform(0.45,0.55)",30,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",30,Hedged-WoR,1
+"Uniform(0.45,0.55)",31,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",31,Hedged-WoR,1
+"Uniform(0.45,0.55)",32,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",32,Hedged-WoR,1
+"Uniform(0.45,0.55)",33,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",33,Hedged-WoR,1
+"Uniform(0.45,0.55)",34,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",34,Hedged-WoR,1
+"Uniform(0.45,0.55)",35,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",35,Hedged-WoR,1
+"Uniform(0.45,0.55)",36,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",36,Hedged-WoR,1
+"Uniform(0.45,0.55)",37,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",37,Hedged-WoR,1
+"Uniform(0.45,0.55)",38,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",38,Hedged-WoR,1
+"Uniform(0.45,0.55)",39,Stitched bridge-efficient,1
+"Uniform(0.45,0.55)",39,Hedged-WoR,1

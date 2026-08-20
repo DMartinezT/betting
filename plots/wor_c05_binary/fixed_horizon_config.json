@@ -1,0 +1,39 @@
+{
+  "population_size": 4000,
+  "populations": [
+    {
+      "name": "Bernoulli(0.5)",
+      "success_probability": 0.5
+    },
+    {
+      "name": "Bernoulli(0.25)",
+      "success_probability": 0.25
+    },
+    {
+      "name": "Bernoulli(0.1)",
+      "success_probability": 0.1
+    }
+  ],
+  "sampling_fractions": [
+    0.1,
+    0.3,
+    0.5,
+    0.7,
+    0.8,
+    0.9
+  ],
+  "sample_sizes": [
+    400,
+    1200,
+    2000,
+    2800,
+    3200,
+    3600
+  ],
+  "num_simulations": 200,
+  "seed": 20260813,
+  "delta": 0.01,
+  "solvency_c": 0.5,
+  "bisection_steps": 30,
+  "normalization": "2 * z_(1-delta/2) * sigma_N * sqrt((N-n)/(n*(N-1)))"
+}

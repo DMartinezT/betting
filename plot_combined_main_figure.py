@@ -3,9 +3,10 @@
 The betting curves come from the saved fixed-horizon experiment.  The Gaffke
 curves come from a dedicated saved experiment with the same replication
 schedule; the two older Gaffke experiments remain as a backward-compatible
-fallback for rebuilding the plots.  The introductory figure contains three
-representative deterministic comparisons; the full experimental figure keeps
-all nine distributions and both calibrations.
+fallback for rebuilding the plots.  The generator preserves the original
+three-panel deterministic introduction and also writes a two-row deterministic
+and randomized comparison.  The full experimental figure keeps all nine
+distributions and both calibrations.
 """
 
 from __future__ import annotations
@@ -27,7 +28,9 @@ from matplotlib.lines import Line2D
 
 HERE = Path(__file__).resolve().parent
 PAPER_DIR = HERE.parent / "paper"
-BETTING_RESULTS = HERE / "plots" / "ci_width_original_vs_star.json"
+BETTING_RESULTS = (
+    HERE / "plots" / "solvency_c_comparison" / "ci_width_all_methods_c1.json"
+)
 SMALL_GAFFKE_DIR = next(
     directory
     for directory in (HERE / "gaffke_comparison").glob(
@@ -52,6 +55,8 @@ INTRO_PAPER_OUTPUT = (
 INTRO_BETTING_OUTPUT = (
     HERE / "plots" / "intro_deterministic_comparison.png"
 )
+INTRO_BOTH_PAPER_OUTPUT = PAPER_DIR / "plots" / "intro_both_comparison.png"
+INTRO_BOTH_BETTING_OUTPUT = HERE / "plots" / "intro_both_comparison.png"
 
 PANEL_ORDER = (
     "Uniform(0,1)",
@@ -436,8 +441,8 @@ def _plot_saved_rows(
         )
 
 
-def make_intro_figure() -> Path:
-    """Plot three deterministic comparisons for the introduction."""
+def _make_intro_figure(*, include_randomized: bool) -> Path:
+    """Plot the requested introductory comparison rows."""
     with BETTING_RESULTS.open(encoding="utf-8") as stream:
         payload = json.load(stream)
     results = payload["results"]
@@ -451,81 +456,164 @@ def make_intro_figure() -> Path:
     )
     betting_n = all_n[betting_mask]
     betting_indices = np.flatnonzero(betting_mask)
-    fig, axes = plt.subplots(1, 3, figsize=(11.2, 3.45))
-
-    for axis, name in zip(axes, INTRO_PANEL_ORDER):
-        model_results = results[name]
-        gaussian_limit = (
-            2.0
-            * math.sqrt(DISTRIBUTION_BY_NAME[name].variance)
-            * gaussian_quantile
-        )
-        axis.plot(
-            betting_n,
-            np.full(betting_n.size, gaussian_limit),
-            color="black",
-            ls=":",
-            lw=1.6,
-            label="_nolegend_",
-            zorder=2,
-        )
-
-        for key, color, marker in (
+    if include_randomized:
+        calibration_rows = (
             (
-                "product_star_common_clock",
-                "darkorange",
-                "P",
+                "deterministic_markov_diameter",
+                "Gaffke",
+                "Deterministic",
+                "--",
+                False,
+                5.2,
+                5.2,
+                4,
             ),
             (
-                _efficient_saved_key(model_results),
-                "#2ca02c",
-                "h",
+                "randomized_markov_diameter",
+                "Randomized Gaffke",
+                "Randomized",
+                "-",
+                True,
+                3.8,
+                3.8,
+                3,
             ),
-        ):
-            rows = model_results[
-                f"{key}_deterministic_markov_diameter"
-            ]
-            _plot_saved_rows(
-                axis,
+        )
+        figsize = (11.2, 6.4)
+        destinations = (
+            INTRO_BOTH_PAPER_OUTPUT,
+            INTRO_BOTH_BETTING_OUTPUT,
+        )
+        efficient_label = "GE-betting"
+        layout_rect = (0.0, 0.12, 0.98, 1.0)
+    else:
+        calibration_rows = (
+            (
+                "deterministic_markov_diameter",
+                "Gaffke",
+                "Deterministic",
+                "-",
+                True,
+                4.4,
+                4.0,
+                4,
+            ),
+        )
+        figsize = (11.2, 3.45)
+        destinations = (INTRO_PAPER_OUTPUT, INTRO_BETTING_OUTPUT)
+        efficient_label = "GE-betting"
+        layout_rect = (0.0, 0.14, 1.0, 1.0)
+
+    fig, raw_axes = plt.subplots(
+        len(calibration_rows),
+        3,
+        figsize=figsize,
+    )
+    axes = np.asarray(raw_axes, dtype=object).reshape(
+        len(calibration_rows), 3
+    )
+
+    for row_index, calibration_row in enumerate(calibration_rows):
+        (
+            diameter_suffix,
+            gaffke_method,
+            _,
+            linestyle,
+            filled_marker,
+            betting_marker_size,
+            gaffke_marker_size,
+            zorder,
+        ) = calibration_row
+        for axis, name in zip(axes[row_index], INTRO_PANEL_ORDER):
+            model_results = results[name]
+            gaussian_limit = (
+                2.0
+                * math.sqrt(DISTRIBUTION_BY_NAME[name].variance)
+                * gaussian_quantile
+            )
+            axis.plot(
                 betting_n,
-                [rows[index] for index in betting_indices],
-                color=color,
-                marker=marker,
+                np.full(betting_n.size, gaussian_limit),
+                color="black",
+                ls=":",
+                lw=1.6,
                 label="_nolegend_",
-                linestyle="-",
-                show_band=False,
-                filled_marker=True,
-                marker_size=4.4,
-                zorder=4,
+                zorder=2,
             )
 
-        gaffke_rows = gaffke[
-            (gaffke["distribution"] == name)
-            & (gaffke["method"] == "Gaffke")
-            & (gaffke["n"] >= INTRO_MINIMUM_N)
-            & (gaffke["n"] <= MAXIMUM_N)
-        ].sort_values("n")
-        axis.plot(
-            gaffke_rows["n"],
-            gaffke_rows["mean"],
-            color="#1976b9",
-            marker="o",
-            markerfacecolor="#1976b9",
-            markeredgecolor="#1976b9",
-            lw=1.9,
-            ms=4.0,
-            label="_nolegend_",
-            zorder=3,
-        )
+            for key, color, marker in (
+                (
+                    "product_star_common_clock",
+                    "darkorange",
+                    "P",
+                ),
+                (
+                    _efficient_saved_key(model_results),
+                    "#2ca02c",
+                    "h",
+                ),
+            ):
+                rows = model_results[f"{key}_{diameter_suffix}"]
+                _plot_saved_rows(
+                    axis,
+                    betting_n,
+                    [rows[index] for index in betting_indices],
+                    color=color,
+                    marker=marker,
+                    label="_nolegend_",
+                    linestyle=linestyle,
+                    show_band=False,
+                    filled_marker=filled_marker,
+                    marker_size=betting_marker_size,
+                    zorder=zorder,
+                )
 
-        axis.set_xscale("log")
-        axis.set_xlim(INTRO_MINIMUM_N, MAXIMUM_N)
-        axis.set_title(name)
-        axis.set_xlabel("sample size $n$")
-        axis.set_ylabel(r"$\sqrt{n}\times$ CI width")
-        axis.grid(True, ls="--", alpha=0.3)
+            gaffke_rows = gaffke[
+                (gaffke["distribution"] == name)
+                & (gaffke["method"] == gaffke_method)
+                & (gaffke["n"] >= INTRO_MINIMUM_N)
+                & (gaffke["n"] <= MAXIMUM_N)
+            ].sort_values("n")
+            axis.plot(
+                gaffke_rows["n"],
+                gaffke_rows["mean"],
+                color="#1976b9",
+                marker="o",
+                markerfacecolor=(
+                    "#1976b9" if filled_marker else "none"
+                ),
+                markeredgecolor="#1976b9",
+                markeredgewidth=0.9,
+                linestyle=linestyle,
+                lw=1.9,
+                ms=gaffke_marker_size,
+                label="_nolegend_",
+                zorder=zorder,
+            )
 
-    handles = [
+            axis.set_xscale("log")
+            axis.set_xlim(INTRO_MINIMUM_N, MAXIMUM_N)
+            if row_index == 0:
+                axis.set_title(name)
+            axis.set_xlabel("sample size $n$")
+            axis.set_ylabel(r"$\sqrt{n}\times$ CI width")
+            axis.grid(True, ls="--", alpha=0.3)
+
+    if include_randomized:
+        for row_index, calibration_row in enumerate(calibration_rows):
+            row_label = calibration_row[2]
+            axes[row_index, -1].annotate(
+                row_label,
+                xy=(1.07, 0.5),
+                xycoords="axes fraction",
+                ha="center",
+                va="center",
+                rotation=-90,
+                fontsize=9.5,
+                annotation_clip=False,
+            )
+
+    method_handles = [
         Line2D(
             [0], [0], color=color, marker=marker, lw=2,
             markerfacecolor=color, markeredgecolor=color, ms=4.5,
@@ -536,28 +624,87 @@ def make_intro_figure() -> Path:
             ("#1976b9", "o"),
         )
     ]
-    handles.append(Line2D([0], [0], color="black", ls=":", lw=1.7))
-    labels = [
-        "Efficient betting",
+    method_labels = [
+        efficient_label,
         "STaR betting",
         "Gaffke",
-        "Gaussian limit",
     ]
-    fig.legend(
-        handles,
-        labels,
-        loc="lower center",
-        bbox_to_anchor=(0.5, 0.005),
-        ncol=4,
-        fontsize=8.8,
-        frameon=False,
-    )
-    fig.tight_layout(rect=(0.0, 0.14, 1.0, 1.0))
-    for destination in (INTRO_PAPER_OUTPUT, INTRO_BETTING_OUTPUT):
+    if include_randomized:
+        calibration_handles = [
+            Line2D(
+                [0], [0], color="0.25", ls="--", marker="o", lw=2,
+                markerfacecolor="none", markeredgecolor="0.25", ms=5.2,
+            ),
+            Line2D(
+                [0], [0], color="0.25", ls="-", marker="o", lw=2,
+                markerfacecolor="0.25", markeredgecolor="0.25", ms=3.8,
+            ),
+        ]
+        reference_handles = [
+            Line2D([0], [0], color="black", ls=":", lw=1.7)
+        ]
+        fig.legend(
+            method_handles,
+            method_labels,
+            loc="lower center",
+            bbox_to_anchor=(0.27, 0.012),
+            ncol=3,
+            fontsize=8.4,
+            title="Construction (color and marker)",
+            title_fontsize=8.6,
+            frameon=False,
+        )
+        fig.legend(
+            calibration_handles,
+            ["Deterministic", "Randomized"],
+            loc="lower center",
+            bbox_to_anchor=(0.68, 0.028),
+            ncol=2,
+            fontsize=8.4,
+            title="Calibration (line and marker fill)",
+            title_fontsize=8.6,
+            frameon=False,
+        )
+        fig.legend(
+            reference_handles,
+            ["Gaussian limit"],
+            loc="lower center",
+            bbox_to_anchor=(0.91, 0.028),
+            ncol=1,
+            fontsize=8.4,
+            title="Reference (dotted)",
+            title_fontsize=8.6,
+            frameon=False,
+        )
+    else:
+        handles = method_handles + [
+            Line2D([0], [0], color="black", ls=":", lw=1.7)
+        ]
+        fig.legend(
+            handles,
+            method_labels + ["Gaussian limit"],
+            loc="lower center",
+            bbox_to_anchor=(0.5, 0.005),
+            ncol=4,
+            fontsize=8.8,
+            frameon=False,
+        )
+    fig.tight_layout(rect=layout_rect)
+    for destination in destinations:
         destination.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(destination, dpi=220, bbox_inches="tight")
     plt.close(fig)
-    return INTRO_PAPER_OUTPUT
+    return destinations[0]
+
+
+def make_intro_figure() -> Path:
+    """Plot the original deterministic introductory comparison."""
+    return _make_intro_figure(include_randomized=False)
+
+
+def make_intro_both_figure() -> Path:
+    """Plot deterministic and randomized introductory comparisons."""
+    return _make_intro_figure(include_randomized=True)
 
 
 def make_figure() -> Path:
@@ -612,7 +759,7 @@ def make_figure() -> Path:
                 _efficient_saved_key(model_results),
                 "#2ca02c",
                 "h",
-                "Efficient betting",
+                "GE-betting",
             ),
         )
         for key, color, marker, label in panel_methods:
@@ -712,7 +859,7 @@ def make_figure() -> Path:
     method_labels = [
         "Product betting",
         "STaR betting",
-        "Efficient betting",
+        "GE-betting",
         "Gaffke",
     ]
     calibration_handles = [
@@ -778,4 +925,5 @@ def make_figure() -> Path:
 
 if __name__ == "__main__":
     print(make_intro_figure())
+    print(make_intro_both_figure())
     print(make_figure())

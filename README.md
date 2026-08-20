@@ -224,6 +224,21 @@ The earlier exact-Bernoulli and Gaussian digital-DP benchmarks remain
 available through `run_dp_experiment(...)`, which also includes Efficient betting,
 but they are not part of the default comparison.
 
+The sampling-with-replacement confidence-sequence appendix is reproduced by
+
+```bash
+python horizon_free_wr_cs.py --run-experiments
+```
+
+The default run uses a known planning window of `n=10000`, 40 common paths
+from each of the nine Figure 3 distributions, and compares the checkpoint
+mixture of GE-betting accounts with aGRAPA, PRECiSE-A-CO96, and Hedged-CS.  It saves the
+pathwise widths, all-time simultaneous-coverage diagnostics, aGRAPA topology
+checks, summary table, and configuration under
+`plots/horizon_free_wr_cs/`, and copies the paper-facing figure to
+`../paper/plots/`.  Use `--plot-only` to regenerate the figure from the saved
+summary without rerunning the simulations.
+
 The local-Gaussian comparison in the paper is reproducible with
 
 ```bash
@@ -394,3 +409,54 @@ with
 ```bash
 python -m unittest -v test_survival_fixed_event.py
 ```
+
+## Order-invariant fixed-sample GE experiment
+
+The order_invariant_ge.py driver compares chronological common-clock GE with
+an iid construction that averages its two capped terminal e-values over
+independent uniform permutations.  It also compares exact randomized
+binomial inversion for binary observations and audits why a deterministic
+stopped-overshoot variant cannot safely be inverted as an interval.
+
+Reproduce the appendix experiment with
+
+    python order_invariant_ge.py \
+      --output-dir plots/order_invariant_ge \
+      --n-values 50 200 1000 5000 \
+      --repetitions 100 \
+      --permutations 32 \
+      --seed 20260813
+
+The run writes pathwise, paired, order-sensitivity, and monotonicity CSV
+audits plus two figures under plots/order_invariant_ge/.  On the development
+machine it took 271 seconds.  This symmetrized method is valid for iid
+sampling; unlike chronological GE, it is not claimed valid for every
+constant-conditional-mean process.  Run its dedicated tests with
+
+    python -m unittest -v test_order_invariant_ge.py
+
+## Robust symmetric Studentized-event audit
+
+`robust_studentized_dp.py` implements the exact two-state Bellman recursion
+for observations on a finite grid, the continuous-support rare-path lower
+bound on the required correction, and unbiased stochastic grid
+quantization.  `robust_studentized_experiment.py` compares chronological GE
+with exact binomial inference after Bernoulli rounding, a valid
+order-invariant empirical-variance interval, and an explicitly nonvalid
+optimistic lower-width benchmark for the hard Studentized-boundary family.
+
+Reproduce the appendix audit with
+
+    python robust_studentized_experiment.py \
+      --output-dir plots/robust_studentized \
+      --n-values 50 200 1000 5000 \
+      --repetitions 200 \
+      --seed 20260814 \
+      --bisection-steps 15 \
+      --paper-plot ../paper/plots/robust_studentized_widths.png
+
+The command writes pathwise widths, paired summaries, exact finite-grid
+Bellman calibrations, metadata, and the publication figure.  The audited run
+took 41.8 seconds on the current hardware.  Run the focused tests with
+
+    python -m unittest -v test_robust_studentized.py

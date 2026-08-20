@@ -1,0 +1,21 @@
+population,sampling_fraction,method,normalized_mean_width
+Bernoulli(0.5),0.02,Stitched bridge,1.546
+Bernoulli(0.5),0.125,Stitched bridge,1.534
+Bernoulli(0.5),0.5,Stitched bridge,1.586
+Bernoulli(0.5),0.8,Stitched bridge,1.615
+Bernoulli(0.5),0.95,Stitched bridge,1.598
+Bernoulli(0.5),0.02,Hedged-WoR,1.303
+Bernoulli(0.5),0.125,Hedged-WoR,1.598
+Bernoulli(0.5),0.5,Hedged-WoR,2.08
+Bernoulli(0.5),0.8,Hedged-WoR,2.711
+Bernoulli(0.5),0.95,Hedged-WoR,3.092
+"Beta(1,5)",0.02,Stitched bridge,2.793
+"Beta(1,5)",0.125,Stitched bridge,1.853
+"Beta(1,5)",0.5,Stitched bridge,1.645
+"Beta(1,5)",0.8,Stitched bridge,1.658
+"Beta(1,5)",0.95,Stitched bridge,1.752
+"Beta(1,5)",0.02,Hedged-WoR,2.777
+"Beta(1,5)",0.125,Hedged-WoR,1.805
+"Beta(1,5)",0.5,Hedged-WoR,1.709
+"Beta(1,5)",0.8,Hedged-WoR,2.103
+"Beta(1,5)",0.95,Hedged-WoR,3.009

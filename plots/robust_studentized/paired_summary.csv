@@ -1,0 +1,37 @@
+distribution,n,method,mean_difference,standard_error,ge_win_rate
+"Beta(1,5)",50,Exact Bernoulli rounding,1.2191604312575732,0.023610223279515043,1.0
+"Beta(1,5)",50,Symmetric empirical-variance bound,8.183635144170927,0.01860561845037774,1.0
+"Beta(1,5)",50,Optimistic hard-boundary benchmark (not valid),0.4327241940603615,0.013740569012688102,0.995
+"Beta(1,5)",200,Exact Bernoulli rounding,1.5416086895607322,0.012524789870717761,1.0
+"Beta(1,5)",200,Symmetric empirical-variance bound,5.192027973620173,0.010546836986321553,1.0
+"Beta(1,5)",200,Optimistic hard-boundary benchmark (not valid),0.340318200344127,0.007460394120994975,1.0
+"Beta(1,5)",1000,Exact Bernoulli rounding,1.6183765071822436,0.005720424069339381,1.0
+"Beta(1,5)",1000,Symmetric empirical-variance bound,2.2029594119941636,0.003208930234944244,1.0
+"Beta(1,5)",1000,Optimistic hard-boundary benchmark (not valid),0.19465032250064288,0.003010475140473784,1.0
+"Beta(1,5)",5000,Exact Bernoulli rounding,1.6435299576126494,0.002562336407850038,1.0
+"Beta(1,5)",5000,Symmetric empirical-variance bound,1.1076199237210722,0.0012475476659899786,1.0
+"Beta(1,5)",5000,Optimistic hard-boundary benchmark (not valid),0.09463111523782931,0.0011919184498071578,1.0
+Bernoulli(0.5),50,Exact Bernoulli rounding,-0.025552791728245053,0.0023478101185268317,0.175
+Bernoulli(0.5),50,Symmetric empirical-variance bound,1.7605489757123722,0.003873166597829568,1.0
+Bernoulli(0.5),50,Optimistic hard-boundary benchmark (not valid),0.20617741335438006,0.003588009625092905,1.0
+Bernoulli(0.5),200,Exact Bernoulli rounding,-0.004665353109777173,0.0005360298555085494,0.28
+Bernoulli(0.5),200,Symmetric empirical-variance bound,2.0198263462799906,0.0011966399593000491,1.0
+Bernoulli(0.5),200,Optimistic hard-boundary benchmark (not valid),0.11949119827666037,0.0011954381828767806,1.0
+Bernoulli(0.5),1000,Exact Bernoulli rounding,-0.0011961799358271685,0.0001484068708553797,0.26
+Bernoulli(0.5),1000,Symmetric empirical-variance bound,0.962283305060212,0.0004418808375956505,1.0
+Bernoulli(0.5),1000,Optimistic hard-boundary benchmark (not valid),0.059023711985132704,0.0004441133017381384,1.0
+Bernoulli(0.5),5000,Exact Bernoulli rounding,-0.0004921855338037312,4.285897208695345e-05,0.195
+Bernoulli(0.5),5000,Symmetric empirical-variance bound,0.5839590110391271,0.0001849104222576579,1.0
+Bernoulli(0.5),5000,Optimistic hard-boundary benchmark (not valid),0.027500413984802848,0.00018485327913074428,1.0
+"Uniform(0.45,0.55)",50,Exact Bernoulli rounding,12.493674764476566,0.03514677928773311,1.0
+"Uniform(0.45,0.55)",50,Symmetric empirical-variance bound,43.387956002753135,0.05045258551210334,1.0
+"Uniform(0.45,0.55)",50,Optimistic hard-boundary benchmark (not valid),0.9691778621371075,0.05074807858430757,1.0
+"Uniform(0.45,0.55)",200,Exact Bernoulli rounding,14.889513755969224,0.016540858989793177,1.0
+"Uniform(0.45,0.55)",200,Symmetric empirical-variance bound,21.917776445434246,0.02566419309897612,1.0
+"Uniform(0.45,0.55)",200,Optimistic hard-boundary benchmark (not valid),0.9255679582928963,0.025518458499785797,1.0
+"Uniform(0.45,0.55)",1000,Exact Bernoulli rounding,16.00507407094049,0.006870422486641717,1.0
+"Uniform(0.45,0.55)",1000,Symmetric empirical-variance bound,8.746609607363826,0.011523271470702968,1.0
+"Uniform(0.45,0.55)",1000,Optimistic hard-boundary benchmark (not valid),0.7650263574503748,0.011525237941184027,1.0
+"Uniform(0.45,0.55)",5000,Exact Bernoulli rounding,16.273478969513942,0.002498632701608117,1.0
+"Uniform(0.45,0.55)",5000,Symmetric empirical-variance bound,3.9232627077714906,0.004088626204601943,1.0
+"Uniform(0.45,0.55)",5000,Optimistic hard-boundary benchmark (not valid),0.44341940762997295,0.0040858122571056634,1.0
