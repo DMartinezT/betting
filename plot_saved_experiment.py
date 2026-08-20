@@ -90,7 +90,12 @@ def _finish_axis(axis, name, scaled):
     axis.grid(True, ls="--", alpha=0.35)
 
 
-def plot_saved_experiment(input_path: Path) -> list[Path]:
+def plot_saved_experiment(
+    input_path: Path,
+    *,
+    output_dir: Path | None = None,
+    paper_plot_dir: Path | None = PAPER_PLOT_DIR,
+) -> list[Path]:
     with input_path.open(encoding="utf-8") as input_file:
         payload = json.load(input_file)
 
@@ -102,7 +107,8 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
         "topology_reps_by_n", payload["num_sims_by_n"]
     )
     simulation_label = _simulation_label(topology_counts)
-    output_dir = input_path.parent
+    output_dir = input_path.parent if output_dir is None else output_dir
+    output_dir.mkdir(parents=True, exist_ok=True)
     outputs = []
 
     for scaled in (True, False):
@@ -129,7 +135,7 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
 
             # The main figure reports confidence intervals.  For methods
             # whose raw inversion was audited on a mesh, ``diameter`` is the
-            # width of its convex hull; the common-clock Efficient interval
+            # width of its convex hull; the common-clock GE interval
             # is interval-valued before post-processing.  The raw-set versus
             # convex-hull comparison is documented in the appendix.
             methods = (
@@ -139,7 +145,7 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
                     "probit_common_clock",
                     "#2ca02c",
                     "h",
-                    "Efficient betting (common clock)",
+                    "GE-betting",
                 ),
             )
             for key, color, marker, label in methods:
@@ -313,8 +319,11 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
     )
     fig.tight_layout(rect=(0.0, 0.09, 1.0, 0.95))
     output = output_dir / "ci_width_fixed_hinge_vs_product.png"
-    PAPER_PLOT_DIR.mkdir(parents=True, exist_ok=True)
-    for figure_path in (output, PAPER_PLOT_DIR / output.name):
+    figure_paths = [output]
+    if paper_plot_dir is not None:
+        paper_plot_dir.mkdir(parents=True, exist_ok=True)
+        figure_paths.append(paper_plot_dir / output.name)
+    for figure_path in figure_paths:
         fig.savefig(figure_path, dpi=180, bbox_inches="tight")
     plt.close(fig)
     outputs.append(output)
@@ -386,8 +395,8 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
             label="Gaussian limit",
         )
         for key, color, marker, label in (
-            ("probit_star", "purple", "v", r"Regularized Efficient betting ($b_n=n^{2/3}$)"),
-            ("probit_star_unbuffered", "#8c564b", "^", r"Efficient betting ($b_n=0$)"),
+            ("probit_star", "purple", "v", r"Regularized GE-betting ($b_n=n^{2/3}$)"),
+            ("probit_star_unbuffered", "#8c564b", "^", r"GE-betting ($b_n=0$)"),
         ):
             _series(axis, n_values, model_results[key], color, marker, label)
         _finish_axis(axis, name, True)
@@ -434,8 +443,8 @@ def plot_saved_experiment(input_path: Path) -> list[Path]:
                 (f"hinge_feedback_star{suffix}", "crimson", "D", "squared-hinge feedback"),
                 (f"capped_feedback_star{suffix}", "deeppink", "*", "target-capped quadratic feedback"),
                 (f"capped_exponential_feedback_star{suffix}", "teal", "X", "capped original feedback"),
-                (f"probit_star{suffix}", "purple", "v", "Regularized Efficient betting"),
-                (f"probit_star_unbuffered{suffix}", "#8c564b", "^", r"Efficient betting ($b_n=0$)"),
+                (f"probit_star{suffix}", "purple", "v", "Regularized GE-betting"),
+                (f"probit_star_unbuffered{suffix}", "#8c564b", "^", r"GE-betting ($b_n=0$)"),
             ):
                 _series(axis, n_values, model_results[key], color, marker, label)
             _finish_axis(axis, name, scaled)

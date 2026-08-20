@@ -59,7 +59,7 @@ METHOD_STYLES = {
 }
 METHOD_LABELS = {
     "Original STaR": "STaR betting",
-    "Efficient betting": "Efficient betting",
+    "Efficient betting": "GE-betting",
 }
 
 

@@ -3,7 +3,7 @@
 
 This experiment extends the paper's chronological-feedback ablation.  It keeps
 the matched feedback rules, adds candidate-dependent and common-clock
-Efficient betting and the equal-tail Gaffke interval, and focuses on n from
+GE-betting and the equal-tail Gaffke interval, and focuses on n from
 10^3 through 10^7.  Two otherwise identical figures are produced:
 one with pointwise empirical 10--90% width intervals and one with means only.
 
@@ -96,9 +96,9 @@ METHOD_STYLES = {
 }
 
 METHOD_LABELS = {
-    "Regularized Efficient betting": r"Efficient betting ($b_n=n^{2/3}$)",
-    "Efficient betting": "Efficient betting",
-    "Common-clock Efficient betting": "Efficient betting (shared estimator)",
+    "Regularized Efficient betting": r"GE-betting ($b_n=n^{2/3}$)",
+    "Efficient betting": "GE-betting",
+    "Common-clock Efficient betting": "GE-betting (shared estimator)",
     "STaR betting": "STaR (candidate-centered)",
     "Common-clock STaR betting": "STaR (shared estimator)",
     "Square-root feedback": "Original STaR-Bets (square-root)",
@@ -879,8 +879,8 @@ def make_plots(
     legend_handles = None
     legend_labels = None
     regularization_labels = {
-        regularized_name: r"Regularized Efficient betting ($b_n=n^{2/3}$)",
-        unbuffered_name: r"Efficient betting ($b_n=0$)",
+        regularized_name: r"GE-betting ($b_n=n^{2/3}$)",
+        unbuffered_name: r"GE-betting ($b_n=0$)",
     }
     for axis, dist in zip(axes.ravel(), DISTRIBUTIONS):
         ddf = regularization_summary[

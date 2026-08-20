@@ -3,7 +3,7 @@
 Compare three fixed-horizon confidence intervals for the mean of [0,1]-valued data:
 
 1. Product STaR-Bets (square-root / exponential planning feedback)
-2. Regularized Efficient betting
+2. Regularized GE-betting
 3. Equal-tail Gaffke confidence interval
 
 The default experiment design matches the paper's primary experiment:
@@ -20,7 +20,7 @@ Notes
 * Product STaR is directly thresholded using the equally weighted two-arm wealth,
   as in the draft's primary experiment. The optional terminal randomization from
   the original STaR code is not used.
-* Efficient betting uses b_n = n^(2/3), one fixed U per arm for the whole inversion,
+* GE-betting uses b_n = n^(2/3), one fixed U per arm for the whole inversion,
   and the same predictable second-moment regularization as product STaR.
 * Gaffke endpoints are Dirichlet-average quantiles:
       lower = Q_{delta/2}(sum x_i D_i)
@@ -151,7 +151,7 @@ def _logaddexp(a: float, b: float) -> float:
 
 
 # ---------------------------------------------------------------------------
-# Product STaR and Efficient betting
+# Product STaR and GE-betting
 # ---------------------------------------------------------------------------
 
 @njit(cache=True)
@@ -909,7 +909,7 @@ def make_plots(df: pd.DataFrame, output: Path, delta: float) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
-        description="Compare STaR, Efficient betting, and Gaffke CIs."
+        description="Compare STaR, GE-betting, and Gaffke CIs."
     )
     parser.add_argument("--output", default="star_probit_gaffke_results")
     parser.add_argument("--delta", type=float, default=0.01)

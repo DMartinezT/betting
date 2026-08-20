@@ -52,6 +52,12 @@ METHOD_STYLES = {
     "Efficient betting": ("#2ca02c", "h"),
     "Gaffke": ("#1976b9", "o"),
 }
+METHOD_LABELS = {
+    "Product betting": "Product betting",
+    "STaR betting": "STaR betting",
+    "Efficient betting": "GE-betting",
+    "Gaffke": "Gaffke",
+}
 CALIBRATION_STYLES = {
     "Deterministic": ("--", False, 5.2),
     "Uniformly randomized": ("-", True, 3.8),
@@ -374,7 +380,7 @@ def _legend(fig: plt.Figure, reference_title: str) -> None:
     ]
     fig.legend(
         method_handles,
-        list(METHOD_STYLES),
+        [METHOD_LABELS[method] for method in METHOD_STYLES],
         loc="lower center",
         bbox_to_anchor=(0.27, 0.012),
         ncol=4,
@@ -453,7 +459,7 @@ def _plot_panels(summary: pd.DataFrame, delta: float, destination: Path) -> None
 
     fig.suptitle(
         "Finite-sample noncoverage of the Figure 3 methods "
-        r"(STaR and efficient betting: $c=0.5$)",
+        r"(STaR and GE-betting: $c=0.5$)",
         fontsize=15,
     )
     _legend(fig, "Validity reference (dotted)")
@@ -482,7 +488,7 @@ def _plot_pooled(summary: pd.DataFrame, delta: float, destination: Path) -> None
                 marker=marker,
                 ms=4.4,
                 lw=1.9,
-                label=method,
+                label=METHOD_LABELS[method],
             )
         axis.axhline(delta, color="black", ls=":", lw=1.5)
         axis.set_xscale("log")
@@ -494,7 +500,7 @@ def _plot_pooled(summary: pd.DataFrame, delta: float, destination: Path) -> None
     axes[0].legend(frameon=False, fontsize=8.8)
     fig.suptitle(
         "Noncoverage pooled across bounded distributions "
-        r"(STaR and efficient betting: $c=0.5$)",
+        r"(STaR and GE-betting: $c=0.5$)",
         fontsize=13.5,
     )
     fig.tight_layout(rect=(0.0, 0.0, 1.0, 0.92))

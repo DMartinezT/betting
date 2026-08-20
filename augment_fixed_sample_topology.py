@@ -276,7 +276,7 @@ def parse_args():
         default=1.0,
         help=(
             "fraction of the one-step solvency limit used by STaR and "
-            "efficient betting"
+            "GE-betting"
         ),
     )
     parser.add_argument(

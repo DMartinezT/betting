@@ -3,7 +3,7 @@
 
 The legacy polynomial Constructions 1 and 2 live in legacy_constructions.py.
 This module contains the Waudby-Smith--Ramdas product martingale, its
-target-recalculating STaR variant, the regularized Efficient betting rule,
+target-recalculating STaR variant, the regularized GE-betting rule,
 a digital-payoff DP hedge, the exact Bernoulli DP benchmark, the nonnegative
 heat-flow Construction 3, the small-sample skew-corrected Poisson/PE rule,
 confidence-set inversion, and the current comparison experiment.
@@ -959,7 +959,7 @@ def compute_M_probit_star_arms(
     c=1.0,
     buffer_rounds=0.0,
 ):
-    """Return the two arms of the Efficient betting rule with optional residual-variance regularization.
+    """Return the two GE-betting arms with optional variance regularization.
 
     The raw leverage is the inverse-Mills ratio at current target fraction
     alpha*M, divided by the estimated remaining standard deviation.  A
@@ -1246,7 +1246,7 @@ def compute_M_poisson_common_clock_arms(
     The variance and shrunken third-moment estimates are data-only predictable
     clocks, shared by both arms and every candidate mean. When estimated
     squared skewness is below ``skewness_epsilon``, the update is exactly
-    Gaussian-efficient betting. This implementation is deliberately limited
+    GE-betting. This implementation is deliberately limited
     to the finite-sample regime through n=10,000 used in Figure 6.
     """
     if len(X) > POISSON_MAX_N:
@@ -1277,7 +1277,7 @@ def compute_M_probit_star(
     c=1.0,
     buffer_rounds=0.0,
 ):
-    """Two-sided wealth from the inverse-Mills implementation of Efficient betting."""
+    """Two-sided wealth from the inverse-Mills GE-betting implementation."""
     M_plus, M_minus = compute_M_probit_star_arms(
         X, m, delta, regularization, c, buffer_rounds
     )
@@ -2857,7 +2857,7 @@ def probit_common_clock_ci_endpoints(
     return_diagnostics=False,
     c=1.0,
 ):
-    """Invert common-clock Efficient betting as its full interval.
+    """Invert common-clock GE-betting as its full interval.
 
     The upper-arm wealth is nonincreasing in the candidate mean and the
     lower-arm wealth is nondecreasing.  Their simultaneous nonrejection set
@@ -2951,7 +2951,7 @@ def probit_common_clock_batched_ci_endpoints(
     return_diagnostics=False,
     c=1.0,
 ):
-    """Parallel multisection inversion of common-clock Efficient betting.
+    """Parallel multisection inversion of common-clock GE-betting.
 
     This returns the same full interval as
     :func:`probit_common_clock_ci_endpoints`, but evaluates many ordered
@@ -3519,7 +3519,7 @@ def run_dp_experiment(
                 f"(target {results[name]['target_heat']:.3f})  "
                 f"WSR={np.mean(wsr_widths):.3f} "
                 f"STaR={np.mean(star_widths):.3f} "
-                f"Efficient betting={np.mean(probit_widths):.3f} "
+                f"GE-betting={np.mean(probit_widths):.3f} "
                 f"(empty={np.mean(probit_empty):.1%}) "
                 f"DigDP={np.mean(digital_widths):.3f}"
                 + (
@@ -3674,7 +3674,7 @@ def run_dp_experiment(
                     f"probit_star{suffix}",
                     "purple",
                     "v",
-                    "Efficient betting (randomized)",
+                    "GE-betting (randomized)",
                 ),
                 (
                     f"digital_dp{suffix}",
@@ -3783,7 +3783,7 @@ def run_experiment(
     seed=42,
     resume=False,
 ):
-    """Compare fixed, square-root STaR, and Efficient betting intervals."""
+    """Compare fixed, square-root STaR, and GE-betting intervals."""
     rng = np.random.default_rng(seed)
     probit_seed = np.random.SeedSequence(seed).spawn(1)[0]
     probit_rng = np.random.default_rng(probit_seed)
@@ -3940,7 +3940,7 @@ def run_experiment(
                     float(np.mean(unbuffered_empty))
                 )
                 print(
-                    f"  {name:16s} Efficient betting="
+                    f"  {name:16s} GE-betting="
                     f"{np.mean(unbuffered_widths):.3f} "
                     f"(empty={np.mean(unbuffered_empty):.1%})"
                 )
@@ -4074,9 +4074,9 @@ def run_experiment(
                 f"Matched-Hinge={np.mean(widths['hinge_feedback_star']):.3f} "
                 f"Capped-STaR={np.mean(widths['capped_feedback_star']):.3f} "
                 f"Capped-exp-STaR={np.mean(widths['capped_exponential_feedback_star']):.3f} "
-                f"Regularized Efficient betting={np.mean(widths['probit_star']):.3f} "
+                f"Regularized GE-betting={np.mean(widths['probit_star']):.3f} "
                 f"(empty={np.mean(probit_empty):.1%}) "
-                f"Efficient betting="
+                f"GE-betting="
                 f"{np.mean(widths['probit_star_unbuffered']):.3f} "
                 f"(empty={np.mean(probit_unbuffered_empty):.1%})"
             )
@@ -4158,7 +4158,7 @@ def run_experiment(
                     f"probit_star_unbuffered{suffix}",
                     "#8c564b",
                     "^",
-                    "Efficient betting",
+                    "GE-betting",
                 ),
             )
             for key, color, marker, label in methods:
@@ -4231,13 +4231,13 @@ def run_experiment(
             (f"hinge_feedback_star{suffix}", "crimson", "D",
              "squared-hinge feedback"),
             (f"probit_star_unbuffered{suffix}", "#8c564b", "^",
-             r"Efficient betting ($b_n=0$)"),
+             r"GE-betting ($b_n=0$)"),
             (f"capped_feedback_star{suffix}", "deeppink", "*",
              "target-capped quadratic feedback"),
             (f"capped_exponential_feedback_star{suffix}", "teal", "X",
              "capped original feedback"),
             (f"probit_star{suffix}", "purple", "v",
-             "Regularized Efficient betting"),
+             "Regularized GE-betting"),
         )
 
         for axis, name in zip(axes.ravel(), samplers):

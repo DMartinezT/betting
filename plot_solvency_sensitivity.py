@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Sequence
 from pathlib import Path
 
 import matplotlib
@@ -111,7 +112,7 @@ def load_experiments() -> dict[float, dict[str, object]]:
     return payloads
 
 
-def make_figure() -> Path:
+def make_figure(output_paths: Sequence[Path] | None = None) -> Path:
     payloads = load_experiments()
     all_n = np.asarray(payloads[0.5]["n_values"], dtype=int)
     figure, axes = plt.subplots(3, 3, figsize=(13.5, 11.3))
@@ -221,11 +222,16 @@ def make_figure() -> Path:
     )
     figure.tight_layout(rect=(0.0, 0.09, 1.0, 0.955))
 
-    for destination in (OUTPUT, PAPER_OUTPUT):
+    destinations = tuple(
+        (OUTPUT, PAPER_OUTPUT) if output_paths is None else output_paths
+    )
+    if not destinations:
+        raise ValueError("output_paths must contain at least one path")
+    for destination in destinations:
         destination.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(destination, dpi=220, bbox_inches="tight")
     plt.close(figure)
-    return PAPER_OUTPUT
+    return destinations[0]
 
 
 if __name__ == "__main__":

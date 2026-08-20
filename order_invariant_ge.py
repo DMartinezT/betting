@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Permutation-integrated Gaussian-efficient betting.
+"""Permutation-integrated GE-betting.
 
 The chronological GE procedure is valid for the constant-conditional-mean
 model, but its terminal wealth depends on the reveal order.  Under iid

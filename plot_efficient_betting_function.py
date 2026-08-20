@@ -1,5 +1,6 @@
-"""Plot the efficient-betting fraction and the corresponding amount bet."""
+"""Plot the GE-betting fraction and the corresponding amount bet."""
 
+from collections.abc import Sequence
 from pathlib import Path
 
 import matplotlib
@@ -17,8 +18,8 @@ PAPER_OUTPUT = (
 CODE_OUTPUT = HERE / "plots" / "efficient_betting_function.pdf"
 
 
-def main() -> None:
-    """Write the figure to the code and paper repositories."""
+def make_figure(output_paths: Sequence[Path] | None = None) -> Path:
+    """Write the figure and return its first output path."""
     p = np.linspace(1e-4, 1.0 - 1e-4, 4_000)
     q = norm.ppf(p)
     amount_bet = norm.pdf(q)
@@ -51,10 +52,23 @@ def main() -> None:
         axis.spines["right"].set_visible(False)
 
     figure.tight_layout(w_pad=2.2)
-    for output in (CODE_OUTPUT, PAPER_OUTPUT):
+    destinations = tuple(
+        (CODE_OUTPUT, PAPER_OUTPUT)
+        if output_paths is None
+        else output_paths
+    )
+    if not destinations:
+        raise ValueError("output_paths must contain at least one path")
+    for output in destinations:
         output.parent.mkdir(parents=True, exist_ok=True)
         figure.savefig(output, bbox_inches="tight")
     plt.close(figure)
+    return destinations[0]
+
+
+def main() -> None:
+    """Write the figure to the code and paper repositories."""
+    print(make_figure())
 
 
 if __name__ == "__main__":

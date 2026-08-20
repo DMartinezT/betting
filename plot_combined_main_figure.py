@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import json
 import math
+from collections.abc import Sequence
 from dataclasses import dataclass
 from pathlib import Path
 from statistics import NormalDist
@@ -365,9 +366,7 @@ def _reconstruct_source(
 def _load_gaffke_results() -> pd.DataFrame:
     dedicated_results = FIGURE_GAFFKE_DIR / "results.csv"
     if dedicated_results.exists():
-        output = pd.read_csv(dedicated_results)
-        output.to_csv(GAFFKE_CACHE, index=False)
-        return output
+        return pd.read_csv(dedicated_results)
     first_six = set(PANEL_ORDER[:6])
     low_variance = set(PANEL_ORDER[6:])
     small = _reconstruct_source(
@@ -441,7 +440,11 @@ def _plot_saved_rows(
         )
 
 
-def _make_intro_figure(*, include_randomized: bool) -> Path:
+def _make_intro_figure(
+    *,
+    include_randomized: bool,
+    output_paths: Sequence[Path] | None = None,
+) -> Path:
     """Plot the requested introductory comparison rows."""
     with BETTING_RESULTS.open(encoding="utf-8") as stream:
         payload = json.load(stream)
@@ -480,7 +483,7 @@ def _make_intro_figure(*, include_randomized: bool) -> Path:
             ),
         )
         figsize = (11.2, 6.4)
-        destinations = (
+        default_destinations = (
             INTRO_BOTH_PAPER_OUTPUT,
             INTRO_BOTH_BETTING_OUTPUT,
         )
@@ -500,9 +503,18 @@ def _make_intro_figure(*, include_randomized: bool) -> Path:
             ),
         )
         figsize = (11.2, 3.45)
-        destinations = (INTRO_PAPER_OUTPUT, INTRO_BETTING_OUTPUT)
+        default_destinations = (
+            INTRO_PAPER_OUTPUT,
+            INTRO_BETTING_OUTPUT,
+        )
         efficient_label = "GE-betting"
         layout_rect = (0.0, 0.14, 1.0, 1.0)
+
+    destinations = tuple(
+        default_destinations if output_paths is None else output_paths
+    )
+    if not destinations:
+        raise ValueError("output_paths must contain at least one path")
 
     fig, raw_axes = plt.subplots(
         len(calibration_rows),
@@ -697,17 +709,27 @@ def _make_intro_figure(*, include_randomized: bool) -> Path:
     return destinations[0]
 
 
-def make_intro_figure() -> Path:
+def make_intro_figure(
+    output_paths: Sequence[Path] | None = None,
+) -> Path:
     """Plot the original deterministic introductory comparison."""
-    return _make_intro_figure(include_randomized=False)
+    return _make_intro_figure(
+        include_randomized=False,
+        output_paths=output_paths,
+    )
 
 
-def make_intro_both_figure() -> Path:
+def make_intro_both_figure(
+    output_paths: Sequence[Path] | None = None,
+) -> Path:
     """Plot deterministic and randomized introductory comparisons."""
-    return _make_intro_figure(include_randomized=True)
+    return _make_intro_figure(
+        include_randomized=True,
+        output_paths=output_paths,
+    )
 
 
-def make_figure() -> Path:
+def make_figure(output_paths: Sequence[Path] | None = None) -> Path:
     with BETTING_RESULTS.open(encoding="utf-8") as stream:
         payload = json.load(stream)
     results = payload["results"]
@@ -916,11 +938,18 @@ def make_figure() -> Path:
         frameon=False,
     )
     fig.tight_layout(rect=(0.0, 0.09, 1.0, 0.955))
-    for destination in (PAPER_OUTPUT, BETTING_OUTPUT):
+    destinations = tuple(
+        (PAPER_OUTPUT, BETTING_OUTPUT)
+        if output_paths is None
+        else output_paths
+    )
+    if not destinations:
+        raise ValueError("output_paths must contain at least one path")
+    for destination in destinations:
         destination.parent.mkdir(parents=True, exist_ok=True)
         fig.savefig(destination, dpi=220, bbox_inches="tight")
     plt.close(fig)
-    return PAPER_OUTPUT
+    return destinations[0]
 
 
 if __name__ == "__main__":

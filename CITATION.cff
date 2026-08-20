@@ -1,0 +1,23 @@
+cff-version: 1.2.0
+message: >-
+  If you use this code, please cite the companion paper and this repository.
+title: >-
+  Code for Gaussian-efficient testing by betting on the mean of bounded data
+type: software
+authors:
+  - family-names: Martinez-Taboada
+    given-names: Diego
+    email: diegomar@andrew.cmu.edu
+  - family-names: Ramdas
+    given-names: Aaditya
+    email: aramdas@stanford.edu
+repository-code: https://github.com/DMartinezT/betting
+preferred-citation:
+  type: article
+  title: Gaussian-efficient testing by betting on the mean of bounded data
+  authors:
+    - family-names: Martinez-Taboada
+      given-names: Diego
+    - family-names: Ramdas
+      given-names: Aaditya
+  year: 2026
