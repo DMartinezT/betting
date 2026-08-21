@@ -1549,7 +1549,7 @@ def run_experiment(args: argparse.Namespace) -> pd.DataFrame:
         ),
         "reported_width": "accepted component adjacent to the sample mean",
         "full_set_topology": (
-            "not assumed; use ../audit_confidence_set_topology.py for the "
+            "not assumed; use experiments/audit_confidence_set_topology.py for the "
             "global finite-mesh audit"
         ),
         "empirical_interval": "pointwise 10th--90th percentiles of CI widths",

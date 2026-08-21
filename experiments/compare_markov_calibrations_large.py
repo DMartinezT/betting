@@ -26,7 +26,7 @@ from numba import njit, prange
 from scipy.stats import norm
 
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 if str(HERE) not in sys.path:
     sys.path.insert(0, str(HERE))
 

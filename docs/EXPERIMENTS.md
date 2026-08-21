@@ -1,8 +1,9 @@
 # Experiment catalog
 
-The root-level Python files are retained as stable research entry points.
-They are grouped here by purpose so exploratory and publication workflows do
-not get mixed together.
+Core implementations remain at the repository root.  Plot-only helpers live
+under `figures/`, while simulation, audit, and diagnostic drivers live under
+`experiments/`, so exploratory and publication workflows do not get mixed
+together.
 
 ## Core implementations
 
@@ -18,13 +19,13 @@ not get mixed together.
 
 | Driver | Output location | Role |
 | --- | --- | --- |
-| `plot_combined_main_figure.py` | `plots/` | Introductory and nine-distribution iid figures. |
-| `plot_efficient_betting_function.py` | `plots/` | Analytic GE-betting fraction figure. |
-| `plot_saved_experiment.py` | selected fixed-sample result directory | Fixed squared-hinge and feedback-ablation figures. |
-| `plot_solvency_sensitivity.py` | `plots/solvency_c_comparison/` | Solvency-fraction comparison. |
-| `wor_scaled_plots.py` | `plots/wor/` | Fixed-fraction and sqrt(n)-scaled finite-population figures. |
-| `horizon_free_wr_cs.py` | `plots/horizon_free_wr_cs/` | Planned-window confidence sequences with replacement. |
-| `horizon_free_cs.py` | `plots/horizon_free_cs/` | Confidence sequences without replacement. |
+| `figures/plot_combined_main_figure.py` | `plots/` | Introductory and nine-distribution iid figures. |
+| `figures/plot_efficient_betting_function.py` | `plots/` | Analytic GE-betting fraction figure. |
+| `figures/plot_saved_experiment.py` | selected fixed-sample result directory | Fixed squared-hinge and feedback-ablation figures. |
+| `figures/plot_solvency_sensitivity.py` | `plots/solvency_c_comparison/` | Solvency-fraction comparison. |
+| `experiments/wor_scaled_plots.py` | `plots/wor/` | Fixed-fraction and sqrt(n)-scaled finite-population figures. |
+| `experiments/horizon_free_wr_cs.py` | `plots/horizon_free_wr_cs/` | Planned-window confidence sequences with replacement. |
+| `experiments/horizon_free_cs.py` | `plots/horizon_free_cs/` | Confidence sequences without replacement. |
 | `gaffke_comparison/` | its `*_results/` directories | Gaffke simulations, large-sample comparisons, and topology postprocessing. |
 
 Use `reproduce_paper_figures.py` for manuscript figures.  Calling individual
@@ -34,17 +35,17 @@ drivers is mainly useful when rerunning or extending one experiment.
 
 | Driver | What it investigates |
 | --- | --- |
-| `audit_confidence_set_topology.py` | Connected components and convex-hull widths on refined candidate grids. |
-| `compare_markov_calibrations_large.py` | Deterministic versus randomized Markov calibration. |
-| `figure3_coverage.py` | Finite-sample noncoverage diagnostics. |
-| `feedback_local_power.py` | Numerical local-Gaussian feedback comparison. |
-| `poisson_betting_figure.py` | Skew-corrected Poisson-efficient betting. |
-| `order_invariant_ge.py` | Permutation-integrated iid GE construction and order sensitivity. |
-| `robust_studentized_experiment.py` | Robust symmetric Studentized-event benchmarks. |
-| `run_confidence_sequence_experiments.py` | Earlier confidence-sequence width and coverage experiments. |
-| `run_confidence_sequence_audits.py` | Confidence-sequence topology and schedule audits. |
-| `run_bentkus_strike_audit.py` | Fixed-strike and effective-level sensitivity. |
-| `survival_fixed_event.py` | Fixed-event survival confidence intervals. |
+| `experiments/audit_confidence_set_topology.py` | Connected components and convex-hull widths on refined candidate grids. |
+| `experiments/compare_markov_calibrations_large.py` | Deterministic versus randomized Markov calibration. |
+| `experiments/figure3_coverage.py` | Finite-sample noncoverage diagnostics. |
+| `experiments/feedback_local_power.py` | Numerical local-Gaussian feedback comparison. |
+| `experiments/poisson_betting_figure.py` | Skew-corrected Poisson-efficient betting. |
+| `experiments/order_invariant_ge.py` | Permutation-integrated iid GE construction and order sensitivity. |
+| `experiments/robust_studentized_experiment.py` | Robust symmetric Studentized-event benchmarks. |
+| `experiments/run_confidence_sequence_experiments.py` | Earlier confidence-sequence width and coverage experiments. |
+| `experiments/run_confidence_sequence_audits.py` | Confidence-sequence topology and schedule audits. |
+| `experiments/run_bentkus_strike_audit.py` | Fixed-strike and effective-level sensitivity. |
+| `experiments/survival_fixed_event.py` | Fixed-event survival confidence intervals. |
 
 Every driver supports either explicit command-line options, a `--help`
 message, or a documented Python entry point.  Final outputs live under
@@ -56,8 +57,8 @@ The publication-scale fixed-horizon experiment uses
 
 ```bash
 python betting.py
-python augment_fixed_sample_topology.py
-python plot_saved_experiment.py
+python -m experiments.augment_fixed_sample_topology
+python -m figures.plot_saved_experiment
 ```
 
 `betting.py` evaluates the common sample-size grid
@@ -78,7 +79,7 @@ generated with
 
 ```bash
 python gaffke_comparison/figure2_gaffke.py
-python plot_combined_main_figure.py
+python -m figures.plot_combined_main_figure
 ```
 
 For the large-horizon estimator comparison, use
@@ -99,15 +100,15 @@ are run with
 
 ```bash
 python wor.py --run-experiments
-python wor_scaled_plots.py --run-experiments
+python -m experiments.wor_scaled_plots --run-experiments
 ```
 
 The planned-window with-replacement and horizon-free finite-population
 confidence-sequence experiments are run with
 
 ```bash
-python horizon_free_wr_cs.py --run-experiments
-python horizon_free_cs.py --run-experiments
+python -m experiments.horizon_free_wr_cs --run-experiments
+python -m experiments.horizon_free_cs --run-experiments
 ```
 
 Each of these drivers supports `--plot-only` to redraw its figure from the
@@ -121,7 +122,7 @@ plotting functions with isolated output paths.
 The skew-corrected Poisson-efficient comparison through `n=10000` is:
 
 ```bash
-python poisson_betting_figure.py
+python -m experiments.poisson_betting_figure
 ```
 
 It writes interval-level audits, summaries, configuration, and figures under
@@ -134,7 +135,7 @@ directories.
 ### Confidence-set topology
 
 ```bash
-python audit_confidence_set_topology.py
+python -m experiments.audit_confidence_set_topology
 ```
 
 This global audit refines visible crossings over the full candidate-mean
@@ -149,7 +150,7 @@ The earlier long-horizon comparison in `confidence_sequences.py` is driven
 by:
 
 ```bash
-python run_confidence_sequence_experiments.py \
+python -m experiments.run_confidence_sequence_experiments \
   --max-time 100000 \
   --num-width-sims 30 \
   --coverage-max-time 10000 \
@@ -162,7 +163,7 @@ python run_confidence_sequence_experiments.py \
 The exploratory million-step trend check used:
 
 ```bash
-python run_confidence_sequence_experiments.py \
+python -m experiments.run_confidence_sequence_experiments \
   --delta 0.01 \
   --max-time 1000000 \
   --times 1000,10000,100000,1000000 \
@@ -176,18 +177,18 @@ python run_confidence_sequence_experiments.py \
   --progress
 ```
 
-Run `python run_confidence_sequence_audits.py --audit all --progress` for
+Run `python -m experiments.run_confidence_sequence_audits --audit all --progress` for
 the topology-resolution and schedule audits, and
-`python run_bentkus_strike_audit.py` for the fixed-strike sensitivity
+`python -m experiments.run_bentkus_strike_audit` for the fixed-strike sensitivity
 diagnostic.
 
 ### Local feedback and fixed-event survival
 
-`python feedback_local_power.py` runs the nested-logit-mesh comparison of
+`python -m experiments.feedback_local_power` runs the nested-logit-mesh comparison of
 the local feedback slopes.  The fixed-event survival experiment is:
 
 ```bash
-python survival_fixed_event.py --repetitions 10000 --events 200
+python -m experiments.survival_fixed_event --repetitions 10000 --events 200
 ```
 
 It writes the summary, compressed replicate-level endpoints, and figure under
@@ -196,7 +197,7 @@ It writes the summary, compressed replicate-level endpoints, and figure under
 ### Order invariance
 
 ```bash
-python order_invariant_ge.py \
+python -m experiments.order_invariant_ge \
   --output-dir plots/order_invariant_ge \
   --n-values 50 200 1000 5000 \
   --repetitions 100 \
@@ -211,7 +212,7 @@ of the external randomization.
 ### Robust Studentized-event audit
 
 ```bash
-python robust_studentized_experiment.py \
+python -m experiments.robust_studentized_experiment \
   --output-dir plots/robust_studentized \
   --n-values 50 200 1000 5000 \
   --repetitions 200 \

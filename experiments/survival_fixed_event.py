@@ -1237,11 +1237,11 @@ def run_experiment(
     if grid_size < 9 or grid_size % 2 == 0:
         raise ValueError("grid_size must be an odd integer of at least nine")
 
-    script_dir = Path(__file__).resolve().parent
+    repo_root = Path(__file__).resolve().parents[1]
     output_dir = (
         Path(output_dir)
         if output_dir is not None
-        else script_dir / "plots" / "survival_fixed_event"
+        else repo_root / "plots" / "survival_fixed_event"
     )
     output_dir.mkdir(parents=True, exist_ok=True)
     subject_count = int(subject_multiplier * event_horizon)
@@ -1363,7 +1363,7 @@ def run_experiment(
 
     if copy_to_paper:
         paper_figure = (
-            script_dir.parent
+            repo_root.parent
             / "paper"
             / "plots"
             / "fixed_event_survival_comparison.png"

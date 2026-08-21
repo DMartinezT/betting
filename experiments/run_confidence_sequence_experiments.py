@@ -19,13 +19,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 
-if __package__:
-    from .confidence_sequences import run_confidence_sequence_experiment
-else:
-    from confidence_sequences import run_confidence_sequence_experiment
+from confidence_sequences import run_confidence_sequence_experiment
 
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 OUTPUT_DIRECTORY = HERE / "plots"
 DEFAULT_OUTPUT_PREFIX = "confidence_sequences"
 
@@ -129,7 +126,7 @@ def _save_figure(figure: plt.Figure, path: Path) -> None:
         path,
         dpi=200,
         bbox_inches="tight",
-        metadata={"Software": "run_confidence_sequence_experiments.py"},
+        metadata={"Software": "experiments.run_confidence_sequence_experiments"},
     )
     plt.close(figure)
 

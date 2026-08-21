@@ -136,7 +136,7 @@ GROUP_INPUTS = {
 
 
 def _generate_iid(output_dir: Path) -> dict[str, Path]:
-    import plot_combined_main_figure as figures
+    from figures import plot_combined_main_figure as figures
 
     intro = output_dir / "intro_both_comparison.png"
     main = output_dir / "ci_width_original_vs_star.png"
@@ -146,7 +146,7 @@ def _generate_iid(output_dir: Path) -> dict[str, Path]:
 
 
 def _generate_betting_function(output_dir: Path) -> dict[str, Path]:
-    import plot_efficient_betting_function as figure
+    from figures import plot_efficient_betting_function as figure
 
     output = output_dir / "efficient_betting_function.pdf"
     figure.make_figure((output,))
@@ -155,7 +155,7 @@ def _generate_betting_function(output_dir: Path) -> dict[str, Path]:
 
 def _generate_without_replacement(output_dir: Path) -> dict[str, Path]:
     import wor
-    import wor_scaled_plots as scaled
+    from experiments import wor_scaled_plots as scaled
 
     fixed_rows = wor.load_summary(GROUP_INPUTS["without_replacement"][0])
     temporary = wor.fixed_horizon_plot(output_dir, fixed_rows)
@@ -207,7 +207,7 @@ def _generate_large_sample(output_dir: Path) -> dict[str, Path]:
 
 
 def _generate_solvency(output_dir: Path) -> dict[str, Path]:
-    import plot_solvency_sensitivity as figure
+    from figures import plot_solvency_sensitivity as figure
 
     output = output_dir / "ci_width_solvency_combined.png"
     figure.make_figure((output,))
@@ -215,7 +215,7 @@ def _generate_solvency(output_dir: Path) -> dict[str, Path]:
 
 
 def _generate_fixed_hinge(output_dir: Path) -> dict[str, Path]:
-    import plot_saved_experiment as figures
+    from figures import plot_saved_experiment as figures
 
     work_dir = output_dir / "fixed_hinge_work"
     outputs = figures.plot_saved_experiment(
@@ -234,7 +234,7 @@ def _generate_fixed_hinge(output_dir: Path) -> dict[str, Path]:
 
 
 def _generate_horizon_free_wr(output_dir: Path) -> dict[str, Path]:
-    import horizon_free_wr_cs as experiment
+    from experiments import horizon_free_wr_cs as experiment
 
     rows = experiment.load_summary(GROUP_INPUTS["horizon_free_wr"][0])
     output = experiment.make_plot(output_dir, rows)
@@ -242,7 +242,7 @@ def _generate_horizon_free_wr(output_dir: Path) -> dict[str, Path]:
 
 
 def _generate_horizon_free_wor(output_dir: Path) -> dict[str, Path]:
-    import horizon_free_cs as experiment
+    from experiments import horizon_free_cs as experiment
 
     rows = experiment.load_summary(GROUP_INPUTS["horizon_free_wor"][0])
     output = experiment.make_plot(output_dir, rows)

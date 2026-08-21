@@ -3765,7 +3765,7 @@ def run_dp_experiment(
                 "probit_terminal_randomization": True,
                 "reported_width": (
                     "accepted component adjacent to the sample mean; "
-                    "use audit_confidence_set_topology.py for global inversion"
+                    "use experiments.audit_confidence_set_topology for global inversion"
                 ),
                 "results": results,
             },

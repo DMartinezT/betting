@@ -4,7 +4,7 @@ import unittest
 import numpy as np
 
 import betting
-import order_invariant_ge as symmetric_ge
+from experiments import order_invariant_ge as symmetric_ge
 
 
 class OrderInvariantGETests(unittest.TestCase):

@@ -11,7 +11,7 @@ import numpy as np
 from scipy.stats import norm
 
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 PAPER_OUTPUT = (
     HERE.parent / "paper" / "plots" / "efficient_betting_function.pdf"
 )

@@ -25,7 +25,7 @@ from betting import probit_target_leverage
 from confidence_sequences import agrapa_log_e_path
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT_DIR = ROOT / "plots" / "horizon_free_wr_cs"
 DEFAULT_PAPER_PLOT_DIR = ROOT.parent / "paper" / "plots"
 

@@ -82,7 +82,11 @@ must remain fixed over all candidate means in an inversion.
 betting.py                         core fixed-horizon methods and inversions
 confidence_sequences.py            core with-replacement CS methods
 wor.py                              without-replacement methods and experiment
+robust_studentized_dp.py            robust Studentized-event Bellman solver
+legacy_constructions.py             archived constructions used for reproduction
 reproduce_paper_figures.py          authoritative manuscript figure command
+figures/                            plot-only manuscript figure helpers
+experiments/                        simulation, audit, and diagnostic drivers
 gaffke_comparison/                  Gaffke experiments and saved results
 plots/                              committed results, summaries, and figures
 tests/                              unit and reproduction-manifest tests
@@ -90,8 +94,9 @@ docs/REPRODUCIBILITY.md             exact manuscript workflow
 docs/EXPERIMENTS.md                 primary and auxiliary experiment catalog
 ```
 
-Root-level experiment drivers are kept stable so commands recorded during the
-research remain valid.  They are organized by purpose in
+The root is reserved for core implementations and the single manuscript
+figure command.  Individual research drivers live under `experiments/`, and
+plot-only helpers live under `figures/`; both are cataloged in
 [docs/EXPERIMENTS.md](docs/EXPERIMENTS.md).  Earlier exploratory figures and
 their generators are retained, but only `reproduce_paper_figures.py` defines
 the current manuscript figure set.

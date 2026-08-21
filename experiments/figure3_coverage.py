@@ -2,7 +2,7 @@
 """Check finite-sample noncoverage for the methods shown in Figure 3.
 
 The betting samples and terminal uniforms exactly replay the streams used by
-``augment_fixed_sample_topology.py``.  Membership is evaluated directly at
+``experiments.augment_fixed_sample_topology``.  Membership is evaluated directly at
 the true mean, which avoids any numerical inversion error.  The saved Gaffke
 endpoints are read from their dedicated Figure 3 experiment.
 """
@@ -26,7 +26,7 @@ import betting
 from gaffke_comparison.compare_star_probit_gaffke import DISTRIBUTIONS
 
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 PAPER_PLOTS = HERE.parent / "paper" / "plots"
 DEFAULT_INPUT = HERE / "plots" / "ci_width_original_vs_star.json"
 DEFAULT_GAFFKE = (

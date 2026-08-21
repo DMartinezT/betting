@@ -2,8 +2,8 @@ import unittest
 
 import numpy as np
 
-import augment_fixed_sample_topology as topology
 import betting
+from experiments import augment_fixed_sample_topology as topology
 
 
 class FixedSampleMethodDispatchTests(unittest.TestCase):

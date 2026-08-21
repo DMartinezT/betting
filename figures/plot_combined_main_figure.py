@@ -27,7 +27,7 @@ import pandas as pd
 from matplotlib.lines import Line2D
 
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 PAPER_DIR = HERE.parent / "paper"
 BETTING_RESULTS = (
     HERE / "plots" / "solvency_c_comparison" / "ci_width_all_methods_c1.json"

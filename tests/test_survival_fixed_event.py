@@ -3,7 +3,7 @@ import unittest
 
 import numpy as np
 
-import survival_fixed_event as survival
+from experiments import survival_fixed_event as survival
 
 
 class FixedEventSurvivalTests(unittest.TestCase):

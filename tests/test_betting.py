@@ -999,7 +999,7 @@ class HeatFlowConstructionTests(unittest.TestCase):
         self.assertLessEqual(efficient_rand[1], efficient_det[1])
 
     def test_randomized_product_orthant_gaffke_endpoints(self):
-        from compare_markov_calibrations_large import (
+        from experiments.compare_markov_calibrations_large import (
             fast_gaffke_ci,
             randomized_product_orthant_gaffke_ci,
         )

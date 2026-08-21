@@ -29,7 +29,7 @@ from gaffke_comparison.figure2_gaffke import (
 from gaffke_comparison.large_sample_feedback_gaffke import fast_gaffke_ci
 
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 PAPER_PLOTS = HERE.parent / "paper" / "plots"
 DEFAULT_INPUT = HERE / "plots" / "ci_width_original_vs_star.json"
 DEFAULT_GAFFKE = (

@@ -47,7 +47,7 @@ from wor import (
 )
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_DATA_DIR = ROOT / "plots" / "wor"
 DEFAULT_PAPER_PLOT_DIR = ROOT.parent / "paper" / "plots"
 

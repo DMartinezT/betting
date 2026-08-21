@@ -15,7 +15,7 @@ import numpy as np
 from matplotlib.lines import Line2D
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 PAPER_ROOT = ROOT.parent / "paper"
 OUTPUT = ROOT / "plots" / "solvency_c_comparison" / (
     "ci_width_solvency_combined.png"

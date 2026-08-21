@@ -24,7 +24,7 @@ from scipy.stats import norm
 from betting import probit_target_leverage
 
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT_DIR = ROOT / "plots" / "horizon_free_cs"
 DEFAULT_PAPER_PLOT_DIR = ROOT.parent / "paper" / "plots"
 

@@ -29,27 +29,17 @@ from pathlib import Path
 
 import numpy as np
 
-if __package__:
-    from .confidence_sequences import (
-        bentkus_horizon_schedule,
-        bentkus_mixture_log_e_path,
-        confidence_sequence_endpoints,
-        default_cs_times,
-        heat_constrained_agrapa_log_e_path,
-        product_scale_schedule,
-    )
-else:
-    from confidence_sequences import (
-        bentkus_horizon_schedule,
-        bentkus_mixture_log_e_path,
-        confidence_sequence_endpoints,
-        default_cs_times,
-        heat_constrained_agrapa_log_e_path,
-        product_scale_schedule,
-    )
+from confidence_sequences import (
+    bentkus_horizon_schedule,
+    bentkus_mixture_log_e_path,
+    confidence_sequence_endpoints,
+    default_cs_times,
+    heat_constrained_agrapa_log_e_path,
+    product_scale_schedule,
+)
 
 
-HERE = Path(__file__).resolve().parent
+HERE = Path(__file__).resolve().parents[1]
 OUTPUT_DIRECTORY = HERE / "plots"
 
 DISTRIBUTIONS = (

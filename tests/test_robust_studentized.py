@@ -7,7 +7,7 @@ from scipy.stats import norm
 
 import betting
 import robust_studentized_dp as robust_dp
-import robust_studentized_experiment as experiment
+from experiments import robust_studentized_experiment as experiment
 
 
 class RobustStudentizedTests(unittest.TestCase):
